@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2BD7790726E33927000AE934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD7790626E33927000AE934 /* Assets.xcassets */; };
-		2BD7790C26E346C3000AE934 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BD7790B26E346C3000AE934 /* Assets.xcassets */; };
 		3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D00C8B4266E3999006236A0 /* MateListViewController.swift */; };
 		3D00C8B7266E39A6006236A0 /* MateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D00C8B6266E39A6006236A0 /* MateDetailViewController.swift */; };
 		3D00C8BA266E39E8006236A0 /* Mate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D00C8B9266E39E8006236A0 /* Mate.storyboard */; };
@@ -49,11 +47,10 @@
 		3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */; };
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
+		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2BD7790626E33927000AE934 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		2BD7790B26E346C3000AE934 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3D00C8B4266E3999006236A0 /* MateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListViewController.swift; sourceTree = "<group>"; };
 		3D00C8B6266E39A6006236A0 /* MateDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateDetailViewController.swift; sourceTree = "<group>"; };
 		3D00C8B9266E39E8006236A0 /* Mate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mate.storyboard; sourceTree = "<group>"; };
@@ -96,6 +93,7 @@
 		3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
+		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,10 +157,9 @@
 				3D5D598A265247F40018FE63 /* SceneDelegate.swift */,
 				3D5D598E265247F40018FE63 /* Main.storyboard */,
 				3D5D59A72652AF390018FE63 /* FirstViewController.swift */,
-				2BD7790626E33927000AE934 /* Assets.xcassets */,
-				2BD7790B26E346C3000AE934 /* Assets.xcassets */,
 				3D5D5993265247F50018FE63 /* LaunchScreen.storyboard */,
 				3D5D5996265247F50018FE63 /* Info.plist */,
+				A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */,
 				3D5D59A1265295C60018FE63 /* Login */,
 				3D5D59A62652961B0018FE63 /* Register */,
 				3DB686F8268D8C2D0061BCB0 /* TabbarManager */,
@@ -299,12 +296,11 @@
 				3D40E52E2658086800B19E32 /* TermsOfServices.storyboard in Resources */,
 				3D5D5995265247F50018FE63 /* LaunchScreen.storyboard in Resources */,
 				3D5D5990265247F40018FE63 /* Main.storyboard in Resources */,
-				2BD7790726E33927000AE934 /* Assets.xcassets in Resources */,
-				2BD7790C26E346C3000AE934 /* Assets.xcassets in Resources */,
 				3D520BAB265340E40090B6E8 /* Home.storyboard in Resources */,
 				3D00C8BA266E39E8006236A0 /* Mate.storyboard in Resources */,
 				3D5D59B02652B29B0018FE63 /* Login.storyboard in Resources */,
 				3D5D59AE2652B2930018FE63 /* Register.storyboard in Resources */,
+				A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */,
 				3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -494,7 +490,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2Q6MH57SWY;
+				DEVELOPMENT_TEAM = 3CZP576P62;
 				INFOPLIST_FILE = GongSaeng/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -512,7 +508,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 2Q6MH57SWY;
+				DEVELOPMENT_TEAM = 3CZP576P62;
 				INFOPLIST_FILE = GongSaeng/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

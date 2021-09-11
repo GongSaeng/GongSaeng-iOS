@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Foundation
 
 class LoginViewController: UIViewController {
     
@@ -29,8 +28,11 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func tapBG(_ sender: Any) {
-        idTextField.resignFirstResponder()
-        passwordTextField.resignFirstResponder()
+        if idTextField.isFirstResponder {
+            idTextField.resignFirstResponder()
+        } else if passwordTextField.isFirstResponder {
+            passwordTextField.resignFirstResponder()
+        }
     }
     
     @IBAction func loginButtonTapHandler(_ sender: Any) {

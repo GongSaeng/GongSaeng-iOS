@@ -100,9 +100,13 @@ class MemberViewController: UIViewController {
     }
     
     func resignAll() {
-        nameTextField.resignFirstResponder()
-        birthTextField.resignFirstResponder()
-        phoneTextField.resignFirstResponder()
+        if nameTextField.isFirstResponder {
+            nameTextField.resignFirstResponder()
+        } else if birthTextField.isFirstResponder {
+            birthTextField.resignFirstResponder()
+        } else if phoneTextField.isFirstResponder {
+            phoneTextField.resignFirstResponder()
+        }
     }
 }
 
