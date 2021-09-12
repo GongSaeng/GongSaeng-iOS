@@ -5,7 +5,6 @@
 //  Created by 조영우 on 2021/05/18.
 //
 import UIKit
-import Foundation
 
 struct User: Codable, Equatable {
     var id: String // primary key

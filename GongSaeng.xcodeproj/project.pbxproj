@@ -48,6 +48,7 @@
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
+		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -94,6 +95,7 @@
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
 		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +166,7 @@
 				3D5D59A62652961B0018FE63 /* Register */,
 				3DB686F8268D8C2D0061BCB0 /* TabbarManager */,
 				3D5D599C2652491F0018FE63 /* Home */,
+				A753FB6026ED0533001DA2C3 /* MyPage */,
 				3DAFCB9E26625DDF008E9803 /* Extension + Public */,
 				3D2FBC072675FEAC00D2FF56 /* Public */,
 			);
@@ -173,8 +176,8 @@
 		3D5D599C2652491F0018FE63 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				3D5D599D265249310018FE63 /* HomeViewController.swift */,
 				3D520BAA265340E40090B6E8 /* Home.storyboard */,
+				3D5D599D265249310018FE63 /* HomeViewController.swift */,
 				3DD893D3266E1A6E0050B4F8 /* NoticeViewController.swift */,
 				3DD893D5266E1A9C0050B4F8 /* MateViewController.swift */,
 				3D00C8B8266E39CD006236A0 /* Mate */,
@@ -234,6 +237,14 @@
 				3DB686F9268D8C570061BCB0 /* LoginUser.swift */,
 			);
 			path = TabbarManager;
+			sourceTree = "<group>";
+		};
+		A753FB6026ED0533001DA2C3 /* MyPage */ = {
+			isa = PBXGroup;
+			children = (
+				A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */,
+			);
+			path = MyPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -340,6 +351,7 @@
 				3D5D598B265247F40018FE63 /* SceneDelegate.swift in Sources */,
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,
 				3DA98CCD26530C30005175B5 /* User.swift in Sources */,
+				A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */,
 				3DD893D4266E1A6E0050B4F8 /* NoticeViewController.swift in Sources */,
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,
 				3D5D599E265249310018FE63 /* HomeViewController.swift in Sources */,

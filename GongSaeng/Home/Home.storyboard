@@ -113,18 +113,179 @@
         <!--마이페이지-->
         <scene sceneID="ZdA-LT-yXD">
             <objects>
-                <viewController id="831-R5-ggr" sceneMemberID="viewController">
+                <viewController id="831-R5-ggr" customClass="MyPageViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wNv-RQ-cuW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmh-kE-XCE">
+                                <rect key="frame" x="15" y="60" width="147" height="24"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQ8-ob-dUV">
+                                <rect key="frame" x="0.0" y="99.5" width="414" height="1"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="H1V-sb-feR"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Noq-eC-QZN">
+                                <rect key="frame" x="16" y="130.5" width="42" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="B85-cy-zIc"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHc-Jd-25W">
+                                <rect key="frame" x="16" y="170.5" width="158" height="40"/>
+                                <color key="backgroundColor" red="0.066666666666666666" green="0.40392156862745099" blue="0.38039215686274508" alpha="0.10120033112582781" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="158" id="4QY-jk-Da6"/>
+                                    <constraint firstAttribute="height" constant="40" id="qmo-Uu-lO8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                <state key="normal" title="프로필 수정">
+                                    <color key="titleColor" red="0.066666666669999999" green="0.4039215686" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invalid_name" translatesAutoresizingMaskIntoConstraints="NO" id="xqS-um-kXE">
+                                <rect key="frame" x="318" y="130.5" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="YNt-1M-uX7"/>
+                                    <constraint firstAttribute="height" constant="80" id="ddL-m5-bXf"/>
+                                </constraints>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JxD-Bv-GyR">
+                                <rect key="frame" x="0.0" y="240.5" width="414" height="8"/>
+                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="8" id="zfz-qA-4hh"/>
+                                </constraints>
+                            </view>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1k7-c5-W3c">
+                                <rect key="frame" x="0.0" y="240.5" width="414" height="572.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="6XZ-bw-2zA">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="420"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F1x-Xr-PBO">
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.02" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="내 프로필/작성글/댓글">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UI6-Bh-dSH">
+                                                <rect key="frame" x="0.0" y="60" width="414" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.02" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="입/퇴실 신청">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-oK-pbI">
+                                                <rect key="frame" x="0.0" y="120" width="414" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.02" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="계정 정보 관리">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCt-XJ-Vjh">
+                                                <rect key="frame" x="0.0" y="180" width="414" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.02" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="알림 설정">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocP-C5-HSn">
+                                                <rect key="frame" x="0.0" y="240" width="414" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.02" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="카카오톡 문의하기">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8j-Yg-9QY">
+                                                <rect key="frame" x="0.0" y="300" width="414" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.02" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="로그아웃">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSr-Zp-Tm5">
+                                                <rect key="frame" x="0.0" y="360" width="414" height="60"/>
+                                                <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.02" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                                <inset key="contentEdgeInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                                <state key="normal" title="회원탈퇴">
+                                                    <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                                </state>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="420" id="Nqu-WO-qDM"/>
+                                        </constraints>
+                                    </stackView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="6XZ-bw-2zA" secondAttribute="bottom" id="Bn0-oC-sGX"/>
+                                    <constraint firstItem="6XZ-bw-2zA" firstAttribute="width" secondItem="1k7-c5-W3c" secondAttribute="width" id="GGq-aW-Jm1"/>
+                                    <constraint firstAttribute="trailing" secondItem="6XZ-bw-2zA" secondAttribute="trailing" id="MHx-Mu-VQ6"/>
+                                    <constraint firstItem="6XZ-bw-2zA" firstAttribute="leading" secondItem="1k7-c5-W3c" secondAttribute="leading" id="jHk-fS-AgS"/>
+                                    <constraint firstItem="6XZ-bw-2zA" firstAttribute="top" secondItem="1k7-c5-W3c" secondAttribute="top" id="yhu-wM-YEy"/>
+                                </constraints>
+                                <inset key="scrollIndicatorInsets" minX="16" minY="0.0" maxX="0.0" maxY="0.0"/>
+                            </scrollView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="Sf1-N3-2wb"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="XQ8-ob-dUV" firstAttribute="leading" secondItem="wNv-RQ-cuW" secondAttribute="leading" id="7rR-YW-NCl"/>
+                            <constraint firstItem="Sf1-N3-2wb" firstAttribute="trailing" secondItem="mmh-kE-XCE" secondAttribute="trailing" constant="252" id="AKV-CB-Nur"/>
+                            <constraint firstItem="JxD-Bv-GyR" firstAttribute="top" secondItem="MHc-Jd-25W" secondAttribute="bottom" constant="30" id="BXh-1I-fmE"/>
+                            <constraint firstItem="MHc-Jd-25W" firstAttribute="top" secondItem="Noq-eC-QZN" secondAttribute="bottom" constant="16" id="BqJ-Hs-Qbi"/>
+                            <constraint firstItem="1k7-c5-W3c" firstAttribute="trailing" secondItem="Sf1-N3-2wb" secondAttribute="trailing" id="DCe-ua-RiQ"/>
+                            <constraint firstItem="XQ8-ob-dUV" firstAttribute="top" secondItem="mmh-kE-XCE" secondAttribute="bottom" constant="15.5" id="G9n-Lp-Ybe"/>
+                            <constraint firstItem="MHc-Jd-25W" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" constant="16" id="GYK-Mq-Dxh"/>
+                            <constraint firstItem="1k7-c5-W3c" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" id="HUb-xi-0Pp"/>
+                            <constraint firstItem="Noq-eC-QZN" firstAttribute="top" secondItem="XQ8-ob-dUV" secondAttribute="bottom" constant="30" id="LqE-VJ-Fjk"/>
+                            <constraint firstItem="Sf1-N3-2wb" firstAttribute="bottom" secondItem="1k7-c5-W3c" secondAttribute="bottom" id="QCx-Gq-WzH"/>
+                            <constraint firstItem="MHc-Jd-25W" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" constant="16" id="aEn-IC-In4"/>
+                            <constraint firstItem="JxD-Bv-GyR" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" id="dS9-F5-6Os"/>
+                            <constraint firstItem="Noq-eC-QZN" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" constant="16" id="dvC-rg-4u6"/>
+                            <constraint firstItem="mmh-kE-XCE" firstAttribute="top" secondItem="Sf1-N3-2wb" secondAttribute="top" constant="16" id="eZl-w4-FlR"/>
+                            <constraint firstItem="1k7-c5-W3c" firstAttribute="top" secondItem="JxD-Bv-GyR" secondAttribute="top" id="f6P-dP-Ezt"/>
+                            <constraint firstAttribute="trailing" secondItem="XQ8-ob-dUV" secondAttribute="trailing" id="l8o-Pu-FWZ"/>
+                            <constraint firstItem="JxD-Bv-GyR" firstAttribute="trailing" secondItem="Sf1-N3-2wb" secondAttribute="trailing" id="tgO-6z-z3I"/>
+                            <constraint firstItem="mmh-kE-XCE" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" constant="15.199999999999999" id="w3Z-vL-F1X"/>
+                            <constraint firstItem="JxD-Bv-GyR" firstAttribute="top" secondItem="xqS-um-kXE" secondAttribute="bottom" constant="30" id="yhs-41-bMv"/>
+                            <constraint firstItem="Sf1-N3-2wb" firstAttribute="trailing" secondItem="xqS-um-kXE" secondAttribute="trailing" constant="16" id="znw-7s-uyw"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="마이페이지" image="mypage" selectedImage="mypageOn" id="Txg-c7-SGd"/>
+                    <connections>
+                        <outlet property="editProfileButton" destination="MHc-Jd-25W" id="g5r-ES-Uld"/>
+                        <outlet property="nickNameLabel" destination="Noq-eC-QZN" id="E7D-8J-W4h"/>
+                        <outlet property="userImage" destination="xqS-um-kXE" id="Cyz-Bn-Dua"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7W9-mz-zqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="749" y="645"/>
+            <point key="canvasLocation" x="747.82608695652175" y="644.86607142857144"/>
         </scene>
         <!--홈-->
         <scene sceneID="mD1-zO-Wod">
@@ -560,6 +721,7 @@
         <image name="home_3" width="31.5" height="23.5"/>
         <image name="home_4" width="32" height="32"/>
         <image name="home_5" width="32" height="32.5"/>
+        <image name="invalid_name" width="80" height="80"/>
         <image name="mypage" width="26" height="26"/>
         <image name="mypageOn" width="22" height="22"/>
         <image name="profile_man" width="300" height="300"/>
