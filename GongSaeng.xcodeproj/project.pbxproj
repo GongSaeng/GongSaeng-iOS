@@ -47,6 +47,7 @@
 		3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */; };
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
+		A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E07B926EE6021007DB8D0 /* UIImageView.swift */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
 		A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */; };
@@ -99,6 +100,7 @@
 		3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
+		A71E07B926EE6021007DB8D0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 				3DAFCBA3266261E6008E9803 /* UITextField.swift */,
 				3D2FBC0A26760BFA00D2FF56 /* Date.swift */,
 				A7FA636326EE2519005D9785 /* UITextView.swift */,
+				A71E07B926EE6021007DB8D0 /* UIImageView.swift */,
 			);
 			path = "Extension + Public";
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				3D231A6C266F71A600080E9B /* MateDetailTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,
+				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
 				3D2FBC092675FEDD00D2FF56 /* Public.swift in Sources */,
 				3D00C8B7266E39A6006236A0 /* MateDetailViewController.swift in Sources */,
 				3D5D598B265247F40018FE63 /* SceneDelegate.swift in Sources */,

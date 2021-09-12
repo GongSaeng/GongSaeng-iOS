@@ -18,9 +18,7 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userImageView.layer.cornerRadius = 62
-        userImageView.layer.borderWidth = 1
-        userImageView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
+        userImageView.roundCornerOfImageView()
         
         [nickNameTextField, affiliationTextField, websiteTextField].forEach { $0.underlined(viewSize: view.bounds.width, color: UIColor.systemGray) }
         
