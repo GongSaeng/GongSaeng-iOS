@@ -151,6 +151,9 @@
                                 <state key="normal" title="프로필 수정">
                                     <color key="titleColor" red="0.066666666669999999" green="0.4039215686" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="editProfileButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="iUh-rg-zC7"/>
+                                </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invalid_name" translatesAutoresizingMaskIntoConstraints="NO" id="xqS-um-kXE">
                                 <rect key="frame" x="318" y="130.5" width="80" height="80"/>
@@ -180,6 +183,9 @@
                                                 <state key="normal" title="내 프로필/작성글/댓글">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="myProfileButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="1W0-Id-3l9"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UI6-Bh-dSH">
                                                 <rect key="frame" x="0.0" y="60" width="414" height="60"/>
@@ -189,6 +195,9 @@
                                                 <state key="normal" title="입/퇴실 신청">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="requestCheckInOutButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="4rc-gw-xoA"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-oK-pbI">
                                                 <rect key="frame" x="0.0" y="120" width="414" height="60"/>
@@ -198,6 +207,9 @@
                                                 <state key="normal" title="계정 정보 관리">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="manageAccountInfoButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="CdR-dc-dBP"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qCt-XJ-Vjh">
                                                 <rect key="frame" x="0.0" y="180" width="414" height="60"/>
@@ -207,6 +219,9 @@
                                                 <state key="normal" title="알림 설정">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="setNotificationButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="UZT-TZ-vnC"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ocP-C5-HSn">
                                                 <rect key="frame" x="0.0" y="240" width="414" height="60"/>
@@ -216,6 +231,9 @@
                                                 <state key="normal" title="카카오톡 문의하기">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="askKakaoButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="l5i-XZ-sL5"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y8j-Yg-9QY">
                                                 <rect key="frame" x="0.0" y="300" width="414" height="60"/>
@@ -225,6 +243,9 @@
                                                 <state key="normal" title="로그아웃">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="logOutButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="wX0-ET-dmX"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSr-Zp-Tm5">
                                                 <rect key="frame" x="0.0" y="360" width="414" height="60"/>
@@ -234,6 +255,9 @@
                                                 <state key="normal" title="회원탈퇴">
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="membershipWithdrawlButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="53d-E4-gia"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>

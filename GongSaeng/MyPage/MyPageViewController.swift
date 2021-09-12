@@ -27,7 +27,28 @@ class MyPageViewController: UIViewController {
         nickNameLabel.text = loginUser?.nickName
     }
     
+    @IBAction func editProfileButtonTapped(_ sender: UIButton) {
+    }
     
+    @IBAction func myProfileButtonTapped(_ sender: UIButton) {
+    }
     
+    @IBAction func requestCheckInOutButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func manageAccountInfoButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func setNotificationButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func askKakaoButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func logOutButtonTapped(_ sender: UIButton) {
+    }
+    
+    @IBAction func membershipWithdrawlButtonTapped(_ sender: UIButton) {
+    }
     
 }
