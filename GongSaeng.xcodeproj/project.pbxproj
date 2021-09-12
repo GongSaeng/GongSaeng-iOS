@@ -51,6 +51,7 @@
 		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
 		A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */; };
 		A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */; };
+		A7FA636426EE2519005D9785 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636326EE2519005D9785 /* UITextView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -100,6 +101,7 @@
 		A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		A7FA636326EE2519005D9785 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +232,7 @@
 				3DAFCBA126626176008E9803 /* UIView.swift */,
 				3DAFCBA3266261E6008E9803 /* UITextField.swift */,
 				3D2FBC0A26760BFA00D2FF56 /* Date.swift */,
+				A7FA636326EE2519005D9785 /* UITextView.swift */,
 			);
 			path = "Extension + Public";
 			sourceTree = "<group>";
@@ -337,6 +340,7 @@
 				3DAFCBA4266261E6008E9803 /* UITextField.swift in Sources */,
 				3D5D59AC2652B12A0018FE63 /* LoginViewController.swift in Sources */,
 				3D40E5302658089600B19E32 /* TermsOfServicesViewController.swift in Sources */,
+				A7FA636426EE2519005D9785 /* UITextView.swift in Sources */,
 				3D015AFF265812B6003EC5E6 /* TermsOfServices.swift in Sources */,
 				3D5D5989265247F40018FE63 /* AppDelegate.swift in Sources */,
 				3D816C61266B92D700A5164B /* AppTabbarController.swift in Sources */,
