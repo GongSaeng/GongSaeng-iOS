@@ -52,6 +52,8 @@
 		A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */; };
 		A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */; };
 		A7FA636426EE2519005D9785 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636326EE2519005D9785 /* UITextView.swift */; };
+		A7FA636626EE293F005D9785 /* MyProfileAndWriting.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FA636526EE293F005D9785 /* MyProfileAndWriting.storyboard */; };
+		A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636726EE294E005D9785 /* MyProfileAndWritingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -102,6 +104,8 @@
 		A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		A7FA636326EE2519005D9785 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
+		A7FA636526EE293F005D9785 /* MyProfileAndWriting.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyProfileAndWriting.storyboard; sourceTree = "<group>"; };
+		A7FA636726EE294E005D9785 /* MyProfileAndWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileAndWritingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -252,6 +256,8 @@
 				A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */,
 				A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */,
 				A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */,
+				A7FA636526EE293F005D9785 /* MyProfileAndWriting.storyboard */,
+				A7FA636726EE294E005D9785 /* MyProfileAndWritingViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 				3D5D59B02652B29B0018FE63 /* Login.storyboard in Resources */,
 				A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */,
 				3D5D59AE2652B2930018FE63 /* Register.storyboard in Resources */,
+				A7FA636626EE293F005D9785 /* MyProfileAndWriting.storyboard in Resources */,
 				A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */,
 				3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */,
 			);
@@ -355,6 +362,7 @@
 				3DD893D6266E1A9C0050B4F8 /* MateViewController.swift in Sources */,
 				3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */,
 				3D231A6A266E629D00080E9B /* MateCell.swift in Sources */,
+				A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */,
 				3D231A6C266F71A600080E9B /* MateDetailTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,

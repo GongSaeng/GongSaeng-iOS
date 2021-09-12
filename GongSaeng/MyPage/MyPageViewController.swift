@@ -30,12 +30,15 @@ class MyPageViewController: UIViewController {
     @IBAction func editProfileButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "EditProfile", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
-
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true, completion: nil)
     }
     
-    @IBAction func myProfileButtonTapped(_ sender: UIButton) {
+    @IBAction func myProfileAndWritingButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "MyProfileAndWriting", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MyProfileAndWritingViewController") as! MyProfileAndWritingViewController
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func requestCheckInOutButtonTapped(_ sender: UIButton) {

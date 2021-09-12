@@ -184,7 +184,7 @@
                                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="myProfileButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="1W0-Id-3l9"/>
+                                                    <action selector="myProfileAndWritingButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="EOv-ch-7el"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UI6-Bh-dSH">
