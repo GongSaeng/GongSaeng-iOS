@@ -55,6 +55,8 @@
 		A79C58E426EEF33400F608D1 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */; };
 		A7AE9F3426EF20120082C855 /* LogOutPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE9F3326EF20120082C855 /* LogOutPopUpViewController.swift */; };
 		A7AE9F3626EF201C0082C855 /* LogOutPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */; };
+		A7AE9F3926EF2E060082C855 /* PasswordChangedPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */; };
+		A7AE9F3B26EF2E110082C855 /* PasswordChangedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */; };
 		A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */; };
 		A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */; };
 		A7FA636426EE2519005D9785 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636326EE2519005D9785 /* UITextView.swift */; };
@@ -113,6 +115,8 @@
 		A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		A7AE9F3326EF20120082C855 /* LogOutPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutPopUpViewController.swift; sourceTree = "<group>"; };
 		A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogOutPopUp.storyboard; sourceTree = "<group>"; };
+		A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordChangedPopUp.storyboard; sourceTree = "<group>"; };
+		A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangedPopUpViewController.swift; sourceTree = "<group>"; };
 		A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		A7FA636326EE2519005D9785 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
@@ -274,10 +278,20 @@
 				A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */,
 				A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */,
 				A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */,
-				A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */,
-				A7AE9F3326EF20120082C855 /* LogOutPopUpViewController.swift */,
+				A7AE9F3726EF2C9B0082C855 /* PopUp */,
 			);
 			path = MyPage;
+			sourceTree = "<group>";
+		};
+		A7AE9F3726EF2C9B0082C855 /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */,
+				A7AE9F3326EF20120082C855 /* LogOutPopUpViewController.swift */,
+				A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */,
+				A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */,
+			);
+			path = PopUp;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +356,7 @@
 				A79C58E026EEE65D00F608D1 /* ManageAccountInfo.storyboard in Resources */,
 				3D5D5990265247F40018FE63 /* Main.storyboard in Resources */,
 				A7AE9F3626EF201C0082C855 /* LogOutPopUp.storyboard in Resources */,
+				A7AE9F3926EF2E060082C855 /* PasswordChangedPopUp.storyboard in Resources */,
 				3D520BAB265340E40090B6E8 /* Home.storyboard in Resources */,
 				3D00C8BA266E39E8006236A0 /* Mate.storyboard in Resources */,
 				3D5D59B02652B29B0018FE63 /* Login.storyboard in Resources */,
@@ -370,6 +385,7 @@
 				3D40E5302658089600B19E32 /* TermsOfServicesViewController.swift in Sources */,
 				A7FA636426EE2519005D9785 /* UITextView.swift in Sources */,
 				3D015AFF265812B6003EC5E6 /* TermsOfServices.swift in Sources */,
+				A7AE9F3B26EF2E110082C855 /* PasswordChangedPopUpViewController.swift in Sources */,
 				3D5D5989265247F40018FE63 /* AppDelegate.swift in Sources */,
 				3D816C61266B92D700A5164B /* AppTabbarController.swift in Sources */,
 				A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */,

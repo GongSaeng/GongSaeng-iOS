@@ -66,11 +66,9 @@ class ChangePasswordViewController: UIViewController {
     
     @IBAction func changePasswordButtonTapped(_ sender: UIButton) {
         // 비밀번호 규칙에 맞고, 확인과 내용이 일치 시 아래 코드 실행
-        let alert = UIAlertController(title: nil, message: "비밀번호가 변경되었어요.", preferredStyle: .alert)
-        let action = UIAlertAction(title: "확인", style: .default, handler: { UIAlertAction in
-            self.dismiss(animated: true, completion: nil)
-        })
-        alert.addAction(action)
-        present(alert, animated: true, completion: nil)
+        let storyBoard = UIStoryboard.init(name: "PasswordChangedPopUp", bundle: nil)
+        let popUpViewController = storyBoard.instantiateViewController(identifier: "PasswordChangedPopUpViewController")
+        popUpViewController.modalPresentationStyle = .overCurrentContext
+        self.present(popUpViewController, animated: false, completion: nil)
     }
 }
