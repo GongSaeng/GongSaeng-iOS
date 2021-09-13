@@ -52,6 +52,10 @@ class MyPageViewController: UIViewController {
     }
     
     @IBAction func setNotificationButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "SetNotification", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "SetNotificationViewController") as! SetNotificationViewController
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func askKakaoButtonTapped(_ sender: UIButton) {
@@ -70,5 +74,4 @@ class MyPageViewController: UIViewController {
         popUpViewController.modalPresentationStyle = .overCurrentContext
         self.present(popUpViewController, animated: false, completion: nil)
     }
-    
 }

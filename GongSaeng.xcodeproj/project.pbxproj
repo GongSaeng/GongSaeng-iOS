@@ -54,6 +54,8 @@
 		A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215426EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift */; };
 		A79C215726EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215626EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift */; };
 		A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215826EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift */; };
+		A79C215B26EF5B2C000B9028 /* SetNotification.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C215A26EF5B2C000B9028 /* SetNotification.storyboard */; };
+		A79C215D26EF5B3C000B9028 /* SetNotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215C26EF5B3C000B9028 /* SetNotificationViewController.swift */; };
 		A79C58E026EEE65D00F608D1 /* ManageAccountInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */; };
 		A79C58E226EEE66C00F608D1 /* ManageAccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */; };
 		A79C58E426EEF33400F608D1 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */; };
@@ -118,6 +120,8 @@
 		A79C215426EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipWithdrawlPopUpViewController.swift; sourceTree = "<group>"; };
 		A79C215626EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipWithdrawlCompletedPopUpViewController.swift; sourceTree = "<group>"; };
 		A79C215826EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutCompletedPopUpViewController.swift; sourceTree = "<group>"; };
+		A79C215A26EF5B2C000B9028 /* SetNotification.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SetNotification.storyboard; sourceTree = "<group>"; };
+		A79C215C26EF5B3C000B9028 /* SetNotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNotificationViewController.swift; sourceTree = "<group>"; };
 		A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageAccountInfo.storyboard; sourceTree = "<group>"; };
 		A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountInfoViewController.swift; sourceTree = "<group>"; };
 		A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -286,6 +290,8 @@
 				A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */,
 				A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */,
 				A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */,
+				A79C215A26EF5B2C000B9028 /* SetNotification.storyboard */,
+				A79C215C26EF5B3C000B9028 /* SetNotificationViewController.swift */,
 				A7AE9F3726EF2C9B0082C855 /* PopUp */,
 			);
 			path = MyPage;
@@ -367,6 +373,7 @@
 				3D5D5995265247F50018FE63 /* LaunchScreen.storyboard in Resources */,
 				A79C58E026EEE65D00F608D1 /* ManageAccountInfo.storyboard in Resources */,
 				3D5D5990265247F40018FE63 /* Main.storyboard in Resources */,
+				A79C215B26EF5B2C000B9028 /* SetNotification.storyboard in Resources */,
 				A7AE9F3626EF201C0082C855 /* LogOutPopUp.storyboard in Resources */,
 				A7AE9F3926EF2E060082C855 /* PasswordChangedPopUp.storyboard in Resources */,
 				3D520BAB265340E40090B6E8 /* Home.storyboard in Resources */,
@@ -390,6 +397,7 @@
 			files = (
 				A79C215726EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift in Sources */,
 				3D85550B2660083D00147EE7 /* MemberViewController.swift in Sources */,
+				A79C215D26EF5B3C000B9028 /* SetNotificationViewController.swift in Sources */,
 				3DAFCBA626627256008E9803 /* CompletedRegisterViewController.swift in Sources */,
 				3D015B0226590F0D003EC5E6 /* DepartmentViewController.swift in Sources */,
 				3D85550D2660084A00147EE7 /* AccountViewController.swift in Sources */,
