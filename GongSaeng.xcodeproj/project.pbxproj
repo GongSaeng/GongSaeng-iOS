@@ -50,6 +50,9 @@
 		A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E07B926EE6021007DB8D0 /* UIImageView.swift */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
+		A79C58E026EEE65D00F608D1 /* ManageAccountInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */; };
+		A79C58E226EEE66C00F608D1 /* ManageAccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */; };
+		A79C58E426EEF33400F608D1 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */; };
 		A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */; };
 		A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */; };
 		A7FA636426EE2519005D9785 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636326EE2519005D9785 /* UITextView.swift */; };
@@ -103,6 +106,9 @@
 		A71E07B926EE6021007DB8D0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageAccountInfo.storyboard; sourceTree = "<group>"; };
+		A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountInfoViewController.swift; sourceTree = "<group>"; };
+		A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
 		A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		A7FA636326EE2519005D9785 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
@@ -261,6 +267,9 @@
 				A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */,
 				A7FA636526EE293F005D9785 /* MyProfileAndWriting.storyboard */,
 				A7FA636726EE294E005D9785 /* MyProfileAndWritingViewController.swift */,
+				A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */,
+				A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */,
+				A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */,
 			);
 			path = MyPage;
 			sourceTree = "<group>";
@@ -324,6 +333,7 @@
 			files = (
 				3D40E52E2658086800B19E32 /* TermsOfServices.storyboard in Resources */,
 				3D5D5995265247F50018FE63 /* LaunchScreen.storyboard in Resources */,
+				A79C58E026EEE65D00F608D1 /* ManageAccountInfo.storyboard in Resources */,
 				3D5D5990265247F40018FE63 /* Main.storyboard in Resources */,
 				3D520BAB265340E40090B6E8 /* Home.storyboard in Resources */,
 				3D00C8BA266E39E8006236A0 /* Mate.storyboard in Resources */,
@@ -349,12 +359,14 @@
 				3D85550D2660084A00147EE7 /* AccountViewController.swift in Sources */,
 				3DAFCBA4266261E6008E9803 /* UITextField.swift in Sources */,
 				3D5D59AC2652B12A0018FE63 /* LoginViewController.swift in Sources */,
+				A79C58E426EEF33400F608D1 /* ChangePasswordViewController.swift in Sources */,
 				3D40E5302658089600B19E32 /* TermsOfServicesViewController.swift in Sources */,
 				A7FA636426EE2519005D9785 /* UITextView.swift in Sources */,
 				3D015AFF265812B6003EC5E6 /* TermsOfServices.swift in Sources */,
 				3D5D5989265247F40018FE63 /* AppDelegate.swift in Sources */,
 				3D816C61266B92D700A5164B /* AppTabbarController.swift in Sources */,
 				A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */,
+				A79C58E226EEE66C00F608D1 /* ManageAccountInfoViewController.swift in Sources */,
 				3D5D59AA2652B11C0018FE63 /* RegisterViewController.swift in Sources */,
 				3DB686FA268D8C570061BCB0 /* LoginUser.swift in Sources */,
 				3D2FBC062675FE6B00D2FF56 /* PublicViewController.swift in Sources */,

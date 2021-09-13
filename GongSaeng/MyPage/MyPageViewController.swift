@@ -45,6 +45,10 @@ class MyPageViewController: UIViewController {
     }
     
     @IBAction func manageAccountInfoButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "ManageAccountInfo", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "ManageAccountInfoViewController") as! ManageAccountInfoViewController
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func setNotificationButtonTapped(_ sender: UIButton) {
