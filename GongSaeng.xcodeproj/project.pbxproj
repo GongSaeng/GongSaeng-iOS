@@ -50,6 +50,10 @@
 		A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E07B926EE6021007DB8D0 /* UIImageView.swift */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
+		A79C215326EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */; };
+		A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215426EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift */; };
+		A79C215726EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215626EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift */; };
+		A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215826EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift */; };
 		A79C58E026EEE65D00F608D1 /* ManageAccountInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */; };
 		A79C58E226EEE66C00F608D1 /* ManageAccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */; };
 		A79C58E426EEF33400F608D1 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */; };
@@ -110,6 +114,10 @@
 		A71E07B926EE6021007DB8D0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MembershipWithdrawlPopUp.storyboard; sourceTree = "<group>"; };
+		A79C215426EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipWithdrawlPopUpViewController.swift; sourceTree = "<group>"; };
+		A79C215626EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipWithdrawlCompletedPopUpViewController.swift; sourceTree = "<group>"; };
+		A79C215826EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutCompletedPopUpViewController.swift; sourceTree = "<group>"; };
 		A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageAccountInfo.storyboard; sourceTree = "<group>"; };
 		A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountInfoViewController.swift; sourceTree = "<group>"; };
 		A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
@@ -288,8 +296,12 @@
 			children = (
 				A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */,
 				A7AE9F3326EF20120082C855 /* LogOutPopUpViewController.swift */,
+				A79C215826EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift */,
 				A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */,
 				A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */,
+				A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */,
+				A79C215426EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift */,
+				A79C215626EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift */,
 			);
 			path = PopUp;
 			sourceTree = "<group>";
@@ -363,6 +375,7 @@
 				A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */,
 				3D5D59AE2652B2930018FE63 /* Register.storyboard in Resources */,
 				A7FA636626EE293F005D9785 /* MyProfileAndWriting.storyboard in Resources */,
+				A79C215326EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard in Resources */,
 				A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */,
 				3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */,
 			);
@@ -375,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A79C215726EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift in Sources */,
 				3D85550B2660083D00147EE7 /* MemberViewController.swift in Sources */,
 				3DAFCBA626627256008E9803 /* CompletedRegisterViewController.swift in Sources */,
 				3D015B0226590F0D003EC5E6 /* DepartmentViewController.swift in Sources */,
@@ -399,10 +413,12 @@
 				3DAFCBA026625DF6008E9803 /* Normalization.swift in Sources */,
 				3DD893D6266E1A9C0050B4F8 /* MateViewController.swift in Sources */,
 				3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */,
+				A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */,
 				3D231A6A266E629D00080E9B /* MateCell.swift in Sources */,
 				A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */,
 				3D231A6C266F71A600080E9B /* MateDetailTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
+				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
 				3D2FBC092675FEDD00D2FF56 /* Public.swift in Sources */,

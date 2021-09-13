@@ -1,5 +1,5 @@
 //
-//  PasswordChangedPopUpViewController.swift
+//  LogOutCompletedPopUpViewController.swift
 //  GongSaeng
 //
 //  Created by 정동천 on 2021/09/13.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class PasswordChangedPopUpViewController: UIViewController {
+class LogOutCompletedPopUpViewController: UIViewController {
     @IBOutlet weak var popUpView: UIView!
     
     override func viewDidLoad() {
@@ -17,6 +17,6 @@ class PasswordChangedPopUpViewController: UIViewController {
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
 }

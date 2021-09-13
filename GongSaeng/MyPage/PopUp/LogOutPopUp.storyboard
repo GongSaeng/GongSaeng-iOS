@@ -58,7 +58,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="120" id="9Y4-mc-88f"/>
                                     <constraint firstItem="1a0-ks-jrp" firstAttribute="leading" secondItem="7bc-g3-lj7" secondAttribute="trailing" constant="15" id="KN7-5I-Dt1"/>
@@ -82,12 +82,56 @@
                     <connections>
                         <outlet property="cancelButton" destination="7bc-g3-lj7" id="JJv-ru-9PN"/>
                         <outlet property="logOutButton" destination="1a0-ks-jrp" id="Aj8-3u-Q3P"/>
-                        <outlet property="logOutView" destination="i9R-OA-DtV" id="FCi-YW-lCJ"/>
+                        <outlet property="popUpView" destination="i9R-OA-DtV" id="Xhy-ob-wNN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="42" y="80"/>
+        </scene>
+        <!--Log Out Completed Pop Up View Controller-->
+        <scene sceneID="y1g-CJ-axa">
+            <objects>
+                <viewController storyboardIdentifier="LogOutCompletedPopUpViewController" id="3is-wZ-22a" customClass="LogOutCompletedPopUpViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XvR-aE-Dyv">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eCj-lw-FrB">
+                                <rect key="frame" x="17" y="414" width="380" height="68"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="로그아웃 완료!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MnT-Hu-Vv5">
+                                        <rect key="frame" x="24" y="24" width="332" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="MnT-Hu-Vv5" firstAttribute="top" secondItem="eCj-lw-FrB" secondAttribute="top" constant="24" id="DtO-2V-yhe"/>
+                                    <constraint firstAttribute="bottom" secondItem="MnT-Hu-Vv5" secondAttribute="bottom" constant="24" id="Ebi-Wi-020"/>
+                                    <constraint firstAttribute="trailing" secondItem="MnT-Hu-Vv5" secondAttribute="trailing" constant="24" id="ftU-R2-9d3"/>
+                                    <constraint firstItem="MnT-Hu-Vv5" firstAttribute="leading" secondItem="eCj-lw-FrB" secondAttribute="leading" constant="24" id="nJ8-Nc-G3W"/>
+                                    <constraint firstAttribute="height" constant="68" id="rNW-bf-djA"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="tUc-4Q-6zU"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="eCj-lw-FrB" firstAttribute="centerY" secondItem="XvR-aE-Dyv" secondAttribute="centerY" id="kTl-On-ft6"/>
+                            <constraint firstItem="tUc-4Q-6zU" firstAttribute="trailing" secondItem="eCj-lw-FrB" secondAttribute="trailing" constant="17" id="ou2-7h-Upp"/>
+                            <constraint firstItem="eCj-lw-FrB" firstAttribute="leading" secondItem="tUc-4Q-6zU" secondAttribute="leading" constant="17" id="r0z-jy-G3i"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="popUpView" destination="eCj-lw-FrB" id="611-Yk-9O6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SEJ-9m-kMM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="900" y="80"/>
         </scene>
     </scenes>
     <resources>

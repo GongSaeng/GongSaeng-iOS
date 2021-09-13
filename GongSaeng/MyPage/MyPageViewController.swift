@@ -65,6 +65,10 @@ class MyPageViewController: UIViewController {
     }
     
     @IBAction func membershipWithdrawlButtonTapped(_ sender: UIButton) {
+        let storyBoard = UIStoryboard.init(name: "MembershipWithdrawlPopUp", bundle: nil)
+        let popUpViewController = storyBoard.instantiateViewController(identifier: "MembershipWithdrawlPopUpViewController")
+        popUpViewController.modalPresentationStyle = .overCurrentContext
+        self.present(popUpViewController, animated: false, completion: nil)
     }
     
 }

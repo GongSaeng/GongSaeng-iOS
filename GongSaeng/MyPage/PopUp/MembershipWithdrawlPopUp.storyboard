@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Membership Withdrawl Pop Up View Controller-->
+        <scene sceneID="s0d-6b-0kx">
+            <objects>
+                <viewController storyboardIdentifier="MembershipWithdrawlPopUpViewController" id="Y6W-OH-hqX" customClass="MembershipWithdrawlPopUpViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyv-3f-CSM">
+                                <rect key="frame" x="17" y="378" width="380" height="140"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="모든 정보가 삭제되며, 복구할 수 없어요. 정말 회원탈퇴 하시겠어요?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6rN-zL-agH">
+                                        <rect key="frame" x="24" y="24" width="332" height="34"/>
+                                        <color key="textColor" white="0.0" alpha="0.87" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAh-8W-Jj4">
+                                        <rect key="frame" x="239" y="80" width="51" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="51" id="Tit-tk-dcM"/>
+                                            <constraint firstAttribute="height" constant="36" id="ex8-y3-Kiw"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <state key="normal" title="취소">
+                                            <color key="titleColor" red="0.066666666666666666" green="0.40392156862745099" blue="0.38039215686274508" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="cancelButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="WCD-je-5py"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eun-1R-ieO">
+                                        <rect key="frame" x="305" y="80" width="51" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="51" id="ALV-dB-TSG"/>
+                                            <constraint firstAttribute="height" constant="36" id="Omb-bv-nqQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <state key="normal" title="탈퇴">
+                                            <color key="titleColor" red="1" green="0.44313725490196076" blue="0.27450980392156865" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="withdrawlButtonTapped:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="5J4-xO-3cm"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6rN-zL-agH" secondAttribute="trailing" constant="24" id="75p-km-Woh"/>
+                                    <constraint firstItem="eun-1R-ieO" firstAttribute="leading" secondItem="bAh-8W-Jj4" secondAttribute="trailing" constant="15" id="Gzg-UV-h4m"/>
+                                    <constraint firstItem="6rN-zL-agH" firstAttribute="leading" secondItem="Jyv-3f-CSM" secondAttribute="leading" constant="24" id="KKk-jE-hye"/>
+                                    <constraint firstAttribute="bottom" secondItem="bAh-8W-Jj4" secondAttribute="bottom" constant="24" id="LAO-Ef-6lv"/>
+                                    <constraint firstAttribute="height" constant="140" id="Pf3-LL-aZc"/>
+                                    <constraint firstAttribute="bottom" secondItem="eun-1R-ieO" secondAttribute="bottom" constant="24" id="Srj-3k-NMf"/>
+                                    <constraint firstAttribute="trailing" secondItem="eun-1R-ieO" secondAttribute="trailing" constant="24" id="qXL-oK-2Gr"/>
+                                    <constraint firstItem="6rN-zL-agH" firstAttribute="top" secondItem="Jyv-3f-CSM" secondAttribute="top" constant="24" id="qnv-Ah-tYr"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
+                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Jyv-3f-CSM" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="17" id="07L-jW-qY9"/>
+                            <constraint firstItem="Jyv-3f-CSM" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="PKe-hX-pwq"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Jyv-3f-CSM" secondAttribute="trailing" constant="17" id="vVZ-bI-Z12"/>
+                            <constraint firstItem="Jyv-3f-CSM" firstAttribute="centerY" secondItem="5EZ-qb-Rvc" secondAttribute="centerY" id="wIr-t8-0yy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="cancelButton" destination="bAh-8W-Jj4" id="OcH-h5-jAm"/>
+                        <outlet property="popUpView" destination="Jyv-3f-CSM" id="itt-dp-Gsn"/>
+                        <outlet property="withdrawlButton" destination="eun-1R-ieO" id="DA2-gs-RZm"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="132" y="84"/>
+        </scene>
+        <!--Membership Withdrawl Completed Pop Up View Controller-->
+        <scene sceneID="iAi-cx-Q4f">
+            <objects>
+                <viewController storyboardIdentifier="MembershipWithdrawlCompletedPopUpViewController" id="wmW-yC-nRO" customClass="MembershipWithdrawlCompletedPopUpViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="o52-zd-7k4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ff6-ed-ZY8">
+                                <rect key="frame" x="17" y="414" width="380" height="68"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="탈퇴 완료되었어요." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vES-w7-Ylf">
+                                        <rect key="frame" x="24" y="24" width="332" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="vES-w7-Ylf" firstAttribute="leading" secondItem="ff6-ed-ZY8" secondAttribute="leading" constant="24" id="1h4-9T-m2e"/>
+                                    <constraint firstAttribute="trailing" secondItem="vES-w7-Ylf" secondAttribute="trailing" constant="24" id="Lll-mv-wZ5"/>
+                                    <constraint firstAttribute="bottom" secondItem="vES-w7-Ylf" secondAttribute="bottom" constant="24" id="TtT-kK-aoe"/>
+                                    <constraint firstAttribute="height" constant="68" id="jI4-OX-bFt"/>
+                                    <constraint firstItem="vES-w7-Ylf" firstAttribute="top" secondItem="ff6-ed-ZY8" secondAttribute="top" constant="24" id="wFT-Aj-3Bc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="f5t-Wb-1gV"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="ff6-ed-ZY8" firstAttribute="leading" secondItem="f5t-Wb-1gV" secondAttribute="leading" constant="17" id="ng1-fm-h5d"/>
+                            <constraint firstItem="f5t-Wb-1gV" firstAttribute="trailing" secondItem="ff6-ed-ZY8" secondAttribute="trailing" constant="17" id="osB-hn-CRU"/>
+                            <constraint firstItem="ff6-ed-ZY8" firstAttribute="centerY" secondItem="o52-zd-7k4" secondAttribute="centerY" id="xqg-P4-3Vt"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="popUpView" destination="ff6-ed-ZY8" id="UsE-20-UQU"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pBL-yl-4z6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="838" y="84"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
