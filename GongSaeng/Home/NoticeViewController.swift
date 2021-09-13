@@ -38,7 +38,7 @@ class NoticeCell: UITableViewCell {
     
     func updateUI() {
         DispatchQueue.main.async {
-            self.dateLabel.text = "어제어제"
+            self.dateLabel.text = "어제"
             self.titleLabel.text = "긴급 소방점검으로 인해 출입문을 개방하면서 앞으로는 통금에 대한 제한이 없어집니다."
         }
     }

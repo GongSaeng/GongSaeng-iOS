@@ -544,27 +544,31 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="오늘" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8q-yD-kDH">
-                                                    <rect key="frame" x="0.0" y="12" width="56" height="19.5"/>
+                                                    <rect key="frame" x="0.0" y="13.5" width="56" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="56" id="baa-KS-8i0"/>
+                                                        <constraint firstAttribute="height" constant="18" id="hnh-jn-wle"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" red="0.0" green="0.56904578210000001" blue="0.57461684940000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="긴급 소방점검이 있을 예정" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TWu-ZF-Zld">
-                                                    <rect key="frame" x="56" y="12" width="326" height="20"/>
+                                                    <rect key="frame" x="56" y="13.5" width="326" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="18" id="UNw-fH-ei8"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="TWu-ZF-Zld" firstAttribute="centerY" secondItem="ent-5r-aa1" secondAttribute="centerY" id="FhZ-oV-36j"/>
                                                 <constraint firstItem="I8q-yD-kDH" firstAttribute="leading" secondItem="ent-5r-aa1" secondAttribute="leading" id="Odm-hN-tKD"/>
                                                 <constraint firstAttribute="trailing" secondItem="TWu-ZF-Zld" secondAttribute="trailing" id="VJN-H5-wMN"/>
                                                 <constraint firstItem="TWu-ZF-Zld" firstAttribute="leading" secondItem="I8q-yD-kDH" secondAttribute="trailing" id="amd-oh-uvE"/>
-                                                <constraint firstItem="I8q-yD-kDH" firstAttribute="centerY" secondItem="ent-5r-aa1" secondAttribute="centerY" id="ddC-Q6-ZJQ"/>
+                                                <constraint firstItem="TWu-ZF-Zld" firstAttribute="top" secondItem="ent-5r-aa1" secondAttribute="top" constant="13.699999999999999" id="g8W-ys-YsS"/>
+                                                <constraint firstItem="I8q-yD-kDH" firstAttribute="top" secondItem="ent-5r-aa1" secondAttribute="top" constant="13.699999999999999" id="vjT-Fn-NRB"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>

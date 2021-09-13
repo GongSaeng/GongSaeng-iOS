@@ -58,6 +58,10 @@ class MyPageViewController: UIViewController {
     }
     
     @IBAction func logOutButtonTapped(_ sender: UIButton) {
+        let storyBoard = UIStoryboard.init(name: "LogOutPopUp", bundle: nil)
+        let popUpViewController = storyBoard.instantiateViewController(identifier: "LogOutPopUpViewController")
+        popUpViewController.modalPresentationStyle = .overCurrentContext
+        self.present(popUpViewController, animated: false, completion: nil)
     }
     
     @IBAction func membershipWithdrawlButtonTapped(_ sender: UIButton) {

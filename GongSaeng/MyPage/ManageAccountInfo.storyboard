@@ -209,7 +209,7 @@
                                     <constraint firstAttribute="height" constant="40" id="YDC-VT-845"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="lookPasswordButton" image="lookIcon"/>
+                                <state key="normal" title="lookPasswordButton" image="noLookIcon"/>
                                 <connections>
                                     <action selector="lookPasswordButtonTapped:" destination="TJr-aE-Jce" eventType="touchUpInside" id="7Xc-Y9-esI"/>
                                 </connections>
@@ -239,7 +239,7 @@
                                     <constraint firstAttribute="height" constant="40" id="rYp-bY-gpb"/>
                                 </constraints>
                                 <inset key="contentEdgeInsets" minX="7" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="lookPasswordButton" image="lookIcon"/>
+                                <state key="normal" title="lookPasswordButton" image="noLookIcon"/>
                                 <connections>
                                     <action selector="lookPasswordCheckButtonTapped:" destination="TJr-aE-Jce" eventType="touchUpInside" id="VO1-gA-W00"/>
                                 </connections>
@@ -308,7 +308,7 @@
     </scenes>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
-        <image name="lookIcon" width="19" height="11"/>
+        <image name="noLookIcon" width="19.5" height="9"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
