@@ -202,6 +202,26 @@
                                     <outlet property="delegate" destination="Y6W-OH-hqX" id="V6P-4Z-gHa"/>
                                 </connections>
                             </collectionView>
+                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PC1-XI-LSL">
+                                <rect key="frame" x="0.0" y="180" width="414" height="682"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="신청 내역이 없어요. 상단 '신청하기'를 눌러 신청해보세요." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dic-3a-ka3">
+                                        <rect key="frame" x="100" y="251" width="214" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="214" id="8XT-bV-GWV"/>
+                                            <constraint firstAttribute="height" constant="40" id="WQW-Iy-Lp5"/>
+                                        </constraints>
+                                        <color key="textColor" white="0.0" alpha="0.87" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstItem="dic-3a-ka3" firstAttribute="centerY" secondItem="PC1-XI-LSL" secondAttribute="centerY" constant="-70" id="GFP-1E-jQc"/>
+                                    <constraint firstItem="dic-3a-ka3" firstAttribute="centerX" secondItem="PC1-XI-LSL" secondAttribute="centerX" id="pAK-vN-h1D"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -211,17 +231,21 @@
                             <constraint firstItem="rsT-Ld-u02" firstAttribute="centerY" secondItem="PMe-Tf-rZF" secondAttribute="centerY" id="BcK-xW-vNV"/>
                             <constraint firstItem="XCd-ns-SRf" firstAttribute="leading" secondItem="PMe-Tf-rZF" secondAttribute="trailing" constant="4" id="FNT-tx-myg"/>
                             <constraint firstItem="wkO-O8-SMD" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="FnD-jL-B8g"/>
+                            <constraint firstItem="PC1-XI-LSL" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Fzb-ZQ-Wk7"/>
                             <constraint firstItem="Cnl-13-NfJ" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="GoZ-VT-d9y"/>
                             <constraint firstItem="wkO-O8-SMD" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="IrX-nj-y1d"/>
                             <constraint firstItem="PMe-Tf-rZF" firstAttribute="centerY" secondItem="XCd-ns-SRf" secondAttribute="centerY" id="Nbc-ts-0f4"/>
                             <constraint firstItem="rQt-T2-lKc" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="16" id="QJM-2d-lXr"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="ucg-gs-qGc" secondAttribute="bottom" id="SFw-Fj-xwA"/>
+                            <constraint firstItem="PC1-XI-LSL" firstAttribute="top" secondItem="rsT-Ld-u02" secondAttribute="bottom" id="STU-Ud-byd"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="PC1-XI-LSL" secondAttribute="trailing" id="UHX-uW-fhm"/>
                             <constraint firstItem="ucg-gs-qGc" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="cYI-WC-hPi"/>
                             <constraint firstItem="rsT-Ld-u02" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="dsC-Yu-xSS"/>
                             <constraint firstItem="rsT-Ld-u02" firstAttribute="top" secondItem="Vpu-Oj-jdD" secondAttribute="bottom" constant="12" id="gaQ-No-oTf"/>
                             <constraint firstItem="ucg-gs-qGc" firstAttribute="top" secondItem="rsT-Ld-u02" secondAttribute="bottom" id="gtW-TK-S6a"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="ucg-gs-qGc" secondAttribute="trailing" id="hcY-f8-NlX"/>
                             <constraint firstItem="Vpu-Oj-jdD" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="mMU-Hh-4yp"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="PC1-XI-LSL" secondAttribute="bottom" id="qXI-Iz-F5N"/>
                             <constraint firstItem="rQt-T2-lKc" firstAttribute="centerX" secondItem="5EZ-qb-Rvc" secondAttribute="centerX" id="tJS-8D-lop"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Cnl-13-NfJ" secondAttribute="trailing" constant="18" id="uPx-AV-DXf"/>
                         </constraints>
@@ -230,48 +254,12 @@
                         <outlet property="allButton" destination="rsT-Ld-u02" id="e1n-uW-gq6"/>
                         <outlet property="checkInButton" destination="PMe-Tf-rZF" id="1TD-rW-3wq"/>
                         <outlet property="checkOutButton" destination="XCd-ns-SRf" id="U6S-vS-H5c"/>
+                        <outlet property="noneOfDetailView" destination="PC1-XI-LSL" id="mCS-RF-XGL"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="131.8840579710145" y="114.50892857142857"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="Qy9-OG-pXe">
-            <objects>
-                <viewController id="wJJ-C6-mrV" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ZZK-lh-5UE">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view alpha="0.30000001192092896" contentMode="scaleToFill" id="J03-qq-2b2">
-                                <rect key="frame" x="-9" y="72" width="414" height="682"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="신청 내역이 없어요. 상단 '신청하기'를 눌러 신청해보세요." textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aqE-FK-W3O">
-                                        <rect key="frame" x="100" y="253" width="214" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="8Vj-LL-91w"/>
-                                            <constraint firstAttribute="width" constant="214" id="Hka-xa-4dm"/>
-                                        </constraints>
-                                        <color key="textColor" white="0.0" alpha="0.87" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="aqE-FK-W3O" firstAttribute="centerX" secondItem="J03-qq-2b2" secondAttribute="centerX" id="SHX-Md-fWN"/>
-                                </constraints>
-                            </view>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="rFb-W0-JXY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="DfZ-Er-CQx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="67" y="752"/>
         </scene>
         <!--Request Check In View Controller-->
         <scene sceneID="4dw-FT-psi">
@@ -383,6 +371,9 @@
                                 <state key="normal" title="다음">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <connections>
+                                    <action selector="nextButtonTapped:" destination="Cgz-Ex-Ztm" eventType="touchUpInside" id="KOd-4d-LMU"/>
+                                </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CDQ-x8-brd">
                                 <rect key="frame" x="0.0" y="781" width="414" height="1"/>

@@ -47,6 +47,13 @@ class RequestCheckInViewController: UIViewController {
         present(viewController, animated: true, completion: nil)
     }
     
+    @IBAction func nextButtonTapped(_ sender: UIButton) {
+        let storyBoard = UIStoryboard.init(name: "CheckInRequestPopUp", bundle: nil)
+        let popUpViewController = storyBoard.instantiateViewController(identifier: "CheckInRequestPopUpViewController")
+        popUpViewController.modalPresentationStyle = .overCurrentContext
+        self.present(popUpViewController, animated: false, completion: nil)
+    }
+    
 }
 
 

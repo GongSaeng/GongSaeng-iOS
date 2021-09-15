@@ -9,11 +9,14 @@ import UIKit
 
 class RequestCheckInOutViewController: UIViewController {
     // 임시 데이터
-    var requestInfoList: [(UIImage?, String, String, String, String)] = [(UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료"), (UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료")]
+//    var requestInfoList: [(UIImage?, String, String, String, String)] = [(UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료"), (UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료")]
+    // 데이터가 없을 때
+    var requestInfoList: [(UIImage?, String, String, String, String)] = []
     
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var checkInButton: UIButton!
     @IBOutlet weak var checkOutButton: UIButton!
+    @IBOutlet weak var noneOfDetailView: UIView!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -30,7 +33,7 @@ class RequestCheckInOutViewController: UIViewController {
             $0?.isEnabled = true
         }
         
-//        showOrHideDetail(hasDetail: !requestInfoList.isEmpty)
+        showOrHideDetail(hasDetail: !requestInfoList.isEmpty)
     }
     
     private func buttonTapped(button: UIButton?) {
@@ -49,11 +52,11 @@ class RequestCheckInOutViewController: UIViewController {
 
     // 테이블뷰의 셀 값이 있으면 noDetailView를 투명하게하는 함수
     private func showOrHideDetail(hasDetail: Bool) {
-//        if hasDetail {
-//            noDetailView.alpha = 0
-//        } else {
-//            noDetailView.alpha = 1
-//        }
+        if hasDetail {
+            noneOfDetailView.alpha = 0
+        } else {
+            noneOfDetailView.alpha = 1
+        }
     }
     
     @IBAction func backwardButton(_ sender: UIButton) {
