@@ -12,12 +12,23 @@ class RequestCheckInViewController: UIViewController {
     var dayList: [[String]] = [["월", "17"], ["화", "18"], ["수", "19"], ["목", "20"], ["금", "21"], ["토", "22"], ["일", "23"]]
     // 임시 시간 리스트
     var timeList: [String] = ["12:00", "12:10", "12:20", "12:30", "12:40", "12:50", "13:00", "13:10", "13:20", "13:30"]
+    // 임시 선택된 시간 데이터
+    var selectedHourValue: Int = 6
     
     @IBOutlet weak var checkInButton: UIButton!
     @IBOutlet weak var checkOutButton: UIButton!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var selectDateCollectionView: UICollectionView!
     @IBOutlet weak var selectTimeCollectionView: UICollectionView!
+    @IBOutlet weak var zeroHourButton: UIButton!
+    @IBOutlet weak var sixHourButton: UIButton!
+    @IBOutlet weak var twelveHourButton: UIButton!
+    @IBOutlet weak var eighteenHourButton: UIButton!
+    @IBOutlet weak var zeroHourUnderlinedView: UIView!
+    @IBOutlet weak var sixHourUnderlinedView: UIView!
+    @IBOutlet weak var twelveHourUnderlinedView: UIView!
+    @IBOutlet weak var eighteenHourUnderlinedView: UIView!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,16 +41,39 @@ class RequestCheckInViewController: UIViewController {
         checkOutButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
         
         nextButton.layer.cornerRadius = 8
+        
+        // 임시 초기 시간 선택 6
+        hourButtonTapped(tappedButton: sixHourButton)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
     
+    private func hourButtonTapped(tappedButton: UIButton) {
+        let hourButtonList = [zeroHourButton, sixHourButton, twelveHourButton, eighteenHourButton]
+        let hourUnderlinedViewList = [zeroHourUnderlinedView, sixHourUnderlinedView, twelveHourUnderlinedView, eighteenHourUnderlinedView]
+        for index in 0..<hourButtonList.count {
+            if hourButtonList[index] == tappedButton {
+                hourButtonList[index]?.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+                hourButtonList[index]?.isEnabled = false
+                hourUnderlinedViewList[index]?.alpha = 1
+                selectedHourValue = index * 6
+                print(selectedHourValue)
+            } else {
+                hourButtonList[index]?.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1), for: .normal)
+                hourButtonList[index]?.isEnabled = true
+                hourUnderlinedViewList[index]?.alpha = 0
+            }
+        }
+    }
+    
+    // 뒤로가기 버튼
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
+    // 퇴실 버튼
     @IBAction func checkOutButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "RequestCheckInOut", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "RequestCheckOutViewController") as! RequestCheckOutViewController
@@ -47,6 +81,27 @@ class RequestCheckInViewController: UIViewController {
         present(viewController, animated: true, completion: nil)
     }
     
+    // 0시 버튼
+    @IBAction func zeroHourButtonTapped(_ sender: UIButton) {
+        hourButtonTapped(tappedButton: sender)
+    }
+    
+    // 6시 버튼
+    @IBAction func sixHourButtonTapped(_ sender: UIButton) {
+        hourButtonTapped(tappedButton: sender)
+    }
+    
+    // 12시 버튼
+    @IBAction func twelveHourButtonTapped(_ sender: UIButton) {
+        hourButtonTapped(tappedButton: sender)
+    }
+    
+    // 18시 버튼
+    @IBAction func eighteenHourButtonTapped(_ sender: UIButton) {
+        hourButtonTapped(tappedButton: sender)
+    }
+    
+    // 다음 버튼
     @IBAction func nextButtonTapped(_ sender: UIButton) {
         let storyBoard = UIStoryboard.init(name: "CheckInRequestPopUp", bundle: nil)
         let popUpViewController = storyBoard.instantiateViewController(identifier: "CheckInRequestPopUpViewController")

@@ -8,7 +8,7 @@
 import UIKit
 
 class RequestCheckOutViewController: UIViewController {
-    var imageList: [UIImage?] = [UIImage(named: "addPicture.png"), UIImage(), UIImage(), UIImage()]
+    var imageList: [UIImage?] = [UIImage(named: "addPicture.png"), UIImage(named: "profileImage_0"), UIImage(named: "profileImage_1"), UIImage(named: "profileImage_2")]
     
     @IBOutlet weak var cleaningCondtionCollectionView: UICollectionView!
     @IBOutlet weak var roomNumberTextField: UITextField!
@@ -38,6 +38,7 @@ class RequestCheckOutViewController: UIViewController {
 // 사진 첨부 컬렉션뷰 셀
 class CleaningConditionCheckCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var cleaningConditionImage: UIImageView!
+    @IBOutlet weak var deleteImageButton: UIButton!
 }
 
 // 컬렉션뷰 DataSource 구현
@@ -53,9 +54,8 @@ extension RequestCheckOutViewController: UICollectionViewDataSource {
         cell.cleaningConditionImage?.image = imageList[indexPath.row]
         cell.cleaningConditionImage.contentMode = .scaleAspectFill
         cell.layer.cornerRadius = 5
-        // UI확인용 임시 백그라운드 칼라
-        if indexPath.row > 0 {
-            cell.backgroundColor = UIColor.systemGray
+        if indexPath.row == 0 {
+            cell.deleteImageButton.isHidden = true
         }
         return cell
     }

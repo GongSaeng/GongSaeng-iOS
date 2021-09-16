@@ -9,9 +9,10 @@ import UIKit
 
 class RequestCheckInOutViewController: UIViewController {
     // 임시 데이터
-//    var requestInfoList: [(UIImage?, String, String, String, String)] = [(UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료"), (UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료")]
+    var requestInfoList: [(UIImage?, String, String, String, String)] = [(UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료"), (UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료")]
+    
     // 데이터가 없을 때
-    var requestInfoList: [(UIImage?, String, String, String, String)] = []
+    //var requestInfoList: [(UIImage?, String, String, String, String)] = []
     
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var checkInButton: UIButton!
@@ -50,12 +51,12 @@ class RequestCheckInOutViewController: UIViewController {
         }
     }
 
-    // 테이블뷰의 셀 값이 있으면 noDetailView를 투명하게하는 함수
+    // 테이블뷰의 셀 값 존재하면 noneOFDetailView를 숨김
     private func showOrHideDetail(hasDetail: Bool) {
         if hasDetail {
-            noneOfDetailView.alpha = 0
+            noneOfDetailView.isHidden = true
         } else {
-            noneOfDetailView.alpha = 1
+            noneOfDetailView.isHidden = false
         }
     }
     
