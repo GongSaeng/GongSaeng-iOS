@@ -22,4 +22,11 @@ extension UITextField {
         self.textContentType = .newPassword
         self.passwordRules = UITextInputPasswordRules(descriptor: "required: upper; required: lower; required: digit; max-consecutive: 20; minlength: 0; maxlength: 22")
     }
+    
+    // TextField의 Text에 패딩넣기
+    func addLeftPadding(paddingWidth: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: paddingWidth, height: self.frame.height))
+        self.leftView = paddingView
+        self.leftViewMode = ViewMode.always
+      }
 }

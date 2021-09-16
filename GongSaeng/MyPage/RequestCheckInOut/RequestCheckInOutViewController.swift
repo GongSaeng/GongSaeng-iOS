@@ -73,6 +73,11 @@ class RequestCheckInOutViewController: UIViewController {
     
     @IBAction func checkOutButtonTapped(_ sender: UIButton) {
         buttonTapped(button: sender)
+        // 임시로 퇴실신청내역 뷰컨트롤러 활성화버튼으로 사용
+        let storyboard = UIStoryboard(name: "RequestCheckInOut", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "CheckOutRequestDetailViewController") as! CheckOutRequestDetailViewController
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func requestCheckInButton(_ sender: UIButton) {
