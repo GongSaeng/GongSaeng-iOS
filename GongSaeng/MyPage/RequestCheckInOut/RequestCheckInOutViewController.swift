@@ -9,10 +9,9 @@ import UIKit
 
 class RequestCheckInOutViewController: UIViewController {
     // 임시 데이터
-    var requestInfoList: [(UIImage?, String, String, String, String)] = [(UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료"), (UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료")]
-    
+    var requestInfoList: [(UIImage?, String, String, String, String)] = [(UIImage(named: "check_out.png"), "퇴실", "4월 17일 12:00", "20.04.17 3:32 신청", "퇴실 완료"), (UIImage(named: "check_out.png"), "퇴실", "4월 17일 12:00", "20.04.17 3:32 신청", "승인대기중"), (UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "입실 완료"), (UIImage(named: "check_in.png"), "입실", "4월 17일 12:00", "20.04.17 3:32 신청", "신청됨")]
     // 데이터가 없을 때
-    //var requestInfoList: [(UIImage?, String, String, String, String)] = []
+//    var requestInfoList: [(UIImage?, String, String, String, String)] = []
     
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var checkInButton: UIButton!
@@ -74,11 +73,6 @@ class RequestCheckInOutViewController: UIViewController {
     
     @IBAction func checkOutButtonTapped(_ sender: UIButton) {
         buttonTapped(button: sender)
-        // 임시로 퇴실신청내역 뷰컨트롤러 활성화버튼으로 사용
-        let storyboard = UIStoryboard(name: "RequestCheckInOut", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "CheckOutRequestDetailViewController") as! CheckOutRequestDetailViewController
-        viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true, completion: nil)
     }
     
     @IBAction func requestCheckInButton(_ sender: UIButton) {
@@ -104,7 +98,6 @@ class RequestDetailCollectionViewCell: UICollectionViewCell {
 extension RequestCheckInOutViewController: UICollectionViewDataSource {
     // Cell 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(requestInfoList.count)
         return requestInfoList.count
     }
     
@@ -114,9 +107,15 @@ extension RequestCheckInOutViewController: UICollectionViewDataSource {
         // 임시 데이터 표현
         cell.checkStateImage.image = requestInfoList[indexPath.row].0
         cell.checkStateLabel.text = requestInfoList[indexPath.row].1
+        if cell.checkStateLabel.text == "퇴실" {
+            cell.checkStateLabel.textColor = #colorLiteral(red: 0.337254902, green: 0.6196078431, blue: 1, alpha: 1)
+        }
         cell.dateTimeLabel.text = requestInfoList[indexPath.row].2
         cell.requestedTimeLabel.text = requestInfoList[indexPath.row].3
         cell.requestProgressLabel.text = requestInfoList[indexPath.row].4
+        if cell.requestProgressLabel.text == "신청됨" || cell.requestProgressLabel.text == "승인대기중" {
+            cell.requestProgressLabel.textColor = #colorLiteral(red: 1, green: 0.4431372549, blue: 0.2745098039, alpha: 1)
+        }
         
         return cell
     }
@@ -125,7 +124,14 @@ extension RequestCheckInOutViewController: UICollectionViewDataSource {
 
 // MARK:- "컬렉션뷰 Delegate"
 extension RequestCheckInOutViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if requestInfoList[indexPath.row].1 == "퇴실" {
+            let storyboard = UIStoryboard(name: "RequestCheckInOut", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "CheckOutRequestDetailViewController") as! CheckOutRequestDetailViewController
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: true, completion: nil)
+        }
+    }
 }
 
 

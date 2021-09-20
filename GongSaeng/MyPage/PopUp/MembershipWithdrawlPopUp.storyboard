@@ -19,12 +19,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Jyv-3f-CSM">
                                 <rect key="frame" x="17" y="378" width="380" height="140"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" text="모든 정보가 삭제되며, 복구할 수 없어요. 정말 회원탈퇴 하시겠어요?" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="6rN-zL-agH">
-                                        <rect key="frame" x="24" y="24" width="332" height="34"/>
-                                        <color key="textColor" white="0.0" alpha="0.87" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="모든 정보가 삭제되며, 복구할 수 없어요. 정말 회원탈퇴 하시겠어요?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kto-RD-Kph">
+                                        <rect key="frame" x="24" y="24" width="332" height="33.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bAh-8W-Jj4">
                                         <rect key="frame" x="239" y="80" width="51" height="36"/>
                                         <constraints>
@@ -56,14 +56,14 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="6rN-zL-agH" secondAttribute="trailing" constant="24" id="75p-km-Woh"/>
+                                    <constraint firstAttribute="trailing" secondItem="kto-RD-Kph" secondAttribute="trailing" constant="24" id="2di-vb-lJ3"/>
                                     <constraint firstItem="eun-1R-ieO" firstAttribute="leading" secondItem="bAh-8W-Jj4" secondAttribute="trailing" constant="15" id="Gzg-UV-h4m"/>
-                                    <constraint firstItem="6rN-zL-agH" firstAttribute="leading" secondItem="Jyv-3f-CSM" secondAttribute="leading" constant="24" id="KKk-jE-hye"/>
                                     <constraint firstAttribute="bottom" secondItem="bAh-8W-Jj4" secondAttribute="bottom" constant="24" id="LAO-Ef-6lv"/>
                                     <constraint firstAttribute="height" constant="140" id="Pf3-LL-aZc"/>
                                     <constraint firstAttribute="bottom" secondItem="eun-1R-ieO" secondAttribute="bottom" constant="24" id="Srj-3k-NMf"/>
+                                    <constraint firstItem="kto-RD-Kph" firstAttribute="leading" secondItem="Jyv-3f-CSM" secondAttribute="leading" constant="24" id="YCt-Ad-G2T"/>
+                                    <constraint firstItem="kto-RD-Kph" firstAttribute="top" secondItem="Jyv-3f-CSM" secondAttribute="top" constant="24" id="b1A-wS-hiD"/>
                                     <constraint firstAttribute="trailing" secondItem="eun-1R-ieO" secondAttribute="trailing" constant="24" id="qXL-oK-2Gr"/>
-                                    <constraint firstItem="6rN-zL-agH" firstAttribute="top" secondItem="Jyv-3f-CSM" secondAttribute="top" constant="24" id="qnv-Ah-tYr"/>
                                 </constraints>
                             </view>
                         </subviews>
