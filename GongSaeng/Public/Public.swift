@@ -14,6 +14,7 @@ struct Public: Codable, Equatable {
     var maxTime: Int // 각 아이템은 최대 사용 가능 시간이 무조건 존재
     var isDone: Bool // Using, 무조건
     var usingUser: String? // 사용중이지 않으면 유저가 없을 수 있음
+    var startTime: String?
     var finalTime: String? // 사용중이지 않으면 없어도 됌
     var remainingTime: Int? { // 없어도 되고 그때그때 계산하면 됨
         guard let endTime = self.finalTime else { return 0 }
@@ -76,6 +77,68 @@ class PublicViewModel {
         return publics.filter { $0.isDone == true && $0.usingUser == loginUser?.id}
     }
     
+    func availablePublics(loginUser: User?) -> [Public] {
+        return publics.filter { !($0.isDone == true && $0.usingUser == loginUser?.id) }
+    }
+    
+    var availablePublics: [Public] {
+        return publics.filter { $0.isDone == false }
+    }
+}
+
+class ReservationViewModel {
+    enum Section: Int, CaseIterable {
+        case using
+        case detail
+        case toUse
+        
+        var title: String {
+            switch self {
+            case .using:
+                return "사용중"
+            case .detail:
+                return "예약 내역"
+            case .toUse:
+                return "예약하기"
+            }
+        }
+    }
+    
+    var publics: [Public] = [
+        Public(imgTitle: "qwer", title: "멘토링실", maxTime: 100, isDone: true, usingUser: "jyy0223", startTime: "2021-7-16 16:00:00", finalTime: "2021-7-16 18:00:00"),
+        Public(imgTitle: "qwer", title: "멘토링실", maxTime: 90, isDone: false, usingUser: nil, startTime: nil, finalTime: nil),
+        Public(imgTitle: "qwer", title: "멘토링실", maxTime: 80, isDone: true, usingUser: "jyy0223", startTime: "2021-7-17 18:00:00", finalTime: "2021-7-17 20:00:00"),
+        Public(imgTitle: "qwer", title: "멘토링실", maxTime: 70, isDone: false, usingUser: "jyy0223", startTime: nil, finalTime: nil)
+        ]
+    
+    var numOfSection: Int {
+        return Section.allCases.count
+    }
+    
+    var numOfItems: Int {
+        return publics.count
+    }
+
+    func indexOfImgTitle(at index: Int) -> String {
+        return publics[index].imgTitle
+    }
+    
+    func indexOfPublic(at index: Int) -> Public {
+        return publics[index]
+    }
+    
+    // 사용중
+    func usingPublics(loginUser: User?) -> [Public] {
+        return publics.filter { $0.isDone == true && $0.usingUser == loginUser?.id && "2021-7-16 17:00:00" >= ($0.startTime ?? "0000-0-00 00:00:00") }
+        // 현재시간이 시작시간 이상이면 사용중 상태, 현재시간은 임시로 표현
+    }
+    
+    // 예약 내역
+    func toUsePublics(loginUser: User?) -> [Public] {
+        return publics.filter { $0.isDone == true && $0.usingUser == loginUser?.id && "2021-7-16 17:00:00" < ($0.startTime ?? "0000-0-00 00:00:00") }
+    }
+    
+    // 예약하기
     func availablePublics(loginUser: User?) -> [Public] {
         return publics.filter { !($0.isDone == true && $0.usingUser == loginUser?.id) }
     }

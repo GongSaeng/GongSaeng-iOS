@@ -222,9 +222,9 @@
 				3D5D59A62652961B0018FE63 /* Register */,
 				3DB686F8268D8C2D0061BCB0 /* TabbarManager */,
 				3D5D599C2652491F0018FE63 /* Home */,
+				3D2FBC072675FEAC00D2FF56 /* Public */,
 				A753FB6026ED0533001DA2C3 /* MyPage */,
 				3DAFCB9E26625DDF008E9803 /* Extension + Public */,
-				3D2FBC072675FEAC00D2FF56 /* Public */,
 			);
 			path = GongSaeng;
 			sourceTree = "<group>";

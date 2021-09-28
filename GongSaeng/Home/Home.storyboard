@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -26,9 +27,15 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGd-Lw-9MR">
-                                        <rect key="frame" x="350" y="15.5" width="46" height="30"/>
-                                        <state key="normal" title="Button"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TGd-Lw-9MR">
+                                        <rect key="frame" x="372" y="18.5" width="24" height="24"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="24" id="Nb7-sW-b6g"/>
+                                            <constraint firstAttribute="width" constant="24" id="jM6-HN-5IL"/>
+                                        </constraints>
+                                        <state key="normal" title="Button" image="493">
+                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
+                                        </state>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -101,8 +108,24 @@
                     <view key="view" contentMode="scaleToFill" id="xkv-sH-dkc">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="알림" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JKl-aR-lH8">
+                                <rect key="frame" x="16" y="60" width="37" height="29"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="FZ9-Cg-2N5"/>
+                                    <constraint firstAttribute="height" constant="29" id="SWT-sE-JF9"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="O80-27-d9M"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="JKl-aR-lH8" firstAttribute="top" secondItem="O80-27-d9M" secondAttribute="top" constant="16" id="Q61-CN-RpP"/>
+                            <constraint firstItem="JKl-aR-lH8" firstAttribute="leading" secondItem="O80-27-d9M" secondAttribute="leading" constant="16" id="aPJ-he-TfC"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="알림" image="alert" selectedImage="alertOn" id="1Pd-An-VJd"/>
                 </viewController>
@@ -562,7 +585,7 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoticeCell" id="91w-Yv-bVk" customClass="NoticeCell" customModule="GongSaeng" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="382" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="44.5" width="382" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="91w-Yv-bVk" id="ent-5r-aa1">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="43.5"/>
@@ -763,6 +786,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="493" width="26" height="26"/>
         <image name="alert" width="23" height="26"/>
         <image name="alertOn" width="21" height="24"/>
         <image name="cummunity" width="24" height="24"/>

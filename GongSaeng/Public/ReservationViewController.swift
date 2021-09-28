@@ -8,8 +8,178 @@
 import UIKit
 
 class ReservationViewController: UIViewController {
+    
+    var loginUser: User?
+    let viewModel: ReservationViewModel = ReservationViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.loginUser = LoginUser.loginUser
+    }
+}
+
+extension ReservationViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return viewModel.numOfSection
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch section {
+        case 0:
+            return viewModel.usingPublics(loginUser: self.loginUser).count
+        case 1:
+            return viewModel.toUsePublics(loginUser: self.loginUser).count
+        case 2:
+            return viewModel.availablePublics(loginUser: self.loginUser).count
+        default:
+            return 0
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCell", for: indexPath) as? ReservationCell else { return UICollectionViewCell() }
+        
+        var item: Public
+        switch indexPath.section {
+        case 0:
+            item = viewModel.usingPublics(loginUser: self.loginUser)[indexPath.item]
+        case 1:
+            item = viewModel.toUsePublics(loginUser: self.loginUser)[indexPath.item]
+        case 2:
+            item = viewModel.availablePublics(loginUser: self.loginUser)[indexPath.item]
+        default:
+            return cell
+        }
+        
+        cell.updateUI(at: item, loginUser: self.loginUser)
+        return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        switch kind {
+        case UICollectionView.elementKindSectionHeader:
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ReservationHeaderView", for: indexPath) as? ReservationHeaderView else { return UICollectionReusableView() }
+            
+            guard let section = ReservationViewModel.Section(rawValue: indexPath.section) else { return UICollectionReusableView() }
+            
+            header.updateUI(sectionTitleString: section.title)
+            return header
+        default:
+            return UICollectionReusableView()
+        }
+    }
+}
+
+extension ReservationViewController: UICollectionViewDelegate {
+    //
+}
+
+extension ReservationViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let width: CGFloat = self.view.bounds.width
+        let height: CGFloat
+        switch indexPath.section {
+        case 0:
+            height = CGFloat(82)
+        case 1:
+            height = CGFloat(82)
+        case 2:
+            height = CGFloat(74)
+        default:
+            height = CGFloat(0)
+        }
+        return CGSize(width: width, height: height)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        let width: CGFloat = self.view.bounds.width
+        let height: CGFloat = CGFloat(68)
+        switch section {
+        case 0:
+            guard viewModel.usingPublics(loginUser: self.loginUser).count != 0 else { return CGSize()
+            }
+        case 1:
+            guard viewModel.toUsePublics(loginUser: self.loginUser).count != 0 else { return CGSize() }
+        case 2:
+            guard viewModel.availablePublics(loginUser: self.loginUser).count != 0 else { return CGSize() }
+        default:
+            return CGSize()
+        }
+        return CGSize(width: width, height: height)
+    }
+}
+
+class ReservationCell: UICollectionViewCell {
+    @IBOutlet weak var imgBackgroundView: UIView!
+    @IBOutlet weak var imgView: UIImageView!
+    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var finalTimeLabel: UILabel!
+    @IBOutlet weak var leftTimeLabel: UILabel!
+    @IBOutlet weak var reservedTimeLabel: UILabel!
+    
+    @IBOutlet weak var imgHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var imgBackgroundHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var titleLabelTopSpaceConstraint: NSLayoutConstraint!
+    
+    func updateUI(at index: Public, loginUser: User?) {
+        DispatchQueue.main.async {
+            // 사용중
+            if index.isDone == true && index.usingUser == loginUser?.id && "2021-7-16 17:00:00" >= (index.startTime ?? "0000-0-00 00:00:00") {
+                self.imgBackgroundView.backgroundColor = #colorLiteral(red: 1, green: 0.9294117647, blue: 0.8941176471, alpha: 1)
+                self.imgHeightConstraint.constant = 32
+                self.imgBackgroundHeightConstraint.constant = 72
+                self.reservedTimeLabel.isHidden = true
+            }
+            // 예약 내역
+            if index.isDone == true && index.usingUser == loginUser?.id && "2021-7-16 17:00:00" < (index.startTime ?? "0000-0-00 00:00:00") {
+                self.imgBackgroundView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                self.imgBackgroundView.layer.borderWidth = 7
+                self.imgBackgroundView.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.05)
+                self.imgHeightConstraint.constant = 32
+                self.imgBackgroundHeightConstraint.constant = 72
+                self.finalTimeLabel.isHidden = true
+                self.leftTimeLabel.isHidden = true
+                
+                self.button.setTitle("예약취소", for: .normal)
+                self.button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                self.button.layer.borderWidth = 1
+                self.button.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+                self.button.setTitleColor(UIColor(red: 17.0 / 255.0, green: 103.0 / 255.0, blue: 97.0 / 255.0, alpha: 1.0), for: .normal)
+            }
+            // 예약하기
+            if !(index.isDone == true && index.usingUser == loginUser?.id) {
+                self.imgBackgroundView.backgroundColor = #colorLiteral(red: 0.9725490196, green: 0.9725490196, blue: 0.9725490196, alpha: 1)
+                self.imgHeightConstraint.constant = 24
+                self.imgBackgroundHeightConstraint.constant = 50
+                self.titleLabel.font = UIFont(name: self.titleLabel.font.fontName, size: 14)
+                self.titleLabelTopSpaceConstraint.constant = 25
+                self.finalTimeLabel.isHidden = true
+                self.leftTimeLabel.isHidden = true
+                self.reservedTimeLabel.isHidden = true
+                self.button.setTitle("예약하기", for: .normal)
+                self.button.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                self.button.layer.borderWidth = 1
+                self.button.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+                self.button.setTitleColor(UIColor(red: 17.0 / 255.0, green: 103.0 / 255.0, blue: 97.0 / 255.0, alpha: 1.0), for: .normal)
+            }
+            
+            self.imgBackgroundView.layer.cornerRadius = self.imgBackgroundHeightConstraint.constant / 2
+            self.button.layer.cornerRadius = 15
+        }
+    }
+}
+
+class ReservationHeaderView: UICollectionReusableView {
+    @IBOutlet weak var sectionTitleLabel: UILabel!
+    
+    override class func awakeFromNib() {
+        super.awakeFromNib()
+    }
+    
+    func updateUI(sectionTitleString: String) {
+        DispatchQueue.main.async {
+            self.sectionTitleLabel.text = sectionTitleString
+        }
     }
 }
