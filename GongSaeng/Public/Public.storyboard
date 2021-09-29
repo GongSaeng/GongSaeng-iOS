@@ -418,9 +418,6 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="사용완료"/>
-                                                    <connections>
-                                                        <action selector="buttonTapped:" destination="FW5-p1-A7U" eventType="touchUpInside" id="uPf-Ez-edY"/>
-                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -490,13 +487,23 @@
                                     <outlet property="delegate" destination="sfZ-VU-V1g" id="hGj-me-eX7"/>
                                 </connections>
                             </collectionView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFI-gS-wnr">
+                                <rect key="frame" x="0.0" y="44" width="414" height="15"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="15" id="1cV-Xd-MFe"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gm2-jg-XPw"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="EFI-gS-wnr" firstAttribute="leading" secondItem="gm2-jg-XPw" secondAttribute="leading" id="0i7-Qq-Sli"/>
+                            <constraint firstItem="EFI-gS-wnr" firstAttribute="top" secondItem="gm2-jg-XPw" secondAttribute="top" id="GX7-dX-d7t"/>
                             <constraint firstItem="2av-OE-Uhb" firstAttribute="leading" secondItem="gm2-jg-XPw" secondAttribute="leading" id="N82-Ob-9JH"/>
                             <constraint firstItem="gm2-jg-XPw" firstAttribute="trailing" secondItem="2av-OE-Uhb" secondAttribute="trailing" id="bK9-xE-dU6"/>
                             <constraint firstItem="gm2-jg-XPw" firstAttribute="bottom" secondItem="2av-OE-Uhb" secondAttribute="bottom" id="mBK-Qe-yvv"/>
+                            <constraint firstItem="gm2-jg-XPw" firstAttribute="trailing" secondItem="EFI-gS-wnr" secondAttribute="trailing" id="tbW-Ja-ZA9"/>
                             <constraint firstItem="2av-OE-Uhb" firstAttribute="top" secondItem="gm2-jg-XPw" secondAttribute="top" id="yjB-hb-Syy"/>
                         </constraints>
                     </view>

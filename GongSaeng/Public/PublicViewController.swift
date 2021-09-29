@@ -10,13 +10,17 @@ import UIKit
 class PublicViewController: UIViewController {
     //----------------------------------------------------------------
     // MARK:- Outlets
-    @IBOutlet weak var segmentControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var immediationButton: UIButton!
+    @IBOutlet weak var reservationButton: UIButton!
+    @IBOutlet weak var immediationButtonUnderlinedView: UIView!
+    @IBOutlet weak var reservationButtonUnderlinedView: UIView!
     
     //----------------------------------------------------------------
     // MARK:- View Life Cycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupButton()
         self.setupView()
     }
     
@@ -68,10 +72,14 @@ class PublicViewController: UIViewController {
 
     //----------------------------------------------------------------
     // MARK:- Action Methods
-    @IBAction func segmentValueChanged(_ sender: UISegmentedControl) {
-        updateView()
+    @IBAction func immediationButtonTapped(_ sender: UIButton) {
+        buttonTapped(sender)
     }
-
+    
+    @IBAction func reservationButtonTapped(_ sender: UIButton) {
+        buttonTapped(sender)
+    }
+    
     //----------------------------------------------------------------
     // MARK:- Custom Methods
     private func add(asChildViewController viewController: UIViewController) {
@@ -99,9 +107,37 @@ class PublicViewController: UIViewController {
         // Notify Child View Controller
         viewController.removeFromParent()
     }
+    
+    private func buttonTapped(_ button: UIButton) {
+        [immediationButton, reservationButton].forEach {
+            if $0 == button {
+                $0?.isSelected = true
+                $0?.isEnabled = false
+                $0?.setTitleColor(UIColor(white: 0, alpha: 0.87), for: .normal)
+            } else {
+                $0?.isSelected = false
+                $0?.isEnabled = true
+                $0?.setTitleColor(UIColor(white: 0, alpha: 0.30), for: .normal)
+            }
+        }
+        
+        if button == immediationButton {
+            immediationButtonUnderlinedView.isHidden = false
+            reservationButtonUnderlinedView.isHidden = true
+        } else {
+            immediationButtonUnderlinedView.isHidden = true
+            reservationButtonUnderlinedView.isHidden = false
+        }
+        
+        updateView()
+    }
+    
+    private func setupButton() {
+        buttonTapped(immediationButton)
+    }
 
     private func updateView() {
-        if segmentControl.selectedSegmentIndex == 0 {
+        if immediationButton.isSelected {
             remove(asChildViewController: reservationViewController)
             add(asChildViewController: immediationViewController)
         } else {
