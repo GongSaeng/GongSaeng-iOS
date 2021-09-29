@@ -341,7 +341,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2av-OE-Uhb">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" bounces="NO" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2av-OE-Uhb">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="SIE-g9-MFO">
@@ -418,6 +418,9 @@
                                                     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                     <state key="normal" title="사용완료"/>
+                                                    <connections>
+                                                        <action selector="buttonTapped:" destination="FW5-p1-A7U" eventType="touchUpInside" id="J7i-me-QHw"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
@@ -487,26 +490,19 @@
                                     <outlet property="delegate" destination="sfZ-VU-V1g" id="hGj-me-eX7"/>
                                 </connections>
                             </collectionView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EFI-gS-wnr">
-                                <rect key="frame" x="0.0" y="44" width="414" height="15"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="15" id="1cV-Xd-MFe"/>
-                                </constraints>
-                            </view>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="gm2-jg-XPw"/>
+                        <viewLayoutGuide key="safeArea" id="zJY-2r-t9H"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="EFI-gS-wnr" firstAttribute="leading" secondItem="gm2-jg-XPw" secondAttribute="leading" id="0i7-Qq-Sli"/>
-                            <constraint firstItem="EFI-gS-wnr" firstAttribute="top" secondItem="gm2-jg-XPw" secondAttribute="top" id="GX7-dX-d7t"/>
-                            <constraint firstItem="2av-OE-Uhb" firstAttribute="leading" secondItem="gm2-jg-XPw" secondAttribute="leading" id="N82-Ob-9JH"/>
-                            <constraint firstItem="gm2-jg-XPw" firstAttribute="trailing" secondItem="2av-OE-Uhb" secondAttribute="trailing" id="bK9-xE-dU6"/>
-                            <constraint firstItem="gm2-jg-XPw" firstAttribute="bottom" secondItem="2av-OE-Uhb" secondAttribute="bottom" id="mBK-Qe-yvv"/>
-                            <constraint firstItem="gm2-jg-XPw" firstAttribute="trailing" secondItem="EFI-gS-wnr" secondAttribute="trailing" id="tbW-Ja-ZA9"/>
-                            <constraint firstItem="2av-OE-Uhb" firstAttribute="top" secondItem="gm2-jg-XPw" secondAttribute="top" id="yjB-hb-Syy"/>
+                            <constraint firstItem="zJY-2r-t9H" firstAttribute="top" secondItem="2av-OE-Uhb" secondAttribute="top" id="30p-Xr-SJa"/>
+                            <constraint firstItem="2av-OE-Uhb" firstAttribute="leading" secondItem="zJY-2r-t9H" secondAttribute="leading" id="MXz-Yx-CzW"/>
+                            <constraint firstItem="2av-OE-Uhb" firstAttribute="bottom" secondItem="zJY-2r-t9H" secondAttribute="bottom" id="WLr-0Z-uDG"/>
+                            <constraint firstItem="2av-OE-Uhb" firstAttribute="trailing" secondItem="zJY-2r-t9H" secondAttribute="trailing" id="xkT-6C-C9c"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectionView" destination="2av-OE-Uhb" id="5uF-9Z-LTT"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3ir-tY-bDU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

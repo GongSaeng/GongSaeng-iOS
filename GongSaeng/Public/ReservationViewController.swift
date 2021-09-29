@@ -8,6 +8,7 @@
 import UIKit
 
 class ReservationViewController: UIViewController {
+    @IBOutlet weak var collectionView: UICollectionView!
     
     var loginUser: User?
     let viewModel: ReservationViewModel = ReservationViewModel()
@@ -15,6 +16,8 @@ class ReservationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.loginUser = LoginUser.loginUser
+        
+        collectionView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -38,6 +41,8 @@ extension ReservationViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCell", for: indexPath) as? ReservationCell else { return UICollectionViewCell() }
+        
+        cell.delegate = self
         
         var item: Public
         switch indexPath.section {
@@ -109,6 +114,18 @@ extension ReservationViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
+extension ReservationViewController: ReservationCellDelegate {
+    func reservationCell(_ reservationCell: ReservationCell) {
+        guard let buttonName = reservationCell.button.titleLabel?.text else { return }
+        print(buttonName)
+//        switch buttonName {
+//        case "사용완료":
+//        case "예약취소":
+//        case "예약하기":
+//        }
+    }
+}
+
 class ReservationCell: UICollectionViewCell {
     @IBOutlet weak var imgBackgroundView: UIView!
     @IBOutlet weak var imgView: UIImageView!
@@ -121,6 +138,14 @@ class ReservationCell: UICollectionViewCell {
     @IBOutlet weak var imgHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var imgBackgroundHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabelTopSpaceConstraint: NSLayoutConstraint!
+    
+    weak var delegate: ReservationCellDelegate?
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        self.button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
+    }
     
     func updateUI(at index: Public, loginUser: User?) {
         DispatchQueue.main.async {
@@ -168,6 +193,11 @@ class ReservationCell: UICollectionViewCell {
             self.button.layer.cornerRadius = 15
         }
     }
+    
+    @IBAction func buttonTapped(_ sender: UIButton) {
+        guard let _ = delegate else { return }
+        self.delegate?.reservationCell(self)
+    }
 }
 
 class ReservationHeaderView: UICollectionReusableView {
@@ -182,4 +212,8 @@ class ReservationHeaderView: UICollectionReusableView {
             self.sectionTitleLabel.text = sectionTitleString
         }
     }
+}
+
+protocol ReservationCellDelegate: AnyObject {
+    func reservationCell(_ reservationCell: ReservationCell)
 }
