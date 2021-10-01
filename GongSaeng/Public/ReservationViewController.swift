@@ -118,11 +118,27 @@ extension ReservationViewController: ReservationCellDelegate {
     func reservationCell(_ reservationCell: ReservationCell) {
         guard let buttonName = reservationCell.button.titleLabel?.text else { return }
         print(buttonName)
-//        switch buttonName {
-//        case "사용완료":
-//        case "예약취소":
-//        case "예약하기":
-//        }
+        switch buttonName {
+        case "사용완료":
+            let storyBoard = UIStoryboard.init(name: "ReservationPopUp", bundle: nil)
+            let popUpViewController = storyBoard.instantiateViewController(identifier: "FinishUsingPopUpViewController") as! FinishUsingPopUpViewController
+            popUpViewController.modalPresentationStyle = .overCurrentContext
+            self.present(popUpViewController, animated: false, completion: nil)
+            
+        case "예약취소":
+            let storyBoard = UIStoryboard.init(name: "ReservationPopUp", bundle: nil)
+            let popUpViewController = storyBoard.instantiateViewController(identifier: "CancelReservationPopUpViewController") as! CancelReservationPopUpViewController
+            popUpViewController.modalPresentationStyle = .overCurrentContext
+            self.present(popUpViewController, animated: false, completion: nil)
+            
+        case "예약하기":
+            let storyboard = UIStoryboard(name: "Reserve", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "ReserveViewController") as! ReserveViewController
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: true, completion: nil)
+        default:
+            return
+        }
     }
 }
 
@@ -151,7 +167,7 @@ class ReservationCell: UICollectionViewCell {
         DispatchQueue.main.async {
             // 사용중
             if index.isDone == true && index.usingUser == loginUser?.id && "2021-7-16 17:00:00" >= (index.startTime ?? "0000-0-00 00:00:00") {
-                self.imgBackgroundView.backgroundColor = #colorLiteral(red: 1, green: 0.9294117647, blue: 0.8941176471, alpha: 1)
+                self.imgBackgroundView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
                 self.imgHeightConstraint.constant = 32
                 self.imgBackgroundHeightConstraint.constant = 72
                 self.reservedTimeLabel.isHidden = true

@@ -47,16 +47,24 @@
 		3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */; };
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
+		A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A70D39052704BD0C00B09041 /* Reserve.storyboard */; };
+		A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70D39072704BD1A00B09041 /* ReserveViewController.swift */; };
 		A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E07B926EE6021007DB8D0 /* UIImageView.swift */; };
 		A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BA26F1B7D000FA1F06 /* RequestCheckInViewController.swift */; };
 		A73AE4BD26F1B82200FA1F06 /* RequestCheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BC26F1B82200FA1F06 /* RequestCheckOutViewController.swift */; };
 		A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BE26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift */; };
 		A73AE4C726F1CA0300FA1F06 /* CheckOutCompletedPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73AE4C626F1CA0300FA1F06 /* CheckOutCompletedPopUp.storyboard */; };
 		A73AE4C926F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4C826F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift */; };
+		A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
 		A7674F7226EF9A5600AE60FA /* RequestCheckInOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7674F7126EF9A5600AE60FA /* RequestCheckInOut.storyboard */; };
 		A7674F7426EF9A6500AE60FA /* RequestCheckInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7674F7326EF9A6500AE60FA /* RequestCheckInOutViewController.swift */; };
+		A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */; };
+		A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777950D2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift */; };
+		A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */; };
+		A777C8D62707A32600670556 /* CanceledReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */; };
+		A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */; };
 		A79C215326EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */; };
 		A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215426EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift */; };
 		A79C215726EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215626EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift */; };
@@ -70,6 +78,9 @@
 		A7AE9F3626EF201C0082C855 /* LogOutPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */; };
 		A7AE9F3926EF2E060082C855 /* PasswordChangedPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */; };
 		A7AE9F3B26EF2E110082C855 /* PasswordChangedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */; };
+		A7DC1CA12707788A002F395C /* ConfirmReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */; };
+		A7DC1CA3270778CE002F395C /* CancelReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA2270778CE002F395C /* CancelReservationPopUpViewController.swift */; };
+		A7DC1CA527077918002F395C /* FinishUsingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA427077918002F395C /* FinishUsingPopUpViewController.swift */; };
 		A7F4193B26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F4193A26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard */; };
 		A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F4193C26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift */; };
 		A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */; };
@@ -122,16 +133,24 @@
 		3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
+		A70D39052704BD0C00B09041 /* Reserve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reserve.storyboard; sourceTree = "<group>"; };
+		A70D39072704BD1A00B09041 /* ReserveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveViewController.swift; sourceTree = "<group>"; };
 		A71E07B926EE6021007DB8D0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		A73AE4BA26F1B7D000FA1F06 /* RequestCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInViewController.swift; sourceTree = "<group>"; };
 		A73AE4BC26F1B82200FA1F06 /* RequestCheckOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckOutViewController.swift; sourceTree = "<group>"; };
 		A73AE4BE26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutRequestDetailViewController.swift; sourceTree = "<group>"; };
 		A73AE4C626F1CA0300FA1F06 /* CheckOutCompletedPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckOutCompletedPopUp.storyboard; sourceTree = "<group>"; };
 		A73AE4C826F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutCompletedPopUpViewController.swift; sourceTree = "<group>"; };
+		A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveContainerViewController.swift; sourceTree = "<group>"; };
 		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		A7674F7126EF9A5600AE60FA /* RequestCheckInOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RequestCheckInOut.storyboard; sourceTree = "<group>"; };
 		A7674F7326EF9A6500AE60FA /* RequestCheckInOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInOutViewController.swift; sourceTree = "<group>"; };
+		A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReservationPopUp.storyboard; sourceTree = "<group>"; };
+		A777950D2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotCloseCellTappedPopUpViewController.swift; sourceTree = "<group>"; };
+		A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedReservationPopUpViewController.swift; sourceTree = "<group>"; };
+		A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanceledReservationPopUpViewController.swift; sourceTree = "<group>"; };
+		A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedUsingPopUpViewController.swift; sourceTree = "<group>"; };
 		A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MembershipWithdrawlPopUp.storyboard; sourceTree = "<group>"; };
 		A79C215426EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipWithdrawlPopUpViewController.swift; sourceTree = "<group>"; };
 		A79C215626EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipWithdrawlCompletedPopUpViewController.swift; sourceTree = "<group>"; };
@@ -145,6 +164,9 @@
 		A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogOutPopUp.storyboard; sourceTree = "<group>"; };
 		A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordChangedPopUp.storyboard; sourceTree = "<group>"; };
 		A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangedPopUpViewController.swift; sourceTree = "<group>"; };
+		A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmReservationPopUpViewController.swift; sourceTree = "<group>"; };
+		A7DC1CA2270778CE002F395C /* CancelReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReservationPopUpViewController.swift; sourceTree = "<group>"; };
+		A7DC1CA427077918002F395C /* FinishUsingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishUsingPopUpViewController.swift; sourceTree = "<group>"; };
 		A7F4193A26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckInRequestPopUp.storyboard; sourceTree = "<group>"; };
 		A7F4193C26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInRequestPopUpViewController.swift; sourceTree = "<group>"; };
 		A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
@@ -187,6 +209,10 @@
 				3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */,
 				3DC069A92697D5A600A4A6CB /* EnterUsageTimeViewController.swift */,
 				3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */,
+				A70D39052704BD0C00B09041 /* Reserve.storyboard */,
+				A70D39072704BD1A00B09041 /* ReserveViewController.swift */,
+				A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */,
+				A777950C2707620B00C1C3FD /* ReservationPopUp */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -370,6 +396,21 @@
 			path = MyPage;
 			sourceTree = "<group>";
 		};
+		A777950C2707620B00C1C3FD /* ReservationPopUp */ = {
+			isa = PBXGroup;
+			children = (
+				A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */,
+				A777950D2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift */,
+				A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */,
+				A7DC1CA2270778CE002F395C /* CancelReservationPopUpViewController.swift */,
+				A7DC1CA427077918002F395C /* FinishUsingPopUpViewController.swift */,
+				A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */,
+				A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */,
+				A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */,
+			);
+			path = ReservationPopUp;
+			sourceTree = "<group>";
+		};
 		A7AE9F3726EF2C9B0082C855 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -456,6 +497,8 @@
 				3D00C8BA266E39E8006236A0 /* Mate.storyboard in Resources */,
 				3D5D59B02652B29B0018FE63 /* Login.storyboard in Resources */,
 				A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */,
+				A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */,
+				A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */,
 				A7674F7226EF9A5600AE60FA /* RequestCheckInOut.storyboard in Resources */,
 				3D5D59AE2652B2930018FE63 /* Register.storyboard in Resources */,
 				A7FA636626EE293F005D9785 /* MyProfileAndWriting.storyboard in Resources */,
@@ -482,6 +525,7 @@
 				3DAFCBA4266261E6008E9803 /* UITextField.swift in Sources */,
 				3D5D59AC2652B12A0018FE63 /* LoginViewController.swift in Sources */,
 				A79C58E426EEF33400F608D1 /* ChangePasswordViewController.swift in Sources */,
+				A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */,
 				A73AE4C926F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift in Sources */,
 				3D40E5302658089600B19E32 /* TermsOfServicesViewController.swift in Sources */,
 				A7FA636426EE2519005D9785 /* UITextView.swift in Sources */,
@@ -491,6 +535,7 @@
 				3D5D5989265247F40018FE63 /* AppDelegate.swift in Sources */,
 				3D816C61266B92D700A5164B /* AppTabbarController.swift in Sources */,
 				A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */,
+				A7DC1CA12707788A002F395C /* ConfirmReservationPopUpViewController.swift in Sources */,
 				A79C58E226EEE66C00F608D1 /* ManageAccountInfoViewController.swift in Sources */,
 				3D5D59AA2652B11C0018FE63 /* RegisterViewController.swift in Sources */,
 				3DB686FA268D8C570061BCB0 /* LoginUser.swift in Sources */,
@@ -498,13 +543,17 @@
 				3D231A68266E44BA00080E9B /* Mate.swift in Sources */,
 				A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */,
 				3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */,
+				A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */,
 				3DE755E9265975CE001FE813 /* Department.swift in Sources */,
 				3DAFCBA026625DF6008E9803 /* Normalization.swift in Sources */,
 				3DD893D6266E1A9C0050B4F8 /* MateViewController.swift in Sources */,
 				3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */,
+				A7DC1CA3270778CE002F395C /* CancelReservationPopUpViewController.swift in Sources */,
+				A777C8D62707A32600670556 /* CanceledReservationPopUpViewController.swift in Sources */,
 				A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */,
 				3D231A6A266E629D00080E9B /* MateCell.swift in Sources */,
 				A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */,
+				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
 				3D231A6C266F71A600080E9B /* MateDetailTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
@@ -512,6 +561,8 @@
 				A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
 				A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */,
+				A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */,
+				A7DC1CA527077918002F395C /* FinishUsingPopUpViewController.swift in Sources */,
 				3D2FBC092675FEDD00D2FF56 /* Public.swift in Sources */,
 				3D00C8B7266E39A6006236A0 /* MateDetailViewController.swift in Sources */,
 				A7AE9F3426EF20120082C855 /* LogOutPopUpViewController.swift in Sources */,
@@ -521,6 +572,7 @@
 				A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */,
 				3DD893D4266E1A6E0050B4F8 /* NoticeViewController.swift in Sources */,
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,
+				A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */,
 				A7674F7426EF9A6500AE60FA /* RequestCheckInOutViewController.swift in Sources */,
 				3D5D599E265249310018FE63 /* HomeViewController.swift in Sources */,
 				3D5D59A82652AF390018FE63 /* FirstViewController.swift in Sources */,
