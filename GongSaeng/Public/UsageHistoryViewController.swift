@@ -89,7 +89,7 @@ extension UsageHistoryViewController: UICollectionViewDelegateFlowLayout {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = self.view.frame.width
+        let width = collectionView.frame.width
         return CGSize(width: width, height: 118)
     }
 }

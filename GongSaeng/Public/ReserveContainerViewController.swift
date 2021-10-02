@@ -43,6 +43,7 @@ class ReserveContainerViewController: UIViewController {
         }
     }
     
+    // cell UI로 체크상태 확인 불가 reusableCell이라 체크상태 데이터를 새로 만들어서 다시 함수작성해야함
     private func testCountOfCheckedCell(collectionView: UICollectionView, indexPath: IndexPath, maxNum: Int) -> Bool {
         // maxNum = 3 이라 가정
         var count = 0

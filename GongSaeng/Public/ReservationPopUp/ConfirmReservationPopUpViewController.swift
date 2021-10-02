@@ -40,8 +40,8 @@ class ConfirmReservationPopUpViewController: UIViewController {
     }
     
     @IBAction func startUsingButtonTapped(_ sender: UIButton) {
-        guard let presentingViewController = self.presentingViewController else { return }
-        dismiss(animated: false) {
+        guard let presentingViewController = self.presentingViewController?.presentingViewController else { return }
+        self.presentingViewController?.presentingViewController?.dismiss(animated: false) {
             let storyBoard = UIStoryboard.init(name: "ReservationPopUp", bundle: nil)
             let popUpViewController = storyBoard.instantiateViewController(identifier: "ConfirmedReservationPopUpViewController") as! ConfirmedReservationPopUpViewController
             popUpViewController.modalPresentationStyle = .overCurrentContext

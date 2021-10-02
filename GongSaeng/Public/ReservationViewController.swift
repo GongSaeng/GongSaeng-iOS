@@ -117,7 +117,6 @@ extension ReservationViewController: UICollectionViewDelegateFlowLayout {
 extension ReservationViewController: ReservationCellDelegate {
     func reservationCell(_ reservationCell: ReservationCell) {
         guard let buttonName = reservationCell.button.titleLabel?.text else { return }
-        print(buttonName)
         switch buttonName {
         case "사용완료":
             let storyBoard = UIStoryboard.init(name: "ReservationPopUp", bundle: nil)
