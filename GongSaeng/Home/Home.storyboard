@@ -39,6 +39,9 @@
                                         <state key="normal" title="Button" image="493">
                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                         </state>
+                                        <connections>
+                                            <action selector="usageHistoryButtonTapped:" destination="xhK-am-vmN" eventType="touchUpInside" id="r76-co-PdS"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FiV-bG-HpH">
                                         <rect key="frame" x="18" y="60" width="62" height="24"/>
@@ -234,7 +237,7 @@
                                     <action selector="editProfileButtonTapped:" destination="831-R5-ggr" eventType="touchUpInside" id="iUh-rg-zC7"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="invalid_name" translatesAutoresizingMaskIntoConstraints="NO" id="xqS-um-kXE">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image" translatesAutoresizingMaskIntoConstraints="NO" id="xqS-um-kXE">
                                 <rect key="frame" x="318" y="130.5" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="YNt-1M-uX7"/>
@@ -854,9 +857,9 @@
         <image name="home_3" width="31.5" height="23.5"/>
         <image name="home_4" width="32" height="32"/>
         <image name="home_5" width="32" height="32.5"/>
-        <image name="invalid_name" width="80" height="80"/>
         <image name="mypage" width="26" height="26"/>
         <image name="mypageOn" width="22" height="22"/>
+        <image name="no_image" width="80" height="80"/>
         <image name="profile_man" width="300" height="300"/>
         <image name="public" width="26.5" height="26.5"/>
         <image name="publicOn" width="24" height="24"/>

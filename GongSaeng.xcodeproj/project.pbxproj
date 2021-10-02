@@ -65,6 +65,8 @@
 		A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */; };
 		A777C8D62707A32600670556 /* CanceledReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */; };
 		A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */; };
+		A79A288D2708121C000EB8C2 /* UsageHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */; };
+		A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */; };
 		A79C215326EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */; };
 		A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215426EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift */; };
 		A79C215726EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C215626EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift */; };
@@ -151,6 +153,8 @@
 		A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanceledReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedUsingPopUpViewController.swift; sourceTree = "<group>"; };
+		A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UsageHistory.storyboard; sourceTree = "<group>"; };
+		A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageHistoryViewController.swift; sourceTree = "<group>"; };
 		A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MembershipWithdrawlPopUp.storyboard; sourceTree = "<group>"; };
 		A79C215426EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipWithdrawlPopUpViewController.swift; sourceTree = "<group>"; };
 		A79C215626EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MembershipWithdrawlCompletedPopUpViewController.swift; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				A70D39052704BD0C00B09041 /* Reserve.storyboard */,
 				A70D39072704BD1A00B09041 /* ReserveViewController.swift */,
 				A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */,
+				A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */,
+				A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */,
 				A777950C2707620B00C1C3FD /* ReservationPopUp */,
 			);
 			path = Public;
@@ -498,6 +504,7 @@
 				3D5D59B02652B29B0018FE63 /* Login.storyboard in Resources */,
 				A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */,
 				A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */,
+				A79A288D2708121C000EB8C2 /* UsageHistory.storyboard in Resources */,
 				A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */,
 				A7674F7226EF9A5600AE60FA /* RequestCheckInOut.storyboard in Resources */,
 				3D5D59AE2652B2930018FE63 /* Register.storyboard in Resources */,
@@ -544,6 +551,7 @@
 				A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */,
 				3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */,
 				A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */,
+				A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */,
 				3DE755E9265975CE001FE813 /* Department.swift in Sources */,
 				3DAFCBA026625DF6008E9803 /* Normalization.swift in Sources */,
 				3DD893D6266E1A9C0050B4F8 /* MateViewController.swift in Sources */,

@@ -80,6 +80,14 @@ class PublicViewController: UIViewController {
         buttonTapped(sender)
     }
     
+    @IBAction func usageHistoryButtonTapped(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "UsageHistory", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "UsageHistoryViewController") as! UsageHistoryViewController
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    
     //----------------------------------------------------------------
     // MARK:- Custom Methods
     private func add(asChildViewController viewController: UIViewController) {
