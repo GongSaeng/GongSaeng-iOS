@@ -150,7 +150,7 @@ extension ReserveContainerViewController: UICollectionViewDelegateFlowLayout {
 class SelectReservationTimeCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     
-    override class func awakeFromNib() {
+    override func awakeFromNib() {
         super.awakeFromNib()
     }
 }
