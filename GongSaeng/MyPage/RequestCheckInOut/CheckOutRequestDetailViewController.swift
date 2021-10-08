@@ -65,7 +65,7 @@ class CheckOutRequestDetailViewController: UIViewController {
         guard let userInfo = notification.userInfo else { return }
         let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         if let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-            UIView.animate(withDuration: animationDuration, animations: { self.boundaryPresentingViewBottomConstraint.constant = keyboardFrame.size.height
+            UIView.animate(withDuration: animationDuration, animations: { self.boundaryPresentingViewBottomConstraint.constant = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
                 self.view.layoutIfNeeded()
             })
 
