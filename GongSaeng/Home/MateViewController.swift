@@ -44,8 +44,16 @@ extension MateViewController: UICollectionViewDataSource {
 
 extension MateViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let height: CGFloat = collectionView.bounds.height
-        let width: CGFloat = height * 224 / 252
-        return CGSize(width: width, height: height)
+//        let height: CGFloat = collectionView.bounds.height
+//        let width: CGFloat = height * 224 / 252
+        return CGSize(width: 224, height: 252)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return 12
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
     }
 }

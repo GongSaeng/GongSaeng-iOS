@@ -16,6 +16,9 @@ class MateCell: UICollectionViewCell {
     
     func updateUI(at index: Mate) {
         DispatchQueue.main.async {
+            self.profileImage.layer.cornerRadius = self.profileImage.frame.height / 2
+            self.profileImage.layer.borderWidth = 1
+            self.profileImage.layer.borderColor = CGColor(gray: 0, alpha: 0.1)
             self.profileImage.image = UIImage(named: "profileImage_\(index.id).png")
             self.nickNameLabel.text = index.nickName
             self.emailLabel.text = index.email
