@@ -58,6 +58,7 @@
 		A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
+		A756407B271043A4008609FE /* LoginPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A756407A271043A4008609FE /* LoginPopUp.storyboard */; };
 		A7674F7226EF9A5600AE60FA /* RequestCheckInOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7674F7126EF9A5600AE60FA /* RequestCheckInOut.storyboard */; };
 		A7674F7426EF9A6500AE60FA /* RequestCheckInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7674F7326EF9A6500AE60FA /* RequestCheckInOutViewController.swift */; };
 		A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */; };
@@ -84,6 +85,8 @@
 		A7DC1CA3270778CE002F395C /* CancelReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA2270778CE002F395C /* CancelReservationPopUpViewController.swift */; };
 		A7DC1CA527077918002F395C /* FinishUsingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA427077918002F395C /* FinishUsingPopUpViewController.swift */; };
 		A7DE0107270836760098AACF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DE0106270836760098AACF /* NotificationViewController.swift */; };
+		A7EB141B271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB141A271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift */; };
+		A7EB141D27104662001E8709 /* CheckIDInfoPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB141C27104662001E8709 /* CheckIDInfoPopUpViewController.swift */; };
 		A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */; };
 		A7F4193B26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F4193A26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard */; };
 		A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F4193C26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift */; };
@@ -148,6 +151,7 @@
 		A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveContainerViewController.swift; sourceTree = "<group>"; };
 		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
+		A756407A271043A4008609FE /* LoginPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginPopUp.storyboard; sourceTree = "<group>"; };
 		A7674F7126EF9A5600AE60FA /* RequestCheckInOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RequestCheckInOut.storyboard; sourceTree = "<group>"; };
 		A7674F7326EF9A6500AE60FA /* RequestCheckInOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInOutViewController.swift; sourceTree = "<group>"; };
 		A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReservationPopUp.storyboard; sourceTree = "<group>"; };
@@ -174,6 +178,8 @@
 		A7DC1CA2270778CE002F395C /* CancelReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A7DC1CA427077918002F395C /* FinishUsingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishUsingPopUpViewController.swift; sourceTree = "<group>"; };
 		A7DE0106270836760098AACF /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		A7EB141A271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForApprovalPopUpViewController.swift; sourceTree = "<group>"; };
+		A7EB141C27104662001E8709 /* CheckIDInfoPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIDInfoPopUpViewController.swift; sourceTree = "<group>"; };
 		A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInContainerViewController.swift; sourceTree = "<group>"; };
 		A7F4193A26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckInRequestPopUp.storyboard; sourceTree = "<group>"; };
 		A7F4193C26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInRequestPopUpViewController.swift; sourceTree = "<group>"; };
@@ -283,6 +289,7 @@
 			children = (
 				3D5D59AB2652B12A0018FE63 /* LoginViewController.swift */,
 				3D5D59AF2652B29B0018FE63 /* Login.storyboard */,
+				A75640792710435D008609FE /* PopUp */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -408,6 +415,16 @@
 			path = MyPage;
 			sourceTree = "<group>";
 		};
+		A75640792710435D008609FE /* PopUp */ = {
+			isa = PBXGroup;
+			children = (
+				A756407A271043A4008609FE /* LoginPopUp.storyboard */,
+				A7EB141A271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift */,
+				A7EB141C27104662001E8709 /* CheckIDInfoPopUpViewController.swift */,
+			);
+			path = PopUp;
+			sourceTree = "<group>";
+		};
 		A777950C2707620B00C1C3FD /* ReservationPopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +536,7 @@
 				A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */,
 				A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */,
 				A79A288D2708121C000EB8C2 /* UsageHistory.storyboard in Resources */,
+				A756407B271043A4008609FE /* LoginPopUp.storyboard in Resources */,
 				A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */,
 				A7674F7226EF9A5600AE60FA /* RequestCheckInOut.storyboard in Resources */,
 				3D5D59AE2652B2930018FE63 /* Register.storyboard in Resources */,
@@ -593,7 +611,9 @@
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,
 				3DA98CCD26530C30005175B5 /* User.swift in Sources */,
 				A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */,
+				A7EB141B271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift in Sources */,
 				3DD893D4266E1A6E0050B4F8 /* NoticeViewController.swift in Sources */,
+				A7EB141D27104662001E8709 /* CheckIDInfoPopUpViewController.swift in Sources */,
 				A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */,
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,
 				A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */,

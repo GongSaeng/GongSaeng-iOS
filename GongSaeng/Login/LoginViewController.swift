@@ -11,16 +11,28 @@ class LoginViewController: UIViewController {
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+    @IBOutlet weak var idTextFieldUnderlinedView: UIView!
+    @IBOutlet weak var passwordTextFieldUnderlinedView: UIView!
+    @IBOutlet weak var loginButton: UIButton!
+    
     let userViewModel: UserViewModel = UserViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginButton.layer.cornerRadius = 8
+        idTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        idTextField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
-        passwordTextField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
+        
+        loginButtonSetting(allTextFieldHasContent())
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        loginButtonSetting(allTextFieldHasContent())
     }
     
     @IBAction func back(_ sender: Any) {
@@ -40,21 +52,19 @@ class LoginViewController: UIViewController {
         // 두 유저가 같다는 것은 id와 비번이 모두 같은 것임을 정의했다.
         guard let loginUser = loginUserCreate(id: idTextField.text, password: passwordTextField.text) else { return }
         guard userViewModel.isCorrectUser(user: loginUser) else {
-            // after alert, return
-            let alert = UIAlertController(title: "로그인 정보가 일치하지 않습니다.", message: "아이디나 비밀번호를 확인해주세요.", preferredStyle: .alert)
-            let action = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+            let storyBoard = UIStoryboard.init(name: "LoginPopUp", bundle: nil)
+            let popUpViewController = storyBoard.instantiateViewController(identifier: "CheckIDInfoPopUpViewController") as! CheckIDInfoPopUpViewController
+            popUpViewController.modalPresentationStyle = .overCurrentContext
+            self.present(popUpViewController, animated: false, completion: nil)
             return
         }
         
         // permission check
         guard userViewModel.doneUser.contains(loginUser) else {
-            // after alert, return
-            let alert = UIAlertController(title: "가입승인 대기중입니다.", message: "", preferredStyle: .alert)
-            let action = UIAlertAction(title: "확인", style: .default, handler: nil)
-            alert.addAction(action)
-            present(alert, animated: true, completion: nil)
+            let storyBoard = UIStoryboard.init(name: "LoginPopUp", bundle: nil)
+            let popUpViewController = storyBoard.instantiateViewController(identifier: "WaitingForApprovalPopUpViewController") as! WaitingForApprovalPopUpViewController
+            popUpViewController.modalPresentationStyle = .overCurrentContext
+            self.present(popUpViewController, animated: false, completion: nil)
             return
         }
         
@@ -72,16 +82,46 @@ class LoginViewController: UIViewController {
         user.loginUserCreate(id: idString, password: passwordString)
         return user
     }
+    
+    private func allTextFieldHasContent() -> Bool {
+        if idTextField.hasText, passwordTextField.hasText {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    private func loginButtonSetting(_ bool: Bool) {
+        if bool {
+            loginButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+            loginButton.isEnabled = true
+        } else {
+            loginButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
+            loginButton.isEnabled = false
+        }
+    }
 }
 
 extension LoginViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.underlined(viewSize: view.bounds.width, color: UIColor.systemOrange)
+        if textField == idTextField {
+            idTextFieldUnderlinedView.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+        } else if textField == passwordTextField {
+            passwordTextFieldUnderlinedView.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+        }
+        loginButtonSetting(allTextFieldHasContent())
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
+        if textField == idTextField {
+            idTextFieldUnderlinedView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
+        } else if textField == passwordTextField {
+            passwordTextFieldUnderlinedView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
+        }
+        
+        loginButtonSetting(allTextFieldHasContent())
     }
+
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

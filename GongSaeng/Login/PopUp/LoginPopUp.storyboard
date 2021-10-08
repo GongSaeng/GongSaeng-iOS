@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Waiting For Approval Pop Up View Controller-->
+        <scene sceneID="Mcc-Df-5Hd">
+            <objects>
+                <viewController storyboardIdentifier="WaitingForApprovalPopUpViewController" id="ORV-PK-vTl" customClass="WaitingForApprovalPopUpViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="wTg-Yk-gjy">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1eg-Cx-5zU">
+                                <rect key="frame" x="17" y="377.5" width="380" height="141"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="가입 승인 대기중이에요. 공간 관리자님께 문의해주세요." lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="khh-CA-d6y">
+                                        <rect key="frame" x="24" y="24" width="332" height="40"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="Xq8-os-Jjl"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.0" alpha="0.87" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rsH-qJ-8NU">
+                                        <rect key="frame" x="281" y="81" width="74" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="74" id="Qzx-Uc-IDp"/>
+                                            <constraint firstAttribute="height" constant="36" id="n0d-i7-QUB"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <state key="normal" title="확인">
+                                            <color key="titleColor" red="0.066666666669999999" green="0.4039215686" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmButtonTapped:" destination="ORV-PK-vTl" eventType="touchUpInside" id="cfK-F1-T8t"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="khh-CA-d6y" secondAttribute="trailing" constant="24" id="K5Z-Zz-4m2"/>
+                                    <constraint firstAttribute="trailing" secondItem="rsH-qJ-8NU" secondAttribute="trailing" constant="25" id="dco-9l-dpw"/>
+                                    <constraint firstAttribute="height" constant="141" id="eXS-Vb-DDj"/>
+                                    <constraint firstAttribute="bottom" secondItem="rsH-qJ-8NU" secondAttribute="bottom" constant="24" id="h06-qa-oNb"/>
+                                    <constraint firstItem="khh-CA-d6y" firstAttribute="top" secondItem="1eg-Cx-5zU" secondAttribute="top" constant="24" id="ny0-lh-43i"/>
+                                    <constraint firstItem="khh-CA-d6y" firstAttribute="leading" secondItem="1eg-Cx-5zU" secondAttribute="leading" constant="24" id="x7g-1u-Qcw"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="Bx0-JK-wIf"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Bx0-JK-wIf" firstAttribute="trailing" secondItem="1eg-Cx-5zU" secondAttribute="trailing" constant="17" id="D5k-9F-tBC"/>
+                            <constraint firstItem="1eg-Cx-5zU" firstAttribute="leading" secondItem="Bx0-JK-wIf" secondAttribute="leading" constant="17" id="b6m-pC-74Y"/>
+                            <constraint firstItem="1eg-Cx-5zU" firstAttribute="centerY" secondItem="wTg-Yk-gjy" secondAttribute="centerY" id="pqo-y6-hyy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confirmButton" destination="rsH-qJ-8NU" id="J5J-i0-XaL"/>
+                        <outlet property="popUpView" destination="1eg-Cx-5zU" id="UvO-wc-uym"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zhM-dA-Ego" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="48" y="58"/>
+        </scene>
+        <!--CheckID Info Pop Up View Controller-->
+        <scene sceneID="sqB-Td-0Xp">
+            <objects>
+                <viewController storyboardIdentifier="CheckIDInfoPopUpViewController" id="yNx-CJ-vA1" customClass="CheckIDInfoPopUpViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MD7-66-7CQ">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VfI-st-hSM">
+                                <rect key="frame" x="17" y="387.5" width="380" height="121"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="아이디나 비밀번호를 확인해주세요." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c1A-rh-fcu">
+                                        <rect key="frame" x="24" y="24" width="332" height="20"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="20" id="ofA-0c-Pvg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" white="0.0" alpha="0.87" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JEQ-qk-JH2">
+                                        <rect key="frame" x="281" y="61" width="74" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="74" id="8c0-TL-TVY"/>
+                                            <constraint firstAttribute="height" constant="36" id="Hx0-GD-TmQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="14"/>
+                                        <state key="normal" title="확인">
+                                            <color key="titleColor" red="0.066666666669999999" green="0.4039215686" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="confirmButtonTapped:" destination="yNx-CJ-vA1" eventType="touchUpInside" id="xDD-kN-8O8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="JEQ-qk-JH2" secondAttribute="trailing" constant="25" id="BlX-Ie-bEB"/>
+                                    <constraint firstAttribute="trailing" secondItem="c1A-rh-fcu" secondAttribute="trailing" constant="24" id="JsV-mt-jZW"/>
+                                    <constraint firstAttribute="height" constant="121" id="aMU-TS-rqc"/>
+                                    <constraint firstAttribute="bottom" secondItem="JEQ-qk-JH2" secondAttribute="bottom" constant="24" id="b3J-a2-A63"/>
+                                    <constraint firstItem="c1A-rh-fcu" firstAttribute="leading" secondItem="VfI-st-hSM" secondAttribute="leading" constant="24" id="w3h-Pb-oAn"/>
+                                    <constraint firstItem="c1A-rh-fcu" firstAttribute="top" secondItem="VfI-st-hSM" secondAttribute="top" constant="24" id="woW-Pd-yhu"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="4QI-t2-Bev"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="VfI-st-hSM" firstAttribute="leading" secondItem="4QI-t2-Bev" secondAttribute="leading" constant="17" id="aI9-aT-NwB"/>
+                            <constraint firstItem="4QI-t2-Bev" firstAttribute="trailing" secondItem="VfI-st-hSM" secondAttribute="trailing" constant="17" id="phu-e7-XTT"/>
+                            <constraint firstItem="VfI-st-hSM" firstAttribute="centerY" secondItem="MD7-66-7CQ" secondAttribute="centerY" id="vJ8-cZ-w2y"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="confirmButton" destination="JEQ-qk-JH2" id="Reu-eP-9EB"/>
+                        <outlet property="popUpView" destination="VfI-st-hSM" id="W9z-8d-qko"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lUk-3E-gLR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="732" y="58"/>
+        </scene>
+    </scenes>
+</document>

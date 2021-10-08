@@ -14,6 +14,11 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        loginButton.layer.cornerRadius = 8
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+        registerButton.layer.cornerRadius = 8
     }
     
     @IBAction func loginButtonHandler(_ sender: Any) {

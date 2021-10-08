@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m2q-kw-0Os">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="m2q-kw-0Os">
     <device id="retina5_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,21 +18,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="mainImage" translatesAutoresizingMaskIntoConstraints="NO" id="63W-dv-o01">
-                                <rect key="frame" x="124.66666666666669" y="172" width="165" height="185.66666666666663"/>
+                                <rect key="frame" x="124.66666666666669" y="184" width="165" height="184"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="63W-dv-o01" secondAttribute="height" multiplier="8:9" id="QHD-GD-04U"/>
+                                    <constraint firstAttribute="width" constant="165" id="Fel-ZI-Lpg"/>
+                                    <constraint firstAttribute="height" constant="184" id="VNr-zE-N5b"/>
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qmd-HF-Qml">
-                                <rect key="frame" x="0.0" y="506" width="414" height="48"/>
-                                <state key="normal" image="loginButton"/>
+                                <rect key="frame" x="17" y="456" width="382" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="LzG-LZ-JBF"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="로그인">
+                                    <color key="titleColor" red="0.0" green="0.4039215686" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="loginButtonHandler:" destination="m2q-kw-0Os" eventType="touchUpInside" id="guH-lP-tPA"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ki-zn-AZy">
-                                <rect key="frame" x="0.0" y="568" width="414" height="48"/>
-                                <state key="normal" image="registerButton"/>
+                                <rect key="frame" x="17" y="516" width="382" height="48"/>
+                                <color key="backgroundColor" red="0.0" green="0.4039215686" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="agc-vw-YS6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="회원가입"/>
                                 <connections>
                                     <action selector="registerButtonHandler:" destination="m2q-kw-0Os" eventType="touchUpInside" id="cLF-bA-Uax"/>
                                 </connections>
@@ -40,15 +53,14 @@
                         <viewLayoutGuide key="safeArea" id="Tsr-Mh-g8S"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="63W-dv-o01" firstAttribute="top" secondItem="Tsr-Mh-g8S" secondAttribute="top" constant="172" id="6xl-B7-oG4"/>
-                            <constraint firstItem="7Ki-zn-AZy" firstAttribute="leading" secondItem="Tsr-Mh-g8S" secondAttribute="leading" id="G2z-eb-FFV"/>
-                            <constraint firstItem="63W-dv-o01" firstAttribute="centerX" secondItem="Tsr-Mh-g8S" secondAttribute="centerX" id="IEo-k8-ktU"/>
-                            <constraint firstItem="qmd-HF-Qml" firstAttribute="top" relation="greaterThanOrEqual" secondItem="63W-dv-o01" secondAttribute="bottom" constant="50" id="X8p-Z8-tvr"/>
-                            <constraint firstItem="Tsr-Mh-g8S" firstAttribute="trailing" secondItem="qmd-HF-Qml" secondAttribute="trailing" id="l29-mA-aUp"/>
-                            <constraint firstItem="qmd-HF-Qml" firstAttribute="leading" secondItem="Tsr-Mh-g8S" secondAttribute="leading" id="lS7-yC-R3Y"/>
-                            <constraint firstItem="Tsr-Mh-g8S" firstAttribute="bottom" secondItem="7Ki-zn-AZy" secondAttribute="bottom" constant="120" id="rQa-hq-9Zf"/>
-                            <constraint firstItem="Tsr-Mh-g8S" firstAttribute="trailing" secondItem="7Ki-zn-AZy" secondAttribute="trailing" id="srh-UE-oho"/>
-                            <constraint firstItem="7Ki-zn-AZy" firstAttribute="top" secondItem="qmd-HF-Qml" secondAttribute="bottom" constant="14" id="yWA-kf-TQN"/>
+                            <constraint firstItem="qmd-HF-Qml" firstAttribute="top" secondItem="63W-dv-o01" secondAttribute="bottom" constant="88" id="5S6-3Z-SF3"/>
+                            <constraint firstItem="Tsr-Mh-g8S" firstAttribute="trailing" secondItem="qmd-HF-Qml" secondAttribute="trailing" constant="15" id="5xI-jP-Fux"/>
+                            <constraint firstItem="Tsr-Mh-g8S" firstAttribute="trailing" secondItem="7Ki-zn-AZy" secondAttribute="trailing" constant="15" id="8Gz-eC-3Lg"/>
+                            <constraint firstItem="qmd-HF-Qml" firstAttribute="leading" secondItem="Tsr-Mh-g8S" secondAttribute="leading" constant="17" id="CXc-Kw-tyW"/>
+                            <constraint firstItem="7Ki-zn-AZy" firstAttribute="top" secondItem="qmd-HF-Qml" secondAttribute="bottom" constant="12" id="OMN-tV-Q0i"/>
+                            <constraint firstItem="63W-dv-o01" firstAttribute="centerY" secondItem="1lh-Gh-v4w" secondAttribute="centerY" constant="-92" id="Vbr-Xq-g70"/>
+                            <constraint firstItem="63W-dv-o01" firstAttribute="centerX" secondItem="1lh-Gh-v4w" secondAttribute="centerX" id="w86-pj-91a"/>
+                            <constraint firstItem="7Ki-zn-AZy" firstAttribute="leading" secondItem="Tsr-Mh-g8S" secondAttribute="leading" constant="17" id="z2J-Lk-gov"/>
                         </constraints>
                     </view>
                     <connections>
@@ -62,9 +74,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="loginButton" width="328" height="48"/>
         <image name="mainImage" width="165" height="184"/>
-        <image name="registerButton" width="328" height="48"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
