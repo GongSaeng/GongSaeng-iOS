@@ -9,7 +9,7 @@ import UIKit
 
 class RegisterViewController: UIViewController {
 
-    let colorLiteral = #colorLiteral(red: 0, green: 0.5690457821, blue: 0.5746168494, alpha: 1)
+    let colorLiteral = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
     @IBOutlet weak var allAgree: UIButton!
     @IBOutlet weak var firstAgree: UIButton!
     @IBOutlet weak var secondAgree: UIButton!
@@ -20,6 +20,8 @@ class RegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        nextButton.layer.cornerRadius = 8
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,11 +113,10 @@ class RegisterViewController: UIViewController {
     func nextButtonChange() {
         DispatchQueue.main.async {
             if self.allAgree.isSelected {
-                self.nextButton.imageView?.image = UIImage(named: "nextButtonFill")
+                self.nextButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
             } else {
-                self.nextButton.imageView?.image = UIImage(named: "nextButton")
+                self.nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
             }
         }
-        
     }
 }

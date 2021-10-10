@@ -818,7 +818,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" fixedFrame="YES" reuseIdentifier="CommentCell" translatesAutoresizingMaskIntoConstraints="NO" id="ekn-vE-OfM" customClass="CommentCollectionViewCell" customModule="GongSaeng" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CommentCell" translatesAutoresizingMaskIntoConstraints="NO" id="ekn-vE-OfM" customClass="CommentCollectionViewCell" customModule="GongSaeng" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bl3-gr-Dcn">
@@ -1052,7 +1052,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FGC-FL-c2r">
-                                <rect key="frame" x="16" y="125.5" width="22" height="1"/>
+                                <rect key="frame" x="16" y="124.5" width="22" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="wXo-Zm-Ssh"/>
@@ -1073,7 +1073,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDp-hu-l5g">
-                                <rect key="frame" x="56" y="125.5" width="22" height="1"/>
+                                <rect key="frame" x="56" y="124.5" width="22" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="b9A-4U-qkq"/>
@@ -1094,7 +1094,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hDp-ja-K2C">
-                                <rect key="frame" x="97" y="125.5" width="29" height="1"/>
+                                <rect key="frame" x="97" y="124.5" width="29" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="FIs-rm-IAp"/>
@@ -1115,7 +1115,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ooJ-BV-Vnu">
-                                <rect key="frame" x="147" y="125.5" width="29" height="1"/>
+                                <rect key="frame" x="147" y="124.5" width="29" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="bd0-tP-Zd3"/>
@@ -1129,7 +1129,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ahF-eW-iXP">
-                                <rect key="frame" x="0.0" y="146.5" width="414" height="36"/>
+                                <rect key="frame" x="0.0" y="145.5" width="414" height="36"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="36" id="9e9-fV-rfQ"/>
@@ -1172,7 +1172,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="최대 예약 가능한 시간: 10분" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mci-Ys-FTL">
-                                <rect key="frame" x="16" y="202.5" width="134" height="15"/>
+                                <rect key="frame" x="16" y="201.5" width="134" height="15"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1187,20 +1187,20 @@
                             <constraint firstItem="0eT-Gm-Fvv" firstAttribute="leading" secondItem="igN-B2-WHp" secondAttribute="leading" constant="16" id="9OK-He-aq9"/>
                             <constraint firstItem="Bvj-K1-D6z" firstAttribute="centerY" secondItem="Wb3-4b-UK0" secondAttribute="centerY" id="B3D-Tu-C1W"/>
                             <constraint firstItem="igN-B2-WHp" firstAttribute="trailing" secondItem="ahF-eW-iXP" secondAttribute="trailing" id="Ffe-pz-enV"/>
-                            <constraint firstItem="ooJ-BV-Vnu" firstAttribute="top" secondItem="keo-A3-eRc" secondAttribute="bottom" constant="5.5" id="GE0-z9-6fZ"/>
+                            <constraint firstItem="ooJ-BV-Vnu" firstAttribute="top" secondItem="keo-A3-eRc" secondAttribute="bottom" constant="4.5" id="GE0-z9-6fZ"/>
                             <constraint firstItem="ahF-eW-iXP" firstAttribute="leading" secondItem="igN-B2-WHp" secondAttribute="leading" id="Hjy-x3-h62"/>
                             <constraint firstItem="ooJ-BV-Vnu" firstAttribute="width" secondItem="keo-A3-eRc" secondAttribute="width" id="K9R-53-1am"/>
                             <constraint firstItem="hkB-MF-T7C" firstAttribute="leading" secondItem="0eT-Gm-Fvv" secondAttribute="leading" id="L1X-d0-iX4"/>
                             <constraint firstItem="zDp-hu-l5g" firstAttribute="width" secondItem="Wb3-4b-UK0" secondAttribute="width" id="Let-co-GHd"/>
                             <constraint firstItem="Dfz-1f-XlB" firstAttribute="top" secondItem="hkB-MF-T7C" secondAttribute="bottom" constant="5.5" id="NjI-jH-fBD"/>
-                            <constraint firstItem="FGC-FL-c2r" firstAttribute="top" secondItem="hkB-MF-T7C" secondAttribute="bottom" constant="5.5" id="XhE-lS-lyP"/>
-                            <constraint firstItem="hDp-ja-K2C" firstAttribute="top" secondItem="Bvj-K1-D6z" secondAttribute="bottom" constant="5.5" id="Y8i-iw-rUM"/>
+                            <constraint firstItem="FGC-FL-c2r" firstAttribute="top" secondItem="hkB-MF-T7C" secondAttribute="bottom" constant="4.5" id="XhE-lS-lyP"/>
+                            <constraint firstItem="hDp-ja-K2C" firstAttribute="top" secondItem="Bvj-K1-D6z" secondAttribute="bottom" constant="4.5" id="Y8i-iw-rUM"/>
                             <constraint firstItem="Mci-Ys-FTL" firstAttribute="top" secondItem="ahF-eW-iXP" secondAttribute="bottom" constant="20" id="ZkB-5O-Gpt"/>
                             <constraint firstItem="keo-A3-eRc" firstAttribute="centerY" secondItem="Bvj-K1-D6z" secondAttribute="centerY" id="aap-GE-GgT"/>
                             <constraint firstAttribute="trailing" secondItem="Dfz-1f-XlB" secondAttribute="trailing" id="ek7-0W-zgz"/>
                             <constraint firstItem="Wb3-4b-UK0" firstAttribute="leading" secondItem="hkB-MF-T7C" secondAttribute="trailing" constant="18" id="f4t-AM-4Ay"/>
                             <constraint firstItem="keo-A3-eRc" firstAttribute="leading" secondItem="Bvj-K1-D6z" secondAttribute="trailing" constant="21" id="fK7-Ol-m6k"/>
-                            <constraint firstItem="zDp-hu-l5g" firstAttribute="top" secondItem="Wb3-4b-UK0" secondAttribute="bottom" constant="5.5" id="fg6-QN-thw"/>
+                            <constraint firstItem="zDp-hu-l5g" firstAttribute="top" secondItem="Wb3-4b-UK0" secondAttribute="bottom" constant="4.5" id="fg6-QN-thw"/>
                             <constraint firstItem="ooJ-BV-Vnu" firstAttribute="centerX" secondItem="keo-A3-eRc" secondAttribute="centerX" id="gzw-8d-07y"/>
                             <constraint firstItem="Mci-Ys-FTL" firstAttribute="leading" secondItem="igN-B2-WHp" secondAttribute="leading" constant="16" id="jX8-o6-vtd"/>
                             <constraint firstItem="hDp-ja-K2C" firstAttribute="centerX" secondItem="Bvj-K1-D6z" secondAttribute="centerX" id="mCu-jg-NKa"/>
