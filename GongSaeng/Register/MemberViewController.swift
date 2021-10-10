@@ -13,6 +13,10 @@ class MemberViewController: UIViewController {
     @IBOutlet weak var birthTextField: UITextField!
     @IBOutlet weak var phoneTextField: UITextField!
     
+    @IBOutlet weak var nameUnderlinedView: UIView!
+    @IBOutlet weak var birthUnderlinedView: UIView!
+    @IBOutlet weak var phoneUnderlinedView: UIView!
+    
     @IBOutlet weak var nameHintLabel: UILabel!
     @IBOutlet weak var birthHintLabel: UILabel!
     @IBOutlet weak var phoneHintLabel: UILabel!
@@ -26,6 +30,8 @@ class MemberViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     
     var department: String = ""
+    let grayColorLiteral = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.05)
+    let orangeColorLiteral = #colorLiteral(red: 1, green: 0.4431372549, blue: 0.2745098039, alpha: 1)
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "account" {
@@ -37,24 +43,21 @@ class MemberViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextButton.layer.cornerRadius = 8
         // 키보드 디텍션
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
-        print(department)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        nameTextField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
-        birthTextField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
-        phoneTextField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
         nameHintConstraint.constant = 0
         birthHintConstraint.constant = 0
         phoneHintConstraint.constant = 0
     }
     
     @IBAction func back(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     @IBAction func tapBG(_ sender: Any) {
@@ -92,6 +95,19 @@ class MemberViewController: UIViewController {
         performSegue(withIdentifier: "account", sender: registerUser)
     }
     
+    func changeUnderlineColor(textField: UITextField, color: UIColor) {
+        switch textField {
+        case nameTextField:
+            return nameUnderlinedView.backgroundColor = color
+        case birthTextField:
+            return birthUnderlinedView.backgroundColor = color
+        case phoneTextField:
+            return phoneUnderlinedView.backgroundColor = color
+        default:
+            return
+        }
+    }
+    
     func registerMemberUserCreate(name: String?, birth: String?, phone: String?) -> User? {
         guard let nameString = name, let birthString = birth, let phoneString = phone else { return nil }
         var user = User(id: "", password: "", isDone: false, name: "", dateOfBirth: "", phoneNumber: "", department: "", nickName: "")
@@ -113,7 +129,7 @@ class MemberViewController: UIViewController {
 extension MemberViewController: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.underlined(viewSize: view.bounds.width, color: UIColor.systemOrange)
+        changeUnderlineColor(textField: textField, color: orangeColorLiteral)
         guard let id = textField.restorationIdentifier else { return }
         switch id {
         case "nameTextField": nameHintConstraint.constant = 17
@@ -125,7 +141,7 @@ extension MemberViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
+        changeUnderlineColor(textField: textField, color: grayColorLiteral)
         guard let id = textField.restorationIdentifier else { return }
         switch id {
         case "nameTextField": nameHintConstraint.constant = 0
@@ -138,12 +154,12 @@ extension MemberViewController: UITextFieldDelegate {
         // 확률적으로 밑에가 비었을 확률이 크다. 아래부터 check하면 불필요한 연산을 하지 않는다.
         guard let phoneString = phoneTextField.text, !phoneString.isEmpty, let birthString = birthTextField.text, !birthString.isEmpty, let nameString = nameTextField.text, !nameString.isEmpty else {
             DispatchQueue.main.async {
-                self.nextButton.imageView?.image = UIImage(named: "nextButton")
+                self.nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
             }
             return
         }
         DispatchQueue.main.async {
-            self.nextButton.imageView?.image = UIImage(named: "nextButtonFill")
+            self.nextButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
         }
     }
     

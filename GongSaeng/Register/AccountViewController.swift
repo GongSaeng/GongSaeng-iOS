@@ -17,6 +17,11 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var passwordCheckTextField: UITextField!
     @IBOutlet weak var nickNameTextField: UITextField!
     
+    @IBOutlet weak var idUnderlinedView: UIView!
+    @IBOutlet weak var passwordUnderlinedView: UIView!
+    @IBOutlet weak var passwordCheckUnderlinedView: UIView!
+    @IBOutlet weak var nickNameUnderlinedView: UIView!
+    
     @IBOutlet weak var idHintLabel: UILabel!
     @IBOutlet weak var passwordHintLabel: UILabel!
     @IBOutlet weak var passwordCheckHintLabel: UILabel!
@@ -34,16 +39,29 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var idReduplicationConstraint: NSLayoutConstraint!
     @IBOutlet weak var nickNameReduplicationConstraint: NSLayoutConstraint!
     
+    
+    @IBOutlet weak var idReduplicationButton: UIButton!
+    @IBOutlet weak var nickNameReduplicationButton: UIButton!
     @IBOutlet weak var passwordLookButton: UIButton!
     @IBOutlet weak var passwordCheckLookButton: UIButton!
     
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
     
+    let grayColorLiteral = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.05)
+    let orangeColorLiteral = #colorLiteral(red: 1, green: 0.4431372549, blue: 0.2745098039, alpha: 1)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextButton.layer.cornerRadius = 8
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
+        
+        [idReduplicationButton, nickNameReduplicationButton].forEach {
+            $0?.layer.cornerRadius = 15
+            $0?.layer.borderWidth = 1
+            $0?.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+        }
         
         passwordTextField.passwordRuleAssignment()
         passwordCheckTextField.passwordRuleAssignment()
@@ -55,24 +73,9 @@ class AccountViewController: UIViewController {
         passwordLookButton.isSelected = false
         passwordCheckLookButton.isSelected = false
         
-//        idTextField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
-//        passwordTextField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
-//        passwordCheckTextField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
-//        nickNameTextField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
-        
-        [idTextField,passwordTextField,passwordCheckTextField,nickNameTextField].forEach{
-            $0?.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
-        }
-        
-//        idHintConstraint.constant = 0
-//        passwordHintConstraint.constant = 0
-//        passwordCheckHintConstraint.constant = 0
-//        nickNameHintConstraint.constant = 0
-        
         [idHintConstraint,passwordHintConstraint,passwordCheckHintConstraint,nickNameHintConstraint].forEach{
             $0?.constant = 0
         }
-        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -89,7 +92,7 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func back(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: false, completion: nil)
     }
     
     @IBAction func nextButtonTapHandler(_ sender: UIStoryboardSegue) {
@@ -121,6 +124,21 @@ class AccountViewController: UIViewController {
         
         guard let user = registerAccountUserCreate(memberUser: self.user, id: idString, password: passwordString, nickName: nickNameString) else { return }
         performSegue(withIdentifier: "completedRegister", sender: user)
+    }
+    
+    func changeUnderlineColor(textField: UITextField, color: UIColor) {
+        switch textField {
+        case idTextField:
+            return idUnderlinedView.backgroundColor = color
+        case passwordTextField:
+            return passwordUnderlinedView.backgroundColor = color
+        case passwordCheckTextField:
+            return passwordCheckUnderlinedView.backgroundColor = color
+        case nickNameTextField:
+            return nickNameUnderlinedView.backgroundColor = color
+        default:
+            return
+        }
     }
     
     func registerAccountUserCreate(memberUser: User?, id: String?, password: String?, nickName: String?) -> User? {
@@ -171,17 +189,12 @@ class AccountViewController: UIViewController {
         [idTextField,passwordTextField,passwordCheckTextField,nickNameTextField].forEach({
             $0?.resignFirstResponder()
         })
-        
-//        idTextField.resignFirstResponder()
-//        passwordTextField.resignFirstResponder()
-//        passwordCheckTextField.resignFirstResponder()
-//        nickNameTextField.resignFirstResponder()
     }
 }
 
 extension AccountViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.underlined(viewSize: view.bounds.width, color: UIColor.systemOrange)
+        changeUnderlineColor(textField: textField, color: orangeColorLiteral)
         guard let textViewId = textField.restorationIdentifier else { return }
         switch textViewId {
         case "idTextField": idHintConstraint.constant = 17
@@ -194,7 +207,7 @@ extension AccountViewController: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.underlined(viewSize: view.bounds.width, color: UIColor.systemGray)
+        changeUnderlineColor(textField: textField, color: grayColorLiteral)
         guard let textViewId = textField.restorationIdentifier else { return }
         
         switch textViewId {
@@ -209,12 +222,12 @@ extension AccountViewController: UITextFieldDelegate {
         // 확률적으로 밑에가 비었을 확률이 크다. 아래부터 check하면 불필요한 연산을 하지 않는다.
         guard let nickNameString = nickNameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty else {
             DispatchQueue.main.async {
-                self.nextButton.imageView?.image = UIImage(named: "nextButton")
+                self.nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
             }
             return
         }
         DispatchQueue.main.async {
-            self.nextButton.imageView?.image = UIImage(named: "nextButtonFill")
+            self.nextButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
         }
     }
     

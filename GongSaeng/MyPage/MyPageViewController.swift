@@ -18,7 +18,7 @@ class MyPageViewController: UIViewController {
         super.viewDidLoad()
         
         self.loginUser = LoginUser.loginUser
-        editProfileButton.layer.cornerRadius = 5
+        editProfileButton.layer.cornerRadius = 10
     }
     
     override func viewWillAppear(_ animated: Bool) {
