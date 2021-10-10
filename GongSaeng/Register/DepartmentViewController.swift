@@ -28,6 +28,7 @@ class DepartmentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        nextButton.layer.cornerRadius = 8
         viewModel.loadDatas()
     }
     
@@ -71,9 +72,9 @@ extension DepartmentViewController: UITableViewDelegate {
         }
         
         if isSelect {
-            nextButton.imageView?.image = UIImage(named: "nextButtonFill")
+            nextButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
         } else {
-            nextButton.imageView?.image = UIImage(named: "nextButton")
+            nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
         }
         departmentTableView.reloadData()
     }
