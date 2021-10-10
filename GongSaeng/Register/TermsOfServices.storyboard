@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,28 +18,33 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBc-OE-BqK">
-                                <rect key="frame" x="24" y="77" width="18" height="22"/>
+                                <rect key="frame" x="16" y="66" width="18" height="18"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="18" id="6MK-5N-ZFp"/>
+                                    <constraint firstAttribute="width" constant="18" id="Rgr-g7-hvz"/>
+                                </constraints>
                                 <color key="tintColor" systemColor="systemGray2Color"/>
-                                <state key="normal" image="xmark" catalog="system"/>
+                                <state key="normal" image="xmark" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="18"/>
+                                </state>
                                 <connections>
                                     <action selector="close:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="jPf-Nn-Xrc"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyu-uY-QJ9">
-                                <rect key="frame" x="0.0" y="762" width="414" height="80"/>
-                                <state key="normal" image="agreeButtonFill"/>
-                                <connections>
-                                    <action selector="isAgreeButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="IiM-7g-NNI"/>
-                                </connections>
-                            </button>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fDX-rX-JuC">
-                                <rect key="frame" x="0.0" y="119" width="414" height="643"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="677"/>
                                 <subviews>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="6bu-JP-wsF">
-                                        <rect key="frame" x="20" y="8" width="374" height="627"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="이용약관 동의" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGB-76-Seg">
+                                        <rect key="frame" x="16" y="9" width="109" height="24"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <color key="textColor" white="0.0" alpha="0.87" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6bu-JP-wsF">
+                                        <rect key="frame" x="16" y="53" width="380" height="634"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                        <color key="textColor" systemColor="labelColor"/>
+                                        <color key="textColor" white="0.0" alpha="0.87" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -50,27 +56,55 @@
                                     <constraint firstItem="6bu-JP-wsF" firstAttribute="leading" secondItem="fDX-rX-JuC" secondAttribute="leading" id="q4w-Ao-ROu"/>
                                 </constraints>
                             </scrollView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mbq-c8-3cw">
+                                <rect key="frame" x="0.0" y="782" width="414" height="1"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="KPa-ZX-x7R"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pyu-uY-QJ9">
+                                <rect key="frame" x="16" y="798" width="382" height="48"/>
+                                <color key="backgroundColor" red="0.0" green="0.4039215686" blue="0.3803921569" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="3Ou-jj-sXV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                <state key="normal" title="동의">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="isAgreeButtonClicked:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="IiM-7g-NNI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vDu-zF-Fre"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="pyu-uY-QJ9" secondAttribute="trailing" id="8tw-eL-3X1"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="pyu-uY-QJ9" secondAttribute="bottom" constant="20" id="HEg-YP-jbn"/>
-                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6bu-JP-wsF" secondAttribute="trailing" constant="20" id="HtK-xg-0Z5"/>
-                            <constraint firstItem="6bu-JP-wsF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="20" id="I15-NO-jcM"/>
-                            <constraint firstItem="6bu-JP-wsF" firstAttribute="top" secondItem="pBc-OE-BqK" secondAttribute="bottom" constant="28" id="KAv-LX-SJC"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="Mbq-c8-3cw" secondAttribute="trailing" id="6Ld-fz-WzB"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="pyu-uY-QJ9" secondAttribute="trailing" constant="16" id="8tw-eL-3X1"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="pyu-uY-QJ9" secondAttribute="bottom" constant="16" id="HEg-YP-jbn"/>
+                            <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6bu-JP-wsF" secondAttribute="trailing" constant="18" id="HtK-xg-0Z5"/>
+                            <constraint firstItem="6bu-JP-wsF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="I15-NO-jcM"/>
+                            <constraint firstItem="6bu-JP-wsF" firstAttribute="top" secondItem="pBc-OE-BqK" secondAttribute="bottom" constant="72" id="KAv-LX-SJC"/>
+                            <constraint firstItem="BGB-76-Seg" firstAttribute="top" secondItem="pBc-OE-BqK" secondAttribute="bottom" constant="28" id="Q4a-o2-M9H"/>
+                            <constraint firstItem="Mbq-c8-3cw" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="Rjs-GZ-LH4"/>
                             <constraint firstItem="fDX-rX-JuC" firstAttribute="top" secondItem="pBc-OE-BqK" secondAttribute="bottom" constant="20" id="V00-fU-qTs"/>
-                            <constraint firstItem="pyu-uY-QJ9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="Zsw-mS-loA"/>
-                            <constraint firstItem="pBc-OE-BqK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="33" id="ak2-SX-Kkd"/>
-                            <constraint firstItem="pBc-OE-BqK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="24" id="axZ-g9-XCT"/>
+                            <constraint firstItem="pyu-uY-QJ9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Zsw-mS-loA"/>
+                            <constraint firstItem="pBc-OE-BqK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="22" id="ak2-SX-Kkd"/>
+                            <constraint firstItem="pBc-OE-BqK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="axZ-g9-XCT"/>
+                            <constraint firstItem="Mbq-c8-3cw" firstAttribute="top" secondItem="fDX-rX-JuC" secondAttribute="bottom" constant="1" id="gal-jA-MYb"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fDX-rX-JuC" secondAttribute="trailing" id="mSd-Wx-qkT"/>
                             <constraint firstItem="fDX-rX-JuC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="oae-pF-hlC"/>
-                            <constraint firstItem="pyu-uY-QJ9" firstAttribute="top" secondItem="fDX-rX-JuC" secondAttribute="bottom" id="qdJ-6I-BhZ"/>
+                            <constraint firstItem="pyu-uY-QJ9" firstAttribute="top" secondItem="fDX-rX-JuC" secondAttribute="bottom" constant="17" id="qdJ-6I-BhZ"/>
                             <constraint firstItem="pyu-uY-QJ9" firstAttribute="top" secondItem="6bu-JP-wsF" secondAttribute="bottom" constant="8" symbolic="YES" id="r9c-W7-wGd"/>
+                            <constraint firstItem="BGB-76-Seg" firstAttribute="leading" secondItem="pBc-OE-BqK" secondAttribute="leading" id="wQ9-AL-Bvc"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="isAgreeButton" destination="pyu-uY-QJ9" id="ocN-DV-6Pa"/>
                         <outlet property="termsOfServicesTextView" destination="6bu-JP-wsF" id="PPt-aJ-3AX"/>
+                        <outlet property="termsOfServicesTitleLabel" destination="BGB-76-Seg" id="kko-2e-DAO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -79,11 +113,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="agreeButtonFill" width="360" height="80"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

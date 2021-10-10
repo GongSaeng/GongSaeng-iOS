@@ -75,7 +75,7 @@ class RegisterViewController: UIViewController {
         let sb = UIStoryboard.init(name: "TermsOfServices", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "TermsOfServicesViewController") as! TermsOfServicesViewController
         vc.viewModel.updateType(.first)
-        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .popover
         present(vc, animated: true, completion: nil)
     }
     
@@ -83,7 +83,7 @@ class RegisterViewController: UIViewController {
         let sb = UIStoryboard.init(name: "TermsOfServices", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "TermsOfServicesViewController") as! TermsOfServicesViewController
         vc.viewModel.updateType(.second)
-        vc.modalPresentationStyle = .fullScreen
+        vc.modalPresentationStyle = .popover
         present(vc, animated: true, completion: nil)
     }
     
