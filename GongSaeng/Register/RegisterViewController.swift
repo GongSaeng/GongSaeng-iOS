@@ -36,6 +36,8 @@ class RegisterViewController: UIViewController {
     }
     
     @IBAction func close(_ sender: Any) {
+        TermsOfServicesViewModel.firstTermsOfServicesAgree = false
+        TermsOfServicesViewModel.secondTermsOfServicesAgree = false
         dismiss(animated: true, completion: nil)
     }
     

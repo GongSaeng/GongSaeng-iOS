@@ -37,11 +37,17 @@ class TermsOfServicesViewController: UIViewController {
     @IBAction func isAgreeButtonClicked(_ sender: Any) {
         if viewModel.type == .first {
             TermsOfServicesViewModel.firstTermsOfServicesAgree = true
-            dismiss(animated: true, completion: nil)
         } else {
             TermsOfServicesViewModel.secondTermsOfServicesAgree = true
-            dismiss(animated: true, completion: nil)
         }
+        
+        let mainViewController = self.view.window?.rootViewController as! FirstViewController
+        self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: {
+            let sb = UIStoryboard(name: "Register", bundle: nil)
+            let vc = sb.instantiateViewController(identifier: "RegisterViewController") as! RegisterViewController
+            vc.modalPresentationStyle = .fullScreen
+            mainViewController.present(vc, animated: false, completion: nil)
+        })
     }
 }
 
