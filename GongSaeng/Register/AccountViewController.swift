@@ -171,8 +171,10 @@ class AccountViewController: UIViewController {
     
     @IBAction func passwordLookButtonHandler(_ sender: Any) {
         self.secureTransition(textField: passwordTextField, lookButton: passwordLookButton)
+        self.secureTransition(textField: passwordCheckTextField, lookButton: passwordCheckLookButton)
     }
     @IBAction func passwordCheckButtonHandler(_ sender: Any) {
+        self.secureTransition(textField: passwordTextField, lookButton: passwordLookButton)
         self.secureTransition(textField: passwordCheckTextField, lookButton: passwordCheckLookButton)
     }
     
