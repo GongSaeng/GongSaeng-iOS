@@ -43,6 +43,8 @@ class CompletedRegisterViewController: UIViewController {
     }
     
     @IBAction func goFirst(_ sender: Any) {
+        TermsOfServicesViewModel.firstTermsOfServicesAgree = false
+        TermsOfServicesViewModel.secondTermsOfServicesAgree = false
         self.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
 }
