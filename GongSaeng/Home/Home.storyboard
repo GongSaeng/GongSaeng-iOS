@@ -815,10 +815,20 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요 메이트님!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7X-38-wCc">
-                                                <rect key="frame" x="16" y="80" width="110" height="72"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="안녕하세요" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C1T-H1-wss">
+                                                <rect key="frame" x="16" y="80" width="110" height="36"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="72" id="KbH-bt-I9h"/>
+                                                    <constraint firstAttribute="height" constant="36" id="FGc-SS-omQ"/>
+                                                    <constraint firstAttribute="width" constant="110" id="zb1-cT-N6T"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.87" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="메이트님!" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7X-38-wCc">
+                                                <rect key="frame" x="16" y="116" width="110" height="36"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="36" id="KbH-bt-I9h"/>
                                                     <constraint firstAttribute="width" constant="110" id="qRk-yb-PHS"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
@@ -915,7 +925,9 @@
                                             <constraint firstItem="FPn-cg-hTu" firstAttribute="centerX" secondItem="5sk-GL-CFy" secondAttribute="centerX" id="A9H-5g-t2N"/>
                                             <constraint firstItem="FPn-cg-hTu" firstAttribute="centerY" secondItem="0bL-1I-g08" secondAttribute="centerY" id="DBu-YA-LoJ"/>
                                             <constraint firstItem="dQl-A3-61p" firstAttribute="centerX" secondItem="aaf-rz-bfX" secondAttribute="centerX" id="FBv-tl-pyi"/>
+                                            <constraint firstItem="e7X-38-wCc" firstAttribute="top" secondItem="C1T-H1-wss" secondAttribute="bottom" id="FXP-G3-9gY"/>
                                             <constraint firstItem="9tS-93-sof" firstAttribute="leading" secondItem="X3I-jd-lv7" secondAttribute="leading" constant="16" id="Jiy-ko-RLZ"/>
+                                            <constraint firstItem="e7X-38-wCc" firstAttribute="leading" secondItem="C1T-H1-wss" secondAttribute="leading" id="P1x-v5-axX"/>
                                             <constraint firstItem="nzc-V6-lls" firstAttribute="centerX" secondItem="tTi-Mw-UHQ" secondAttribute="centerX" id="VF1-8y-97a"/>
                                             <constraint firstItem="nzc-V6-lls" firstAttribute="centerY" secondItem="FPn-cg-hTu" secondAttribute="centerY" id="Y0r-gI-N04"/>
                                             <constraint firstItem="0bL-1I-g08" firstAttribute="centerY" secondItem="dQl-A3-61p" secondAttribute="centerY" id="Y8p-dI-wCQ"/>
@@ -925,9 +937,9 @@
                                             <constraint firstItem="e7X-38-wCc" firstAttribute="leading" secondItem="9tS-93-sof" secondAttribute="leading" id="hue-Uh-gl3"/>
                                             <constraint firstItem="Qec-R2-lbp" firstAttribute="leading" secondItem="X3I-jd-lv7" secondAttribute="leading" constant="30" id="kdv-pb-TDI"/>
                                             <constraint firstItem="azn-d4-Zl8" firstAttribute="top" secondItem="exQ-jv-OuA" secondAttribute="bottom" constant="10" id="l05-m3-qee"/>
-                                            <constraint firstItem="e7X-38-wCc" firstAttribute="top" secondItem="9tS-93-sof" secondAttribute="bottom" constant="24" id="lhv-WF-83R"/>
                                             <constraint firstItem="azn-d4-Zl8" firstAttribute="centerX" secondItem="exQ-jv-OuA" secondAttribute="centerX" id="pjq-zo-F7o"/>
                                             <constraint firstItem="0bL-1I-g08" firstAttribute="centerX" secondItem="Bbp-uT-y2l" secondAttribute="centerX" id="tPm-qs-vaw"/>
+                                            <constraint firstItem="C1T-H1-wss" firstAttribute="top" secondItem="9tS-93-sof" secondAttribute="bottom" constant="24" id="zMz-8w-LrH"/>
                                         </constraints>
                                     </view>
                                     <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ajt-51-1Vy">
@@ -1294,7 +1306,7 @@
         <image name="home_4" width="32" height="32"/>
         <image name="home_5" width="32" height="32.5"/>
         <image name="mypage" width="26" height="26"/>
-        <image name="mypageOn" width="22" height="22"/>
+        <image name="mypageOn" width="25" height="25"/>
         <image name="no_image" width="80" height="80"/>
         <image name="nof_emergency_icon" width="24" height="24.5"/>
         <image name="notifiaion_delete_icon" width="23" height="25"/>
