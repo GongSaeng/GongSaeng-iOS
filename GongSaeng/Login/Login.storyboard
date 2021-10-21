@@ -107,18 +107,18 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9zX-mW-EjR">
-                                <rect key="frame" x="122.5" y="414" width="69" height="20"/>
+                                <rect key="frame" x="136.5" y="414" width="58" height="18"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="69" id="3fZ-kA-ur1"/>
-                                    <constraint firstAttribute="height" constant="20" id="4dJ-XL-4aB"/>
+                                    <constraint firstAttribute="width" constant="58" id="3fZ-kA-ur1"/>
+                                    <constraint firstAttribute="height" constant="18" id="4dJ-XL-4aB"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="아이디 찾기">
                                     <color key="titleColor" systemColor="systemGrayColor"/>
                                 </state>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R2p-K1-0VO">
-                                <rect key="frame" x="206.5" y="417" width="1" height="14"/>
+                                <rect key="frame" x="206.5" y="416" width="1" height="14"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="SIq-eK-7ly"/>
@@ -126,7 +126,8 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sVV-Mg-ulg">
-                                <rect key="frame" x="219.5" y="414" width="82" height="20"/>
+                                <rect key="frame" x="219.5" y="414" width="66" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="비밀번호 찾기">
                                     <color key="titleColor" systemColor="systemGrayColor"/>
                                 </state>
@@ -172,7 +173,7 @@
                             <constraint firstItem="R2p-K1-0VO" firstAttribute="centerY" secondItem="9zX-mW-EjR" secondAttribute="centerY" id="QID-VC-9VY"/>
                             <constraint firstAttribute="trailing" secondItem="PfQ-7T-5d3" secondAttribute="trailing" constant="18" id="S1J-Nu-AWI"/>
                             <constraint firstItem="sVV-Mg-ulg" firstAttribute="bottom" secondItem="9zX-mW-EjR" secondAttribute="bottom" id="SBm-6U-SwL"/>
-                            <constraint firstItem="R2p-K1-0VO" firstAttribute="leading" secondItem="9zX-mW-EjR" secondAttribute="trailing" constant="15" id="XsO-Mq-3bB"/>
+                            <constraint firstItem="R2p-K1-0VO" firstAttribute="leading" secondItem="9zX-mW-EjR" secondAttribute="trailing" constant="12" id="XsO-Mq-3bB"/>
                             <constraint firstItem="L5C-aa-YBt" firstAttribute="top" secondItem="X5U-E5-sL6" secondAttribute="bottom" constant="8" id="ZxC-eS-Iwg"/>
                             <constraint firstItem="pTe-uf-9i4" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="bxP-BS-UPr"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="L8s-2T-18i" secondAttribute="bottom" constant="16" id="e5y-hY-TyY"/>
