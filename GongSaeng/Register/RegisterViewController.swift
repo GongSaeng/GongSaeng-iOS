@@ -9,7 +9,6 @@ import UIKit
 
 class RegisterViewController: UIViewController {
 
-    let colorLiteral = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
     @IBOutlet weak var allAgree: UIButton!
     @IBOutlet weak var firstAgree: UIButton!
     @IBOutlet weak var secondAgree: UIButton!
@@ -21,6 +20,9 @@ class RegisterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        allAgree.setImage(UIImage(named: "termAllOn"), for: .selected)
+        firstAgree.setImage(UIImage(named: "termOn"), for: .selected)
+        secondAgree.setImage(UIImage(named: "termOn"), for: .selected)
         nextButton.layer.cornerRadius = 8
     }
     
@@ -29,9 +31,6 @@ class RegisterViewController: UIViewController {
         firstAgree.isSelected = TermsOfServicesViewModel.firstTermsOfServicesAgree
         secondAgree.isSelected = TermsOfServicesViewModel.secondTermsOfServicesAgree
         allAgree.isSelected = isAllCheck()
-        checkboxClick(button: allAgree)
-        checkboxClick(button: firstAgree)
-        checkboxClick(button: secondAgree)
         nextButtonChange()
     }
     
@@ -47,9 +46,6 @@ class RegisterViewController: UIViewController {
         TermsOfServicesViewModel.secondTermsOfServicesAgree = allAgree.isSelected
         firstAgree.isSelected = TermsOfServicesViewModel.firstTermsOfServicesAgree
         secondAgree.isSelected = TermsOfServicesViewModel.secondTermsOfServicesAgree
-        checkboxClick(button: allAgree)
-        checkboxClick(button: firstAgree)
-        checkboxClick(button: secondAgree)
         nextButtonChange()
     }
     
@@ -57,9 +53,6 @@ class RegisterViewController: UIViewController {
         TermsOfServicesViewModel.firstTermsOfServicesAgree = !firstAgree.isSelected
         firstAgree.isSelected = TermsOfServicesViewModel.firstTermsOfServicesAgree
         allAgree.isSelected = isAllCheck()
-        checkboxClick(button: allAgree)
-        checkboxClick(button: firstAgree)
-        checkboxClick(button: secondAgree)
         nextButtonChange()
     }
     
@@ -67,9 +60,6 @@ class RegisterViewController: UIViewController {
         TermsOfServicesViewModel.secondTermsOfServicesAgree = !secondAgree.isSelected
         secondAgree.isSelected = TermsOfServicesViewModel.secondTermsOfServicesAgree
         allAgree.isSelected = isAllCheck()
-        checkboxClick(button: allAgree)
-        checkboxClick(button: firstAgree)
-        checkboxClick(button: secondAgree)
         nextButtonChange()
     }
     
@@ -93,14 +83,6 @@ class RegisterViewController: UIViewController {
         // 누르면 이동
         if allAgree.isSelected {
             performSegue(withIdentifier: "department", sender: nil)
-        }
-    }
-    
-    func checkboxClick(button: UIButton) {
-        if button.isSelected {
-            button.tintColor = self.colorLiteral
-        } else {
-            button.tintColor = UIColor.systemGray2
         }
     }
     

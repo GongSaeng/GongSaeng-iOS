@@ -87,25 +87,20 @@ extension DepartmentViewController: UITableViewDataSource {
 
 extension DepartmentViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var isSelect: Bool = false
         if viewModel.searchDepartmentOfIndex(at: indexPath.row).isDone {
-           // 해재하는 걸 만든다.
             viewModel.searchedDepartments[indexPath.row].isDone = false
+            nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
         } else {
-            // 전부 false인것을 확인했다면 진행
-            if viewModel.isDoneDepartment() { viewModel.changeIsDoneToFalse()
-            } // print
-            isSelect = true
+            nextButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+            if viewModel.isDoneDepartment() {
+                viewModel.changeIsDoneToFalse()
+                guard let index = viewModel.returnIsDoneIndex(), let cell = tableView.cellForRow(at: IndexPath(row: index, section: indexPath.section)) as? DepartmentCell else { return }
+                cell.updateUI(department: viewModel.searchDepartmentOfIndex(at: index))
+            }
             viewModel.searchedDepartments[indexPath.row].isDone = true
         }
-        
-        if isSelect {
-            nextButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
-        } else {
-            nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
-        }
-        
-        departmentTableView.reloadData()
+        guard let cell = tableView.cellForRow(at: indexPath) as? DepartmentCell else { return }
+        cell.updateUI(department: viewModel.searchDepartmentOfIndex(at: indexPath.row))
     }
 }
 

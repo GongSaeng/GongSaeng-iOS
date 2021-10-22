@@ -71,6 +71,16 @@ class DepartmentViewModel {
         }
     }
     
+    func returnIsDoneIndex() -> Int? {
+        guard numOfSearchDepartment > 0, isDoneName != "" else { return nil }
+        for index in 0..<numOfSearchDepartment {
+            if searchedDepartments[index].nameOfDepartment == isDoneName {
+                return index
+            }
+        }
+        return nil
+    }
+    
     func loadDatas() {
         self.searchedDepartments = self.departments
     }

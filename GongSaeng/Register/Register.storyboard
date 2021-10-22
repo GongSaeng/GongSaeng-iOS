@@ -67,7 +67,7 @@
                                     <constraint firstAttribute="width" constant="24" id="S9i-0F-veT"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemGray2Color"/>
-                                <state key="normal" image="checkmark.circle.fill" catalog="system">
+                                <state key="normal" image="termAllOff">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24"/>
                                 </state>
                                 <state key="selected" image="checkmark.circle.fill" catalog="system">
@@ -101,7 +101,7 @@
                                     <constraint firstAttribute="height" constant="16" id="mGX-Ye-HRQ"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemGray2Color"/>
-                                <state key="normal" image="checkmark" catalog="system">
+                                <state key="normal" image="termOff">
                                     <color key="titleColor" systemColor="systemGray2Color"/>
                                 </state>
                                 <connections>
@@ -115,7 +115,7 @@
                                     <constraint firstAttribute="height" constant="16" id="Zdl-sJ-osN"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemGray2Color"/>
-                                <state key="normal" image="checkmark" catalog="system"/>
+                                <state key="normal" image="termOff"/>
                                 <connections>
                                     <action selector="secondAgreeHandler:" destination="Y6W-OH-hqX" eventType="touchUpInside" id="bjz-bT-kp0"/>
                                 </connections>
@@ -1518,7 +1518,6 @@
         <image name="arrow.backward" catalog="system" width="128" height="98"/>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
         <image name="arrowtriangle.down.fill" catalog="system" width="128" height="124"/>
-        <image name="checkmark" catalog="system" width="128" height="114"/>
         <image name="checkmark.circle.fill" catalog="system" width="128" height="121"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="departmentOff" width="20" height="20"/>
@@ -1527,6 +1526,8 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="mainImage_2" width="233" height="181.33332824707031"/>
         <image name="noLookIcon" width="19.666666030883789" height="9"/>
+        <image name="termAllOff" width="24" height="24"/>
+        <image name="termOff" width="14" height="10"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
