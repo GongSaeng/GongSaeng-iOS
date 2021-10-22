@@ -10,7 +10,9 @@ import UIKit
 class DepartmentViewController: UIViewController {
 
     let viewModel: DepartmentViewModel = DepartmentViewModel()
-    @IBOutlet weak var searchBar: UISearchBar!
+    
+    @IBOutlet weak var searchTextField: UITextField!
+    @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var departmentTableView: UITableView!
     @IBOutlet weak var nextButton: UIButton!
     
@@ -32,6 +34,27 @@ class DepartmentViewController: UIViewController {
         viewModel.loadDatas()
     }
     
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if searchTextField.isFirstResponder {
+            searchTextField.resignFirstResponder()
+        }
+    }
+    
+    private func searchDepartment(_ textField: UITextField) {
+        // 키보드가 올라와 있을때 내려가도록 처리
+        textField.resignFirstResponder()
+        
+        // 검색어가 있는지 확인, optional 안전하게 해제
+        guard let searchTerm = textField.text, !searchTerm.isEmpty else { return }
+        
+        SearchAPI.search(searchTerm) { (departments) in
+            DispatchQueue.main.async {
+                self.viewModel.searchedDepartments = departments
+                self.departmentTableView.reloadData()
+            }
+        }
+    }
+    
     @IBAction func backButtonHandler(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
@@ -41,6 +64,10 @@ class DepartmentViewController: UIViewController {
         if viewModel.isDoneDepartment() {
             performSegue(withIdentifier: "member", sender: viewModel.isDoneName)
         }
+    }
+    
+    @IBAction func searchButtonTapped(_ sender: UIButton) {
+        searchDepartment(searchTextField)
     }
 }
 
@@ -66,9 +93,10 @@ extension DepartmentViewController: UITableViewDelegate {
             viewModel.searchedDepartments[indexPath.row].isDone = false
         } else {
             // 전부 false인것을 확인했다면 진행
-            if viewModel.isDoneDepartment() { return } // print
-            isSelect = !viewModel.searchedDepartments[indexPath.row].isDone
-            viewModel.searchedDepartments[indexPath.row].isDone = isSelect
+            if viewModel.isDoneDepartment() { viewModel.changeIsDoneToFalse()
+            } // print
+            isSelect = true
+            viewModel.searchedDepartments[indexPath.row].isDone = true
         }
         
         if isSelect {
@@ -76,6 +104,7 @@ extension DepartmentViewController: UITableViewDelegate {
         } else {
             nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
         }
+        
         departmentTableView.reloadData()
     }
 }
@@ -83,41 +112,34 @@ extension DepartmentViewController: UITableViewDelegate {
 class DepartmentCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var addressLabel: UILabel!
-    @IBOutlet weak var checkButton: UIButton!
+    @IBOutlet weak var checkImage: UIImageView!
     
     func updateUI(department: Department) {
         DispatchQueue.main.async {
             self.titleLabel.text = department.nameOfDepartment
             self.addressLabel.text = department.addressOfDepartment
             if department.isDone {
-                self.checkButton.isSelected = true
-                self.checkButton.tintColor = UIColor.systemOrange
+                self.checkImage.image = UIImage(named: "departmentOn")
             } else {
-                self.checkButton.isSelected = false
-                self.checkButton.tintColor = UIColor.systemGray
+                self.checkImage.image = UIImage(named: "departmentOff")
             }
         }
     }
 }
 
-extension DepartmentViewController: UISearchBarDelegate {
-    private func dismissKeyboard() {
-        searchBar.resignFirstResponder()
+extension DepartmentViewController: UITextFieldDelegate {
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        print("shouldBeginEditing")
+        textField.text = ""
+        viewModel.loadDatas()
+        departmentTableView.reloadData()
+        nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
+        return true
     }
     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        // 키보드가 올라와 있을때 내려가도록 처리
-        dismissKeyboard()
-        
-        // 검색어가 있는지 확인, optional 안전하게 해제
-        guard let searchTerm = searchBar.text, searchTerm.isEmpty == false else { return }
-        
-        SearchAPI.search(searchTerm) { (departments) in
-            DispatchQueue.main.async {
-                self.viewModel.searchedDepartments = departments
-                self.departmentTableView.reloadData()
-            }
-        }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        searchDepartment(textField)
+        return true
     }
 }
 
