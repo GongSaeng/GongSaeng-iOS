@@ -15,6 +15,7 @@ class DepartmentViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var departmentTableView: UITableView!
     @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var noResultView: UIView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // segueway를 수행하기 직전 준비단계에서 데이터를 넘겨주자 를 여기서 작성한다.
@@ -30,6 +31,7 @@ class DepartmentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        noResultView.isHidden = true
         nextButton.layer.cornerRadius = 8
         viewModel.loadDatas()
     }
@@ -73,6 +75,11 @@ class DepartmentViewController: UIViewController {
 
 extension DepartmentViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if viewModel.numOfSearchDepartment == 0 {
+            noResultView.isHidden = false
+        } else {
+            noResultView.isHidden = true
+        }
         return viewModel.numOfSearchDepartment
     }
     
@@ -124,7 +131,6 @@ class DepartmentCell: UITableViewCell {
 
 extension DepartmentViewController: UITextFieldDelegate {
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        print("shouldBeginEditing")
         textField.text = ""
         viewModel.loadDatas()
         departmentTableView.reloadData()
