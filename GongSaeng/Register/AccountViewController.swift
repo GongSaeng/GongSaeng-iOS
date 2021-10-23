@@ -96,7 +96,7 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func nextButtonTapHandler(_ sender: UIStoryboardSegue) {
-        guard let nickNameString = nickNameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty else {
+        guard let nickNameString = nickNameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty, idReduplicationConstraint.constant == 0, nickNameReduplicationConstraint.constant == 0 else {
             return
         }
         
@@ -126,6 +126,23 @@ class AccountViewController: UIViewController {
         performSegue(withIdentifier: "completedRegister", sender: user)
     }
     
+    func changeActivationStatusOfNextButton() {
+        // 중복확인 체크상태 확인
+        guard idReduplicationConstraint.constant == 0, nickNameReduplicationConstraint.constant == 0 else { return }
+        
+        // 확률적으로 밑에가 비었을 확률이 크다. 아래부터 check하면 불필요한 연산을 하지 않는다.
+        guard let nickNameString = nickNameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty else {
+            DispatchQueue.main.async {
+                self.nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
+            }
+            return
+        }
+        
+        DispatchQueue.main.async {
+            self.nextButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+        }
+    }
+    
     func changeUnderlineColor(textField: UITextField, color: UIColor) {
         switch textField {
         case idTextField:
@@ -153,6 +170,7 @@ class AccountViewController: UIViewController {
         guard let text = idTextField.text else { return }
         if !viewModel.idReduplicationCheck(id: text) {
             idReduplicationConstraint.constant = 0
+            changeActivationStatusOfNextButton()
         } else {
             idReduplicationHintLabel.text = "중복한 아이디가 존재합니다."
             idReduplicationConstraint.constant = 17
@@ -163,6 +181,7 @@ class AccountViewController: UIViewController {
         guard let text = nickNameTextField.text else { return }
         if !viewModel.nickNameReduplicationCheck(nickName: text) {
             nickNameReduplicationConstraint.constant = 0
+            changeActivationStatusOfNextButton()
         } else {
             nickNameReduplicationHintLabel.text = "중복한 닉네임이 존재합니다."
             nickNameReduplicationConstraint.constant = 17
@@ -221,16 +240,7 @@ extension AccountViewController: UITextFieldDelegate {
             return
         }
         
-        // 확률적으로 밑에가 비었을 확률이 크다. 아래부터 check하면 불필요한 연산을 하지 않는다.
-        guard let nickNameString = nickNameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty else {
-            DispatchQueue.main.async {
-                self.nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
-            }
-            return
-        }
-        DispatchQueue.main.async {
-            self.nextButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
-        }
+        changeActivationStatusOfNextButton()
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
