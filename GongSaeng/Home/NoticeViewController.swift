@@ -12,6 +12,13 @@ class NoticeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+    
+    @IBAction func lookAtAllThingsButtonHandler(_ sender: UIButton) {
+        let storyboard = UIStoryboard(name: "Notice", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "NoticeListViewController") as! NoticeListViewController
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true, completion: nil)
+    }
 }
 
 extension NoticeViewController: UITableViewDataSource {

@@ -1053,10 +1053,14 @@
                                 <state key="normal" title="전체보기">
                                     <color key="titleColor" red="0.066666666666666666" green="0.40392156862745099" blue="0.38039215686274508" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="lookAtAllThingsButtonHandler:" destination="mbG-hj-IVD" eventType="touchUpInside" id="GcD-bI-Hcv"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Vuy-DX-JIB">
                                 <rect key="frame" x="16" y="63" width="380" height="135"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <inset key="separatorInset" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NoticeCell" id="91w-Yv-bVk" customClass="NoticeCell" customModule="GongSaeng" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="44.5" width="380" height="44.5"/>

@@ -55,12 +55,15 @@
 		A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BE26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift */; };
 		A73AE4C726F1CA0300FA1F06 /* CheckOutCompletedPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A73AE4C626F1CA0300FA1F06 /* CheckOutCompletedPopUp.storyboard */; };
 		A73AE4C926F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4C826F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift */; };
+		A745D04727269D3900844189 /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A745D04627269D3900844189 /* Notice.storyboard */; };
+		A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A745D04827269E7D00844189 /* NoticeListViewController.swift */; };
 		A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
 		A756407B271043A4008609FE /* LoginPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A756407A271043A4008609FE /* LoginPopUp.storyboard */; };
 		A7674F7226EF9A5600AE60FA /* RequestCheckInOut.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7674F7126EF9A5600AE60FA /* RequestCheckInOut.storyboard */; };
 		A7674F7426EF9A6500AE60FA /* RequestCheckInOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7674F7326EF9A6500AE60FA /* RequestCheckInOutViewController.swift */; };
+		A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */; };
 		A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */; };
 		A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777950D2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift */; };
 		A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */; };
@@ -148,12 +151,15 @@
 		A73AE4BE26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutRequestDetailViewController.swift; sourceTree = "<group>"; };
 		A73AE4C626F1CA0300FA1F06 /* CheckOutCompletedPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckOutCompletedPopUp.storyboard; sourceTree = "<group>"; };
 		A73AE4C826F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutCompletedPopUpViewController.swift; sourceTree = "<group>"; };
+		A745D04627269D3900844189 /* Notice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notice.storyboard; sourceTree = "<group>"; };
+		A745D04827269E7D00844189 /* NoticeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeListViewController.swift; sourceTree = "<group>"; };
 		A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveContainerViewController.swift; sourceTree = "<group>"; };
 		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		A756407A271043A4008609FE /* LoginPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginPopUp.storyboard; sourceTree = "<group>"; };
 		A7674F7126EF9A5600AE60FA /* RequestCheckInOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RequestCheckInOut.storyboard; sourceTree = "<group>"; };
 		A7674F7326EF9A6500AE60FA /* RequestCheckInOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInOutViewController.swift; sourceTree = "<group>"; };
+		A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewController.swift; sourceTree = "<group>"; };
 		A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReservationPopUp.storyboard; sourceTree = "<group>"; };
 		A777950D2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotCloseCellTappedPopUpViewController.swift; sourceTree = "<group>"; };
 		A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedReservationPopUpViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +285,7 @@
 				3D5D599D265249310018FE63 /* HomeViewController.swift */,
 				3DD893D3266E1A6E0050B4F8 /* NoticeViewController.swift */,
 				3DD893D5266E1A9C0050B4F8 /* MateViewController.swift */,
+				A745D04527269D2200844189 /* Notice */,
 				3D00C8B8266E39CD006236A0 /* Mate */,
 			);
 			path = Home;
@@ -399,6 +406,16 @@
 				A73AE4C826F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift */,
 			);
 			path = PopUp;
+			sourceTree = "<group>";
+		};
+		A745D04527269D2200844189 /* Notice */ = {
+			isa = PBXGroup;
+			children = (
+				A745D04627269D3900844189 /* Notice.storyboard */,
+				A745D04827269E7D00844189 /* NoticeListViewController.swift */,
+				A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */,
+			);
+			path = Notice;
 			sourceTree = "<group>";
 		};
 		A753FB6026ED0533001DA2C3 /* MyPage */ = {
@@ -524,6 +541,7 @@
 			files = (
 				A7F4193B26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard in Resources */,
 				3D40E52E2658086800B19E32 /* TermsOfServices.storyboard in Resources */,
+				A745D04727269D3900844189 /* Notice.storyboard in Resources */,
 				3D5D5995265247F50018FE63 /* LaunchScreen.storyboard in Resources */,
 				A79C58E026EEE65D00F608D1 /* ManageAccountInfo.storyboard in Resources */,
 				3D5D5990265247F40018FE63 /* Main.storyboard in Resources */,
@@ -597,6 +615,7 @@
 				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
 				3D231A6C266F71A600080E9B /* MateDetailTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
+				A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */,
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,
 				A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */,
@@ -613,6 +632,7 @@
 				A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */,
 				A7EB141B271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift in Sources */,
 				3DD893D4266E1A6E0050B4F8 /* NoticeViewController.swift in Sources */,
+				A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */,
 				A7EB141D27104662001E8709 /* CheckIDInfoPopUpViewController.swift in Sources */,
 				A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */,
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,

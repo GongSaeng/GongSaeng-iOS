@@ -14,7 +14,7 @@ class CheckOutRequestDetailViewController: UIViewController {
 
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var boundaryPresentingView: UIView!
-    @IBOutlet weak var textContanView: UIView!
+    @IBOutlet weak var textContainView: UIView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var roomConditionCollectionView: UICollectionView!
@@ -29,7 +29,7 @@ class CheckOutRequestDetailViewController: UIViewController {
         super.viewDidLoad()
 
         userImageView.roundCornerOfImageView()
-        textContanView.layer.cornerRadius = textContanView.frame.height / 2
+        textContainView.layer.cornerRadius = textContainView.frame.height / 2
 
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 

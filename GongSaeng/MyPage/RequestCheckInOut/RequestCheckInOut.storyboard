@@ -818,7 +818,7 @@
                                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         </collectionViewFlowLayout>
                                         <cells>
-                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CommentCell" translatesAutoresizingMaskIntoConstraints="NO" id="ekn-vE-OfM" customClass="CommentCollectionViewCell" customModule="GongSaeng" customModuleProvider="target">
+                                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" misplaced="YES" reuseIdentifier="CommentCell" translatesAutoresizingMaskIntoConstraints="NO" id="ekn-vE-OfM" customClass="CommentCollectionViewCell" customModule="GongSaeng" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="102"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Bl3-gr-Dcn">
@@ -1011,7 +1011,7 @@
                         <outlet property="roomConditionCollectionView" destination="M7B-xQ-IYk" id="729-jl-4ON"/>
                         <outlet property="scrollView" destination="wp8-uO-OJO" id="kDm-35-x4e"/>
                         <outlet property="scrollViewBottomConstraint" destination="rhg-3P-M0w" id="TYr-sw-YM4"/>
-                        <outlet property="textContanView" destination="PgX-br-F7a" id="uZR-M3-wcN"/>
+                        <outlet property="textContainView" destination="PgX-br-F7a" id="uZR-M3-wcN"/>
                         <outlet property="userImageView" destination="NGC-Ys-hwD" id="XAP-9i-rCV"/>
                     </connections>
                 </viewController>
