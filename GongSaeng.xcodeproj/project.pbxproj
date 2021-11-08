@@ -8,13 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D00C8B4266E3999006236A0 /* MateListViewController.swift */; };
-		3D00C8B7266E39A6006236A0 /* MateDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D00C8B6266E39A6006236A0 /* MateDetailViewController.swift */; };
 		3D00C8BA266E39E8006236A0 /* Mate.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3D00C8B9266E39E8006236A0 /* Mate.storyboard */; };
 		3D015AFF265812B6003EC5E6 /* TermsOfServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D015AFE265812B6003EC5E6 /* TermsOfServices.swift */; };
 		3D015B0226590F0D003EC5E6 /* DepartmentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D015B0126590F0D003EC5E6 /* DepartmentViewController.swift */; };
 		3D231A68266E44BA00080E9B /* Mate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D231A67266E44BA00080E9B /* Mate.swift */; };
 		3D231A6A266E629D00080E9B /* MateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D231A69266E629D00080E9B /* MateCell.swift */; };
-		3D231A6C266F71A600080E9B /* MateDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D231A6B266F71A600080E9B /* MateDetailTableViewController.swift */; };
 		3D2FBC062675FE6B00D2FF56 /* PublicViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2FBC052675FE6B00D2FF56 /* PublicViewController.swift */; };
 		3D2FBC092675FEDD00D2FF56 /* Public.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2FBC082675FEDD00D2FF56 /* Public.swift */; };
 		3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D2FBC0A26760BFA00D2FF56 /* Date.swift */; };
@@ -102,13 +100,11 @@
 
 /* Begin PBXFileReference section */
 		3D00C8B4266E3999006236A0 /* MateListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateListViewController.swift; sourceTree = "<group>"; };
-		3D00C8B6266E39A6006236A0 /* MateDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateDetailViewController.swift; sourceTree = "<group>"; };
 		3D00C8B9266E39E8006236A0 /* Mate.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Mate.storyboard; sourceTree = "<group>"; };
 		3D015AFE265812B6003EC5E6 /* TermsOfServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfServices.swift; sourceTree = "<group>"; };
 		3D015B0126590F0D003EC5E6 /* DepartmentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentViewController.swift; sourceTree = "<group>"; };
 		3D231A67266E44BA00080E9B /* Mate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mate.swift; sourceTree = "<group>"; };
 		3D231A69266E629D00080E9B /* MateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateCell.swift; sourceTree = "<group>"; };
-		3D231A6B266F71A600080E9B /* MateDetailTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateDetailTableViewController.swift; sourceTree = "<group>"; };
 		3D2FBC052675FE6B00D2FF56 /* PublicViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublicViewController.swift; sourceTree = "<group>"; };
 		3D2FBC082675FEDD00D2FF56 /* Public.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Public.swift; sourceTree = "<group>"; };
 		3D2FBC0A26760BFA00D2FF56 /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
@@ -214,8 +210,6 @@
 				3D231A67266E44BA00080E9B /* Mate.swift */,
 				3D231A69266E629D00080E9B /* MateCell.swift */,
 				3D00C8B4266E3999006236A0 /* MateListViewController.swift */,
-				3D00C8B6266E39A6006236A0 /* MateDetailViewController.swift */,
-				3D231A6B266F71A600080E9B /* MateDetailTableViewController.swift */,
 			);
 			path = Mate;
 			sourceTree = "<group>";
@@ -613,7 +607,6 @@
 				3D231A6A266E629D00080E9B /* MateCell.swift in Sources */,
 				A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */,
 				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
-				3D231A6C266F71A600080E9B /* MateDetailTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
 				A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */,
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
@@ -624,7 +617,6 @@
 				A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */,
 				A7DC1CA527077918002F395C /* FinishUsingPopUpViewController.swift in Sources */,
 				3D2FBC092675FEDD00D2FF56 /* Public.swift in Sources */,
-				3D00C8B7266E39A6006236A0 /* MateDetailViewController.swift in Sources */,
 				A7AE9F3426EF20120082C855 /* LogOutPopUpViewController.swift in Sources */,
 				3D5D598B265247F40018FE63 /* SceneDelegate.swift in Sources */,
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,

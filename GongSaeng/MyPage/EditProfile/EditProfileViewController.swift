@@ -19,18 +19,7 @@ class EditProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        userImageView.roundCornerOfImageView()
-        
-        [nickNameTextField, affiliationTextField, websiteTextField].forEach { $0.underlined(viewSize: view.bounds.width, color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)) }
-        
-        let size = CGSize(width: introductionTextView.frame.width, height: .infinity)
-        let estimatedSize = introductionTextView.sizeThatFits(size)
-        
-        introductionTextView.constraints.forEach { (constraint) in
-            if constraint.firstAttribute == .height {
-                constraint.constant = estimatedSize.height
-            }
-        }
+        setupView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
 
@@ -66,6 +55,23 @@ class EditProfileViewController: UIViewController {
     
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+private extension EditProfileViewController {
+    func setupView() {
+        userImageView.roundCornerOfImageView()
+        
+        [nickNameTextField, affiliationTextField, websiteTextField].forEach { $0.underlined(viewSize: view.bounds.width, color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)) }
+        
+        let size = CGSize(width: introductionTextView.frame.width, height: .infinity)
+        let estimatedSize = introductionTextView.sizeThatFits(size)
+        
+        introductionTextView.constraints.forEach { (constraint) in
+            if constraint.firstAttribute == .height {
+                constraint.constant = estimatedSize.height
+            }
+        }
     }
 }
 

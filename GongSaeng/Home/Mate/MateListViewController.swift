@@ -15,15 +15,6 @@ class MateListViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "detail" {
-            let vc = segue.destination as? MateDetailViewController
-            if let index = sender as? Int {
-                vc?.selectMate = viewModel.indexOfMate(at: index)
-            }
-        }
-    }
-    
     @IBAction func back(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
