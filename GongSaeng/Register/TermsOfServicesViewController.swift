@@ -31,7 +31,7 @@ class TermsOfServicesViewController: UIViewController {
     }
     
     @IBAction func close(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        dismiss(animated: true)
     }
     
     @IBAction func isAgreeButtonClicked(_ sender: Any) {
@@ -43,10 +43,12 @@ class TermsOfServicesViewController: UIViewController {
         
         let mainViewController = self.view.window?.rootViewController as! FirstViewController
         self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: {
-            let sb = UIStoryboard(name: "Register", bundle: nil)
-            let vc = sb.instantiateViewController(identifier: "RegisterViewController") as! RegisterViewController
-            vc.modalPresentationStyle = .fullScreen
-            mainViewController.present(vc, animated: false, completion: nil)
+            let storyBoard = UIStoryboard(name: "Register", bundle: nil)
+            let rootViewController = storyBoard.instantiateViewController(identifier: "RegisterViewController") as! RegisterViewController
+            let navigationController = UINavigationController(rootViewController: rootViewController)
+            navigationController.navigationBar.isHidden = true
+            navigationController.modalPresentationStyle = .fullScreen
+            mainViewController.present(navigationController, animated: false, completion: nil)
         })
     }
 }

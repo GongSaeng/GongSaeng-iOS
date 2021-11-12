@@ -92,7 +92,7 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func back(_ sender: Any) {
-        dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func nextButtonTapHandler(_ sender: UIStoryboardSegue) {

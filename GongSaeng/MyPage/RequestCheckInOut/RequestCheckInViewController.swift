@@ -25,14 +25,12 @@ class RequestCheckInViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        [checkInButton, checkOutButton].forEach {
+            $0?.layer.cornerRadius = 5
+            $0?.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
+        }
         
-        checkInButton.layer.cornerRadius = 5
-        checkInButton.backgroundColor = #colorLiteral(red: 0.8823529412, green: 0.9490196078, blue: 0.937254902, alpha: 1)
-        
-        checkOutButton.layer.cornerRadius = 5
-        checkOutButton.layer.borderWidth = 1
-        checkOutButton.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.1)
-        
+        didTapCheckInOutButton(checkInButton)
         nextButton.layer.cornerRadius = 8
     }
     
@@ -50,26 +48,58 @@ class RequestCheckInViewController: UIViewController {
         // Notify Child View Controller
         viewController.didMove(toParent: self)
     }
+    
+    private func didTapCheckInOutButton(_ button: UIButton) {
+        [checkInButton, checkOutButton].forEach {
+                if $0 == button {
+                    $0?.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
+                    $0?.backgroundColor = #colorLiteral(red: 0.8823529412, green: 0.9490196078, blue: 0.937254902, alpha: 1)
+                    $0?.layer.borderWidth = 0
+                    $0?.isEnabled = false
+                    $0?.isSelected = true
+                } else {
+                    $0?.setTitleColor(UIColor(white: 0, alpha: 0.8), for: .normal)
+                    $0?.backgroundColor = .white
+                    $0?.layer.borderWidth = 1.0
+                    $0?.isEnabled = true
+                    $0?.isSelected = false
+                }
+        }
+    }
         
     // 뒤로가기 버튼
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
         dismiss(animated: true, completion: nil)
     }
     
+    // 입실 버튼
+    @IBAction func checkInButtonTapped(_ sender: UIButton) {
+        didTapCheckInOutButton(sender)
+    }
+    
+    
     // 퇴실 버튼
     @IBAction func checkOutButtonTapped(_ sender: UIButton) {
-        let storyboard = UIStoryboard(name: "RequestCheckInOut", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "RequestCheckOutViewController") as! RequestCheckOutViewController
-        viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true, completion: nil)
+        didTapCheckInOutButton(sender)
     }
     
     // 다음 버튼
     @IBAction func nextButtonTapped(_ sender: UIButton) {
-        let storyBoard = UIStoryboard.init(name: "CheckInRequestPopUp", bundle: nil)
-        let popUpViewController = storyBoard.instantiateViewController(identifier: "CheckInRequestPopUpViewController")
-        popUpViewController.modalPresentationStyle = .overCurrentContext
-        self.present(popUpViewController, animated: false, completion: nil)
+//        switch
+        if checkInButton.isSelected {
+            let storyBoard = UIStoryboard.init(name: "CheckInRequestPopUp", bundle: nil)
+            let popUpViewController = storyBoard.instantiateViewController(identifier: "CheckInRequestPopUpViewController")
+            popUpViewController.modalPresentationStyle = .overCurrentContext
+            self.present(popUpViewController, animated: false, completion: nil)
+        } else if checkOutButton.isSelected {
+            let storyboard = UIStoryboard(name: "RequestCheckInOut", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "RequestCheckOutViewController") as! RequestCheckOutViewController
+            viewController.modalPresentationStyle = .fullScreen
+            present(viewController, animated: true, completion: nil)
+        }
+        
+        
+        
     }
     
 }

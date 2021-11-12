@@ -58,7 +58,7 @@ class DepartmentViewController: UIViewController {
     }
     
     @IBAction func backButtonHandler(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func nextButtonHandler(_ sender: Any) {

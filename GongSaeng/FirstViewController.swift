@@ -28,9 +28,11 @@ class FirstViewController: UIViewController {
         present(vc, animated: true, completion: nil)
     }
     @IBAction func registerButtonHandler(_ sender: Any) {
-        let sb = UIStoryboard(name: "Register", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "RegisterViewController") as! RegisterViewController
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        let storyBoard = UIStoryboard(name: "Register", bundle: nil)
+        let rootViewController = storyBoard.instantiateViewController(identifier: "RegisterViewController") as! RegisterViewController
+        let navigationViewController = UINavigationController(rootViewController: rootViewController)
+        navigationViewController.navigationBar.isHidden = true
+        navigationViewController.modalPresentationStyle = .fullScreen
+        present(navigationViewController, animated: true, completion: nil)
     }
 }

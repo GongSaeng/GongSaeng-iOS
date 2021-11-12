@@ -88,7 +88,7 @@ class RegisterViewController: UIViewController {
     
     func isAllCheck() -> Bool {
         // first, second 버튼으로 allbutton여부를 판단한다.
-        if firstAgree.isSelected==true && secondAgree.isSelected==true {
+        if firstAgree.isSelected == true && secondAgree.isSelected == true {
             return true
         }
         return false

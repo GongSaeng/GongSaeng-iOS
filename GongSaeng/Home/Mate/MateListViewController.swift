@@ -34,12 +34,6 @@ extension MateListViewController: UICollectionViewDataSource {
     }
 }
 
-extension MateListViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "detail", sender: indexPath.item)
-    }
-}
-
 extension MateListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sideSpacing: CGFloat = CGFloat(16.0)

@@ -57,7 +57,7 @@ class MemberViewController: UIViewController {
     }
     
     @IBAction func back(_ sender: Any) {
-        dismiss(animated: false, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func tapBG(_ sender: Any) {

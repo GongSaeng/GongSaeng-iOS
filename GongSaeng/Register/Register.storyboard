@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -245,7 +245,7 @@
                         <outlet property="firstAgree" destination="GAf-rf-9i2" id="3io-5i-91w"/>
                         <outlet property="nextButton" destination="MYG-SW-mD2" id="NP1-iN-chV"/>
                         <outlet property="secondAgree" destination="O2K-Cs-c8D" id="Bt7-5h-o59"/>
-                        <segue destination="PZq-Lm-4Nc" kind="presentation" identifier="department" animates="NO" id="J9E-6f-nsP"/>
+                        <segue destination="PZq-Lm-4Nc" kind="show" identifier="department" id="J9E-6f-nsP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -515,13 +515,14 @@
                             <constraint firstItem="uVE-cV-Dxu" firstAttribute="top" secondItem="EJA-jT-LMl" secondAttribute="bottom" id="xJY-w9-ubV"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="fis-r8-IEf"/>
                     <connections>
                         <outlet property="departmentTableView" destination="lxg-hV-5p6" id="3ag-dG-Vlo"/>
                         <outlet property="nextButton" destination="yTa-RK-lrz" id="NFU-ES-5oz"/>
                         <outlet property="noResultView" destination="g3W-aD-ePn" id="OcV-u5-enF"/>
                         <outlet property="searchButton" destination="fiC-9w-pUR" id="9cB-Ec-WRV"/>
                         <outlet property="searchTextField" destination="jye-m9-bT0" id="uYz-Dr-XYl"/>
-                        <segue destination="GUg-cK-mbe" kind="presentation" identifier="member" animates="NO" id="cfx-9y-Qfa"/>
+                        <segue destination="GUg-cK-mbe" kind="show" identifier="member" id="cfx-9y-Qfa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bu0-4d-8up" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -867,6 +868,7 @@
                             <outletCollection property="gestureRecognizers" destination="F5h-bt-5lp" appends="YES" id="wD0-Na-cc0"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="2lQ-qc-NpU"/>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="birthHintConstraint" destination="bP1-VT-9UO" id="fht-k6-8Jx"/>
@@ -884,7 +886,7 @@
                         <outlet property="phoneTextField" destination="YIo-t6-pDj" id="lzB-Vw-ZWj"/>
                         <outlet property="phoneUnderlinedView" destination="w6C-dF-EQH" id="E1j-Vo-0SU"/>
                         <outlet property="scrollView" destination="Ud3-e9-Y6D" id="cXp-B8-p3k"/>
-                        <segue destination="dfQ-j7-rry" kind="presentation" identifier="account" animates="NO" id="F6f-if-NFz"/>
+                        <segue destination="dfQ-j7-rry" kind="show" identifier="account" id="F6f-if-NFz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wx-U4-qDz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1088,6 +1090,7 @@
                             <constraint firstItem="Uc2-zh-bsp" firstAttribute="centerX" secondItem="0f9-4h-9yN" secondAttribute="centerX" id="zOt-7f-UCd"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="i3b-6U-cYk"/>
                     <connections>
                         <outlet property="orageView" destination="wvF-E9-JZw" id="HRM-dS-Hfw"/>
                         <outlet property="triangleButton" destination="Uc2-zh-bsp" id="idb-gq-3Rt"/>
@@ -1580,6 +1583,7 @@
                             <outletCollection property="gestureRecognizers" destination="hn8-dE-uM4" appends="YES" id="Ldi-4r-3xE"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="fBy-O6-anK"/>
                     <size key="freeformSize" width="375" height="900"/>
                     <connections>
                         <outlet property="extraViewHeight" destination="j2U-5i-w86" id="jur-rn-Oh3"/>
@@ -1609,7 +1613,7 @@
                         <outlet property="passwordTextField" destination="FuF-ko-9KS" id="86B-bm-pKd"/>
                         <outlet property="passwordUnderlinedView" destination="2b3-xC-Jpc" id="Ul5-lT-MvQ"/>
                         <outlet property="scrollView" destination="B6N-Ey-1cS" id="oFO-4n-vCf"/>
-                        <segue destination="Tak-uI-eVw" kind="presentation" identifier="completedRegister" modalTransitionStyle="flipHorizontal" id="h9A-G2-20x"/>
+                        <segue destination="Tak-uI-eVw" kind="show" identifier="completedRegister" id="h9A-G2-20x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXl-zp-OqM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

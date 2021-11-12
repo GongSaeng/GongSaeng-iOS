@@ -9,20 +9,17 @@ import UIKit
 
 class CheckOutRequestDetailViewController: UIViewController {
     // 임시데이터
-    var roomConditionImageList: [UIImage?] = [UIImage(named: "profileImage_0.png"), UIImage(named: "profileImage_1.png"), UIImage(named: "profileImage_2.png"), UIImage(named: "profileImage_3.png")]
-    var commentedUserDataList = [(UIImage(named: "profileImage_0.png"), "관리자123", "2시간 전", "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하"), (UIImage(named: "profileImage_1.png"), "김민지", "2시간 전", "네네!"), (UIImage(named: "profileImage_0.png"), "관리자", "1시간 전", "확인됐습니다!")]
+    var commentedUserDataList = [(UIImage(named: "profileImage_0.png"), "관리자123", "2시간 전", "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하"), (UIImage(named: "profileImage_1.png"), "김민지", "2시간 전", "네네!"), (UIImage(named: "profileImage_0.png"), "관리자", "1시간 전", "확인됐습니다!"), (UIImage(named: "profileImage_0.png"), "관리자123", "2시간 전", "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하"), (UIImage(named: "profileImage_1.png"), "김민지", "2시간 전", "네네!"), (UIImage(named: "profileImage_0.png"), "관리자", "1시간 전", "확인됐습니다!")]
 
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var boundaryPresentingView: UIView!
     @IBOutlet weak var textContainView: UIView!
-    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var commentTextView: UITextView!
     @IBOutlet weak var roomConditionCollectionView: UICollectionView!
-    @IBOutlet weak var commentCollectionView: UICollectionView!
+    @IBOutlet weak var tableView: UITableView!
 
     @IBOutlet weak var commentTextViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var boundaryPresentingViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet weak var scrollViewBottomConstraint: NSLayoutConstraint!
 
 
     override func viewDidLoad() {
@@ -36,9 +33,12 @@ class CheckOutRequestDetailViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardHideShow(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
 
         boundaryPresentingView.translatesAutoresizingMaskIntoConstraints = false
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.translatesAutoresizingMaskIntoConstraints = false
 
         placeHolderSetting(commentTextView)
+        
+        tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableView.automaticDimension
 
     }
 
@@ -70,8 +70,8 @@ class CheckOutRequestDetailViewController: UIViewController {
             })
 
             let scrollContentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.size.height, right: 0)
-            scrollView.contentInset = scrollContentInset
-            scrollView.contentOffset = CGPoint(x: 0, y: keyboardFrame.size.height)
+            tableView.contentInset = scrollContentInset
+            tableView.contentOffset = CGPoint(x: 0, y: keyboardFrame.size.height)
         }
     }
 
@@ -86,8 +86,8 @@ class CheckOutRequestDetailViewController: UIViewController {
         })
 
         let scrollContentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        scrollView.contentInset = scrollContentInset
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
+        tableView.contentInset = scrollContentInset
+        tableView.contentOffset = CGPoint(x: 0, y: 0)
     }
 }
 
@@ -130,117 +130,102 @@ extension CheckOutRequestDetailViewController: UITextViewDelegate {
     }
 }
 
-
 // MARK:- "컬렉션뷰 클래스 정의"
 class RoomConditionImageCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var roomConditionImageView: UIImageView!
 }
 
-class CommentCollectionViewCell: UICollectionViewCell {
+class CheckOutRequestDetailTableView: UITableView {
+    var roomConditionImageList: [UIImage?] = [UIImage(named: "profileImage_0.png"), UIImage(named: "profileImage_1.png"), UIImage(named: "profileImage_2.png"), UIImage(named: "profileImage_3.png")]
+}
+
+
+class CheckOutCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentedUserImageView: UIImageView!
     @IBOutlet weak var commentedUserNicknameLabel: UILabel!
     @IBOutlet weak var commentedTimeLabel: UILabel!
     @IBOutlet weak var commentedTextLabel: UILabel!
     
-    @IBOutlet weak var commentedTextLabelWidthConstraint: NSLayoutConstraint!
+//    @IBOutlet weak var commentedTextLabelWidthConstraint: NSLayoutConstraint!
+}
+
+extension CheckOutRequestDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return commentedUserDataList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CheckOutCommentTableViewCell", for: indexPath) as? CheckOutCommentTableViewCell else { return UITableViewCell() }
+        cell.commentedUserImageView.image = commentedUserDataList[indexPath.row].0
+        cell.commentedUserImageView.contentMode = .scaleAspectFill
+        cell.commentedUserImageView.roundCornerOfImageView()
+        
+        cell.commentedUserNicknameLabel.text = commentedUserDataList[indexPath.row].1
+        cell.commentedUserNicknameLabel.sizeToFit()
+
+        cell.commentedTimeLabel.text = commentedUserDataList[indexPath.row].2
+        cell.commentedTimeLabel.sizeToFit()
+        
+        cell.commentedTextLabel.text = commentedUserDataList[indexPath.row].3
+
+        return cell
+    }
+}
+
+extension CheckOutRequestDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let sizingLabel: UILabel
+        sizingLabel = UILabel()
+        sizingLabel.font = UIFont(name: sizingLabel.font.fontName, size: 14)
+        sizingLabel.textAlignment = .left
+        sizingLabel.numberOfLines = 0
+        sizingLabel.text = commentedUserDataList[indexPath.row].3
+        let newSize = sizingLabel.sizeThatFits( CGSize(width: view.frame.width - 90, height: CGFloat.greatestFiniteMagnitude))
+        
+        return newSize.height + 82
+    }
 }
 
 
 // MARK:- "컬렉션뷰 DataSource"
-extension CheckOutRequestDetailViewController: UICollectionViewDataSource {
+extension CheckOutRequestDetailTableView: UICollectionViewDataSource {
     // Cell 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch collectionView {
-        case roomConditionCollectionView:
-            return roomConditionImageList.count
-        case commentCollectionView:
-            return commentedUserDataList.count
-        default:
-            return 0
-        }
+        return roomConditionImageList.count
     }
 
     // Cell 디자인
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch collectionView {
-        case roomConditionCollectionView:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomConditionImageCell", for: indexPath) as? RoomConditionImageCollectionViewCell else { return RoomConditionImageCollectionViewCell() }
-            cell.roomConditionImageView.image = roomConditionImageList[indexPath.row]
-            cell.roomConditionImageView.contentMode = .scaleAspectFill
-            cell.layer.cornerRadius = 8
-            return cell
-        case commentCollectionView:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CommentCell", for: indexPath) as? CommentCollectionViewCell else { return CommentCollectionViewCell() }
-            cell.commentedUserImageView.image = commentedUserDataList[indexPath.row].0
-            cell.commentedUserImageView.contentMode = .scaleAspectFill
-            cell.commentedUserImageView.roundCornerOfImageView()
-            
-            cell.commentedUserNicknameLabel.text = commentedUserDataList[indexPath.row].1
-            cell.commentedUserNicknameLabel.sizeToFit()
-
-            cell.commentedTimeLabel.text = commentedUserDataList[indexPath.row].2
-            cell.commentedTimeLabel.sizeToFit()
-            
-            cell.commentedTextLabel.text = commentedUserDataList[indexPath.row].3
-            let newSize = cell.commentedTextLabel.sizeThatFits( CGSize(width: cell.frame.width - 90, height: CGFloat.greatestFiniteMagnitude))
-            cell.commentedTextLabelWidthConstraint.constant = newSize.width
-            cell.commentedTextLabel.frame.size.height = newSize.height
-            return cell
-        default:
-            return UICollectionViewCell()
-        }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "RoomConditionImageCell", for: indexPath) as? RoomConditionImageCollectionViewCell else { return RoomConditionImageCollectionViewCell() }
+        cell.roomConditionImageView.image = roomConditionImageList[indexPath.row]
+        cell.roomConditionImageView.contentMode = .scaleAspectFill
+        cell.layer.cornerRadius = 8
+        return cell
     }
 }
 
 
 // MARK:- "컬렉션뷰 Delegate"
-extension CheckOutRequestDetailViewController: UICollectionViewDelegate {
+extension CheckOutRequestDetailTableView: UICollectionViewDelegate {
 
 }
 
 
 // MARK:- "컬렉션뷰 DelegateFlowLayout"
-extension CheckOutRequestDetailViewController: UICollectionViewDelegateFlowLayout {
+extension CheckOutRequestDetailTableView: UICollectionViewDelegateFlowLayout {
     // 옆 간격
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        switch collectionView {
-        case roomConditionCollectionView:
-            return 10
-        case commentCollectionView:
-            return 1
-        default:
-            return 0
-        }
+        return 10
     }
 
     // 인셋
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        switch collectionView {
-        case roomConditionCollectionView:
-            return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
-        case commentCollectionView:
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        default:
-            return UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        }
+        return UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+
     }
 
     // Cell 사이즈
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        switch collectionView {
-        case roomConditionCollectionView:
-            return CGSize(width: 270, height: 195)
-        case commentCollectionView:
-            let sizingLabel: UILabel
-            sizingLabel = UILabel()
-            sizingLabel.font = UIFont(name: sizingLabel.font.fontName, size: 14)
-            sizingLabel.textAlignment = .left
-            sizingLabel.numberOfLines = 0
-            sizingLabel.text = commentedUserDataList[indexPath.row].3
-            let newSize = sizingLabel.sizeThatFits( CGSize(width: view.frame.width - 90, height: CGFloat.greatestFiniteMagnitude))
-            return CGSize(width: view.frame.width, height: newSize.height + 82)
-        default:
-            return CGSize()
-        }
+        return CGSize(width: 270, height: 195)
     }
 }
