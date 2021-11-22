@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -47,6 +47,8 @@
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
 		A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A70D39052704BD0C00B09041 /* Reserve.storyboard */; };
 		A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70D39072704BD1A00B09041 /* ReserveViewController.swift */; };
+		A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */; };
+		A71600A92746393700FC3C64 /* Immediation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71600A82746393700FC3C64 /* Immediation.swift */; };
 		A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E07B926EE6021007DB8D0 /* UIImageView.swift */; };
 		A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BA26F1B7D000FA1F06 /* RequestCheckInViewController.swift */; };
 		A73AE4BD26F1B82200FA1F06 /* RequestCheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BC26F1B82200FA1F06 /* RequestCheckOutViewController.swift */; };
@@ -57,7 +59,6 @@
 		A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A745D04827269E7D00844189 /* NoticeListViewController.swift */; };
 		A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */; };
 		A74CBE8F273949380073D2F5 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A74CBE8E273949380073D2F5 /* GoogleService-Info.plist */; };
-		A74CBE92273949F90073D2F5 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A74CBE91273949F90073D2F5 /* FirebaseFirestore */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
 		A756407B271043A4008609FE /* LoginPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A756407A271043A4008609FE /* LoginPopUp.storyboard */; };
@@ -69,6 +70,9 @@
 		A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */; };
 		A777C8D62707A32600670556 /* CanceledReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */; };
 		A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */; };
+		A77B7B6E2748CFF200D0D5B1 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A77B7B6D2748CFF200D0D5B1 /* splash.png */; };
+		A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */; };
+		A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FD274538D4004C9D3F /* TableHeaderView.swift */; };
 		A79A288D2708121C000EB8C2 /* UsageHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */; };
 		A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */; };
 		A79C215326EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */; };
@@ -143,6 +147,8 @@
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
 		A70D39052704BD0C00B09041 /* Reserve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reserve.storyboard; sourceTree = "<group>"; };
 		A70D39072704BD1A00B09041 /* ReserveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveViewController.swift; sourceTree = "<group>"; };
+		A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewModel.swift; sourceTree = "<group>"; };
+		A71600A82746393700FC3C64 /* Immediation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Immediation.swift; sourceTree = "<group>"; };
 		A71E07B926EE6021007DB8D0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		A73AE4BA26F1B7D000FA1F06 /* RequestCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInViewController.swift; sourceTree = "<group>"; };
 		A73AE4BC26F1B82200FA1F06 /* RequestCheckOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckOutViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +170,9 @@
 		A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanceledReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedUsingPopUpViewController.swift; sourceTree = "<group>"; };
+		A77B7B6D2748CFF200D0D5B1 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmedationTableViewController.swift; sourceTree = "<group>"; };
+		A781C2FD274538D4004C9D3F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UsageHistory.storyboard; sourceTree = "<group>"; };
 		A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageHistoryViewController.swift; sourceTree = "<group>"; };
 		A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MembershipWithdrawlPopUp.storyboard; sourceTree = "<group>"; };
@@ -200,7 +209,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A74CBE92273949F90073D2F5 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,15 +232,10 @@
 				3DF5B4CD267A19BD004F1E03 /* Public.storyboard */,
 				3D2FBC082675FEDD00D2FF56 /* Public.swift */,
 				3D2FBC052675FE6B00D2FF56 /* PublicViewController.swift */,
-				3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */,
 				3DC069A92697D5A600A4A6CB /* EnterUsageTimeViewController.swift */,
-				3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */,
-				A70D39052704BD0C00B09041 /* Reserve.storyboard */,
-				A70D39072704BD1A00B09041 /* ReserveViewController.swift */,
-				A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */,
-				A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */,
-				A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */,
-				A777950C2707620B00C1C3FD /* ReservationPopUp */,
+				A781C2FD274538D4004C9D3F /* TableHeaderView.swift */,
+				A781C2F92745233B004C9D3F /* Immediation */,
+				A781C2FA27452345004C9D3F /* Reservation */,
 			);
 			path = Public;
 			sourceTree = "<group>";
@@ -256,6 +259,7 @@
 		3D5D5987265247F40018FE63 /* GongSaeng */ = {
 			isa = PBXGroup;
 			children = (
+				A77B7B6D2748CFF200D0D5B1 /* splash.png */,
 				3DA98CCB26530C04005175B5 /* User */,
 				3D5D5988265247F40018FE63 /* AppDelegate.swift */,
 				3D5D598A265247F40018FE63 /* SceneDelegate.swift */,
@@ -456,6 +460,31 @@
 			path = ReservationPopUp;
 			sourceTree = "<group>";
 		};
+		A781C2F92745233B004C9D3F /* Immediation */ = {
+			isa = PBXGroup;
+			children = (
+				A71600A82746393700FC3C64 /* Immediation.swift */,
+				A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */,
+				A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */,
+				3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */,
+			);
+			path = Immediation;
+			sourceTree = "<group>";
+		};
+		A781C2FA27452345004C9D3F /* Reservation */ = {
+			isa = PBXGroup;
+			children = (
+				3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */,
+				A70D39052704BD0C00B09041 /* Reserve.storyboard */,
+				A70D39072704BD1A00B09041 /* ReserveViewController.swift */,
+				A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */,
+				A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */,
+				A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */,
+				A777950C2707620B00C1C3FD /* ReservationPopUp */,
+			);
+			path = Reservation;
+			sourceTree = "<group>";
+		};
 		A7AE9F3726EF2C9B0082C855 /* PopUp */ = {
 			isa = PBXGroup;
 			children = (
@@ -498,7 +527,6 @@
 			);
 			name = GongSaeng;
 			packageProductDependencies = (
-				A74CBE91273949F90073D2F5 /* FirebaseFirestore */,
 			);
 			productName = GongSaeng;
 			productReference = 3D5D5985265247F40018FE63 /* GongSaeng.app */;
@@ -528,7 +556,6 @@
 			);
 			mainGroup = 3D5D597C265247F40018FE63;
 			packageReferences = (
-				A74CBE90273949F80073D2F5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 3D5D5986265247F40018FE63 /* Products */;
 			projectDirPath = "";
@@ -558,6 +585,7 @@
 				3D00C8BA266E39E8006236A0 /* Mate.storyboard in Resources */,
 				3D5D59B02652B29B0018FE63 /* Login.storyboard in Resources */,
 				A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */,
+				A77B7B6E2748CFF200D0D5B1 /* splash.png in Resources */,
 				A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */,
 				A79A288D2708121C000EB8C2 /* UsageHistory.storyboard in Resources */,
 				A756407B271043A4008609FE /* LoginPopUp.storyboard in Resources */,
@@ -607,6 +635,7 @@
 				3D231A68266E44BA00080E9B /* Mate.swift in Sources */,
 				A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */,
 				3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */,
+				A71600A92746393700FC3C64 /* Immediation.swift in Sources */,
 				A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */,
 				A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */,
 				3DE755E9265975CE001FE813 /* Department.swift in Sources */,
@@ -616,10 +645,13 @@
 				A7DC1CA3270778CE002F395C /* CancelReservationPopUpViewController.swift in Sources */,
 				A777C8D62707A32600670556 /* CanceledReservationPopUpViewController.swift in Sources */,
 				A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */,
+				A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */,
 				3D231A6A266E629D00080E9B /* MateCell.swift in Sources */,
 				A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */,
 				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
+				A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
+				A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */,
 				A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */,
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,
@@ -843,25 +875,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		A74CBE90273949F80073D2F5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 8.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		A74CBE91273949F90073D2F5 /* FirebaseFirestore */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A74CBE90273949F80073D2F5 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseFirestore;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3D5D597D265247F40018FE63 /* Project object */;
 }

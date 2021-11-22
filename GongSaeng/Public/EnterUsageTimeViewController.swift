@@ -59,20 +59,20 @@ class EnterUsageTimeViewController: UIViewController {
     
     func updateUI() {
         DispatchQueue.main.async {
-            self.itemTitleLabel.text = self.selectedPublic?.title
-            self.maxTimeLabel.text = "최대 이용 가능 시간: \(self.selectedPublic?.maxTime ?? 10)분"
-            self.maxTimeLabel.textColor = .systemRed
-            self.itemTimeTextField.text = "\(self.usingTime)"
+//            self.itemTitleLabel.text = self.selectedPublic?.title
+//            self.maxTimeLabel.text = "최대 이용 가능 시간: \(self.selectedPublic?.maxTime ?? 10)분"
+//            self.maxTimeLabel.textColor = .systemRed
+//            self.itemTimeTextField.text = "\(self.usingTime)"
             self.timeView.layer.cornerRadius = 10
-            self.minute5Button.layer.borderColor = UIColor.systemGray2.cgColor
+            self.minute5Button.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
             self.minute5Button.layer.borderWidth = 1
-            self.minute5Button.layer.cornerRadius = 10
-            self.minute10Button.layer.borderColor = UIColor.systemGray2.cgColor
+            self.minute5Button.layer.cornerRadius = 5
+            self.minute10Button.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
             self.minute10Button.layer.borderWidth = 1
-            self.minute10Button.layer.cornerRadius = 10
-            self.minute15Button.layer.borderColor = UIColor.systemGray2.cgColor
+            self.minute10Button.layer.cornerRadius = 5
+            self.minute15Button.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
             self.minute15Button.layer.borderWidth = 1
-            self.minute15Button.layer.cornerRadius = 10
+            self.minute15Button.layer.cornerRadius = 5
             self.usingButton.layer.cornerRadius = 10
         }
     }

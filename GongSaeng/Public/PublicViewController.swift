@@ -21,7 +21,7 @@ class PublicViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupButton()
-        self.setupView()
+        setupView()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -46,14 +46,21 @@ class PublicViewController: UIViewController {
 
     //----------------------------------------------------------------
     // MARK:- Variables
-    private lazy var immediationViewController: ImmediationViewController = {
-        // Load Storyboard
+//    private lazy var immediationViewController: ImmediationViewController = {
+//        // Load Storyboard
+//        let storyboard = UIStoryboard(name: "Public", bundle: Bundle.main)
+//
+//        // Instantiate View Controller
+//        var viewController = storyboard.instantiateViewController(withIdentifier: "ImmediationViewController") as! ImmediationViewController
+//
+//        // Add View Controller as Child View Controller
+//        self.add(asChildViewController: viewController)
+//        return viewController
+//    }()
+    
+    private lazy var immediationViewController: ImmediationTableViewController = {
         let storyboard = UIStoryboard(name: "Public", bundle: Bundle.main)
-
-        // Instantiate View Controller
-        var viewController = storyboard.instantiateViewController(withIdentifier: "ImmediationViewController") as! ImmediationViewController
-
-        // Add View Controller as Child View Controller
+        var viewController = storyboard.instantiateViewController(withIdentifier: "ImmediationTableViewController") as! ImmediationTableViewController
         self.add(asChildViewController: viewController)
         return viewController
     }()
@@ -154,7 +161,7 @@ class PublicViewController: UIViewController {
         }
     }
 
-    func setupView() {
+    private func setupView() {
         updateView()
     }
 }

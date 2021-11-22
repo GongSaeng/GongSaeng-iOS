@@ -14,25 +14,25 @@ class ImmediationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginUser = LoginUser.loginUser
-        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(observerTime), userInfo: nil, repeats: true)
+//        self.loginUser = LoginUser.loginUser
+//        Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(observerTime), userInfo: nil, repeats: true)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "checkToUse" {
-            let vc = segue.destination as? EnterUsageTimeViewController
-            if let publicItem = sender as? Public {
-                vc?.selectedPublic = publicItem
-            }
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "checkToUse" {
+//            let vc = segue.destination as? EnterUsageTimeViewController
+//            if let publicItem = sender as? Public {
+//                vc?.selectedPublic = publicItem
+//            }
+//        }
+//    }
 }
 
-extension ImmediationViewController {
-    @objc func observerTime() { // 30초마다 실행되는 함수
-        
-    }
-}
+//extension ImmediationViewController {
+//    @objc func observerTime() { // 30초마다 실행되는 함수
+//
+//    }
+//}
 
 extension ImmediationViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {

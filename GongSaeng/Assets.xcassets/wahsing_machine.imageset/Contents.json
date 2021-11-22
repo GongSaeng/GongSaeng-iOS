@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "logo.png",
+      "filename" : "wahsing_machine.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "logo-1.png",
+      "filename" : "wahsing_machine-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "logo-2.png",
+      "filename" : "wahsing_machine-2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
