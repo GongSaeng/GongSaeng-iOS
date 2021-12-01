@@ -84,6 +84,9 @@
 		A79C58E026EEE65D00F608D1 /* ManageAccountInfo.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */; };
 		A79C58E226EEE66C00F608D1 /* ManageAccountInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */; };
 		A79C58E426EEF33400F608D1 /* ChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */; };
+		A7A9B3D32754CF45009B22DF /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A9B3D22754CF45009B22DF /* Notice.swift */; };
+		A7A9B3D52754D200009B22DF /* NoticeListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A9B3D42754D200009B22DF /* NoticeListCellViewModel.swift */; };
+		A7A9B3DA2754DBB6009B22DF /* NoticeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A9B3D92754DBB6009B22DF /* NoticeNetwork.swift */; };
 		A7AE9F3426EF20120082C855 /* LogOutPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE9F3326EF20120082C855 /* LogOutPopUpViewController.swift */; };
 		A7AE9F3626EF201C0082C855 /* LogOutPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */; };
 		A7AE9F3926EF2E060082C855 /* PasswordChangedPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */; };
@@ -184,6 +187,9 @@
 		A79C58DF26EEE65D00F608D1 /* ManageAccountInfo.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ManageAccountInfo.storyboard; sourceTree = "<group>"; };
 		A79C58E126EEE66C00F608D1 /* ManageAccountInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAccountInfoViewController.swift; sourceTree = "<group>"; };
 		A79C58E326EEF33400F608D1 /* ChangePasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangePasswordViewController.swift; sourceTree = "<group>"; };
+		A7A9B3D22754CF45009B22DF /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
+		A7A9B3D42754D200009B22DF /* NoticeListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeListCellViewModel.swift; sourceTree = "<group>"; };
+		A7A9B3D92754DBB6009B22DF /* NoticeNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeNetwork.swift; sourceTree = "<group>"; };
 		A7AE9F3326EF20120082C855 /* LogOutPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutPopUpViewController.swift; sourceTree = "<group>"; };
 		A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogOutPopUp.storyboard; sourceTree = "<group>"; };
 		A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordChangedPopUp.storyboard; sourceTree = "<group>"; };
@@ -276,6 +282,7 @@
 				3D2FBC072675FEAC00D2FF56 /* Public */,
 				A7DE0105270836300098AACF /* Notification */,
 				A753FB6026ED0533001DA2C3 /* MyPage */,
+				A7A9B3D62754D42D009B22DF /* API */,
 				3DAFCB9E26625DDF008E9803 /* Extension + Public */,
 			);
 			path = GongSaeng;
@@ -415,7 +422,9 @@
 			isa = PBXGroup;
 			children = (
 				A745D04627269D3900844189 /* Notice.storyboard */,
+				A7A9B3D22754CF45009B22DF /* Notice.swift */,
 				A745D04827269E7D00844189 /* NoticeListViewController.swift */,
+				A7A9B3D42754D200009B22DF /* NoticeListCellViewModel.swift */,
 				A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */,
 			);
 			path = Notice;
@@ -483,6 +492,14 @@
 				A777950C2707620B00C1C3FD /* ReservationPopUp */,
 			);
 			path = Reservation;
+			sourceTree = "<group>";
+		};
+		A7A9B3D62754D42D009B22DF /* API */ = {
+			isa = PBXGroup;
+			children = (
+				A7A9B3D92754DBB6009B22DF /* NoticeNetwork.swift */,
+			);
+			path = API;
 			sourceTree = "<group>";
 		};
 		A7AE9F3726EF2C9B0082C855 /* PopUp */ = {
@@ -649,9 +666,11 @@
 				3D231A6A266E629D00080E9B /* MateCell.swift in Sources */,
 				A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */,
 				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
+				A7A9B3D52754D200009B22DF /* NoticeListCellViewModel.swift in Sources */,
 				A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
 				A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */,
+				A7A9B3D32754CF45009B22DF /* Notice.swift in Sources */,
 				A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */,
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,
@@ -671,6 +690,7 @@
 				A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */,
 				A7EB141D27104662001E8709 /* CheckIDInfoPopUpViewController.swift in Sources */,
 				A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */,
+				A7A9B3DA2754DBB6009B22DF /* NoticeNetwork.swift in Sources */,
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,
 				A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */,
 				A7674F7426EF9A6500AE60FA /* RequestCheckInOutViewController.swift in Sources */,

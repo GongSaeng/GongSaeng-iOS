@@ -10,15 +10,35 @@ import UIKit
 class NoticeListViewController: UIViewController {
     
     let colorBlack20: UIColor = UIColor(white: 0, alpha: 0.2)
+    private var notices = [Notice]()
+    private var filteredNotices = [Notice]()
     
     @IBOutlet weak var allButton: UIButton!
     @IBOutlet weak var noticeButton: UIButton!
     @IBOutlet weak var cermonyButton: UIButton!
     @IBOutlet weak var etcButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureView()
+        fetchNotices()
+    }
+    
+    // MARK: API
+    private func fetchNotices() {
+        NoticeNetwork.fetchNotice { notices in
+            self.notices = notices
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
+    // MARK: Helpers
+    private func configureView() {
         [allButton, noticeButton, cermonyButton, etcButton].forEach {
             $0?.layer.borderWidth = 1
             $0?.layer.borderColor = UIColor(named: "colorBlueGreen")?.cgColor
@@ -29,7 +49,7 @@ class NoticeListViewController: UIViewController {
         classficationButtonTapped(button: allButton)
     }
     
-    func classficationButtonTapped(button: UIButton) {
+    private func classficationButtonTapped(button: UIButton) {
         [allButton, noticeButton, cermonyButton, etcButton].forEach {
             if $0 == button {
                 $0?.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
@@ -44,7 +64,7 @@ class NoticeListViewController: UIViewController {
     }
     
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func allButtonTapped(_ sender: UIButton) {
@@ -64,17 +84,21 @@ class NoticeListViewController: UIViewController {
     }
 }
 
+// MARK: TableView DataSource
 extension NoticeListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return notices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeTableViewCell", for: indexPath) as? NoticeTableViewCell else { return NoticeTableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeTableViewCell", for: indexPath) as? NoticeTableViewCell else { return UITableViewCell() }
+        let notice = notices[indexPath.row]
+        cell.viewModel = NoticeListCellViewModel(notice: notice)
         return cell
     }
 }
 
+// MARK: TableView Delegate
 extension NoticeListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 150
@@ -83,13 +107,23 @@ extension NoticeListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Notice", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "NoticeDetailViewController") as! NoticeDetailViewController
+        
         viewController.modalPresentationStyle = .fullScreen
-        present(viewController, animated: true, completion: nil)
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
+// MARK: TableViewCell
 class NoticeTableViewCell: UITableViewCell {
+    // MARK: Properties
+    var viewModel: NoticeListCellViewModel? {
+        didSet { configure() }
+    }
     
+    @IBOutlet weak var categoryLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var contentsLabel: UITextView!
+    @IBOutlet weak var uploadedTimeLabel: UILabel!
     @IBOutlet weak var managerImageView: UIImageView!
     @IBOutlet weak var thumnailImageView: UIImageView!
     
@@ -98,5 +132,14 @@ class NoticeTableViewCell: UITableViewCell {
         
         managerImageView.layer.cornerRadius = managerImageView.frame.height / 2
         thumnailImageView.layer.cornerRadius = 4
+    }
+    
+    func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        categoryLabel.text = viewModel.category
+        titleLabel.text = viewModel.title
+        contentsLabel.text = viewModel.contents
+        uploadedTimeLabel.text = viewModel.time
     }
 }

@@ -81,7 +81,7 @@ class NoticeDetailViewController: UIViewController {
     }
     
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
 }
 

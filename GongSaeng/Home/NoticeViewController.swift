@@ -15,7 +15,9 @@ class NoticeViewController: UIViewController {
     
     @IBAction func lookAtAllThingsButtonHandler(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Notice", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "NoticeListViewController") as! NoticeListViewController
+        let rootViewController = storyboard.instantiateViewController(withIdentifier: "NoticeListViewController") as! NoticeListViewController
+        let viewController = UINavigationController(rootViewController: rootViewController)
+        viewController.navigationBar.isHidden = true
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true, completion: nil)
     }
