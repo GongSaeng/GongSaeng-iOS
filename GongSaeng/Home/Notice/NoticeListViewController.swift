@@ -25,6 +25,13 @@ class NoticeListViewController: UIViewController {
         
         configureView()
         fetchNotices()
+        
+        tableView.refreshControl = UIRefreshControl()
+        let refreshControl = self.tableView.refreshControl
+        refreshControl?.backgroundColor = .white
+        refreshControl?.tintColor = .darkGray
+        refreshControl?.attributedTitle =  NSAttributedString(string: "당겨서 새로고침")
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
     // MARK: API
@@ -33,11 +40,19 @@ class NoticeListViewController: UIViewController {
             self.notices = notices
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
             }
         }
     }
     
     // MARK: Helpers
+    @objc func refresh() {
+        DispatchQueue.global(qos: .background).async { [weak self] in
+            guard let self = self else { return }
+            self.fetchNotices()
+        }
+    }
+    
     private func configureView() {
         [allButton, noticeButton, cermonyButton, etcButton].forEach {
             $0?.layer.borderWidth = 1
