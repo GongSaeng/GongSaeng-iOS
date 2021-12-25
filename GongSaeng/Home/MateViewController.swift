@@ -41,6 +41,7 @@ class MateViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Mate", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "MateListViewController") as! MateListViewController
         viewController.modalPresentationStyle = .fullScreen
+        viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

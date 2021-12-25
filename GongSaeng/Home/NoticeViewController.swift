@@ -17,6 +17,7 @@ class NoticeViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Notice", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "NoticeListViewController") as! NoticeListViewController
         viewController.modalPresentationStyle = .fullScreen
+        viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
