@@ -41,9 +41,9 @@ class ImmediationTableViewController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "checkToUse" {
-            let vc = segue.destination as? EnterUsageTimeViewController
+            let viewController = segue.destination as? EnterUsageTimeViewController
             if let publicItem = sender as? Public {
-                vc?.selectedPublic = publicItem
+                viewController?.selectedPublic = publicItem
             }
         }
     }

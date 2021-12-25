@@ -9,7 +9,7 @@ import UIKit
 
 class MateListViewController: UIViewController {
     
-    let viewModel: MateViewModel = MateViewModel()
+//    let viewModel: MateViewModel = MateViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,14 +22,15 @@ class MateListViewController: UIViewController {
 
 extension MateListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numOfMates
+//        return viewModel.numOfMates
+        return 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MateCell", for: indexPath) as? MateCell else {
             return UICollectionViewCell()
         }
-        cell.updateUI(at: viewModel.indexOfMate(at: indexPath.item))
+//        cell.updateUI(at: viewModel.indexOfMate(at: indexPath.item))
         return cell
     }
 }

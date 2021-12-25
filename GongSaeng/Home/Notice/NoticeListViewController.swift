@@ -26,6 +26,7 @@ class NoticeListViewController: UIViewController {
         configureView()
         fetchNotices()
         
+        // 당겨서 새로고침
         tableView.refreshControl = UIRefreshControl()
         let refreshControl = self.tableView.refreshControl
         refreshControl?.backgroundColor = .white

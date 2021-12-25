@@ -9,17 +9,34 @@ import UIKit
 
 class MateViewController: UIViewController {
     
-    let viewModel: MateViewModel = MateViewModel()
+//    let viewModel: MateViewModel = MateViewModel()
+    private var mates = [Mate]()
+    
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchMates()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    // MARK: API
+    private func fetchMates() {
+        MateNetwork.fetchMate(department: "한국장학재단") { mates in
+            self.mates = mates
+            print("DEBUG: \(mates)")
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
+    // MARK: Helpers
+    
+    
+    // MARK: Actions
     @IBAction func lookAtAllThingsButtonHandler(_ sender: Any) {
         let sb = UIStoryboard(name: "Mate", bundle: nil)
         let vc = sb.instantiateViewController(identifier: "MateListViewController") as MateListViewController
@@ -30,14 +47,16 @@ class MateViewController: UIViewController {
 
 extension MateViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.numOfMates
+        return mates.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MateCell", for: indexPath) as? MateCell else {
             return UICollectionViewCell()
         }
-        cell.updateUI(at: viewModel.indexOfMate(at: indexPath.item))
+        let mate = mates[indexPath.item]
+        cell.viewModel = MateCellViewModel(mate: mate)
+//        cell.updateUI(at: viewModel.indexOfMate(at: indexPath.item))
         return cell
     }
 }

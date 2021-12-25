@@ -100,6 +100,8 @@
 		A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */; };
 		A7F4193B26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F4193A26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard */; };
 		A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F4193C26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift */; };
+		A7F9DCED27759495005E9113 /* MateNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F9DCEC27759494005E9113 /* MateNetwork.swift */; };
+		A7F9DCEF27759E0C005E9113 /* MateCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F9DCEE27759E0C005E9113 /* MateCellViewModel.swift */; };
 		A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */; };
 		A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */; };
 		A7FA636426EE2519005D9785 /* UITextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FA636326EE2519005D9785 /* UITextView.swift */; };
@@ -203,6 +205,8 @@
 		A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInContainerViewController.swift; sourceTree = "<group>"; };
 		A7F4193A26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckInRequestPopUp.storyboard; sourceTree = "<group>"; };
 		A7F4193C26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInRequestPopUpViewController.swift; sourceTree = "<group>"; };
+		A7F9DCEC27759494005E9113 /* MateNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateNetwork.swift; sourceTree = "<group>"; };
+		A7F9DCEE27759E0C005E9113 /* MateCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateCellViewModel.swift; sourceTree = "<group>"; };
 		A7FA635F26EDDBF7005D9785 /* EditProfile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = EditProfile.storyboard; sourceTree = "<group>"; };
 		A7FA636126EDDC0F005D9785 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		A7FA636326EE2519005D9785 /* UITextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextView.swift; sourceTree = "<group>"; };
@@ -228,6 +232,7 @@
 				3D231A67266E44BA00080E9B /* Mate.swift */,
 				3D231A69266E629D00080E9B /* MateCell.swift */,
 				3D00C8B4266E3999006236A0 /* MateListViewController.swift */,
+				A7F9DCEE27759E0C005E9113 /* MateCellViewModel.swift */,
 			);
 			path = Mate;
 			sourceTree = "<group>";
@@ -498,6 +503,7 @@
 			isa = PBXGroup;
 			children = (
 				A7A9B3D92754DBB6009B22DF /* NoticeNetwork.swift */,
+				A7F9DCEC27759494005E9113 /* MateNetwork.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -667,6 +673,7 @@
 				A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */,
 				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
 				A7A9B3D52754D200009B22DF /* NoticeListCellViewModel.swift in Sources */,
+				A7F9DCEF27759E0C005E9113 /* MateCellViewModel.swift in Sources */,
 				A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
 				A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */,
@@ -675,6 +682,7 @@
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,
 				A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */,
+				A7F9DCED27759495005E9113 /* MateNetwork.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
 				A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */,
 				A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */,
