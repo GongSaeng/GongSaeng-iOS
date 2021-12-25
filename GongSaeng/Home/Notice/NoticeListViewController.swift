@@ -35,6 +35,18 @@ class NoticeListViewController: UIViewController {
         refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     // MARK: API
     private func fetchNotices() {
         NoticeNetwork.fetchNotice { notices in
@@ -80,7 +92,7 @@ class NoticeListViewController: UIViewController {
     }
     
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
-        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func allButtonTapped(_ sender: UIButton) {

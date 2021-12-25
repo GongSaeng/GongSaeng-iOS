@@ -38,10 +38,10 @@ class MateViewController: UIViewController {
     
     // MARK: Actions
     @IBAction func lookAtAllThingsButtonHandler(_ sender: Any) {
-        let sb = UIStoryboard(name: "Mate", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "MateListViewController") as MateListViewController
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        let storyboard = UIStoryboard(name: "Mate", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MateListViewController") as! MateListViewController
+        viewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
 

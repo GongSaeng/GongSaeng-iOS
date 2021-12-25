@@ -9,8 +9,8 @@ import UIKit
 
 class AppTabbarController: UITabBarController {
 
-    var loginUserString: String = ""
-    var loginUser: User = User(id: "jyy0223", password: "1234qwer", name: "조영우", dateOfBirth: "19950223", phoneNumber: "01027111995", department: "부산센터", nickName: "하하하하하") // firebase에서 유저id로 부터 User를 들고와야함
+    var loginUserString: String = "gongsaeng"
+    var loginUser: User = User(id: "gongsaeng", password: "1234qwer", name: "유재석", dateOfBirth: "20001225", phoneNumber: "01012345678", department: "한국장학재단", nickName: "공생개발자") // firebase에서 유저id로 부터 User를 들고와야함
     
     override var shouldAutorotate: Bool {
         return false

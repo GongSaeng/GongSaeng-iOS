@@ -38,6 +38,18 @@ class NoticeDetailViewController: UIViewController {
         placeHolderSetting(commentTextView)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tabBarController?.tabBar.isHidden = true
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     // 화면터치 시 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.commentTextView.resignFirstResponder()

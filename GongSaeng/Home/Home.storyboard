@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="h7Q-wD-ksR">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -142,7 +142,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzp-yX-Ghf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1762.3188405797102" y="644.86607142857144"/>
+            <point key="canvasLocation" x="-852.17391304347836" y="644.86607142857144"/>
         </scene>
         <!--커뮤니티-->
         <scene sceneID="rEi-UK-wgv">
@@ -158,7 +158,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFR-dX-AJY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-859" y="645"/>
+            <point key="canvasLocation" x="50.724637681159422" y="644.86607142857144"/>
         </scene>
         <!--알림-->
         <scene sceneID="bJW-Hv-L5a">
@@ -543,7 +543,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJZ-ju-DKq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-49.275362318840585" y="644.86607142857144"/>
+            <point key="canvasLocation" x="860.86956521739137" y="644.86607142857144"/>
         </scene>
         <!--마이페이지-->
         <scene sceneID="ZdA-LT-yXD">
@@ -779,9 +779,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7W9-mz-zqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="747.82608695652175" y="644.86607142857144"/>
+            <point key="canvasLocation" x="1657.9710144927537" y="644.86607142857144"/>
         </scene>
-        <!--홈-->
+        <!--Home View Controller-->
         <scene sceneID="mD1-zO-Wod">
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="AYN-gc-rdz" customClass="HomeViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
@@ -790,7 +790,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bo3-Kb-rgC">
-                                <rect key="frame" x="0.0" y="44" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="770"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3I-jd-lv7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
@@ -986,12 +986,12 @@
                             <constraint firstItem="dgB-2I-c1e" firstAttribute="trailing" secondItem="X3I-jd-lv7" secondAttribute="trailing" id="x5Y-Mb-fi9"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="홈" image="homeIcon" selectedImage="homeIconOn" id="RWe-f8-CGd"/>
+                    <navigationItem key="navigationItem" id="uPH-W7-6aC"/>
                     <size key="freeformSize" width="414" height="941"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AeR-f0-QfX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3539" y="645"/>
+            <point key="canvasLocation" x="-2628.985507246377" y="644.53125"/>
         </scene>
         <!--App Tabbar Controller-->
         <scene sceneID="KaK-Rc-ytx">
@@ -1004,7 +1004,7 @@
                         <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="AYN-gc-rdz" kind="relationship" relationship="viewControllers" id="IiA-IY-9EC"/>
+                        <segue destination="HOK-GG-r4D" kind="relationship" relationship="viewControllers" id="IiA-IY-9EC"/>
                         <segue destination="xhK-am-vmN" kind="relationship" relationship="viewControllers" id="IYo-En-kFi"/>
                         <segue destination="jAw-0d-jUw" kind="relationship" relationship="viewControllers" id="fha-Ow-80Z"/>
                         <segue destination="AsK-aE-v5d" kind="relationship" relationship="viewControllers" id="IoX-8j-yeb"/>
@@ -1116,7 +1116,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qbf-3a-LUN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2759" y="528"/>
+            <point key="canvasLocation" x="-1849.2753623188407" y="527.34375"/>
         </scene>
         <!--Mate View Controller-->
         <scene sceneID="wYx-1l-HdM">
@@ -1282,7 +1282,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZS5-j0-sOp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2759.4202898550725" y="793.52678571428567"/>
+            <point key="canvasLocation" x="-1849.2753623188407" y="793.19196428571422"/>
+        </scene>
+        <!--홈-->
+        <scene sceneID="vE5-Po-3s4">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HOK-GG-r4D" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="홈" image="homeIcon" selectedImage="homeIconOn" id="RWe-f8-CGd"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="L5C-mI-E1M">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="AYN-gc-rdz" kind="relationship" relationship="rootViewController" id="4Aa-X6-VvA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jDQ-nB-Xfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-3539.130434782609" y="644.86607142857144"/>
         </scene>
     </scenes>
     <resources>
