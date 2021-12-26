@@ -129,7 +129,7 @@ extension NoticeListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let storyboard = UIStoryboard(name: "Notice", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "NoticeDetailViewController") as! NoticeDetailViewController
-        
+        viewController.notice = notices[indexPath.row]
         viewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(viewController, animated: true)
     }
@@ -149,6 +149,7 @@ class NoticeTableViewCell: UITableViewCell {
     @IBOutlet weak var managerImageView: UIImageView!
     @IBOutlet weak var thumnailImageView: UIImageView!
     
+    // MARK: Lifecycle
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -156,6 +157,7 @@ class NoticeTableViewCell: UITableViewCell {
         thumnailImageView.layer.cornerRadius = 4
     }
     
+    // MARK: Helpers
     func configure() {
         guard let viewModel = viewModel else { return }
         

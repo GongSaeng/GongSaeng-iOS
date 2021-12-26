@@ -8,11 +8,20 @@
 import UIKit
 
 class NoticeViewController: UIViewController {
-
+    
+    // MARK: Properties
+    private var notices = [Notice]()
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        fetchNotices()
     }
     
+    // MARK: Actions
     @IBAction func lookAtAllThingsButtonHandler(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Notice", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(withIdentifier: "NoticeListViewController") as! NoticeListViewController
@@ -20,34 +29,67 @@ class NoticeViewController: UIViewController {
         viewController.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    // MAKR: Helpers
+    private func fetchNotices() {
+        NoticeNetwork.fetchNotice { notices in
+            self.notices = notices
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
 }
 
 extension NoticeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return notices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeCell", for: indexPath) as? NoticeCell else {
-            return UITableViewCell()
-        }
-        cell.updateUI()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeCell", for: indexPath) as? NoticeCell else { return NoticeCell() }
+        let notice = notices[indexPath.row]
+        cell.viewModel = NoticeListCellViewModel(notice: notice)
         return cell
     }
 }
 
 extension NoticeViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Notice", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "NoticeDetailViewController") as! NoticeDetailViewController
+        viewController.notice = notices[indexPath.row]
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(viewController, animated: true)
+    }
 }
 
 class NoticeCell: UITableViewCell {
+    
+    // MARK: Properties
+    var viewModel: NoticeListCellViewModel? {
+        didSet { configure() }
+    }
+    
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
     
-    func updateUI() {
-        DispatchQueue.main.async {
-            self.dateLabel.text = "어제"
-            self.titleLabel.text = "긴급 소방점검으로 인해 출입문을 개방하면서 앞으로는 통금에 대한 제한이 없어집니다."
-        }
+    // MARK: Lifecycle
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        configure()
+    }
+  
+    
+    // MARK: Helpers
+    private func configure() {
+        guard let viewModel = viewModel else { return }
+        
+        titleLabel.text = viewModel.title
+        guard let timeString = viewModel.time else { return }
+        let dateString = String(timeString[timeString.index(timeString.startIndex, offsetBy: 4)...])
+        dateLabel.text = dateString
     }
 }

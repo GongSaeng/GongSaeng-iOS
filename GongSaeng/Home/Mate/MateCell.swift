@@ -8,9 +8,10 @@
 import UIKit
 
 class MateCell: UICollectionViewCell {
+    
     // MARK: Properties
     var viewModel: MateCellViewModel? {
-        didSet { configure() }
+        didSet { fetchMate() }
     }
     
     @IBOutlet weak var profileImage: UIImageView!
@@ -31,7 +32,7 @@ class MateCell: UICollectionViewCell {
         self.layer.masksToBounds = true
     }
     
-    func configure() {
+    func fetchMate() {
         guard let viewModel = viewModel else { return }
         
         profileImage.image = UIImage(named: "profileImage_0")

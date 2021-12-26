@@ -26,15 +26,11 @@ class MateViewController: UIViewController {
     private func fetchMates() {
         MateNetwork.fetchMate(department: "한국장학재단") { mates in
             self.mates = mates
-            print("DEBUG: \(mates)")
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
             }
         }
     }
-    
-    // MARK: Helpers
-    
     
     // MARK: Actions
     @IBAction func lookAtAllThingsButtonHandler(_ sender: Any) {
@@ -42,6 +38,10 @@ class MateViewController: UIViewController {
         let viewController = storyboard.instantiateViewController(withIdentifier: "MateListViewController") as! MateListViewController
         viewController.modalPresentationStyle = .fullScreen
         viewController.hidesBottomBarWhenPushed = true
+        if mates.isEmpty {
+            fetchMates()
+        }
+        viewController.mates = self.mates  
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
@@ -57,15 +57,12 @@ extension MateViewController: UICollectionViewDataSource {
         }
         let mate = mates[indexPath.item]
         cell.viewModel = MateCellViewModel(mate: mate)
-//        cell.updateUI(at: viewModel.indexOfMate(at: indexPath.item))
         return cell
     }
 }
 
 extension MateViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//        let height: CGFloat = collectionView.bounds.height
-//        let width: CGFloat = height * 224 / 252
         return CGSize(width: 224, height: 252)
     }
     

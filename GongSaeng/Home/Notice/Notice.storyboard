@@ -4,7 +4,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -325,70 +324,8 @@
                                     <constraint firstItem="N1S-aY-79V" firstAttribute="centerY" secondItem="9fB-Im-vuT" secondAttribute="centerY" id="y0R-gI-mdS"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ans-dp-Zc0">
-                                <rect key="frame" x="0.0" y="804" width="414" height="58"/>
-                                <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lGf-7F-PlR">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1"/>
-                                        <color key="backgroundColor" white="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="1" id="5YP-RT-qKY"/>
-                                        </constraints>
-                                    </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="75p-ji-5rn">
-                                        <rect key="frame" x="16" y="6" width="334" height="45"/>
-                                        <subviews>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="댓글 작성중입니다." translatesAutoresizingMaskIntoConstraints="NO" id="jzq-An-KOf">
-                                                <rect key="frame" x="20" y="6" width="294" height="33"/>
-                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="33" id="y4P-xB-Yj6"/>
-                                                </constraints>
-                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                <connections>
-                                                    <outlet property="delegate" destination="pQj-41-lW4" id="V1Z-Yn-g6i"/>
-                                                </connections>
-                                            </textView>
-                                        </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <constraints>
-                                            <constraint firstAttribute="bottom" secondItem="jzq-An-KOf" secondAttribute="bottom" constant="6" id="D8M-Rd-m3e"/>
-                                            <constraint firstAttribute="trailing" secondItem="jzq-An-KOf" secondAttribute="trailing" constant="20" id="HYz-3b-6B6"/>
-                                            <constraint firstItem="jzq-An-KOf" firstAttribute="top" secondItem="75p-ji-5rn" secondAttribute="top" constant="6" id="USy-lB-YMf"/>
-                                            <constraint firstItem="jzq-An-KOf" firstAttribute="centerY" secondItem="75p-ji-5rn" secondAttribute="centerY" id="W7a-ua-8aE"/>
-                                            <constraint firstItem="jzq-An-KOf" firstAttribute="leading" secondItem="75p-ji-5rn" secondAttribute="leading" constant="20" id="ZB6-Nc-bmN"/>
-                                        </constraints>
-                                    </view>
-                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ns7-r9-dsQ">
-                                        <rect key="frame" x="356" y="8" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="Pn4-7V-ge0"/>
-                                            <constraint firstAttribute="width" constant="40" id="aIw-dv-0nA"/>
-                                        </constraints>
-                                        <color key="tintColor" red="1" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                        <state key="normal">
-                                            <imageReference key="image" image="arrow.up.circle.fill" catalog="system" symbolScale="default"/>
-                                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="40" scale="default"/>
-                                        </state>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="lGf-7F-PlR" firstAttribute="top" secondItem="ans-dp-Zc0" secondAttribute="top" id="2Hm-am-WHC"/>
-                                    <constraint firstItem="75p-ji-5rn" firstAttribute="top" secondItem="ans-dp-Zc0" secondAttribute="top" constant="6" id="7uS-mV-XoD"/>
-                                    <constraint firstItem="75p-ji-5rn" firstAttribute="leading" secondItem="ans-dp-Zc0" secondAttribute="leading" constant="16" id="G8f-FK-8hq"/>
-                                    <constraint firstItem="lGf-7F-PlR" firstAttribute="leading" secondItem="ans-dp-Zc0" secondAttribute="leading" id="KzD-f6-wjM"/>
-                                    <constraint firstItem="ns7-r9-dsQ" firstAttribute="top" secondItem="ans-dp-Zc0" secondAttribute="top" constant="8" id="QqT-bm-cWt"/>
-                                    <constraint firstAttribute="bottom" secondItem="75p-ji-5rn" secondAttribute="bottom" constant="7" id="fLi-so-SPX"/>
-                                    <constraint firstAttribute="trailing" secondItem="ns7-r9-dsQ" secondAttribute="trailing" constant="18" id="gyJ-T9-3Ye"/>
-                                    <constraint firstAttribute="trailing" secondItem="lGf-7F-PlR" secondAttribute="trailing" id="jE1-Bl-XNd"/>
-                                    <constraint firstItem="ns7-r9-dsQ" firstAttribute="leading" secondItem="75p-ji-5rn" secondAttribute="trailing" constant="6" id="wId-9u-tQM"/>
-                                </constraints>
-                            </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="NoticeTableView" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="L4q-uZ-uBh" customClass="NoticeTableView" customModule="GongSaeng" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="100" width="414" height="704"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <inset key="separatorInset" minX="16" minY="0.0" maxX="18" maxY="0.0"/>
                                 <view key="tableHeaderView" contentMode="scaleToFill" id="4Cx-sD-H9D">
@@ -635,23 +572,19 @@
                             <constraint firstItem="f23-K0-h7D" firstAttribute="trailing" secondItem="L4q-uZ-uBh" secondAttribute="trailing" id="0SU-zP-IpX"/>
                             <constraint firstItem="L4q-uZ-uBh" firstAttribute="leading" secondItem="f23-K0-h7D" secondAttribute="leading" id="1yu-rP-wWw"/>
                             <constraint firstItem="Dru-TJ-uOX" firstAttribute="top" secondItem="f23-K0-h7D" secondAttribute="top" id="4es-xK-hn7"/>
-                            <constraint firstItem="ans-dp-Zc0" firstAttribute="leading" secondItem="f23-K0-h7D" secondAttribute="leading" id="AUP-3D-Pxe"/>
                             <constraint firstItem="L4q-uZ-uBh" firstAttribute="top" secondItem="Dru-TJ-uOX" secondAttribute="bottom" id="LuT-Bd-Fo7"/>
-                            <constraint firstItem="ans-dp-Zc0" firstAttribute="top" secondItem="L4q-uZ-uBh" secondAttribute="bottom" id="RZ1-86-hi2"/>
                             <constraint firstItem="f23-K0-h7D" firstAttribute="trailing" secondItem="Dru-TJ-uOX" secondAttribute="trailing" id="SXH-BL-Adh"/>
                             <constraint firstItem="Dru-TJ-uOX" firstAttribute="leading" secondItem="f23-K0-h7D" secondAttribute="leading" id="bEf-Yy-51K"/>
-                            <constraint firstItem="f23-K0-h7D" firstAttribute="bottom" secondItem="ans-dp-Zc0" secondAttribute="bottom" id="vY3-RG-q2Y"/>
-                            <constraint firstItem="ans-dp-Zc0" firstAttribute="trailing" secondItem="f23-K0-h7D" secondAttribute="trailing" id="wmW-sp-k2o"/>
+                            <constraint firstItem="f23-K0-h7D" firstAttribute="bottom" secondItem="L4q-uZ-uBh" secondAttribute="bottom" id="frn-D1-tW9"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="boundaryPresentingView" destination="lGf-7F-PlR" id="6cz-8t-6xx"/>
-                        <outlet property="boundaryPresentingViewBottomConstraint" destination="vY3-RG-q2Y" id="lNX-mC-kpa"/>
-                        <outlet property="commentTextView" destination="jzq-An-KOf" id="C68-98-8fa"/>
-                        <outlet property="commentTextViewHeightConstraint" destination="y4P-xB-Yj6" id="5Rq-ig-PV1"/>
+                        <outlet property="categoryLabel" destination="GQm-SV-TZa" id="CFr-jW-aAd"/>
+                        <outlet property="contentsLabel" destination="FYg-o4-oUb" id="l2S-Sr-UnI"/>
                         <outlet property="postingUserImageView" destination="Bss-RI-GdV" id="SPK-LP-XLA"/>
                         <outlet property="tableView" destination="L4q-uZ-uBh" id="YyQ-TI-pB3"/>
-                        <outlet property="textContainView" destination="75p-ji-5rn" id="gXi-EY-ZKo"/>
+                        <outlet property="timeLabel" destination="fvU-Xz-QHO" id="EJI-09-0hE"/>
+                        <outlet property="titleLabel" destination="lhW-v1-3cD" id="im4-ql-RId"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcO-CP-joD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -661,7 +594,6 @@
     </scenes>
     <resources>
         <image name="3" width="300" height="300"/>
-        <image name="arrow.up.circle.fill" catalog="system" width="128" height="121"/>
         <image name="backward" width="10.5" height="19"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="message" width="15.5" height="13.5"/>

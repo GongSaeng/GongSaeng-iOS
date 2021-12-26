@@ -10,7 +10,10 @@ import UIKit
 class MateListViewController: UIViewController {
     
 //    let viewModel: MateViewModel = MateViewModel()
+    // MARK: Properties
+    var mates = [Mate]()
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -21,26 +24,31 @@ class MateListViewController: UIViewController {
         tabBarController?.tabBar.isHidden = true
     }
     
+    // MARK: Actions
     @IBAction func back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
     }
+    
 }
 
+// MARK: UICollectionViewDataSource
 extension MateListViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return viewModel.numOfMates
-        return 0
+        return mates.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MateCell", for: indexPath) as? MateCell else {
             return UICollectionViewCell()
         }
-//        cell.updateUI(at: viewModel.indexOfMate(at: indexPath.item))
+        let mate = mates[indexPath.item]
+        cell.viewModel = MateCellViewModel(mate: mate)
         return cell
     }
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
 extension MateListViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let sideSpacing: CGFloat = CGFloat(16.0)

@@ -22,7 +22,6 @@ struct MateNetwork {
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
-            print("DEBUG: data -> \(data!)")
             guard error == nil,
                   let response = response as? HTTPURLResponse,
                   let data = data,
