@@ -62,7 +62,7 @@ class UserManager {
     static var lastId: Int = 0
     
     //승인되지 않은 유저 테스트용
-    var users: [User] = [User(id: "jyy0223", password: "1234qwer", isDone: true, name: "조영우", dateOfBirth: "19950223", phoneNumber: "01027111995", department: "한국장학재단 부산센터", nickName: "응우")]
+    var users: [User] = [User(id: "jyy0223", password: "1234qwer", isDone: true, name: "조영우", dateOfBirth: "19950223", phoneNumber: "01027111995", department: "한국장학재단 부산센터", nickName: "응우"), User(id: "gongsaeng", password: "1234qwer", isDone: true, name: "유재석", dateOfBirth: "20001225", phoneNumber: "01012345678", department: "한국장학재단", nickName: "공생개발자")]
     
     // 데이터를 생성하고 추가하는 createUser, addUser의 관계를 잘 파악해야 한다.
     func createUser(id: String, password: String, name: String, dateOfBirth: String, phoneNumber: String, department: String, nickName: String) -> User {

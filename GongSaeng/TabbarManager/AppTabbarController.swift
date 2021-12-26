@@ -27,3 +27,9 @@ class AppTabbarController: UITabBarController {
     }
 }
 
+extension AppTabbarController: LoginViewControllerDelegate {
+    func controllerDidCompleteLogin(_ controller: LoginViewController) {
+        selectedIndex = 0
+        controller.dismiss(animated: true)
+    }
+}

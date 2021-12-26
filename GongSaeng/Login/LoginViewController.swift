@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol LoginViewControllerDelegate: AnyObject {
+    func controllerDidCompleteLogin(_ controller: LoginViewController)
+}
+
 class LoginViewController: UIViewController {
+    
+    weak var delegate: LoginViewControllerDelegate?
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -36,7 +42,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func back(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     @IBAction func tapBG(_ sender: Any) {
@@ -69,11 +75,7 @@ class LoginViewController: UIViewController {
         }
         
         // To Home
-        let sb = UIStoryboard.init(name: "Home", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "AppTabbarController") as AppTabbarController
-        vc.modalPresentationStyle = .fullScreen
-        vc.loginUserString = loginUser.id
-        present(vc, animated: true, completion: nil)
+        delegate?.controllerDidCompleteLogin(self)
     }
     
     func loginUserCreate(id: String?, password: String?) -> User? {

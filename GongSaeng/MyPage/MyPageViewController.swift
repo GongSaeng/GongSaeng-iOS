@@ -63,14 +63,14 @@ class MyPageViewController: UIViewController {
     }
     // 로그아웃
     @IBAction func logOutButtonTapped(_ sender: UIButton) {
-        let storyBoard = UIStoryboard.init(name: "LogOutPopUp", bundle: nil)
+        let storyBoard = UIStoryboard.init(name: "LogOutPopUp", bundle: Bundle.main)
         let popUpViewController = storyBoard.instantiateViewController(identifier: "LogOutPopUpViewController") as! LogOutPopUpViewController
         popUpViewController.modalPresentationStyle = .overCurrentContext
         self.present(popUpViewController, animated: false, completion: nil)
     }
     // 회원탈퇴
     @IBAction func membershipWithdrawlButtonTapped(_ sender: UIButton) {
-        let storyBoard = UIStoryboard.init(name: "MembershipWithdrawlPopUp", bundle: nil)
+        let storyBoard = UIStoryboard.init(name: "MembershipWithdrawlPopUp", bundle: Bundle.main)
         let popUpViewController = storyBoard.instantiateViewController(identifier: "MembershipWithdrawlPopUpViewController") as! MembershipWithdrawlPopUpViewController
         popUpViewController.modalPresentationStyle = .overCurrentContext
         self.present(popUpViewController, animated: false, completion: nil)

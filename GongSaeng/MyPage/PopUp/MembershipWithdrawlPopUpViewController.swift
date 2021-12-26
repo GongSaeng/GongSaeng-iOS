@@ -29,12 +29,20 @@ class MembershipWithdrawlPopUpViewController: UIViewController {
     }
     
     @IBAction func withdrawlButtonTapped(_ sender: UIButton) {
+        // 회원탈퇴
         guard let rootViewController = self.view.window?.rootViewController else { return }
-        self.presentingViewController?.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: {
-            let storyBoard = UIStoryboard.init(name: "MembershipWithdrawlPopUp", bundle: nil)
-            let popUpViewController = storyBoard.instantiateViewController(identifier: "MembershipWithdrawlCompletedPopUpViewController")
-            popUpViewController.modalPresentationStyle = .overCurrentContext
-            rootViewController.present(popUpViewController, animated: false, completion: nil)
-        })
+        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
+        let naviRootViewController = storyboard.instantiateViewController(withIdentifier: "FirstViewController")
+        let viewController = UINavigationController(rootViewController: naviRootViewController)
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.navigationBar.isHidden = true
+        dismiss(animated: false) {
+            rootViewController.present(viewController, animated: true) {
+                let storyBoard = UIStoryboard.init(name: "MembershipWithdrawlPopUp", bundle: Bundle.main)
+                let popUpViewController = storyBoard.instantiateViewController(identifier: "MembershipWithdrawlCompletedPopUpViewController")
+                popUpViewController.modalPresentationStyle = .overCurrentContext
+                viewController.present(popUpViewController, animated: false)
+            }
+        }
     }
 }

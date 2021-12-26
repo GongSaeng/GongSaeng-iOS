@@ -545,7 +545,7 @@
             </objects>
             <point key="canvasLocation" x="860.86956521739137" y="644.86607142857144"/>
         </scene>
-        <!--마이페이지-->
+        <!--My Page View Controller-->
         <scene sceneID="ZdA-LT-yXD">
             <objects>
                 <viewController id="831-R5-ggr" customClass="MyPageViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
@@ -554,20 +554,20 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmh-kE-XCE">
-                                <rect key="frame" x="15" y="60" width="147" height="24"/>
+                                <rect key="frame" x="15" y="104" width="147" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQ8-ob-dUV">
-                                <rect key="frame" x="0.0" y="99.5" width="414" height="1"/>
+                                <rect key="frame" x="0.0" y="143.5" width="414" height="1"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="H1V-sb-feR"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Noq-eC-QZN">
-                                <rect key="frame" x="16" y="130.5" width="42" height="24"/>
+                                <rect key="frame" x="16" y="174.5" width="42" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="B85-cy-zIc"/>
                                 </constraints>
@@ -576,7 +576,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHc-Jd-25W">
-                                <rect key="frame" x="16" y="170.5" width="158" height="40"/>
+                                <rect key="frame" x="16" y="214.5" width="158" height="40"/>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.40392156862745099" blue="0.38039215686274508" alpha="0.10120033112582781" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="158" id="4QY-jk-Da6"/>
@@ -591,21 +591,21 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image" translatesAutoresizingMaskIntoConstraints="NO" id="xqS-um-kXE">
-                                <rect key="frame" x="318" y="130.5" width="80" height="80"/>
+                                <rect key="frame" x="318" y="174.5" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="YNt-1M-uX7"/>
                                     <constraint firstAttribute="height" constant="80" id="ddL-m5-bXf"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JxD-Bv-GyR">
-                                <rect key="frame" x="0.0" y="240.5" width="414" height="8"/>
+                                <rect key="frame" x="0.0" y="284.5" width="414" height="8"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="zfz-qA-4hh"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58o-BK-uYz">
-                                <rect key="frame" x="0.0" y="248.5" width="414" height="564.5"/>
+                                <rect key="frame" x="0.0" y="292.5" width="414" height="520.5"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpN-tr-A8I">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="360"/>
@@ -770,7 +770,7 @@
                             <constraint firstItem="Sf1-N3-2wb" firstAttribute="trailing" secondItem="xqS-um-kXE" secondAttribute="trailing" constant="16" id="znw-7s-uyw"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="마이페이지" image="mypage" selectedImage="mypageOn" id="Txg-c7-SGd"/>
+                    <navigationItem key="navigationItem" id="ZLd-8F-ovh"/>
                     <connections>
                         <outlet property="editProfileButton" destination="MHc-Jd-25W" id="g5r-ES-Uld"/>
                         <outlet property="nickNameLabel" destination="Noq-eC-QZN" id="E7D-8J-W4h"/>
@@ -779,7 +779,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7W9-mz-zqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1657.9710144927537" y="644.86607142857144"/>
+            <point key="canvasLocation" x="2568.1159420289855" y="644.86607142857144"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="mD1-zO-Wod">
@@ -1008,7 +1008,7 @@
                         <segue destination="xhK-am-vmN" kind="relationship" relationship="viewControllers" id="IYo-En-kFi"/>
                         <segue destination="jAw-0d-jUw" kind="relationship" relationship="viewControllers" id="fha-Ow-80Z"/>
                         <segue destination="AsK-aE-v5d" kind="relationship" relationship="viewControllers" id="IoX-8j-yeb"/>
-                        <segue destination="831-R5-ggr" kind="relationship" relationship="viewControllers" id="HHO-4C-NFk"/>
+                        <segue destination="fI9-PN-Lm8" kind="relationship" relationship="viewControllers" id="HHO-4C-NFk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Uaq-SY-JZJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1302,6 +1302,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jDQ-nB-Xfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3539.130434782609" y="644.86607142857144"/>
+        </scene>
+        <!--마이페이지-->
+        <scene sceneID="Bfy-5Q-fWK">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fI9-PN-Lm8" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="마이페이지" image="mypage" selectedImage="mypageOn" id="Txg-c7-SGd"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="3kx-5A-4yF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="831-R5-ggr" kind="relationship" relationship="rootViewController" id="Xcw-4q-0KV"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8bg-VZ-AVI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1657.9710144927537" y="644.86607142857144"/>
         </scene>
     </scenes>
     <resources>

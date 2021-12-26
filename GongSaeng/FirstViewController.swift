@@ -22,17 +22,16 @@ class FirstViewController: UIViewController {
     }
     
     @IBAction func loginButtonHandler(_ sender: Any) {
-        let sb = UIStoryboard.init(name: "Login", bundle: nil)
-        let vc = sb.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-        vc.modalPresentationStyle = .fullScreen
-        present(vc, animated: true, completion: nil)
+        guard let rootViewController = view.window?.rootViewController as? AppTabbarController else { return }
+        let storyboard = UIStoryboard.init(name: "Login", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
+        viewController.delegate = rootViewController
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
+    
     @IBAction func registerButtonHandler(_ sender: Any) {
-        let storyBoard = UIStoryboard(name: "Register", bundle: nil)
-        let rootViewController = storyBoard.instantiateViewController(identifier: "RegisterViewController") as! RegisterViewController
-        let navigationViewController = UINavigationController(rootViewController: rootViewController)
-        navigationViewController.navigationBar.isHidden = true
-        navigationViewController.modalPresentationStyle = .fullScreen
-        present(navigationViewController, animated: true, completion: nil)
+        let storyBoard = UIStoryboard(name: "Register", bundle: Bundle.main)
+        let viewController = storyBoard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
 }
