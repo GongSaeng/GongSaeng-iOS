@@ -9,7 +9,11 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-//    var loginUser: User?
+    var user: User? {
+        didSet {
+            print("DEBUG: HomeViewController get user property")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,7 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        print("DEBUG: HomeViewController viewWillAppear")
         
 //        navigationController?.setNavigationBarHidden(true, animated: animated)
         navigationController?.navigationBar.isHidden = true

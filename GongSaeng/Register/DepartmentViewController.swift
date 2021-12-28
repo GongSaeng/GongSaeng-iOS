@@ -49,7 +49,8 @@ class DepartmentViewController: UIViewController {
         // 검색어가 있는지 확인, optional 안전하게 해제
         guard let searchTerm = textField.text, !searchTerm.isEmpty else { return }
         
-        SearchAPI.search(searchTerm) { (departments) in
+        SearchAPI.search(searchTerm) { [weak self] departments in
+            guard let self = self else { return }
             DispatchQueue.main.async {
                 self.viewModel.searchedDepartments = departments
                 self.departmentTableView.reloadData()

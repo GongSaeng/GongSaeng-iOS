@@ -41,7 +41,8 @@ class EditProfileViewController: UIViewController {
         guard let userInfo = notification.userInfo else { return }
         let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 
-        UIView.animate(withDuration: animationDuration, animations: {
+        UIView.animate(withDuration: animationDuration, animations: { [weak self] in
+            guard let self = self else { return }
             self.view.layoutIfNeeded()
         })
 

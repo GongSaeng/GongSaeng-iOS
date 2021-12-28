@@ -65,7 +65,9 @@ class CheckOutRequestDetailViewController: UIViewController {
         guard let userInfo = notification.userInfo else { return }
         let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
         if let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-            UIView.animate(withDuration: animationDuration, animations: { self.boundaryPresentingViewBottomConstraint.constant = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
+            UIView.animate(withDuration: animationDuration, animations: { [weak self] in
+                guard let self = self else { return }
+                self.boundaryPresentingViewBottomConstraint.constant = keyboardFrame.size.height - self.view.safeAreaInsets.bottom
                 self.view.layoutIfNeeded()
             })
 
@@ -81,7 +83,9 @@ class CheckOutRequestDetailViewController: UIViewController {
         guard let userInfo = notification.userInfo else { return }
         let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
 
-        UIView.animate(withDuration: animationDuration, animations: { self.boundaryPresentingViewBottomConstraint.constant = 0
+        UIView.animate(withDuration: animationDuration, animations: { [weak self] in
+            guard let self = self else { return }
+            self.boundaryPresentingViewBottomConstraint.constant = 0
             self.view.layoutIfNeeded()
         })
 

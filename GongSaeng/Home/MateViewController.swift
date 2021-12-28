@@ -26,11 +26,15 @@ class MateViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.isHidden = true
+        if mates == [] {
+            fetchMates()
+        }
     }
     
     // MARK: API
     private func fetchMates() {
-        MateNetwork.fetchMate(department: "한국장학재단") { mates in
+        MateNetwork.fetchMate(department: "한국장학재단") { [weak self] mates in
+            guard let self = self else { return }
             self.mates = mates
             DispatchQueue.main.async {
                 self.collectionView.reloadData()

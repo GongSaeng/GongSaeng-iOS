@@ -21,6 +21,14 @@ class NoticeViewController: UIViewController {
         fetchNotices()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if notices == [] {
+            fetchNotices()
+        }
+    }
+    
     // MARK: Actions
     @IBAction func lookAtAllThingsButtonHandler(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Notice", bundle: Bundle.main)
@@ -32,7 +40,8 @@ class NoticeViewController: UIViewController {
     
     // MAKR: Helpers
     private func fetchNotices() {
-        NoticeNetwork.fetchNotice { notices in
+        NoticeNetwork.fetchNotice { [weak self] notices in
+            guard let self = self else { return }
             self.notices = notices
             DispatchQueue.main.async {
                 self.tableView.reloadData()

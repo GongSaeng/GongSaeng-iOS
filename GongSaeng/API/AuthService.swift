@@ -8,7 +8,7 @@
 import Foundation
 
 struct AuthService {
-    static func loginUserIn(withID id: String, password: String, completion: @escaping(Bool) -> Void) {
+    static func loginUserIn(withID id: String, password: String, completion: ((Bool) -> Void)? = nil) {
         var urlComponents = URLComponents(string: "http://18.118.131.221:7777/login?")
         
         let paramQuery1 = URLQueryItem(name: "id", value: id)
@@ -36,6 +36,7 @@ struct AuthService {
     
             switch response.statusCode {
             case (200...299):
+                guard let completion = completion else { return }
                 if returnValue == "true" {
                     completion(true)
                 } else {

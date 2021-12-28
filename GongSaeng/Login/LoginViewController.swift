@@ -77,6 +77,7 @@ class LoginViewController: UIViewController {
                     print("DEBUG: Login success..")
                     // UserDefaults ID 정보 저장
                     UserDefaults.standard.set(id, forKey: "id")
+                    UserDefaults.standard.set(password, forKey: "password")
                     guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     sceneDelegate.switchRootViewToHome(animated: true)
                 } else {

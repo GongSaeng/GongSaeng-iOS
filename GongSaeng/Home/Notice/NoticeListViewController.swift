@@ -51,7 +51,8 @@ class NoticeListViewController: UIViewController {
     
     // MARK: API
     private func fetchNotices() {
-        NoticeNetwork.fetchNotice { notices in
+        NoticeNetwork.fetchNotice { [weak self] notices in
+            guard let self = self else { return }
             self.notices = notices
             DispatchQueue.main.async {
                 self.tableView.reloadData()

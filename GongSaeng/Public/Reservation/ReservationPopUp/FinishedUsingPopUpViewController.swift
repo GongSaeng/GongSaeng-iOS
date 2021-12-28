@@ -25,7 +25,8 @@ class FinishedUsingPopUpViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        UIView.animate(withDuration: 0.3) {
+        UIView.animate(withDuration: 0.3) { [weak self] in
+            guard let self = self else { return }
             self.popUpView.layer.position.y -= self.popUpView.frame.height
             self.popUpViewBottomConstraint.constant = -50
         }
