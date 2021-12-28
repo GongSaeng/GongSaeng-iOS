@@ -7,21 +7,16 @@
 
 import UIKit
 
-protocol LoginViewControllerDelegate: AnyObject {
-    func controllerDidCompleteLogin(_ controller: LoginViewController)
-}
-
 class LoginViewController: UIViewController {
     
-    weak var delegate: LoginViewControllerDelegate?
-    
+    // MARK: Properties
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var idTextFieldUnderlinedView: UIView!
     @IBOutlet weak var passwordTextFieldUnderlinedView: UIView!
     @IBOutlet weak var loginButton: UIButton!
     
-    let userViewModel: UserViewModel = UserViewModel()
+//    let userViewModel: UserViewModel = UserViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,34 +51,47 @@ class LoginViewController: UIViewController {
     @IBAction func loginButtonTapHandler(_ sender: Any) {
         // id, password check
         // 두 유저가 같다는 것은 id와 비번이 모두 같은 것임을 정의했다.
-        guard let loginUser = loginUserCreate(id: idTextField.text, password: passwordTextField.text) else { return }
-        guard userViewModel.isCorrectUser(user: loginUser) else {
-            let storyBoard = UIStoryboard.init(name: "LoginPopUp", bundle: nil)
-            let popUpViewController = storyBoard.instantiateViewController(identifier: "CheckIDInfoPopUpViewController") as! CheckIDInfoPopUpViewController
-            popUpViewController.modalPresentationStyle = .overCurrentContext
-            self.present(popUpViewController, animated: false, completion: nil)
-            return
-        }
-        
-        // permission check
-        guard userViewModel.doneUser.contains(loginUser) else {
-            let storyBoard = UIStoryboard.init(name: "LoginPopUp", bundle: nil)
-            let popUpViewController = storyBoard.instantiateViewController(identifier: "WaitingForApprovalPopUpViewController") as! WaitingForApprovalPopUpViewController
-            popUpViewController.modalPresentationStyle = .overCurrentContext
-            self.present(popUpViewController, animated: false, completion: nil)
-            return
-        }
+//        guard let loginUser = loginUserCreate(id: idTextField.text, password: passwordTextField.text) else { return }
+//        guard userViewModel.isCorrectUser(user: loginUser) else {
+//            let storyBoard = UIStoryboard.init(name: "LoginPopUp", bundle: nil)
+//            let popUpViewController = storyBoard.instantiateViewController(identifier: "CheckIDInfoPopUpViewController") as! CheckIDInfoPopUpViewController
+//            popUpViewController.modalPresentationStyle = .overCurrentContext
+//            self.present(popUpViewController, animated: false, completion: nil)
+//            return
+//        }
+//
+//        // permission check
+//        guard userViewModel.doneUser.contains(loginUser) else {
+//            let storyBoard = UIStoryboard.init(name: "LoginPopUp", bundle: nil)
+//            let popUpViewController = storyBoard.instantiateViewController(identifier: "WaitingForApprovalPopUpViewController") as! WaitingForApprovalPopUpViewController
+//            popUpViewController.modalPresentationStyle = .overCurrentContext
+//            self.present(popUpViewController, animated: false, completion: nil)
+//            return
+//        }
         
         // To Home
-        delegate?.controllerDidCompleteLogin(self)
+        guard let id = idTextField.text, let password = passwordTextField.text else { return }
+        AuthService.loginUserIn(withID: id, password: password) { isSucceded in
+            DispatchQueue.main.async {
+                if isSucceded {
+                    print("DEBUG: Login success..")
+                    // UserDefaults ID 정보 저장
+                    UserDefaults.standard.set(id, forKey: "id")
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                    sceneDelegate.switchRootViewToHome(animated: true)
+                } else {
+                    print("DEBUG: Login faield..")
+                }
+            }
+        }
     }
     
-    func loginUserCreate(id: String?, password: String?) -> User? {
-        guard let idString = id, let passwordString = password else { return nil }
-        var user = User(id: "", password: "", isDone: false, name: "", dateOfBirth: "", phoneNumber: "", department: "", nickName: "")
-        user.loginUserCreate(id: idString, password: passwordString)
-        return user
-    }
+//    func loginUserCreate(id: String?, password: String?) -> User? {
+//        guard let idString = id, let passwordString = password else { return nil }
+//        var user = User(id: "", password: "", isDone: false, name: "", dateOfBirth: "", phoneNumber: "", department: "", nickName: "")
+//        user.loginUserCreate(id: idString, password: passwordString)
+//        return user
+//    }
     
     private func allTextFieldHasContent() -> Bool {
         if idTextField.hasText, passwordTextField.hasText {

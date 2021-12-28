@@ -1,29 +1,38 @@
 //
-//  MateNetwork.swift
+//  UserService.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2021/12/24.
+//  Created by 정동천 on 2021/12/28.
 //
 
-import UIKit
+import Foundation
 
-struct MateNetwork {
-    static func fetchMate(department: String, completion: @escaping([Mate]) -> Void) {
-        guard let url = URL(string: "http://18.118.131.221:7777/user") else { return }
+struct UserService {
+    static func fetchCurrentUser(completion: @escaping(User?) -> Void) {
+        print("DEBUG: Call fetchCurrentUser function.. ")
+        guard let url = URL(string: "http://18.118.131.221:7777/") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-        
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
-                  let data = data,
-                  let mates = try? JSONDecoder().decode([Mate].self, from: data) else {
-                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                  let data = data else {
+                      print("ERROR: fetchCurrentUser URLSession data task \(error?.localizedDescription ?? "")")
                       return
                   }
+            
+            guard let userArr = try? JSONDecoder().decode([User].self, from: data) else {
+                completion(nil)
+                return
+            }
+            
+            let user = !userArr.isEmpty ? userArr[0] : nil
+            print("DEBUG: data ->", String(data: data, encoding: .utf8)!)
+            print("DEBUG: user ->", user ?? nil)
+            
             switch response.statusCode {
             case (200...299):
-                completion(mates)
+                completion(user)
             case (400...499):
                 print("""
                     ERROR: Client ERROR \(response.statusCode)

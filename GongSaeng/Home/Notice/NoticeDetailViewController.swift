@@ -30,12 +30,12 @@ class NoticeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-
-//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHideShow(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
-
         configure()
         tableView.keyboardDismissMode = .interactive
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        configureNavigationView()
     }
     
     override var inputAccessoryView: UIView? {
@@ -67,7 +67,18 @@ class NoticeDetailViewController: UIViewController {
             contentsLabel.text = notice.contents
         }
     }
-
+    
+    private func configureNavigationView() {
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = "공지사항"
+        navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
+        
+        let backBarButton = UIBarButtonItem(title: "목록", style: UIBarButtonItem.Style.plain, target: self, action: nil)
+        backBarButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)], for: .normal)
+        
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
+    }
     
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)

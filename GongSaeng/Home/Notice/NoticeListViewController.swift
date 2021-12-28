@@ -25,20 +25,28 @@ class NoticeListViewController: UIViewController {
         
         configureView()
         fetchNotices()
-        
-        // 당겨서 새로고침
-        tableView.refreshControl = UIRefreshControl()
-        let refreshControl = self.tableView.refreshControl
-        refreshControl?.backgroundColor = .white
-        refreshControl?.tintColor = .darkGray
-        refreshControl?.attributedTitle =  NSAttributedString(string: "당겨서 새로고침")
-        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        configureRefreshControl()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = true
+//        navigationController?.setNavigationBarHidden(false, animated: animated)
+//        navigationController?.isNavigationBarHidden = false
+        configureNavigationView()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+//        navigationController?.setNavigationBarHidden(true, animated: true)
+//        navigationController?.isNavigationBarHidden = true
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        
+//        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     // MARK: API
@@ -60,6 +68,15 @@ class NoticeListViewController: UIViewController {
         }
     }
     
+    private func configureRefreshControl() {
+        tableView.refreshControl = UIRefreshControl()
+        let refreshControl = self.tableView.refreshControl
+        refreshControl?.backgroundColor = .white
+        refreshControl?.tintColor = .darkGray
+        refreshControl?.attributedTitle =  NSAttributedString(string: "당겨서 새로고침")
+        refreshControl?.addTarget(self, action: #selector(refresh), for: .valueChanged)
+    }
+    
     private func configureView() {
         [allButton, noticeButton, cermonyButton, etcButton].forEach {
             $0?.layer.borderWidth = 1
@@ -69,6 +86,20 @@ class NoticeListViewController: UIViewController {
         
         // 분류버튼 전체버튼으로 초기화
         classficationButtonTapped(button: allButton)
+    }
+    
+    private func configureNavigationView() {
+//        navigationController?.setNavigationBarHidden(false, animated: true)
+        navigationController?.navigationBar.isHidden = false
+        
+        navigationItem.title = "공지사항"
+        navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
+        
+        let backBarButton = UIBarButtonItem(title: "홈", style: UIBarButtonItem.Style.plain, target: self, action: nil)
+        backBarButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)], for: .normal)
+        
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
     }
     
     private func classficationButtonTapped(button: UIButton) {

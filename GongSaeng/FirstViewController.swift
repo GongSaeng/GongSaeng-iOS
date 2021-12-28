@@ -15,23 +15,35 @@ class FirstViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        loginButton.layer.cornerRadius = 8
-        loginButton.layer.borderWidth = 1
-        loginButton.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
-        registerButton.layer.cornerRadius = 8
+        configure()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+    
+    // MARK: Actions
     @IBAction func loginButtonHandler(_ sender: Any) {
-        guard let rootViewController = view.window?.rootViewController as? AppTabbarController else { return }
+        print("DEBUG: Did tap loginButton..")
         let storyboard = UIStoryboard.init(name: "Login", bundle: Bundle.main)
         let viewController = storyboard.instantiateViewController(identifier: "LoginViewController") as! LoginViewController
-        viewController.delegate = rootViewController
         self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @IBAction func registerButtonHandler(_ sender: Any) {
+        print("DEBUG: Did tap registerButton")
         let storyBoard = UIStoryboard(name: "Register", bundle: Bundle.main)
         let viewController = storyBoard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    // MARK: Helpers
+    private func configure() {
+        loginButton.layer.cornerRadius = 8
+        loginButton.layer.borderWidth = 1
+        loginButton.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
+        registerButton.layer.cornerRadius = 8
     }
 }

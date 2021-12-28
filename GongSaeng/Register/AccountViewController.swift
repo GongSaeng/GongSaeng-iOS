@@ -8,7 +8,7 @@
 import UIKit
 
 class AccountViewController: UIViewController {
-    let viewModel: UserViewModel = UserViewModel()
+//    let viewModel: UserViewModel = UserViewModel()
     
     var user: User?
     
@@ -161,31 +161,31 @@ class AccountViewController: UIViewController {
     func registerAccountUserCreate(memberUser: User?, id: String?, password: String?, nickName: String?) -> User? {
         guard let idString = id, let passwordString = password, let nickNameString = nickName else { return nil }
         guard let nameString = memberUser?.name, let birthString = memberUser?.dateOfBirth, let phoneString = memberUser?.phoneNumber, let departmentString = memberUser?.department else { return nil }
-        var user = User(id: "", password: "", isDone: false, name: "", dateOfBirth: "", phoneNumber: "", department: "", nickName: "")
-        user.update(id: idString, password: passwordString, name: nameString , dateOfBirth: birthString, phoneNumber: phoneString, department: departmentString, nickName: nickNameString)
+//        var user = User(id: "", password: "", isDone: false, name: "", dateOfBirth: "", phoneNumber: "", department: "", nickName: "")
+//        user.update(id: idString, password: passwordString, name: nameString , dateOfBirth: birthString, phoneNumber: phoneString, department: departmentString, nickName: nickNameString)
         return user
     }
     
     @IBAction func idReduplicationButtonHandler(_ sender: Any) {
         guard let text = idTextField.text else { return }
-        if !viewModel.idReduplicationCheck(id: text) {
-            idReduplicationConstraint.constant = 0
-            changeActivationStatusOfNextButton()
-        } else {
-            idReduplicationHintLabel.text = "중복한 아이디가 존재합니다."
-            idReduplicationConstraint.constant = 17
-        }
+//        if !viewModel.idReduplicationCheck(id: text) {
+//            idReduplicationConstraint.constant = 0
+//            changeActivationStatusOfNextButton()
+//        } else {
+//            idReduplicationHintLabel.text = "중복한 아이디가 존재합니다."
+//            idReduplicationConstraint.constant = 17
+//        }
     }
     
     @IBAction func nickNameReduplicationButtonHandler(_ sender: Any) {
         guard let text = nickNameTextField.text else { return }
-        if !viewModel.nickNameReduplicationCheck(nickName: text) {
-            nickNameReduplicationConstraint.constant = 0
-            changeActivationStatusOfNextButton()
-        } else {
-            nickNameReduplicationHintLabel.text = "중복한 닉네임이 존재합니다."
-            nickNameReduplicationConstraint.constant = 17
-        }
+//        if !viewModel.nickNameReduplicationCheck(nickName: text) {
+//            nickNameReduplicationConstraint.constant = 0
+//            changeActivationStatusOfNextButton()
+//        } else {
+//            nickNameReduplicationHintLabel.text = "중복한 닉네임이 존재합니다."
+//            nickNameReduplicationConstraint.constant = 17
+//        }
     }
     
     @IBAction func passwordLookButtonHandler(_ sender: Any) {

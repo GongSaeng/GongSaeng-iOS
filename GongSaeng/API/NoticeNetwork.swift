@@ -12,7 +12,6 @@ struct NoticeNetwork {
         guard let url = URL(string: "http://18.118.131.221:7777/notice") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,

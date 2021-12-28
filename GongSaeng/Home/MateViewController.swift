@@ -22,6 +22,12 @@ class MateViewController: UIViewController {
         fetchMates()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     // MARK: API
     private func fetchMates() {
         MateNetwork.fetchMate(department: "한국장학재단") { mates in
@@ -41,7 +47,7 @@ class MateViewController: UIViewController {
         if mates.isEmpty {
             fetchMates()
         }
-        viewController.mates = self.mates  
+        viewController.mates = self.mates
         self.navigationController?.pushViewController(viewController, animated: true)
     }
 }

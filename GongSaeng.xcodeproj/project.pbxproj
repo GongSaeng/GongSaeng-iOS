@@ -90,6 +90,7 @@
 		A7AE9F3626EF201C0082C855 /* LogOutPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */; };
 		A7AE9F3926EF2E060082C855 /* PasswordChangedPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */; };
 		A7AE9F3B26EF2E110082C855 /* PasswordChangedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */; };
+		A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35572277AE2F8006F6A54 /* UserService.swift */; };
 		A7C9D0FE277810BE00943207 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C9D0FD277810BE00943207 /* Main.storyboard */; };
 		A7C9D10127784A1000943207 /* CommentInputAccersoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10027784A1000943207 /* CommentInputAccersoryView.swift */; };
 		A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10227784A4E00943207 /* InputTextView.swift */; };
@@ -101,6 +102,7 @@
 		A7EB141B271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB141A271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift */; };
 		A7EB141D27104662001E8709 /* CheckIDInfoPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB141C27104662001E8709 /* CheckIDInfoPopUpViewController.swift */; };
 		A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */; };
+		A7F3C4922779A0410019B5F4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F3C4912779A0410019B5F4 /* AuthService.swift */; };
 		A7F4193B26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7F4193A26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard */; };
 		A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F4193C26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift */; };
 		A7F9DCED27759495005E9113 /* MateNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F9DCEC27759494005E9113 /* MateNetwork.swift */; };
@@ -198,6 +200,7 @@
 		A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogOutPopUp.storyboard; sourceTree = "<group>"; };
 		A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordChangedPopUp.storyboard; sourceTree = "<group>"; };
 		A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangedPopUpViewController.swift; sourceTree = "<group>"; };
+		A7B35572277AE2F8006F6A54 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		A7C9D0FD277810BE00943207 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A7C9D10027784A1000943207 /* CommentInputAccersoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommentInputAccersoryView.swift; path = ../../../../../../Applications/CommentInputAccersoryView.swift; sourceTree = "<group>"; };
 		A7C9D10227784A4E00943207 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
@@ -208,6 +211,7 @@
 		A7EB141A271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingForApprovalPopUpViewController.swift; sourceTree = "<group>"; };
 		A7EB141C27104662001E8709 /* CheckIDInfoPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckIDInfoPopUpViewController.swift; sourceTree = "<group>"; };
 		A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInContainerViewController.swift; sourceTree = "<group>"; };
+		A7F3C4912779A0410019B5F4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A7F4193A26F25FD700D6C6EA /* CheckInRequestPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CheckInRequestPopUp.storyboard; sourceTree = "<group>"; };
 		A7F4193C26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckInRequestPopUpViewController.swift; sourceTree = "<group>"; };
 		A7F9DCEC27759494005E9113 /* MateNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateNetwork.swift; sourceTree = "<group>"; };
@@ -511,6 +515,8 @@
 			children = (
 				A7A9B3D92754DBB6009B22DF /* NoticeNetwork.swift */,
 				A7F9DCEC27759494005E9113 /* MateNetwork.swift */,
+				A7F3C4912779A0410019B5F4 /* AuthService.swift */,
+				A7B35572277AE2F8006F6A54 /* UserService.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -675,10 +681,12 @@
 				3DB686FA268D8C570061BCB0 /* LoginUser.swift in Sources */,
 				3D2FBC062675FE6B00D2FF56 /* PublicViewController.swift in Sources */,
 				3D231A68266E44BA00080E9B /* Mate.swift in Sources */,
+				A7F3C4922779A0410019B5F4 /* AuthService.swift in Sources */,
 				A7C9D10127784A1000943207 /* CommentInputAccersoryView.swift in Sources */,
 				A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */,
 				3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */,
 				A71600A92746393700FC3C64 /* Immediation.swift in Sources */,
+				A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */,
 				A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */,
 				A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */,
 				3DE755E9265975CE001FE813 /* Department.swift in Sources */,
