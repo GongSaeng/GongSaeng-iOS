@@ -27,8 +27,6 @@ struct UserService {
             }
             
             let user = !userArr.isEmpty ? userArr[0] : nil
-            print("DEBUG: data ->", String(data: data, encoding: .utf8)!)
-            print("DEBUG: user ->", user ?? nil)
             
             switch response.statusCode {
             case (200...299):

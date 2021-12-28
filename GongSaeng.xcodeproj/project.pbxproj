@@ -91,8 +91,8 @@
 		A7AE9F3926EF2E060082C855 /* PasswordChangedPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */; };
 		A7AE9F3B26EF2E110082C855 /* PasswordChangedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */; };
 		A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35572277AE2F8006F6A54 /* UserService.swift */; };
+		A7B35575277B18D8006F6A54 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */; };
 		A7C9D0FE277810BE00943207 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C9D0FD277810BE00943207 /* Main.storyboard */; };
-		A7C9D10127784A1000943207 /* CommentInputAccersoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10027784A1000943207 /* CommentInputAccersoryView.swift */; };
 		A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10227784A4E00943207 /* InputTextView.swift */; };
 		A7C9D10627784A8A00943207 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7C9D10527784A8A00943207 /* SnapKit */; };
 		A7DC1CA12707788A002F395C /* ConfirmReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */; };
@@ -201,8 +201,8 @@
 		A7AE9F3826EF2E060082C855 /* PasswordChangedPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PasswordChangedPopUp.storyboard; sourceTree = "<group>"; };
 		A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangedPopUpViewController.swift; sourceTree = "<group>"; };
 		A7B35572277AE2F8006F6A54 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
 		A7C9D0FD277810BE00943207 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		A7C9D10027784A1000943207 /* CommentInputAccersoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CommentInputAccersoryView.swift; path = ../../../../../../Applications/CommentInputAccersoryView.swift; sourceTree = "<group>"; };
 		A7C9D10227784A4E00943207 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A7DC1CA2270778CE002F395C /* CancelReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReservationPopUpViewController.swift; sourceTree = "<group>"; };
@@ -541,8 +541,8 @@
 		A7C9D0FF277849E700943207 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				A7C9D10027784A1000943207 /* CommentInputAccersoryView.swift */,
 				A7C9D10227784A4E00943207 /* InputTextView.swift */,
+				A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -676,13 +676,13 @@
 				3D816C61266B92D700A5164B /* AppTabbarController.swift in Sources */,
 				A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */,
 				A7DC1CA12707788A002F395C /* ConfirmReservationPopUpViewController.swift in Sources */,
+				A7B35575277B18D8006F6A54 /* CommentInputAccesoryView.swift in Sources */,
 				A79C58E226EEE66C00F608D1 /* ManageAccountInfoViewController.swift in Sources */,
 				3D5D59AA2652B11C0018FE63 /* RegisterViewController.swift in Sources */,
 				3DB686FA268D8C570061BCB0 /* LoginUser.swift in Sources */,
 				3D2FBC062675FE6B00D2FF56 /* PublicViewController.swift in Sources */,
 				3D231A68266E44BA00080E9B /* Mate.swift in Sources */,
 				A7F3C4922779A0410019B5F4 /* AuthService.swift in Sources */,
-				A7C9D10127784A1000943207 /* CommentInputAccersoryView.swift in Sources */,
 				A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */,
 				3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */,
 				A71600A92746393700FC3C64 /* Immediation.swift in Sources */,

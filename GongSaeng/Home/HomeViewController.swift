@@ -9,17 +9,13 @@ import UIKit
 
 class HomeViewController: UIViewController {
     
-    var loginUser: User?
+//    var loginUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         
         print("DEBUG: HomeViewController ViewDidLoad")
-        self.loginUser = LoginUser.loginUser
+//        self.loginUser = LoginUser.loginUser
 //        guard let tabBarController = tabBarController as? AppTabbarController else { return }
 //        tabBarController.user
     }

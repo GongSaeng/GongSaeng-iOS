@@ -14,7 +14,10 @@ class FirstViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("DEBUG: FirstViewController viewDidLoad")
         
+//        checkIfUserIsLoggedIn()
+//        fetchUser()
         configure()
     }
     
@@ -40,6 +43,31 @@ class FirstViewController: UIViewController {
     }
     
     // MARK: Helpers
+    private func checkIfUserIsLoggedIn() {
+        // UserDefaults 에서 스트링 가져오기
+        if let _ = UserDefaults.standard.string(forKey: "id") {
+            print("DEBUG: Has userID in local..")
+            guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+            sceneDelegate.switchRootViewToHome(animated: true)
+        } else {
+            print("DEBUG: No userID in local..")
+        }
+    }
+    
+    private func fetchUser() {
+        UserService.fetchCurrentUser { user in
+            if user != nil {
+                print("DEBUG: Has userID in server..")
+                DispatchQueue.main.async {
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                    sceneDelegate.switchRootViewToHome(animated: true)
+                }
+            } else {
+                print("DEBUG: No userID in server..")
+            }
+        }
+    }
+    
     private func configure() {
         loginButton.layer.cornerRadius = 8
         loginButton.layer.borderWidth = 1

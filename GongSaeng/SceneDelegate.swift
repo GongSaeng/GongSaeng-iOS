@@ -13,14 +13,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        print("DEBUG: scene(_, willConnctoTo, Options)")
+
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
-        print("DEBUG: Call SceneDelegate.scene(_, willConnectTo, options)")
         
         if let _ = UserDefaults.standard.string(forKey: "id") {
+            print("DEBUG: Has userID")
             switchRootViewToHome()
         } else {
+            print("DEBUG: No userID")
             switchRootViewToMain()
         }
         
