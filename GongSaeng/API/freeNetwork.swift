@@ -80,7 +80,7 @@ struct freeNetwork {
                   }
             switch response.statusCode {
             case (200...299):
-                completion(frees)
+                completion(frees.reversed()) // 임시로 역순
             case (400...499):
                 print("""
                     ERROR: Client ERROR \(response.statusCode)
