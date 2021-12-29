@@ -53,7 +53,7 @@ extension CommunityViewController: UITableViewDataSource {
 
 extension CommunityViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let height: CGFloat = 82.0
+        let height: CGFloat = 83.0
         return height
     }
     
