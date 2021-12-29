@@ -143,6 +143,7 @@
                                             <outlet property="thumnailImageView" destination="sNe-HA-2vA" id="5E8-aH-dms"/>
                                             <outlet property="titleLabel" destination="c31-y0-FGi" id="tsX-mo-tzB"/>
                                             <outlet property="uploadedTimeLabel" destination="6ox-os-bwC" id="m4T-ap-Nef"/>
+                                            <outlet property="writerLabel" destination="oXI-YA-NW3" id="O8a-3u-WbC"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -422,6 +423,7 @@
                         <outlet property="tableView" destination="L4q-uZ-uBh" id="YyQ-TI-pB3"/>
                         <outlet property="timeLabel" destination="fvU-Xz-QHO" id="EJI-09-0hE"/>
                         <outlet property="titleLabel" destination="lhW-v1-3cD" id="im4-ql-RId"/>
+                        <outlet property="writerLabel" destination="9uS-kW-6CP" id="Pph-If-owX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XcO-CP-joD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

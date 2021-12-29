@@ -1966,6 +1966,9 @@
                                                 </fragment>
                                             </attributedString>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="completeButtonTapped:" destination="5Rb-xX-6IP" eventType="touchUpInside" id="RhS-zM-kW9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2009,6 +2012,9 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="titleField:" destination="5Rb-xX-6IP" eventType="editingDidEnd" id="lBV-iC-rlM"/>
+                                </connections>
                             </textField>
                             <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDV-pJ-au5">
                                 <rect key="frame" x="16" y="172" width="380" height="1"/>
@@ -2054,10 +2060,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ohE-3B-B3O"/>
+                    <connections>
+                        <outlet property="contentsField" destination="FBU-sd-DrU" id="0ef-NO-d8b"/>
+                        <outlet property="titleField" destination="Yhb-Jb-EfT" id="zjz-HR-FHc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bw-gq-TRB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1462" y="4732"/>
+            <point key="canvasLocation" x="1449" y="4731"/>
         </scene>
     </scenes>
     <resources>
