@@ -1944,7 +1944,6 @@
                                         <buttonConfiguration key="configuration" style="plain" image="chevron.backward" catalog="system"/>
                                         <connections>
                                             <action selector="backward:" destination="5Rb-xX-6IP" eventType="touchUpInside" id="HpA-i5-nrI"/>
-                                            <action selector="button_backward:" destination="5Rb-xX-6IP" eventType="touchUpInside" id="iKc-Qa-zKh"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GMv-db-VXm">
@@ -2012,9 +2011,6 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <action selector="titleField:" destination="5Rb-xX-6IP" eventType="editingDidEnd" id="lBV-iC-rlM"/>
-                                </connections>
                             </textField>
                             <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDV-pJ-au5">
                                 <rect key="frame" x="16" y="172" width="380" height="1"/>
