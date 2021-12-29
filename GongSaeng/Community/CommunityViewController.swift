@@ -16,11 +16,18 @@ class CommunityViewController: UIViewController {
      ,("장터게시판","중고거래,공생메이트님들과 해보세요!","buy_community")
      ]
     
+    
     var viewcons: [String] =
     ["NoticeListViewController","emergencycommunity","suggestcommunity","withcommunity","marketcommunity"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
     }
     
     
@@ -38,6 +45,8 @@ extension CommunityViewController: UITableViewDataSource {
         cell.boardTitleLabel.text = postDataList[indexPath.row].0
         cell.boardIntroduceLabel.text = postDataList[indexPath.row].1
         cell.boardImageView.image = UIImage(named: postDataList[indexPath.row].2)
+        
+        
         return cell
     }
 }
@@ -46,6 +55,48 @@ extension CommunityViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height: CGFloat = 82.0
         return height
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        switch indexPath.row {
+        case 0:
+            let storyboard = UIStoryboard(name: "free", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "freeListViewController")
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
+        case 1:
+            let storyboard = UIStoryboard(name: "Community", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "emergencycommunity")
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
+        case 2:
+            let storyboard = UIStoryboard(name: "Community", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "suggestcommunity")
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
+        case 3:
+            let storyboard = UIStoryboard(name: "Community", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "withcommunity")
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
+        case 4:
+            let storyboard = UIStoryboard(name: "free", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "freeListViewController")
+            viewController.modalPresentationStyle = .fullScreen
+            viewController.hidesBottomBarWhenPushed = true
+            self.navigationController?.pushViewController(viewController, animated: true)
+            
+        default:
+            return
+        }
     }
 }
 

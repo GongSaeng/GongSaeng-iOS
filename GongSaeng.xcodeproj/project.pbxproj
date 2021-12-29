@@ -44,6 +44,12 @@
 		3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */; };
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
+		76035DFD277C448200090B17 /* free.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76035DF8277C448200090B17 /* free.storyboard */; };
+		76035DFE277C448200090B17 /* freeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035DF9277C448200090B17 /* freeListViewController.swift */; };
+		76035DFF277C448200090B17 /* freeListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035DFA277C448200090B17 /* freeListCellViewModel.swift */; };
+		76035E00277C448200090B17 /* freeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035DFB277C448200090B17 /* freeDetailViewController.swift */; };
+		76035E01277C448200090B17 /* free.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035DFC277C448200090B17 /* free.swift */; };
+		76035E03277C475000090B17 /* freeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035E02277C475000090B17 /* freeNetwork.swift */; };
 		A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A70D39052704BD0C00B09041 /* Reserve.storyboard */; };
 		A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70D39072704BD1A00B09041 /* ReserveViewController.swift */; };
 		A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */; };
@@ -66,10 +72,8 @@
 		A753C03A277C3F1700039D5F /* emergency_detail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753C02C277C3F1700039D5F /* emergency_detail.swift */; };
 		A753C03B277C3F1700039D5F /* Community.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A753C02D277C3F1700039D5F /* Community.storyboard */; };
 		A753C03C277C3F1700039D5F /* withWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753C02F277C3F1700039D5F /* withWriteViewController.swift */; };
-		A753C03D277C3F1700039D5F /* freeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753C030277C3F1700039D5F /* freeViewController.swift */; };
 		A753C03E277C3F1700039D5F /* withDetailVewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753C031277C3F1700039D5F /* withDetailVewController.swift */; };
 		A753C03F277C3F1700039D5F /* suggestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753C032277C3F1700039D5F /* suggestViewController.swift */; };
-		A753C040277C3F1700039D5F /* freeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753C033277C3F1700039D5F /* freeDetailViewController.swift */; };
 		A753C041277C3F1700039D5F /* suggestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753C034277C3F1700039D5F /* suggestDetailViewController.swift */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 		A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */; };
@@ -168,6 +172,12 @@
 		3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
+		76035DF8277C448200090B17 /* free.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = free.storyboard; sourceTree = "<group>"; };
+		76035DF9277C448200090B17 /* freeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeListViewController.swift; sourceTree = "<group>"; };
+		76035DFA277C448200090B17 /* freeListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeListCellViewModel.swift; sourceTree = "<group>"; };
+		76035DFB277C448200090B17 /* freeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeDetailViewController.swift; sourceTree = "<group>"; };
+		76035DFC277C448200090B17 /* free.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = free.swift; sourceTree = "<group>"; };
+		76035E02277C475000090B17 /* freeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeNetwork.swift; sourceTree = "<group>"; };
 		A70D39052704BD0C00B09041 /* Reserve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reserve.storyboard; sourceTree = "<group>"; };
 		A70D39072704BD1A00B09041 /* ReserveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveViewController.swift; sourceTree = "<group>"; };
 		A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewModel.swift; sourceTree = "<group>"; };
@@ -190,10 +200,8 @@
 		A753C02C277C3F1700039D5F /* emergency_detail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = emergency_detail.swift; sourceTree = "<group>"; };
 		A753C02E277C3F1700039D5F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Community.storyboard; sourceTree = "<group>"; };
 		A753C02F277C3F1700039D5F /* withWriteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = withWriteViewController.swift; sourceTree = "<group>"; };
-		A753C030277C3F1700039D5F /* freeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeViewController.swift; sourceTree = "<group>"; };
 		A753C031277C3F1700039D5F /* withDetailVewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = withDetailVewController.swift; sourceTree = "<group>"; };
 		A753C032277C3F1700039D5F /* suggestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = suggestViewController.swift; sourceTree = "<group>"; };
-		A753C033277C3F1700039D5F /* freeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeDetailViewController.swift; sourceTree = "<group>"; };
 		A753C034277C3F1700039D5F /* suggestDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = suggestDetailViewController.swift; sourceTree = "<group>"; };
 		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A753FB6126ED05B1001DA2C3 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
@@ -404,6 +412,18 @@
 			path = TabbarManager;
 			sourceTree = "<group>";
 		};
+		76035DF7277C448200090B17 /* free */ = {
+			isa = PBXGroup;
+			children = (
+				76035DF8277C448200090B17 /* free.storyboard */,
+				76035DF9277C448200090B17 /* freeListViewController.swift */,
+				76035DFA277C448200090B17 /* freeListCellViewModel.swift */,
+				76035DFB277C448200090B17 /* freeDetailViewController.swift */,
+				76035DFC277C448200090B17 /* free.swift */,
+			);
+			path = free;
+			sourceTree = "<group>";
+		};
 		A73AE4C026F1B94500FA1F06 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,6 +499,7 @@
 		A753C026277C3F1700039D5F /* Community */ = {
 			isa = PBXGroup;
 			children = (
+				76035DF7277C448200090B17 /* free */,
 				A753C02D277C3F1700039D5F /* Community.storyboard */,
 				A753C02A277C3F1700039D5F /* CommunityViewController.swift */,
 				A753C027277C3F1700039D5F /* EmergencyController.swift */,
@@ -487,10 +508,8 @@
 				A753C02B277C3F1700039D5F /* addBoardViewController.swift */,
 				A753C02C277C3F1700039D5F /* emergency_detail.swift */,
 				A753C02F277C3F1700039D5F /* withWriteViewController.swift */,
-				A753C030277C3F1700039D5F /* freeViewController.swift */,
 				A753C031277C3F1700039D5F /* withDetailVewController.swift */,
 				A753C032277C3F1700039D5F /* suggestViewController.swift */,
-				A753C033277C3F1700039D5F /* freeDetailViewController.swift */,
 				A753C034277C3F1700039D5F /* suggestDetailViewController.swift */,
 			);
 			path = Community;
@@ -563,6 +582,7 @@
 		A7A9B3D62754D42D009B22DF /* API */ = {
 			isa = PBXGroup;
 			children = (
+				76035E02277C475000090B17 /* freeNetwork.swift */,
 				A7A9B3D92754DBB6009B22DF /* NoticeNetwork.swift */,
 				A7F9DCEC27759494005E9113 /* MateNetwork.swift */,
 				A7F3C4912779A0410019B5F4 /* AuthService.swift */,
@@ -680,6 +700,7 @@
 				A7AE9F3626EF201C0082C855 /* LogOutPopUp.storyboard in Resources */,
 				A7AE9F3926EF2E060082C855 /* PasswordChangedPopUp.storyboard in Resources */,
 				3D520BAB265340E40090B6E8 /* Home.storyboard in Resources */,
+				76035DFD277C448200090B17 /* free.storyboard in Resources */,
 				3D00C8BA266E39E8006236A0 /* Mate.storyboard in Resources */,
 				3D5D59B02652B29B0018FE63 /* Login.storyboard in Resources */,
 				A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */,
@@ -712,6 +733,7 @@
 				A79C215D26EF5B3C000B9028 /* SetNotificationViewController.swift in Sources */,
 				3DAFCBA626627256008E9803 /* CompletedRegisterViewController.swift in Sources */,
 				3D015B0226590F0D003EC5E6 /* DepartmentViewController.swift in Sources */,
+				76035E00277C448200090B17 /* freeDetailViewController.swift in Sources */,
 				3D85550D2660084A00147EE7 /* AccountViewController.swift in Sources */,
 				3DAFCBA4266261E6008E9803 /* UITextField.swift in Sources */,
 				3D5D59AC2652B12A0018FE63 /* LoginViewController.swift in Sources */,
@@ -741,6 +763,7 @@
 				3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */,
 				A71600A92746393700FC3C64 /* Immediation.swift in Sources */,
 				A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */,
+				76035DFE277C448200090B17 /* freeListViewController.swift in Sources */,
 				A753C03C277C3F1700039D5F /* withWriteViewController.swift in Sources */,
 				A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */,
 				A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */,
@@ -749,7 +772,6 @@
 				3DAFCBA026625DF6008E9803 /* Normalization.swift in Sources */,
 				3DD893D6266E1A9C0050B4F8 /* MateViewController.swift in Sources */,
 				3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */,
-				A753C03D277C3F1700039D5F /* freeViewController.swift in Sources */,
 				A7DC1CA3270778CE002F395C /* CancelReservationPopUpViewController.swift in Sources */,
 				A777C8D62707A32600670556 /* CanceledReservationPopUpViewController.swift in Sources */,
 				A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */,
@@ -763,14 +785,15 @@
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
 				A753C038277C3F1700039D5F /* CommunityViewController.swift in Sources */,
 				A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */,
+				76035DFF277C448200090B17 /* freeListCellViewModel.swift in Sources */,
 				A7A9B3D32754CF45009B22DF /* Notice.swift in Sources */,
 				A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */,
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,
+				76035E01277C448200090B17 /* free.swift in Sources */,
 				A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */,
 				A7F9DCED27759495005E9113 /* MateNetwork.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
-				A753C040277C3F1700039D5F /* freeDetailViewController.swift in Sources */,
 				A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */,
 				A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */,
 				A7DC1CA527077918002F395C /* FinishUsingPopUpViewController.swift in Sources */,
@@ -779,6 +802,7 @@
 				3D5D598B265247F40018FE63 /* SceneDelegate.swift in Sources */,
 				A753C041277C3F1700039D5F /* suggestDetailViewController.swift in Sources */,
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,
+				76035E03277C475000090B17 /* freeNetwork.swift in Sources */,
 				3DA98CCD26530C30005175B5 /* User.swift in Sources */,
 				A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */,
 				A7B35577277B73F3006F6A54 /* LoginViewModel.swift in Sources */,
