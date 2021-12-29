@@ -50,6 +50,8 @@
 		A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */; };
 		A71600A92746393700FC3C64 /* Immediation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71600A82746393700FC3C64 /* Immediation.swift */; };
 		A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E07B926EE6021007DB8D0 /* UIImageView.swift */; };
+		A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A732CA47277CF0DD00A11E68 /* JGProgressHUD */; };
+		A732CA4A277CF11B00A11E68 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732CA49277CF11B00A11E68 /* UIViewController.swift */; };
 		A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BA26F1B7D000FA1F06 /* RequestCheckInViewController.swift */; };
 		A73AE4BD26F1B82200FA1F06 /* RequestCheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BC26F1B82200FA1F06 /* RequestCheckOutViewController.swift */; };
 		A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BE26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift */; };
@@ -110,6 +112,8 @@
 		A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35572277AE2F8006F6A54 /* UserService.swift */; };
 		A7B35575277B18D8006F6A54 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */; };
 		A7B35577277B73F3006F6A54 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35576277B73F3006F6A54 /* LoginViewModel.swift */; };
+		A7B756E4277C9B5E00BFFBC0 /* FreeWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B756E3277C9B5E00BFFBC0 /* FreeWriteViewController.swift */; };
+		A7B756E6277C9BCD00BFFBC0 /* PostTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */; };
 		A7C9D0FE277810BE00943207 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C9D0FD277810BE00943207 /* Main.storyboard */; };
 		A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10227784A4E00943207 /* InputTextView.swift */; };
 		A7C9D10627784A8A00943207 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7C9D10527784A8A00943207 /* SnapKit */; };
@@ -178,6 +182,7 @@
 		A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewModel.swift; sourceTree = "<group>"; };
 		A71600A82746393700FC3C64 /* Immediation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Immediation.swift; sourceTree = "<group>"; };
 		A71E07B926EE6021007DB8D0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		A732CA49277CF11B00A11E68 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		A73AE4BA26F1B7D000FA1F06 /* RequestCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInViewController.swift; sourceTree = "<group>"; };
 		A73AE4BC26F1B82200FA1F06 /* RequestCheckOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckOutViewController.swift; sourceTree = "<group>"; };
 		A73AE4BE26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutRequestDetailViewController.swift; sourceTree = "<group>"; };
@@ -238,6 +243,8 @@
 		A7B35572277AE2F8006F6A54 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
 		A7B35576277B73F3006F6A54 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		A7B756E3277C9B5E00BFFBC0 /* FreeWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeWriteViewController.swift; sourceTree = "<group>"; };
+		A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextView.swift; sourceTree = "<group>"; };
 		A7C9D0FD277810BE00943207 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A7C9D10227784A4E00943207 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmReservationPopUpViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */,
 				A7C9D10627784A8A00943207 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +407,7 @@
 				3D2FBC0A26760BFA00D2FF56 /* Date.swift */,
 				A7FA636326EE2519005D9785 /* UITextView.swift */,
 				A71E07B926EE6021007DB8D0 /* UIImageView.swift */,
+				A732CA49277CF11B00A11E68 /* UIViewController.swift */,
 			);
 			path = "Extension + Public";
 			sourceTree = "<group>";
@@ -550,6 +559,7 @@
 				A780F697277C7D7A00016898 /* freeListCellViewModel.swift */,
 				A780F698277C7D7A00016898 /* freeDetailViewController.swift */,
 				A780F699277C7D7A00016898 /* free.swift */,
+				A7B756E3277C9B5E00BFFBC0 /* FreeWriteViewController.swift */,
 			);
 			path = free;
 			sourceTree = "<group>";
@@ -613,6 +623,7 @@
 			children = (
 				A7C9D10227784A4E00943207 /* InputTextView.swift */,
 				A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */,
+				A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -643,6 +654,7 @@
 			name = GongSaeng;
 			packageProductDependencies = (
 				A7C9D10527784A8A00943207 /* SnapKit */,
+				A732CA47277CF0DD00A11E68 /* JGProgressHUD */,
 			);
 			productName = GongSaeng;
 			productReference = 3D5D5985265247F40018FE63 /* GongSaeng.app */;
@@ -673,6 +685,7 @@
 			mainGroup = 3D5D597C265247F40018FE63;
 			packageReferences = (
 				A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 3D5D5986265247F40018FE63 /* Products */;
 			projectDirPath = "";
@@ -760,6 +773,7 @@
 				3D231A68266E44BA00080E9B /* Mate.swift in Sources */,
 				A780F69C277C7D7A00016898 /* freeListCellViewModel.swift in Sources */,
 				A7F3C4922779A0410019B5F4 /* AuthService.swift in Sources */,
+				A732CA4A277CF11B00A11E68 /* UIViewController.swift in Sources */,
 				A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */,
 				3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */,
 				A71600A92746393700FC3C64 /* Immediation.swift in Sources */,
@@ -777,6 +791,7 @@
 				A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */,
 				A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */,
 				3D231A6A266E629D00080E9B /* MateCell.swift in Sources */,
+				A7B756E6277C9BCD00BFFBC0 /* PostTextView.swift in Sources */,
 				A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */,
 				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
 				A7A9B3D52754D200009B22DF /* NoticeListCellViewModel.swift in Sources */,
@@ -801,6 +816,7 @@
 				3D5D598B265247F40018FE63 /* SceneDelegate.swift in Sources */,
 				A753C041277C3F1700039D5F /* suggestDetailViewController.swift in Sources */,
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,
+				A7B756E4277C9B5E00BFFBC0 /* FreeWriteViewController.swift in Sources */,
 				76035E03277C475000090B17 /* freeNetwork.swift in Sources */,
 				3DA98CCD26530C30005175B5 /* User.swift in Sources */,
 				A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */,
@@ -1021,6 +1037,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1032,6 +1056,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A732CA47277CF0DD00A11E68 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
 		A7C9D10527784A8A00943207 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */;
