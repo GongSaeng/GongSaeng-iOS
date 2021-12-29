@@ -92,6 +92,7 @@
 		A7AE9F3B26EF2E110082C855 /* PasswordChangedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */; };
 		A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35572277AE2F8006F6A54 /* UserService.swift */; };
 		A7B35575277B18D8006F6A54 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */; };
+		A7B35577277B73F3006F6A54 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35576277B73F3006F6A54 /* LoginViewModel.swift */; };
 		A7C9D0FE277810BE00943207 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C9D0FD277810BE00943207 /* Main.storyboard */; };
 		A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10227784A4E00943207 /* InputTextView.swift */; };
 		A7C9D10627784A8A00943207 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7C9D10527784A8A00943207 /* SnapKit */; };
@@ -202,6 +203,7 @@
 		A7AE9F3A26EF2E110082C855 /* PasswordChangedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordChangedPopUpViewController.swift; sourceTree = "<group>"; };
 		A7B35572277AE2F8006F6A54 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
+		A7B35576277B73F3006F6A54 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A7C9D0FD277810BE00943207 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A7C9D10227784A4E00943207 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmReservationPopUpViewController.swift; sourceTree = "<group>"; };
@@ -241,8 +243,8 @@
 				3D00C8B9266E39E8006236A0 /* Mate.storyboard */,
 				3D231A67266E44BA00080E9B /* Mate.swift */,
 				3D231A69266E629D00080E9B /* MateCell.swift */,
-				3D00C8B4266E3999006236A0 /* MateListViewController.swift */,
 				A7F9DCEE27759E0C005E9113 /* MateCellViewModel.swift */,
+				3D00C8B4266E3999006236A0 /* MateListViewController.swift */,
 			);
 			path = Mate;
 			sourceTree = "<group>";
@@ -323,6 +325,7 @@
 				3D5D59AB2652B12A0018FE63 /* LoginViewController.swift */,
 				3D5D59AF2652B29B0018FE63 /* Login.storyboard */,
 				A75640792710435D008609FE /* PopUp */,
+				A7B35576277B73F3006F6A54 /* LoginViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -439,8 +442,8 @@
 			children = (
 				A745D04627269D3900844189 /* Notice.storyboard */,
 				A7A9B3D22754CF45009B22DF /* Notice.swift */,
-				A745D04827269E7D00844189 /* NoticeListViewController.swift */,
 				A7A9B3D42754D200009B22DF /* NoticeListCellViewModel.swift */,
+				A745D04827269E7D00844189 /* NoticeListViewController.swift */,
 				A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */,
 			);
 			path = Notice;
@@ -721,6 +724,7 @@
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,
 				3DA98CCD26530C30005175B5 /* User.swift in Sources */,
 				A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */,
+				A7B35577277B73F3006F6A54 /* LoginViewModel.swift in Sources */,
 				A7EB141B271045FE001E8709 /* WaitingForApprovalPopUpViewController.swift in Sources */,
 				3DD893D4266E1A6E0050B4F8 /* NoticeViewController.swift in Sources */,
 				A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */,

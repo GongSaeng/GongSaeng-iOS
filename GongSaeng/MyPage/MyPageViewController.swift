@@ -8,7 +8,10 @@
 import UIKit
 
 class MyPageViewController: UIViewController {
-    var loginUser: User?
+    // MARK: Properties
+    var user: User? {
+        didSet { nickNameLabel.text = user?.nickName }
+    }
     
     @IBOutlet weak var nickNameLabel: UILabel!
     @IBOutlet weak var editProfileButton: UIButton!
@@ -17,15 +20,10 @@ class MyPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loginUser = LoginUser.loginUser
+        self.user = LoginUser.loginUser
         editProfileButton.layer.cornerRadius = 10
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        nickNameLabel.text = loginUser?.nickName
-    }
+
     // 프로필 수정 버튼
     @IBAction func editProfileButtonTapped(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "EditProfile", bundle: Bundle.main)

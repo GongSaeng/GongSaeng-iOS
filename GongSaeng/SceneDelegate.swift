@@ -10,7 +10,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-
+    var user: User?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         print("DEBUG: scene(_, willConnctoTo, Options)")
@@ -19,9 +19,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
         
-        if let _ = UserDefaults.standard.string(forKey: "id") {
+        if let id = UserDefaults.standard.string(forKey: "id") {
             print("DEBUG: Has userID")
-            switchRootViewToHome()
+            guard let password = UserDefaults.standard.string(forKey: "password") else { return }
+            AuthService.loginUserIn(withID: id, password: password) { [weak self] isSucceded in
+                guard let self = self else { return }
+                guard isSucceded else { return }
+                DispatchQueue.main.async {
+                    self.switchRootViewToHome()
+                }
+            }
         } else {
             print("DEBUG: No userID")
             switchRootViewToMain()
