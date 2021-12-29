@@ -17,15 +17,19 @@ struct freeListCellViewModel {
     var contents: String? {
         return free.contents
     }
-    
+    /*
     var category: String? {
         return free.category
-    }
+    }*/
     
     var time: String? {
         let time = free.time
         // 시간 포맷 수정!!
         return time
+    }
+    
+    var writer: String? {
+        return free.writer
     }
     
     init(free: free) {

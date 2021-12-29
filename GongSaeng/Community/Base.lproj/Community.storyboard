@@ -1708,7 +1708,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HrI-VI-fOb">
                                 <rect key="frame" x="0.0" y="47" width="414" height="56"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="건의게시판" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQc-ll-m7O">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="건의게시판" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mQc-ll-m7O">
                                         <rect key="frame" x="172.5" y="18.5" width="69.5" height="19.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
                                         <nil key="textColor"/>
@@ -1966,6 +1966,9 @@
                                                 </fragment>
                                             </attributedString>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="completeButtonTapped:" destination="5Rb-xX-6IP" eventType="touchUpInside" id="RhS-zM-kW9"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.95294117649999999" green="0.95294117649999999" blue="0.95294117649999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -2009,6 +2012,9 @@
                                 <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="titleField:" destination="5Rb-xX-6IP" eventType="editingDidEnd" id="lBV-iC-rlM"/>
+                                </connections>
                             </textField>
                             <view alpha="0.20000000298023224" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zDV-pJ-au5">
                                 <rect key="frame" x="16" y="172" width="380" height="1"/>
@@ -2054,10 +2060,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ohE-3B-B3O"/>
+                    <connections>
+                        <outlet property="contentsField" destination="FBU-sd-DrU" id="0ef-NO-d8b"/>
+                        <outlet property="titleField" destination="Yhb-Jb-EfT" id="zjz-HR-FHc"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bw-gq-TRB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1462" y="4732"/>
+            <point key="canvasLocation" x="1449" y="4731"/>
         </scene>
     </scenes>
     <resources>

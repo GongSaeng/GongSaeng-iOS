@@ -417,8 +417,8 @@
 			children = (
 				76035DF8277C448200090B17 /* free.storyboard */,
 				76035DF9277C448200090B17 /* freeListViewController.swift */,
-				76035DFA277C448200090B17 /* freeListCellViewModel.swift */,
 				76035DFB277C448200090B17 /* freeDetailViewController.swift */,
+				76035DFA277C448200090B17 /* freeListCellViewModel.swift */,
 				76035DFC277C448200090B17 /* free.swift */,
 			);
 			path = free;

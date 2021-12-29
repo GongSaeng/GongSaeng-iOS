@@ -15,7 +15,15 @@ class freeWriteViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    
+    @IBOutlet weak var titleField: UITextField!
+    
+    @IBOutlet weak var contentsField: UITextView!
+    
+    @IBAction func completeButtonTapped(_ sender: UIButton) {
+        freeNetwork.freeWrite(titleText : titleField.text ?? "test title", contentsText : contentsField.text ?? "test contents" )
+        self.navigationController?.popViewController(animated: true)
+    }
     @IBAction func backward(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }

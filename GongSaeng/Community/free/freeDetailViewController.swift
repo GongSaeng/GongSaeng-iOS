@@ -23,10 +23,11 @@ class freeDetailViewController: UIViewController {
    //
     
    // @IBOutlet weak var categoryLabel: UILabel!
+    
     @IBOutlet weak var titleLabel: UITextView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentsLabel: UITextView!
-
+    @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -67,6 +68,7 @@ class freeDetailViewController: UIViewController {
             titleLabel.text = free.title
             timeLabel.text = free.time
             contentsLabel.text = free.contents
+            writerLabel.text = free.writer
         }
     }
     
