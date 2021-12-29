@@ -69,9 +69,12 @@ class LoginViewController: UIViewController {
 //        }
         
         // To Home
+        showLoader(true)
         guard let id = idTextField.text, let password = passwordTextField.text else { return }
         AuthService.loginUserIn(withID: id, password: password) { isSucceded in
-            DispatchQueue.main.async {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.showLoader(false)
                 if isSucceded {
                     print("DEBUG: Login success..")
                     // UserDefaults ID 정보 저장
