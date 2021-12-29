@@ -7,26 +7,25 @@
 
 import UIKit
 
-class NoticeDetailViewController: UIViewController {
+class NoticeDetailViewController: UITableViewController {
     
     // MARK: Properties
     var notice: Notice?
     
     private lazy var commentInputView: CommentInputAccesoryView = {
-        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 150.0)
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100.0)
         let commentInputAccesoryView = CommentInputAccesoryView(frame: frame)
         return commentInputAccesoryView
     }()
     
     @IBOutlet weak var postingUserImageView: UIImageView!
-    
     @IBOutlet weak var categoryLabel: UILabel!
     @IBOutlet weak var titleLabel: UITextView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentsLabel: UITextView!
-
-    @IBOutlet weak var tableView: UITableView!
     
+    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -51,14 +50,13 @@ class NoticeDetailViewController: UIViewController {
         self.view.endEditing(true)
     }
     
+    // MARK: Helpers
     private func configure() {
         tabBarController?.tabBar.isHidden = true
         
         postingUserImageView.layer.cornerRadius = postingUserImageView.frame.height / 2
         postingUserImageView.layer.borderWidth = 1
         postingUserImageView.layer.borderColor = UIColor(white: 0.0, alpha: 0.1).cgColor
-        
-        tableView.translatesAutoresizingMaskIntoConstraints = false
         
         if let notice = notice {
             categoryLabel.text = notice.category
@@ -79,17 +77,29 @@ class NoticeDetailViewController: UIViewController {
         
         navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
     }
+}
+
+// MARK: UITableViewDataSource
+extension NoticeDetailViewController {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        10
+    }
     
-    @IBAction func backwardButtonTapped(_ sender: UIButton) {
-        self.navigationController?.popViewController(animated: true)
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else { return CommentTableViewCell() }
+        
+        return cell
     }
 }
 
-class NoticeTableView: UITableView {
-    
+// MARK: UITableViewDelegate
+extension NoticeDetailViewController{
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
+    }
 }
 
-
+// MARK: UITableViewCell  ->  댓글 Cell
 class CommentTableViewCell: UITableViewCell {
     @IBOutlet weak var commentWriterImageView: UIImageView!
     @IBOutlet weak var commentWriterNicknameLabel: UILabel!
@@ -105,63 +115,50 @@ class CommentTableViewCell: UITableViewCell {
     }
 }
 
+// MARK: UITextViewDelegate
 extension NoticeDetailViewController: UITextViewDelegate {
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        let placeHolderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
-        if textView.textColor == placeHolderColor {
-            textView.text = nil
-            textView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.87)
-        }
-    }
-
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if textView.text.isEmpty {
-//            placeHolderSetting(textView)
-        }
-    }
-
+    // 리턴 누르면 키보드 내리기
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if (text == "\n") {
             textView.resignFirstResponder()
         }
-
         return true
     }
 }
 
-extension NoticeTableView: UICollectionViewDataSource {
+
+//----------------------------------------------------------------
+
+
+// MARK: UICollectionViewCell  ->  사진 수평식 컬렉션뷰
+class NoticeImageCollectionViewCell: UICollectionViewCell {
+    @IBOutlet weak var attachedImageView: UIImageView!
+    
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        attachedImageView.layer.cornerRadius = 8
+    }
+}
+
+// MARK: UICollectionViewDataSource
+extension NoticeDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 5
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ImageCollectionViewCell", for: indexPath) as? ImageCollectionViewCell else { return ImageCollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NoticeImageCollectionViewCell", for: indexPath) as? NoticeImageCollectionViewCell else { return NoticeImageCollectionViewCell() }
         return cell
     }
 }
 
-extension NoticeTableView: UICollectionViewDelegate {
-    
+// MARK: UICollectionViewDelegate
+extension NoticeDetailViewController: UICollectionViewDelegate {
+
 }
 
-extension NoticeTableView: UICollectionViewDelegateFlowLayout {
-    
-}
+// MARK: UICollectionViewDelegateFlowLayout
+extension NoticeDetailViewController: UICollectionViewDelegateFlowLayout {
 
-extension NoticeDetailViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else { return CommentTableViewCell() }
-        
-        return cell
-    }
-}
-
-extension NoticeDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
 }

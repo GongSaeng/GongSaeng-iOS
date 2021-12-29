@@ -44,17 +44,14 @@
 		3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */; };
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
-		76035DFD277C448200090B17 /* free.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76035DF8277C448200090B17 /* free.storyboard */; };
-		76035DFE277C448200090B17 /* freeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035DF9277C448200090B17 /* freeListViewController.swift */; };
-		76035DFF277C448200090B17 /* freeListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035DFA277C448200090B17 /* freeListCellViewModel.swift */; };
-		76035E00277C448200090B17 /* freeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035DFB277C448200090B17 /* freeDetailViewController.swift */; };
-		76035E01277C448200090B17 /* free.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035DFC277C448200090B17 /* free.swift */; };
 		76035E03277C475000090B17 /* freeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035E02277C475000090B17 /* freeNetwork.swift */; };
 		A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A70D39052704BD0C00B09041 /* Reserve.storyboard */; };
 		A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70D39072704BD1A00B09041 /* ReserveViewController.swift */; };
 		A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */; };
 		A71600A92746393700FC3C64 /* Immediation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71600A82746393700FC3C64 /* Immediation.swift */; };
 		A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E07B926EE6021007DB8D0 /* UIImageView.swift */; };
+		A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A732CA47277CF0DD00A11E68 /* JGProgressHUD */; };
+		A732CA4A277CF11B00A11E68 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732CA49277CF11B00A11E68 /* UIViewController.swift */; };
 		A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BA26F1B7D000FA1F06 /* RequestCheckInViewController.swift */; };
 		A73AE4BD26F1B82200FA1F06 /* RequestCheckOutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BC26F1B82200FA1F06 /* RequestCheckOutViewController.swift */; };
 		A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73AE4BE26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift */; };
@@ -87,6 +84,11 @@
 		A777C8D62707A32600670556 /* CanceledReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */; };
 		A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */; };
 		A77B7B6E2748CFF200D0D5B1 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A77B7B6D2748CFF200D0D5B1 /* splash.png */; };
+		A780F69A277C7D7A00016898 /* free.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A780F695277C7D7A00016898 /* free.storyboard */; };
+		A780F69B277C7D7A00016898 /* freeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A780F696277C7D7A00016898 /* freeListViewController.swift */; };
+		A780F69C277C7D7A00016898 /* freeListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A780F697277C7D7A00016898 /* freeListCellViewModel.swift */; };
+		A780F69D277C7D7A00016898 /* freeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A780F698277C7D7A00016898 /* freeDetailViewController.swift */; };
+		A780F69E277C7D7A00016898 /* free.swift in Sources */ = {isa = PBXBuildFile; fileRef = A780F699277C7D7A00016898 /* free.swift */; };
 		A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */; };
 		A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FD274538D4004C9D3F /* TableHeaderView.swift */; };
 		A79A288D2708121C000EB8C2 /* UsageHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */; };
@@ -110,6 +112,8 @@
 		A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35572277AE2F8006F6A54 /* UserService.swift */; };
 		A7B35575277B18D8006F6A54 /* CommentInputAccesoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */; };
 		A7B35577277B73F3006F6A54 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35576277B73F3006F6A54 /* LoginViewModel.swift */; };
+		A7B756E4277C9B5E00BFFBC0 /* FreeWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B756E3277C9B5E00BFFBC0 /* FreeWriteViewController.swift */; };
+		A7B756E6277C9BCD00BFFBC0 /* PostTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */; };
 		A7C9D0FE277810BE00943207 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7C9D0FD277810BE00943207 /* Main.storyboard */; };
 		A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10227784A4E00943207 /* InputTextView.swift */; };
 		A7C9D10627784A8A00943207 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7C9D10527784A8A00943207 /* SnapKit */; };
@@ -172,17 +176,13 @@
 		3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
-		76035DF8277C448200090B17 /* free.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = free.storyboard; sourceTree = "<group>"; };
-		76035DF9277C448200090B17 /* freeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeListViewController.swift; sourceTree = "<group>"; };
-		76035DFA277C448200090B17 /* freeListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeListCellViewModel.swift; sourceTree = "<group>"; };
-		76035DFB277C448200090B17 /* freeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeDetailViewController.swift; sourceTree = "<group>"; };
-		76035DFC277C448200090B17 /* free.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = free.swift; sourceTree = "<group>"; };
 		76035E02277C475000090B17 /* freeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeNetwork.swift; sourceTree = "<group>"; };
 		A70D39052704BD0C00B09041 /* Reserve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reserve.storyboard; sourceTree = "<group>"; };
 		A70D39072704BD1A00B09041 /* ReserveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveViewController.swift; sourceTree = "<group>"; };
 		A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewModel.swift; sourceTree = "<group>"; };
 		A71600A82746393700FC3C64 /* Immediation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Immediation.swift; sourceTree = "<group>"; };
 		A71E07B926EE6021007DB8D0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		A732CA49277CF11B00A11E68 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		A73AE4BA26F1B7D000FA1F06 /* RequestCheckInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInViewController.swift; sourceTree = "<group>"; };
 		A73AE4BC26F1B82200FA1F06 /* RequestCheckOutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckOutViewController.swift; sourceTree = "<group>"; };
 		A73AE4BE26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckOutRequestDetailViewController.swift; sourceTree = "<group>"; };
@@ -215,6 +215,11 @@
 		A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanceledReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedUsingPopUpViewController.swift; sourceTree = "<group>"; };
 		A77B7B6D2748CFF200D0D5B1 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		A780F695277C7D7A00016898 /* free.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = free.storyboard; sourceTree = "<group>"; };
+		A780F696277C7D7A00016898 /* freeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeListViewController.swift; sourceTree = "<group>"; };
+		A780F697277C7D7A00016898 /* freeListCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeListCellViewModel.swift; sourceTree = "<group>"; };
+		A780F698277C7D7A00016898 /* freeDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeDetailViewController.swift; sourceTree = "<group>"; };
+		A780F699277C7D7A00016898 /* free.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = free.swift; sourceTree = "<group>"; };
 		A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmedationTableViewController.swift; sourceTree = "<group>"; };
 		A781C2FD274538D4004C9D3F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UsageHistory.storyboard; sourceTree = "<group>"; };
@@ -238,6 +243,8 @@
 		A7B35572277AE2F8006F6A54 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccesoryView.swift; sourceTree = "<group>"; };
 		A7B35576277B73F3006F6A54 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		A7B756E3277C9B5E00BFFBC0 /* FreeWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeWriteViewController.swift; sourceTree = "<group>"; };
+		A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextView.swift; sourceTree = "<group>"; };
 		A7C9D0FD277810BE00943207 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		A7C9D10227784A4E00943207 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmReservationPopUpViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +271,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */,
 				A7C9D10627784A8A00943207 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -399,6 +407,7 @@
 				3D2FBC0A26760BFA00D2FF56 /* Date.swift */,
 				A7FA636326EE2519005D9785 /* UITextView.swift */,
 				A71E07B926EE6021007DB8D0 /* UIImageView.swift */,
+				A732CA49277CF11B00A11E68 /* UIViewController.swift */,
 			);
 			path = "Extension + Public";
 			sourceTree = "<group>";
@@ -410,18 +419,6 @@
 				3DB686F9268D8C570061BCB0 /* LoginUser.swift */,
 			);
 			path = TabbarManager;
-			sourceTree = "<group>";
-		};
-		76035DF7277C448200090B17 /* free */ = {
-			isa = PBXGroup;
-			children = (
-				76035DF8277C448200090B17 /* free.storyboard */,
-				76035DF9277C448200090B17 /* freeListViewController.swift */,
-				76035DFA277C448200090B17 /* freeListCellViewModel.swift */,
-				76035DFB277C448200090B17 /* freeDetailViewController.swift */,
-				76035DFC277C448200090B17 /* free.swift */,
-			);
-			path = free;
 			sourceTree = "<group>";
 		};
 		A73AE4C026F1B94500FA1F06 /* EditProfile */ = {
@@ -499,9 +496,9 @@
 		A753C026277C3F1700039D5F /* Community */ = {
 			isa = PBXGroup;
 			children = (
-				76035DF7277C448200090B17 /* free */,
 				A753C02D277C3F1700039D5F /* Community.storyboard */,
 				A753C02A277C3F1700039D5F /* CommunityViewController.swift */,
+				A780F694277C7D7A00016898 /* free */,
 				A753C027277C3F1700039D5F /* EmergencyController.swift */,
 				A753C028277C3F1700039D5F /* withViewController.swift */,
 				A753C029277C3F1700039D5F /* freeWriteViewController.swift */,
@@ -552,6 +549,19 @@
 				A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */,
 			);
 			path = ReservationPopUp;
+			sourceTree = "<group>";
+		};
+		A780F694277C7D7A00016898 /* free */ = {
+			isa = PBXGroup;
+			children = (
+				A780F695277C7D7A00016898 /* free.storyboard */,
+				A780F696277C7D7A00016898 /* freeListViewController.swift */,
+				A780F697277C7D7A00016898 /* freeListCellViewModel.swift */,
+				A780F698277C7D7A00016898 /* freeDetailViewController.swift */,
+				A780F699277C7D7A00016898 /* free.swift */,
+				A7B756E3277C9B5E00BFFBC0 /* FreeWriteViewController.swift */,
+			);
+			path = free;
 			sourceTree = "<group>";
 		};
 		A781C2F92745233B004C9D3F /* Immediation */ = {
@@ -613,6 +623,7 @@
 			children = (
 				A7C9D10227784A4E00943207 /* InputTextView.swift */,
 				A7B35574277B18D8006F6A54 /* CommentInputAccesoryView.swift */,
+				A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -643,6 +654,7 @@
 			name = GongSaeng;
 			packageProductDependencies = (
 				A7C9D10527784A8A00943207 /* SnapKit */,
+				A732CA47277CF0DD00A11E68 /* JGProgressHUD */,
 			);
 			productName = GongSaeng;
 			productReference = 3D5D5985265247F40018FE63 /* GongSaeng.app */;
@@ -673,6 +685,7 @@
 			mainGroup = 3D5D597C265247F40018FE63;
 			packageReferences = (
 				A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 			);
 			productRefGroup = 3D5D5986265247F40018FE63 /* Products */;
 			projectDirPath = "";
@@ -700,7 +713,6 @@
 				A7AE9F3626EF201C0082C855 /* LogOutPopUp.storyboard in Resources */,
 				A7AE9F3926EF2E060082C855 /* PasswordChangedPopUp.storyboard in Resources */,
 				3D520BAB265340E40090B6E8 /* Home.storyboard in Resources */,
-				76035DFD277C448200090B17 /* free.storyboard in Resources */,
 				3D00C8BA266E39E8006236A0 /* Mate.storyboard in Resources */,
 				3D5D59B02652B29B0018FE63 /* Login.storyboard in Resources */,
 				A7FA636026EDDBF7005D9785 /* EditProfile.storyboard in Resources */,
@@ -709,6 +721,7 @@
 				A79A288D2708121C000EB8C2 /* UsageHistory.storyboard in Resources */,
 				A756407B271043A4008609FE /* LoginPopUp.storyboard in Resources */,
 				A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */,
+				A780F69A277C7D7A00016898 /* free.storyboard in Resources */,
 				A7674F7226EF9A5600AE60FA /* RequestCheckInOut.storyboard in Resources */,
 				3D5D59AE2652B2930018FE63 /* Register.storyboard in Resources */,
 				A7FA636626EE293F005D9785 /* MyProfileAndWriting.storyboard in Resources */,
@@ -733,7 +746,6 @@
 				A79C215D26EF5B3C000B9028 /* SetNotificationViewController.swift in Sources */,
 				3DAFCBA626627256008E9803 /* CompletedRegisterViewController.swift in Sources */,
 				3D015B0226590F0D003EC5E6 /* DepartmentViewController.swift in Sources */,
-				76035E00277C448200090B17 /* freeDetailViewController.swift in Sources */,
 				3D85550D2660084A00147EE7 /* AccountViewController.swift in Sources */,
 				3DAFCBA4266261E6008E9803 /* UITextField.swift in Sources */,
 				3D5D59AC2652B12A0018FE63 /* LoginViewController.swift in Sources */,
@@ -753,17 +765,19 @@
 				A7DC1CA12707788A002F395C /* ConfirmReservationPopUpViewController.swift in Sources */,
 				A7B35575277B18D8006F6A54 /* CommentInputAccesoryView.swift in Sources */,
 				A79C58E226EEE66C00F608D1 /* ManageAccountInfoViewController.swift in Sources */,
+				A780F69D277C7D7A00016898 /* freeDetailViewController.swift in Sources */,
 				3D5D59AA2652B11C0018FE63 /* RegisterViewController.swift in Sources */,
 				3DB686FA268D8C570061BCB0 /* LoginUser.swift in Sources */,
 				3D2FBC062675FE6B00D2FF56 /* PublicViewController.swift in Sources */,
 				A753C03A277C3F1700039D5F /* emergency_detail.swift in Sources */,
 				3D231A68266E44BA00080E9B /* Mate.swift in Sources */,
+				A780F69C277C7D7A00016898 /* freeListCellViewModel.swift in Sources */,
 				A7F3C4922779A0410019B5F4 /* AuthService.swift in Sources */,
+				A732CA4A277CF11B00A11E68 /* UIViewController.swift in Sources */,
 				A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */,
 				3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */,
 				A71600A92746393700FC3C64 /* Immediation.swift in Sources */,
 				A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */,
-				76035DFE277C448200090B17 /* freeListViewController.swift in Sources */,
 				A753C03C277C3F1700039D5F /* withWriteViewController.swift in Sources */,
 				A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */,
 				A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */,
@@ -777,6 +791,7 @@
 				A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */,
 				A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */,
 				3D231A6A266E629D00080E9B /* MateCell.swift in Sources */,
+				A7B756E6277C9BCD00BFFBC0 /* PostTextView.swift in Sources */,
 				A7FA636826EE294E005D9785 /* MyProfileAndWritingViewController.swift in Sources */,
 				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
 				A7A9B3D52754D200009B22DF /* NoticeListCellViewModel.swift in Sources */,
@@ -785,12 +800,11 @@
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
 				A753C038277C3F1700039D5F /* CommunityViewController.swift in Sources */,
 				A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */,
-				76035DFF277C448200090B17 /* freeListCellViewModel.swift in Sources */,
 				A7A9B3D32754CF45009B22DF /* Notice.swift in Sources */,
 				A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */,
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,
-				76035E01277C448200090B17 /* free.swift in Sources */,
+				A780F69E277C7D7A00016898 /* free.swift in Sources */,
 				A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */,
 				A7F9DCED27759495005E9113 /* MateNetwork.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
@@ -802,6 +816,7 @@
 				3D5D598B265247F40018FE63 /* SceneDelegate.swift in Sources */,
 				A753C041277C3F1700039D5F /* suggestDetailViewController.swift in Sources */,
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,
+				A7B756E4277C9B5E00BFFBC0 /* FreeWriteViewController.swift in Sources */,
 				76035E03277C475000090B17 /* freeNetwork.swift in Sources */,
 				3DA98CCD26530C30005175B5 /* User.swift in Sources */,
 				A753FB6226ED05B1001DA2C3 /* MyPageViewController.swift in Sources */,
@@ -820,6 +835,7 @@
 				A753C03E277C3F1700039D5F /* withDetailVewController.swift in Sources */,
 				3D5D599E265249310018FE63 /* HomeViewController.swift in Sources */,
 				3D5D59A82652AF390018FE63 /* FirstViewController.swift in Sources */,
+				A780F69B277C7D7A00016898 /* freeListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,6 +1037,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 		A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1032,6 +1056,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A732CA47277CF0DD00A11E68 /* JGProgressHUD */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
+		};
 		A7C9D10527784A8A00943207 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */;

@@ -23,10 +23,11 @@ class freeDetailViewController: UIViewController {
    //
     
    // @IBOutlet weak var categoryLabel: UILabel!
+    
     @IBOutlet weak var titleLabel: UITextView!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var contentsLabel: UITextView!
-
+    @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
     override func viewDidLoad() {
@@ -38,6 +39,24 @@ class freeDetailViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if let headerView = tableView.tableHeaderView {
+
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+
+            //Comparison necessary to avoid infinite loop
+            if height != headerFrame.size.height {
+                print("DEBUG: headerView height ->", height)
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+        }
     }
     
     override var inputAccessoryView: UIView? {
@@ -64,9 +83,10 @@ class freeDetailViewController: UIViewController {
         
         if let free = free {
             //categoryLabel.text = free.category
-            titleLabel.text = free.title
+            titleLabel.attributedText = NSAttributedString(string: free.title, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)])
             timeLabel.text = free.time
             contentsLabel.text = free.contents
+            writerLabel.text = free.writer
         }
     }
     
@@ -97,7 +117,9 @@ class ImageCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        attachedImageView.layer.cornerRadius = 8
+        layer.cornerRadius = 10
+        layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+        layer.borderWidth = 0.5
     }
 }
 
@@ -156,7 +178,9 @@ extension freeTableView: UICollectionViewDelegate {
 }
 
 extension freeTableView: UICollectionViewDelegateFlowLayout {
-    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 100.0, height: 100.0)
+//    }
 }
 
 extension freeDetailViewController: UITableViewDataSource {
@@ -166,7 +190,6 @@ extension freeDetailViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "freeCommentTableViewCell", for: indexPath) as? freeCommentTableViewCell else { return freeCommentTableViewCell() }
-        
         return cell
     }
 }

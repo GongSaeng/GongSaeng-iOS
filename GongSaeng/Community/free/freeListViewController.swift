@@ -24,33 +24,19 @@ class freeListViewController: UIViewController {
         super.viewDidLoad()
         
         configureView()
-        fetchfrees()
         configureRefreshControl()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        navigationController?.setNavigationBarHidden(false, animated: animated)
-//        navigationController?.isNavigationBarHidden = false
         configureNavigationView()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-//        navigationController?.setNavigationBarHidden(true, animated: true)
-//        navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-//        navigationController?.setNavigationBarHidden(false, animated: true)
+        fetchfrees()
     }
     
     // MARK: API
-    private func fetchfrees() {
+    func fetchfrees() {
         freeNetwork.fetchfree { [weak self] frees in
             guard let self = self else { return }
             self.frees = frees
@@ -95,6 +81,8 @@ class freeListViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
         
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "write"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(writeButtonTap))
+        
         let backBarButton = UIBarButtonItem(title: "게시판목록", style: UIBarButtonItem.Style.plain, target: self, action: nil)
         backBarButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)], for: .normal)
         
@@ -113,6 +101,15 @@ class freeListViewController: UIViewController {
                 $0?.isEnabled = true
             }
         }
+    }
+    
+    @objc func writeButtonTap() {
+        print("write button tapped")
+        let viewController = FreeWriteController()
+//        let storyboard = UIStoryboard(name: "Community", bundle: Bundle.main)
+//        let viewController = storyboard.instantiateViewController(withIdentifier: "freeWrite") as! freeWriteViewController
+        viewController.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(viewController, animated: true)
     }
     
     @IBAction func backwardButtonTapped(_ sender: UIButton) {
@@ -177,6 +174,7 @@ class freeTableViewCell: UITableViewCell {
     @IBOutlet weak var contentsLabel: UITextView!
     @IBOutlet weak var uploadedTimeLabel: UILabel!
     @IBOutlet weak var managerImageView: UIImageView!
+    @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var thumnailImageView: UIImageView!
     
     // MARK: Lifecycle
@@ -191,9 +189,11 @@ class freeTableViewCell: UITableViewCell {
     func configure() {
         guard let viewModel = viewModel else { return }
         
-        categoryLabel.text = viewModel.category
+       // categoryLabel.text = viewModel.category
         titleLabel.text = viewModel.title
         contentsLabel.text = viewModel.contents
         uploadedTimeLabel.text = viewModel.time
+        writerLabel.text = viewModel.writer
+        
     }
 }
