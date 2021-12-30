@@ -37,7 +37,6 @@ class freeWriteViewController: UIViewController {
         let titleText = titleField.text ?? "test title"
         let contentsText = contentsField.text ?? "test contents"
         freeNetwork.freeWrite(titleText: titleText, contentsText: contentsText)
-//        freeNetwork.freeWrite(titleText : titleField.text ?? "test title", contentsText : contentsField.text ?? "test contents", completion: nil )ddd
         self.navigationController?.popViewController(animated: true)
         
     }

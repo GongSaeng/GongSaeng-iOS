@@ -24,34 +24,20 @@ class freeListViewController: UIViewController {
         super.viewDidLoad()
         
         configureView()
-        fetchfrees()
         configureRefreshControl()
+        
     }
     
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-//        navigationController?.setNavigationBarHidden(false, animated: animated)
-//        navigationController?.isNavigationBarHidden = false
         configureNavigationView()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
-//        navigationController?.setNavigationBarHidden(true, animated: true)
-//        navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-//        navigationController?.setNavigationBarHidden(false, animated: true)
+        fetchfrees()
     }
     
     // MARK: API
-    private func fetchfrees() {
+    func fetchfrees() {
         freeNetwork.fetchfree { [weak self] frees in
             guard let self = self else { return }
             self.frees = frees
@@ -120,9 +106,9 @@ class freeListViewController: UIViewController {
     
     @objc func writeButtonTap() {
         print("write button tapped")
-        
-        let storyboard = UIStoryboard(name: "Community", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "freeWrite") as! freeWriteViewController
+        let viewController = FreeWriteController()
+//        let storyboard = UIStoryboard(name: "Community", bundle: Bundle.main)
+//        let viewController = storyboard.instantiateViewController(withIdentifier: "freeWrite") as! freeWriteViewController
         viewController.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(viewController, animated: true)
     }
