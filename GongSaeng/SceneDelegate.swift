@@ -20,52 +20,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .white
         
         switchRootViewToMain()
-//        if let id = UserDefaults.standard.string(forKey: "id") {
-//            print("DEBUG: Has userID")
-//            guard let password = UserDefaults.standard.string(forKey: "password") else { return }
-//            AuthService.loginUserIn(withID: id, password: password) { [weak self] isSucceded in
-//                guard let self = self else { return }
-//                guard isSucceded else { return }
-//                DispatchQueue.main.async {
-//                    self.switchRootViewToHome()
-//                }
-//            }
-//        } else {
-//            print("DEBUG: No userID")
-//            switchRootViewToMain()
-//        }
-        
-//        UserService.fetchCurrentUser { user in
-//            DispatchQueue.main.async {
-//                if user == nil {
-//                    print("DEBUG: Not logged in..")
-//                    self.switchRootViewToMain()
-//                } else {
-//                    print("DEBUG: logged in..")
-//                    self.switchRootViewToHome()
-//                }
-//            }
-//        }
-    }
-    
-    func sceneDidBecomeActive(_ scene: UIScene) {
-        print("DEBUG: sceneDidBecomeActive(_ scene: UIScene)")
-    }
-    
-    func sceneDidDisconnect(_ scene: UIScene) {
-        print("DEBUG: sceneDidDisconnect(_ scene: UIScene)")
-    }
-    
-    func sceneWillResignActive(_ scene: UIScene) {
-        print("DEBUG: sceneWillResignActive(_ scene: UIScene)")
-    }
-    
-    func sceneDidEnterBackground(_ scene: UIScene) {
-        print("DEBUG: sceneDidEnterBackground(_ scene: UIScene)")
-    }
-    
-    func sceneWillEnterForeground(_ scene: UIScene) {
-        print("DEBUG: sceneWillEnterForeground(_ scene: UIScene)")
     }
     
     func switchRootViewToMain(animated: Bool = false, completion: ((UIViewController?) -> Void)? = nil) {

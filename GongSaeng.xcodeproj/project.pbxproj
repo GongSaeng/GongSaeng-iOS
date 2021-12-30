@@ -91,6 +91,8 @@
 		A780F69E277C7D7A00016898 /* free.swift in Sources */ = {isa = PBXBuildFile; fileRef = A780F699277C7D7A00016898 /* free.swift */; };
 		A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */; };
 		A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FD274538D4004C9D3F /* TableHeaderView.swift */; };
+		A793D757277D917900BC1E5F /* free_comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793D756277D917900BC1E5F /* free_comment.swift */; };
+		A793D759277D940E00BC1E5F /* freeCommentCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793D758277D940E00BC1E5F /* freeCommentCellViewModel.swift */; };
 		A79A288D2708121C000EB8C2 /* UsageHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */; };
 		A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */; };
 		A79C215326EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */; };
@@ -222,6 +224,8 @@
 		A780F699277C7D7A00016898 /* free.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = free.swift; sourceTree = "<group>"; };
 		A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmedationTableViewController.swift; sourceTree = "<group>"; };
 		A781C2FD274538D4004C9D3F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
+		A793D756277D917900BC1E5F /* free_comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = free_comment.swift; sourceTree = "<group>"; };
+		A793D758277D940E00BC1E5F /* freeCommentCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = freeCommentCellViewModel.swift; sourceTree = "<group>"; };
 		A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UsageHistory.storyboard; sourceTree = "<group>"; };
 		A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsageHistoryViewController.swift; sourceTree = "<group>"; };
 		A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MembershipWithdrawlPopUp.storyboard; sourceTree = "<group>"; };
@@ -560,6 +564,8 @@
 				A780F698277C7D7A00016898 /* freeDetailViewController.swift */,
 				A780F699277C7D7A00016898 /* free.swift */,
 				A7B756E3277C9B5E00BFFBC0 /* FreeWriteViewController.swift */,
+				A793D756277D917900BC1E5F /* free_comment.swift */,
+				A793D758277D940E00BC1E5F /* freeCommentCellViewModel.swift */,
 			);
 			path = free;
 			sourceTree = "<group>";
@@ -760,6 +766,7 @@
 				A73AE4BD26F1B82200FA1F06 /* RequestCheckOutViewController.swift in Sources */,
 				A7DE0107270836760098AACF /* NotificationViewController.swift in Sources */,
 				3D5D5989265247F40018FE63 /* AppDelegate.swift in Sources */,
+				A793D759277D940E00BC1E5F /* freeCommentCellViewModel.swift in Sources */,
 				3D816C61266B92D700A5164B /* AppTabbarController.swift in Sources */,
 				A7FA636226EDDC0F005D9785 /* EditProfileViewController.swift in Sources */,
 				A7DC1CA12707788A002F395C /* ConfirmReservationPopUpViewController.swift in Sources */,
@@ -832,6 +839,7 @@
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,
 				A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */,
 				A7674F7426EF9A6500AE60FA /* RequestCheckInOutViewController.swift in Sources */,
+				A793D757277D917900BC1E5F /* free_comment.swift in Sources */,
 				A753C03E277C3F1700039D5F /* withDetailVewController.swift in Sources */,
 				3D5D599E265249310018FE63 /* HomeViewController.swift in Sources */,
 				3D5D59A82652AF390018FE63 /* FirstViewController.swift in Sources */,
