@@ -11,10 +11,12 @@ class freeDetailViewController: UIViewController {
     
     // MARK: Properties
     var free: free?
+    private var free_comments = [free_comment]()
     
     private lazy var freeCommentInputView: CommentInputAccesoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 150.0)
         let CommentInputAccesoryView = CommentInputAccesoryView(frame: frame)
+        CommentInputAccesoryView.delegate = self
         return CommentInputAccesoryView
     }()
     
@@ -30,15 +32,45 @@ class freeDetailViewController: UIViewController {
     @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    private func fetchfree_comments() {
+        freeNetwork.fetch_freecomment { [weak self] free_comments in
+            guard let self = self else { return }
+            self.free_comments = free_comments
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
+        //configure()
         tableView.keyboardDismissMode = .interactive
+        fetchfree_comments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         configureNavigationView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        if let headerView = tableView.tableHeaderView {
+
+            let height = headerView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize).height
+            var headerFrame = headerView.frame
+
+            //Comparison necessary to avoid infinite loop
+            if height != headerFrame.size.height {
+                print("DEBUG: headerView height ->", height)
+                headerFrame.size.height = height
+                headerView.frame = headerFrame
+                tableView.tableHeaderView = headerView
+            }
+        }
     }
     
     override var inputAccessoryView: UIView? {
@@ -65,11 +97,12 @@ class freeDetailViewController: UIViewController {
         
         if let free = free {
             //categoryLabel.text = free.category
-            titleLabel.text = free.title
+            titleLabel.attributedText = NSAttributedString(string: free.title, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)])
             timeLabel.text = free.time
             contentsLabel.text = free.contents
             writerLabel.text = free.writer
         }
+        
     }
     
     private func configureNavigationView() {
@@ -89,6 +122,17 @@ class freeDetailViewController: UIViewController {
     }
 }
 
+extension freeDetailViewController: CommentInputAccesoryViewDelegate {
+    func transferComment(_ contents: String?) {
+        let parent_num="3"
+        let contents = contents ?? "test"
+        freeNetwork.freeCommentWrite(num: parent_num, contentsText: contents) { [weak self] isSucceded in
+            guard let self = self else { return }
+            self.fetchfree_comments()
+        }
+    }
+}
+
 class freeTableView: UITableView {
     
 }
@@ -99,11 +143,37 @@ class ImageCollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        attachedImageView.layer.cornerRadius = 8
+        layer.cornerRadius = 10
+        layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+        layer.borderWidth = 0.5
+    }
+}
+
+extension freeDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return free_comments.count
+        //return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "freeCommentTableViewCell", for: indexPath) as? freeCommentTableViewCell else { return freeCommentTableViewCell() }
+        let free_comment = free_comments[indexPath.row]
+        cell.viewModel = freeCommentCellViewModel(free_comment: free_comment)
+        return cell
+    }
+}
+
+extension freeDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
     }
 }
 
 class freeCommentTableViewCell: UITableViewCell {
+    var viewModel: freeCommentCellViewModel? {
+        didSet { configure() }
+    }
+    
     @IBOutlet weak var CommentWriterImageView: UIImageView!
     @IBOutlet weak var CommentWriterNicknameLabel: UILabel!
     @IBOutlet weak var CommentedTimeLabel: UILabel!
@@ -116,6 +186,19 @@ class freeCommentTableViewCell: UITableViewCell {
         CommentWriterImageView.layer.borderWidth = 1
         CommentWriterImageView.layer.borderColor = UIColor(white: 0.0, alpha: 0.1).cgColor
     }
+    
+    func configure() {
+        guard let viewModel = viewModel else { return }
+        
+       // categoryLabel.text = viewModel.category
+        CommentWriterNicknameLabel.text = viewModel.writer
+        CommentLabel.text = viewModel.comment
+        CommentedTimeLabel.text = viewModel.time
+        //writerLabel.text = viewModel.writer
+        
+    }
+    
+    
 }
 
 extension freeDetailViewController: UITextViewDelegate {
@@ -158,7 +241,9 @@ extension freeTableView: UICollectionViewDelegate {
 }
 
 extension freeTableView: UICollectionViewDelegateFlowLayout {
-    
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return CGSize(width: 100.0, height: 100.0)
+//    }
 }
 
 extension freeDetailViewController: UITableViewDataSource {
@@ -173,8 +258,3 @@ extension freeDetailViewController: UITableViewDataSource {
     }
 }
 
-extension freeDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
-}
