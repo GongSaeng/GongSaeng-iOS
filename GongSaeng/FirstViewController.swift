@@ -19,6 +19,26 @@ class FirstViewController: UIViewController {
 //        checkIfUserIsLoggedIn()
 //        fetchUser()
         configure()
+        
+        if let id = UserDefaults.standard.string(forKey: "id") {
+            showLoader(true)
+            guard let password = UserDefaults.standard.string(forKey: "password") else { return }
+            AuthService.loginUserIn(withID: id, password: password) { isSucceded in
+                DispatchQueue.main.async { [weak self] in
+                    guard let self = self else { return }
+                    self.showLoader(false)
+                    if isSucceded {
+                        print("DEBUG: Login success..")
+                        // UserDefaults ID 정보 저장
+                        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                        sceneDelegate.switchRootViewToHome(animated: true)
+                    }
+                }
+            }
+        } else {
+            print("DEBUG: No userID")
+//            switchRootViewToMain()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -19,20 +19,21 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
         
-        if let id = UserDefaults.standard.string(forKey: "id") {
-            print("DEBUG: Has userID")
-            guard let password = UserDefaults.standard.string(forKey: "password") else { return }
-            AuthService.loginUserIn(withID: id, password: password) { [weak self] isSucceded in
-                guard let self = self else { return }
-                guard isSucceded else { return }
-                DispatchQueue.main.async {
-                    self.switchRootViewToHome()
-                }
-            }
-        } else {
-            print("DEBUG: No userID")
-            switchRootViewToMain()
-        }
+        switchRootViewToMain()
+//        if let id = UserDefaults.standard.string(forKey: "id") {
+//            print("DEBUG: Has userID")
+//            guard let password = UserDefaults.standard.string(forKey: "password") else { return }
+//            AuthService.loginUserIn(withID: id, password: password) { [weak self] isSucceded in
+//                guard let self = self else { return }
+//                guard isSucceded else { return }
+//                DispatchQueue.main.async {
+//                    self.switchRootViewToHome()
+//                }
+//            }
+//        } else {
+//            print("DEBUG: No userID")
+//            switchRootViewToMain()
+//        }
         
 //        UserService.fetchCurrentUser { user in
 //            DispatchQueue.main.async {
