@@ -16,6 +16,7 @@ class freeDetailViewController: UIViewController {
     private lazy var freeCommentInputView: CommentInputAccesoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 150.0)
         let CommentInputAccesoryView = CommentInputAccesoryView(frame: frame)
+        CommentInputAccesoryView.delegate = self
         return CommentInputAccesoryView
     }()
     
@@ -45,7 +46,7 @@ class freeDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
+        //configure()
         tableView.keyboardDismissMode = .interactive
         fetchfree_comments()
     }
@@ -83,6 +84,7 @@ class freeDetailViewController: UIViewController {
             contentsLabel.text = free.contents
             writerLabel.text = free.writer
         }
+        
     }
     
     private func configureNavigationView() {
@@ -102,6 +104,17 @@ class freeDetailViewController: UIViewController {
     }
 }
 
+extension freeDetailViewController: CommentInputAccesoryViewDelegate {
+    func transferComment(_ contents: String?) {
+        let parent_num="3"
+        let contents = contents ?? "test"
+        freeNetwork.freeCommentWrite(num: parent_num, contentsText: contents) { [weak self] isSucceded in
+            guard let self = self else { return }
+            self.fetchfree_comments()
+        }
+    }
+}
+
 class freeTableView: UITableView {
     
 }
@@ -116,15 +129,44 @@ class ImageCollectionViewCell: UICollectionViewCell {
     }
 }
 
+extension freeDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return free_comments.count
+        //return 10
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "freeCommentTableViewCell", for: indexPath) as? freeCommentTableViewCell else { return freeCommentTableViewCell() }
+        let free_comment = free_comments[indexPath.row]
+        cell.viewModel = freeCommentCellViewModel(free_comment: free_comment)
+        return cell
+    }
+}
+
+extension freeDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        100
+    }
+}
+
 class freeCommentTableViewCell: UITableViewCell {
+    var viewModel: freeCommentCellViewModel? {
+        didSet { configure() }
+    }
+    
     @IBOutlet weak var CommentWriterImageView: UIImageView!
     @IBOutlet weak var CommentWriterNicknameLabel: UILabel!
     @IBOutlet weak var CommentedTimeLabel: UILabel!
     @IBOutlet weak var CommentLabel: UILabel!
     
-    var viewModel: freeCommentCellViewModel? {
-        didSet { configure() }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        CommentWriterImageView.layer.cornerRadius = CommentWriterImageView.frame.height / 2
+        CommentWriterImageView.layer.borderWidth = 1
+        CommentWriterImageView.layer.borderColor = UIColor(white: 0.0, alpha: 0.1).cgColor
     }
+    
     func configure() {
         guard let viewModel = viewModel else { return }
         
@@ -136,13 +178,7 @@ class freeCommentTableViewCell: UITableViewCell {
         
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        CommentWriterImageView.layer.cornerRadius = CommentWriterImageView.frame.height / 2
-        CommentWriterImageView.layer.borderWidth = 1
-        CommentWriterImageView.layer.borderColor = UIColor(white: 0.0, alpha: 0.1).cgColor
-    }
+    
 }
 
 extension freeDetailViewController: UITextViewDelegate {
@@ -188,22 +224,4 @@ extension freeTableView: UICollectionViewDelegateFlowLayout {
     
 }
 
-extension freeDetailViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return free_comments.count
-        //return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "freeCommentTableViewCell", for: indexPath) as? freeCommentTableViewCell else { return freeCommentTableViewCell() }
-        let free_comment = free_comments[indexPath.row]
-        cell.viewModel = freeCommentCellViewModel(free_comment: free_comment)
-        return cell
-    }
-}
 
-extension freeDetailViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
-    }
-}

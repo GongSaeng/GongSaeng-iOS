@@ -45,7 +45,7 @@
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
 		76035E03277C475000090B17 /* freeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035E02277C475000090B17 /* freeNetwork.swift */; };
-		76F876F0277CBB8E00EDA452 /* comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F876EF277CBB8E00EDA452 /* comment.swift */; };
+		768649DB277D667B005F92D7 /* free_comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 768649DA277D667B005F92D7 /* free_comment.swift */; };
 		76F876F2277CBE3600EDA452 /* freeCommentCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F876F1277CBE3600EDA452 /* freeCommentCellViewModel.swift */; };
 		A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A70D39052704BD0C00B09041 /* Reserve.storyboard */; };
 		A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70D39072704BD1A00B09041 /* ReserveViewController.swift */; };
@@ -175,7 +175,7 @@
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
 		76035E02277C475000090B17 /* freeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeNetwork.swift; sourceTree = "<group>"; };
-		76F876EF277CBB8E00EDA452 /* comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = comment.swift; sourceTree = "<group>"; };
+		768649DA277D667B005F92D7 /* free_comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = free_comment.swift; sourceTree = "<group>"; };
 		76F876F1277CBE3600EDA452 /* freeCommentCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = freeCommentCellViewModel.swift; sourceTree = "<group>"; };
 		A70D39052704BD0C00B09041 /* Reserve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reserve.storyboard; sourceTree = "<group>"; };
 		A70D39072704BD1A00B09041 /* ReserveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveViewController.swift; sourceTree = "<group>"; };
@@ -553,8 +553,8 @@
 				A780F696277C7D7A00016898 /* freeListViewController.swift */,
 				A780F697277C7D7A00016898 /* freeListCellViewModel.swift */,
 				A780F698277C7D7A00016898 /* freeDetailViewController.swift */,
+				768649DA277D667B005F92D7 /* free_comment.swift */,
 				A780F699277C7D7A00016898 /* free.swift */,
-				76F876EF277CBB8E00EDA452 /* comment.swift */,
 				76F876F1277CBE3600EDA452 /* freeCommentCellViewModel.swift */,
 			);
 			path = free;
@@ -733,6 +733,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A79C215726EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift in Sources */,
+				768649DB277D667B005F92D7 /* free_comment.swift in Sources */,
 				3D85550B2660083D00147EE7 /* MemberViewController.swift in Sources */,
 				A753C037277C3F1700039D5F /* freeWriteViewController.swift in Sources */,
 				A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */,
@@ -798,7 +799,6 @@
 				A780F69E277C7D7A00016898 /* free.swift in Sources */,
 				A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */,
 				A7F9DCED27759495005E9113 /* MateNetwork.swift in Sources */,
-				76F876F0277CBB8E00EDA452 /* comment.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
 				A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */,
 				A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */,
