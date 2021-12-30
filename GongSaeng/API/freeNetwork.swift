@@ -101,4 +101,46 @@ struct freeNetwork {
         
         dataTask.resume()
     }
+    
+    static func fetch_freecomment(completion: @escaping([free_comment]) -> Void) {
+        guard let url = URL(string: "http://18.118.131.221:2222/comment?parent_num=3") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data,
+                  let free_comments = try? JSONDecoder().decode([free_comment].self, from: data) else {
+                
+                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      return
+                  }
+            switch response.statusCode {
+            case (200...299):
+                print("""
+                    complete!!!!!!!!!!!
+                """)
+                completion(free_comments)
+            case (400...499):
+                print("""
+                    ERROR: Client ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            case (500...599):
+                print("""
+                    ERROR: Server ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            default:
+                print("""
+                    ERROR: \(response.statusCode)
+                    Response: \(response)
+                """)
+            }
+        }
+        
+        dataTask.resume()
+    }
+    
+    
 }

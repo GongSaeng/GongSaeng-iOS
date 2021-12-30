@@ -28,6 +28,7 @@ class freeListViewController: UIViewController {
         configureRefreshControl()
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         

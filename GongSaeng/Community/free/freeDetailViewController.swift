@@ -11,6 +11,7 @@ class freeDetailViewController: UIViewController {
     
     // MARK: Properties
     var free: free?
+    private var free_comments = [free_comment]()
     
     private lazy var freeCommentInputView: CommentInputAccesoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 150.0)
@@ -30,11 +31,23 @@ class freeDetailViewController: UIViewController {
     @IBOutlet weak var writerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     
+    private func fetchfree_comments() {
+        freeNetwork.fetch_freecomment { [weak self] free_comments in
+            guard let self = self else { return }
+            self.free_comments = free_comments
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.tableView.refreshControl?.endRefreshing()
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
         tableView.keyboardDismissMode = .interactive
+        fetchfree_comments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -109,6 +122,20 @@ class freeCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var CommentedTimeLabel: UILabel!
     @IBOutlet weak var CommentLabel: UILabel!
     
+    var viewModel: freeCommentCellViewModel? {
+        didSet { configure() }
+    }
+    func configure() {
+        guard let viewModel = viewModel else { return }
+        
+       // categoryLabel.text = viewModel.category
+        CommentWriterNicknameLabel.text = viewModel.writer
+        CommentLabel.text = viewModel.comment
+        CommentedTimeLabel.text = viewModel.time
+        //writerLabel.text = viewModel.writer
+        
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -163,12 +190,14 @@ extension freeTableView: UICollectionViewDelegateFlowLayout {
 
 extension freeDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return free_comments.count
+        //return 10
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "freeCommentTableViewCell", for: indexPath) as? freeCommentTableViewCell else { return freeCommentTableViewCell() }
-        
+        let free_comment = free_comments[indexPath.row]
+        cell.viewModel = freeCommentCellViewModel(free_comment: free_comment)
         return cell
     }
 }

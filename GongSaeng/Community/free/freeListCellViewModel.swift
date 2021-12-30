@@ -32,6 +32,10 @@ struct freeListCellViewModel {
         return free.writer
     }
     
+    var index: Int? {
+        return free.index
+    }
+    
     init(free: free) {
         self.free = free
     }

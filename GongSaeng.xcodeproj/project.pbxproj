@@ -45,6 +45,8 @@
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
 		76035E03277C475000090B17 /* freeNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76035E02277C475000090B17 /* freeNetwork.swift */; };
+		76F876F0277CBB8E00EDA452 /* comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F876EF277CBB8E00EDA452 /* comment.swift */; };
+		76F876F2277CBE3600EDA452 /* freeCommentCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76F876F1277CBE3600EDA452 /* freeCommentCellViewModel.swift */; };
 		A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A70D39052704BD0C00B09041 /* Reserve.storyboard */; };
 		A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70D39072704BD1A00B09041 /* ReserveViewController.swift */; };
 		A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */; };
@@ -173,6 +175,8 @@
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
 		76035E02277C475000090B17 /* freeNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeNetwork.swift; sourceTree = "<group>"; };
+		76F876EF277CBB8E00EDA452 /* comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = comment.swift; sourceTree = "<group>"; };
+		76F876F1277CBE3600EDA452 /* freeCommentCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = freeCommentCellViewModel.swift; sourceTree = "<group>"; };
 		A70D39052704BD0C00B09041 /* Reserve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reserve.storyboard; sourceTree = "<group>"; };
 		A70D39072704BD1A00B09041 /* ReserveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveViewController.swift; sourceTree = "<group>"; };
 		A71600A6274638E300FC3C64 /* ImmediationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewModel.swift; sourceTree = "<group>"; };
@@ -550,6 +554,8 @@
 				A780F697277C7D7A00016898 /* freeListCellViewModel.swift */,
 				A780F698277C7D7A00016898 /* freeDetailViewController.swift */,
 				A780F699277C7D7A00016898 /* free.swift */,
+				76F876EF277CBB8E00EDA452 /* comment.swift */,
+				76F876F1277CBE3600EDA452 /* freeCommentCellViewModel.swift */,
 			);
 			path = free;
 			sourceTree = "<group>";
@@ -792,6 +798,7 @@
 				A780F69E277C7D7A00016898 /* free.swift in Sources */,
 				A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */,
 				A7F9DCED27759495005E9113 /* MateNetwork.swift in Sources */,
+				76F876F0277CBB8E00EDA452 /* comment.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
 				A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */,
 				A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */,
@@ -815,6 +822,7 @@
 				A7A9B3DA2754DBB6009B22DF /* NoticeNetwork.swift in Sources */,
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,
 				A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */,
+				76F876F2277CBE3600EDA452 /* freeCommentCellViewModel.swift in Sources */,
 				A7674F7426EF9A6500AE60FA /* RequestCheckInOutViewController.swift in Sources */,
 				A753C03E277C3F1700039D5F /* withDetailVewController.swift in Sources */,
 				3D5D599E265249310018FE63 /* HomeViewController.swift in Sources */,
@@ -966,13 +974,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3CZP576P62;
+				DEVELOPMENT_TEAM = 4LRN379V8M;
 				INFOPLIST_FILE = GongSaeng/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Dong-Cheon-Jeong.GongSaeng";
+				PRODUCT_BUNDLE_IDENTIFIER = yoogyoungminGongSaeng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -984,13 +992,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3CZP576P62;
+				DEVELOPMENT_TEAM = 4LRN379V8M;
 				INFOPLIST_FILE = GongSaeng/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Dong-Cheon-Jeong.GongSaeng";
+				PRODUCT_BUNDLE_IDENTIFIER = yoogyoungminGongSaeng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -13,6 +13,7 @@ struct free: Codable, Equatable {
     //let category: String
     let time: String
     let writer: String
+    let index: Int
     
     init(dictionary: [String: Any]) {
         self.title = dictionary["title"] as? String ?? ""
@@ -20,5 +21,7 @@ struct free: Codable, Equatable {
         //self.category = dictionary["category"] as? String ?? ""
         self.time = dictionary["time"] as? String ?? ""
         self.writer = dictionary["writer"] as? String ?? ""
+        self.index = dictionary["b_idx"] as? Int ?? 0
+        
     }
 }
