@@ -41,7 +41,7 @@ class TermsOfServicesViewController: UIViewController {
             TermsOfServicesViewModel.secondTermsOfServicesAgree = true
         }
         
-        let mainViewController = self.view.window?.rootViewController as! FirstViewController
+        let mainViewController = self.view.window?.rootViewController as! HomeViewController
         self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: {
             let storyBoard = UIStoryboard(name: "Register", bundle: nil)
             let rootViewController = storyBoard.instantiateViewController(identifier: "RegisterViewController") as! RegisterViewController

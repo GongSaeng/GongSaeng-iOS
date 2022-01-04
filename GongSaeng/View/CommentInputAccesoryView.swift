@@ -16,12 +16,13 @@ class CommentInputAccesoryView: UIView {
     // MARK: Properties
     weak var delegate: CommentInputAccesoryViewDelegate?
     
-    private let commentTextView: InputTextView = {
+    let commentTextView: InputTextView = {
         let textView = InputTextView()
         textView.placeHolderText = "댓글을 남겨보세요"
         textView.font = .systemFont(ofSize: 14.0)
         textView.backgroundColor = .clear
         textView.isScrollEnabled = false
+        textView.tintColor = .black
         return textView
     }()
     

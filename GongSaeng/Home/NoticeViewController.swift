@@ -97,8 +97,9 @@ class NoticeCell: UITableViewCell {
         guard let viewModel = viewModel else { return }
         
         titleLabel.text = viewModel.title
-        guard let timeString = viewModel.time else { return }
-        let dateString = String(timeString[timeString.index(timeString.startIndex, offsetBy: 4)...])
-        dateLabel.text = dateString
+        dateLabel.text = viewModel.time
+//        guard let timeString = viewModel.time else { return }
+//        let dateString = String(timeString[timeString.index(timeString.startIndex, offsetBy: 4)...])
+//        dateLabel.text = dateString
     }
 }

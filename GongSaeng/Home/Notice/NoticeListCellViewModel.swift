@@ -23,9 +23,20 @@ struct NoticeListCellViewModel {
     }
     
     var time: String? {
-        let time = notice.time
+        var time = notice.time
+        var date = ""
+        for i in 0...8 {
+            if i == 6 {
+                date.append("/")
+            } else if i < 4 {
+                time.removeFirst()
+            } else {
+                let char = time.removeFirst()
+                date.append(char)
+            }
+        }
         // 시간 포맷 수정!!
-        return time
+        return date
     }
     
     init(notice: Notice) {

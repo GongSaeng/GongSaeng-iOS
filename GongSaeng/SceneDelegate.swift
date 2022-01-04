@@ -13,18 +13,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var user: User?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        print("DEBUG: scene(_, willConnctoTo, Options)")
-
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
         
-        switchRootViewToMain()
+        let viewController = LaunchScreenViewController()
+        window?.rootViewController = viewController
+        window?.makeKeyAndVisible()
     }
     
     func switchRootViewToMain(animated: Bool = false, completion: ((UIViewController?) -> Void)? = nil) {
-        let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-        let naviRootViewController = storyboard.instantiateViewController(withIdentifier: "FirstViewController") as! FirstViewController
+        let naviRootViewController = MainViewController()
         let viewController = UINavigationController(rootViewController: naviRootViewController)
         self.window?.rootViewController = viewController
         window?.makeKeyAndVisible()

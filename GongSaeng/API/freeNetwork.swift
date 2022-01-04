@@ -11,11 +11,17 @@ struct freeNetwork {
     static func freeCommentWrite(num parent_num : String, contentsText contents: String, completion: ((Bool) -> Void)? = nil) {
         var urlComponents = URLComponents(string: "http://18.118.131.221:2222/comment?")
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let time = dateFormatter.string(from: Date())
+        
         let paramQuery1 = URLQueryItem(name: "parent_num", value: "3" )
         let paramQuery2 = URLQueryItem(name: "contents", value: contents)
+        let paramQuery3 = URLQueryItem(name: "time", value: time)
         
         urlComponents?.queryItems?.append(paramQuery1)
         urlComponents?.queryItems?.append(paramQuery2)
+        urlComponents?.queryItems?.append(paramQuery3)
         
         guard let url = urlComponents?.url else { return }
         
@@ -66,12 +72,19 @@ struct freeNetwork {
     static func freeWrite(titleText title : String, contentsText contents: String, completion: ((Bool) -> Void)? = nil) {
         var urlComponents = URLComponents(string: "http://18.118.131.221:2222/community?")
         
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let time = dateFormatter.string(from: Date())
+        
         let paramQuery1 = URLQueryItem(name: "title", value: title )
         let paramQuery2 = URLQueryItem(name: "contents", value: contents)
-        let paramQuery3 = URLQueryItem(name: "code", value: "0")
+        let paramQuery3 = URLQueryItem(name: "time", value: time)
+        let paramQuery4 = URLQueryItem(name: "code", value: "0")
+        
         urlComponents?.queryItems?.append(paramQuery1)
         urlComponents?.queryItems?.append(paramQuery2)
         urlComponents?.queryItems?.append(paramQuery3)
+        urlComponents?.queryItems?.append(paramQuery4)
         
         guard let url = urlComponents?.url else { return }
         

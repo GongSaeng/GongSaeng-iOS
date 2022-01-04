@@ -117,11 +117,20 @@ class freeDetailViewController: UIViewController {
 
 extension freeDetailViewController: CommentInputAccesoryViewDelegate {
     func transferComment(_ contents: String?) {
-        let parent_num="3"
+        showLoader(true)
+        let parent_num = "3"
         let contents = contents ?? "test"
         freeNetwork.freeCommentWrite(num: parent_num, contentsText: contents) { [weak self] isSucceded in
             guard let self = self else { return }
+            self.showLoader(false)
             self.fetchfree_comments()
+            DispatchQueue.main.async {
+                self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentSize.height - self.tableView.bounds.height), animated: true)
+                self.freeCommentInputView.commentTextView.resignFirstResponder()
+                self.freeCommentInputView.commentTextView.text = ""
+                self.freeCommentInputView.commentTextView.placeholderLabel.isHidden = false
+            }
+            
         }
     }
 }
@@ -217,10 +226,15 @@ extension freeTableView: UICollectionViewDelegateFlowLayout {
 
 extension freeDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return free_comments.count
+        return free_comments.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == free_comments.count {
+            let cell = UITableViewCell()
+            
+            return cell
+        }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "freeCommentTableViewCell", for: indexPath) as? freeCommentTableViewCell else { return freeCommentTableViewCell() }
         let free_comment = free_comments[indexPath.row]
         cell.viewModel = freeCommentCellViewModel(free_comment: free_comment)
@@ -230,6 +244,10 @@ extension freeDetailViewController: UITableViewDataSource {
 
 extension freeDetailViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        100
+        var height: CGFloat = 100
+        if indexPath.row == free_comments.count {
+            height = 330
+        }
+        return height
     }
 }

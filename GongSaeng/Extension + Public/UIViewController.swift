@@ -20,12 +20,14 @@ extension UIViewController {
     }
     
     func showLoader(_ show: Bool) {
-        view.endEditing(true)
-        
-        if show {
-            UIViewController.hud.show(in: view)
-        } else {
-            UIViewController.hud.dismiss()
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.view.endEditing(true)
+            if show {
+                UIViewController.hud.show(in: self.view)
+            } else {
+                UIViewController.hud.dismiss()
+            }
         }
     }
 }
