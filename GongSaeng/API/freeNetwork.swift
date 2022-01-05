@@ -9,7 +9,7 @@ import UIKit
 
 struct freeNetwork {
     static func freeCommentWrite(num parent_num : String, contentsText contents: String, completion: ((Bool) -> Void)? = nil) {
-        var urlComponents = URLComponents(string: "http://18.118.131.221:2222/comment?")
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/comment?")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -70,7 +70,7 @@ struct freeNetwork {
     }
     
     static func freeWrite(titleText title : String, contentsText contents: String, completion: ((Bool) -> Void)? = nil) {
-        var urlComponents = URLComponents(string: "http://18.118.131.221:2222/community?")
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/community?")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
@@ -134,7 +134,7 @@ struct freeNetwork {
     
     
     static func fetchfree(completion: @escaping([free]) -> Void) {
-        guard let url = URL(string: "http://18.118.131.221:2222/community?community_num=0") else { return }
+        guard let url = URL(string: "\(SERVER_URL)/community?community_num=0") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
@@ -170,7 +170,7 @@ struct freeNetwork {
     }
     
     static func fetch_freecomment(completion: @escaping([free_comment]) -> Void) {
-        guard let url = URL(string: "http://18.118.131.221:2222/comment?parent_num=3") else { return }
+        guard let url = URL(string: "\(SERVER_URL)/comment?parent_num=3") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in

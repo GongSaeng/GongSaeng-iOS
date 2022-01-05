@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import MapKit
 
 class AccountViewController: UIViewController {
 //    let viewModel: UserViewModel = UserViewModel()
@@ -117,11 +118,21 @@ class AccountViewController: UIViewController {
         
         register.updateRegister(id: idString, password: passwordString, nickName: nickNameString)
         // 회원가입 API 구현
+        showLoader(true)
         print("DEBUG: 회원가입 유저정보 ->", register)
-        // pushViewController
-        let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "CompletedRegisterViewController") as! CompletedRegisterViewController
-        navigationController?.pushViewController(viewController, animated: true)
+        AuthService.registerUser(registeringUser: register) { [weak self] isSucceded in
+            guard let self = self else { return }
+            if isSucceded {
+                self.showLoader(false)
+                DispatchQueue.main.async {
+                    let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
+                    let viewController = storyboard.instantiateViewController(withIdentifier: "CompletedRegisterViewController") as! CompletedRegisterViewController
+                    self.navigationController?.pushViewController(viewController, animated: true)
+                }
+            } else {
+                print("DEBUG: 회원가입 실패..")
+            }
+        }
     }
     
     func changeActivationStatusOfNextButton() {
@@ -157,29 +168,35 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func idReduplicationButtonHandler(_ sender: Any) {
-//        guard let text = idTextField.text else { return }
-        idReduplicationConstraint.constant = 0
-        changeActivationStatusOfNextButton()
-//        if !viewModel.idReduplicationCheck(id: text) {
-//            idReduplicationConstraint.constant = 0
-//            changeActivationStatusOfNextButton()
-//        } else {
-//            idReduplicationHintLabel.text = "중복한 아이디가 존재합니다."
-//            idReduplicationConstraint.constant = 17
-//        }
+        guard let id = idTextField.text else { return }
+        AuthService.checkIdDuplicate(idToCheck: id) { [weak self] isAvailable in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if isAvailable {
+                    self.idReduplicationConstraint.constant = 0
+                    self.changeActivationStatusOfNextButton()
+                } else {
+                    self.idReduplicationHintLabel.text = "중복한 아이디가 존재합니다."
+                    self.idReduplicationConstraint.constant = 17
+                }
+            }
+        }
     }
     
     @IBAction func nickNameReduplicationButtonHandler(_ sender: Any) {
-//        guard let text = nickNameTextField.text else { return }
-        nickNameReduplicationConstraint.constant = 0
-        changeActivationStatusOfNextButton()
-//        if !viewModel.nickNameReduplicationCheck(nickName: text) {
-//            nickNameReduplicationConstraint.constant = 0
-//            changeActivationStatusOfNextButton()
-//        } else {
-//            nickNameReduplicationHintLabel.text = "중복한 닉네임이 존재합니다."
-//            nickNameReduplicationConstraint.constant = 17
-//        }
+        guard let nickName = nickNameTextField.text else { return }
+        AuthService.checkNicknameDuplicate(nickNameToCheck: nickName) { [weak self] isAvailable in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if isAvailable {
+                    self.nickNameReduplicationConstraint.constant = 0
+                    self.changeActivationStatusOfNextButton()
+                } else {
+                    self.nickNameReduplicationHintLabel.text = "중복한 닉네임이 존재합니다."
+                    self.nickNameReduplicationConstraint.constant = 17
+                }
+            }
+        }
     }
     
     @IBAction func passwordLookButtonHandler(_ sender: Any) {

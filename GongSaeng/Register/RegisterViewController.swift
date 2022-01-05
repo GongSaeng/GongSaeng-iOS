@@ -32,6 +32,7 @@ class RegisterViewController: UIViewController {
         secondAgree.isSelected = TermsOfServicesViewModel.secondTermsOfServicesAgree
         allAgree.isSelected = isAllCheck()
         nextButtonChange()
+        print("DEBUG: RegisterViewControler viewWillAppear..")
     }
     
     @IBAction func close(_ sender: Any) {

@@ -7,4 +7,4 @@
 
 import Foundation
 
-public let url: String = "http://18.118.131.221:7777/"
+public let SERVER_URL: String = "http://18.118.131.221:2222"

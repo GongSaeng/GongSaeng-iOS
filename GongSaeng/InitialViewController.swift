@@ -40,6 +40,8 @@ class InitialViewController: UIViewController {
         super.viewWillAppear(animated)
         
         navigationController?.navigationBar.isHidden = true
+        TermsOfServicesViewModel.firstTermsOfServicesAgree = false
+        TermsOfServicesViewModel.secondTermsOfServicesAgree = false
     }
     
     // MARK: Actions

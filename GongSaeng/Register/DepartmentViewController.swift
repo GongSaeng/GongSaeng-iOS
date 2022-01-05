@@ -9,7 +9,16 @@ import UIKit
 
 class DepartmentViewController: UIViewController {
 
-    let viewModel: DepartmentViewModel = DepartmentViewModel()
+    var viewModel: DepartmentViewModel = DepartmentViewModel() {
+        didSet {
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.viewModel.loadDatas()
+                self.departmentTableView.reloadData()
+                self.noResultView.isHidden = true
+            }
+        }
+    }
     
     @IBOutlet weak var searchTextField: UITextField!
     @IBOutlet weak var searchButton: UIButton!
@@ -19,14 +28,27 @@ class DepartmentViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         noResultView.isHidden = true
         nextButton.layer.cornerRadius = 8
-        viewModel.loadDatas()
+        fetchDepartments()
     }
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if searchTextField.isFirstResponder {
             searchTextField.resignFirstResponder()
+        }
+    }
+    
+    private func fetchDepartments() {
+        showLoader(true)
+        AuthService.fetchDepartments { [weak self] departments in
+            guard let self = self else { return }
+            let viewModel = DepartmentViewModel()
+            viewModel.departments = departments
+            self.viewModel = viewModel
+            self.showLoader(false)
         }
     }
     
@@ -56,7 +78,6 @@ class DepartmentViewController: UIViewController {
             let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
             let viewController = storyboard.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
             viewController.register = Register(department: viewModel.isDoneName)
-            print("DEBUG: 회원가입 유저정보 ->", Register(department: viewModel.isDoneName))
             navigationController?.pushViewController(viewController, animated: true)
         }
     }

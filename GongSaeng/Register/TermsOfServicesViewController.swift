@@ -41,15 +41,10 @@ class TermsOfServicesViewController: UIViewController {
             TermsOfServicesViewModel.secondTermsOfServicesAgree = true
         }
         
-        let mainViewController = self.view.window?.rootViewController as! HomeViewController
-        self.presentingViewController?.presentingViewController?.dismiss(animated: false, completion: {
-            let storyBoard = UIStoryboard(name: "Register", bundle: nil)
-            let rootViewController = storyBoard.instantiateViewController(identifier: "RegisterViewController") as! RegisterViewController
-            let navigationController = UINavigationController(rootViewController: rootViewController)
-            navigationController.navigationBar.isHidden = true
-            navigationController.modalPresentationStyle = .fullScreen
-            mainViewController.present(navigationController, animated: false, completion: nil)
-        })
+        let naviController = self.presentingViewController as! UINavigationController
+        let registerViewController = naviController.viewControllers.last as! RegisterViewController
+        registerViewController.viewWillAppear(false)
+        dismiss(animated: true)
     }
 }
 

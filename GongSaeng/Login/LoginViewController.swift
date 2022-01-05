@@ -71,10 +71,17 @@ class LoginViewController: UIViewController {
         // To Home
         showLoader(true)
         guard let id = idTextField.text, let password = passwordTextField.text else { return }
-        AuthService.loginUserIn(withID: id, password: password) { isSucceded in
+        AuthService.loginUserIn(withID: id, password: password) { isSucceded, error in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.showLoader(false)
+                if error?.localizedDescription == "Could not connect to the server." {
+                    print("DEBUG: 서버에 연결할 수 없습니다..")
+                    let alert = UIAlertController(title: "Error", message: "서버에 연결할 수 없습니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+                
                 if isSucceded {
                     print("DEBUG: Login success..")
                     // UserDefaults ID 정보 저장

@@ -38,9 +38,6 @@ class CompletedRegisterViewController: UIViewController {
     }
     
     @IBAction func goFirst(_ sender: Any) {
-        TermsOfServicesViewModel.firstTermsOfServicesAgree = false
-        TermsOfServicesViewModel.secondTermsOfServicesAgree = false
-        
         self.navigationController?.popToRootViewController(animated: true)
     }
 }

@@ -10,7 +10,7 @@ import Foundation
 struct UserService {
     static func fetchCurrentUser(completion: @escaping(User?) -> Void) {
         print("DEBUG: Call fetchCurrentUser function.. ")
-        guard let url = URL(string: "http://18.118.131.221:7777/") else { return }
+        guard let url = URL(string: "\(SERVER_URL)/") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
@@ -18,6 +18,7 @@ struct UserService {
                   let response = response as? HTTPURLResponse,
                   let data = data else {
                       print("ERROR: fetchCurrentUser URLSession data task \(error?.localizedDescription ?? "")")
+                      completion(nil)
                       return
                   }
             
