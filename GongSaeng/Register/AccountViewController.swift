@@ -176,8 +176,11 @@ class AccountViewController: UIViewController {
                     self.idReduplicationConstraint.constant = 0
                     self.changeActivationStatusOfNextButton()
                 } else {
-                    self.idReduplicationHintLabel.text = "중복한 아이디가 존재합니다."
                     self.idReduplicationConstraint.constant = 17
+                    let viewController = PopUpViewController()
+                    viewController.detailText = "중복한 아이디가 존재합니다."
+                    viewController.modalPresentationStyle = .overCurrentContext
+                    self.present(viewController, animated: false, completion: nil)
                 }
             }
         }
@@ -192,8 +195,11 @@ class AccountViewController: UIViewController {
                     self.nickNameReduplicationConstraint.constant = 0
                     self.changeActivationStatusOfNextButton()
                 } else {
-                    self.nickNameReduplicationHintLabel.text = "중복한 닉네임이 존재합니다."
                     self.nickNameReduplicationConstraint.constant = 17
+                    let viewController = PopUpViewController()
+                    viewController.detailText = "중복한 닉네임이 존재합니다."
+                    viewController.modalPresentationStyle = .overCurrentContext
+                    self.present(viewController, animated: false, completion: nil)
                 }
             }
         }

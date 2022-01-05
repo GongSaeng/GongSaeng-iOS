@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19162" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19144"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -18,10 +18,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBc-OE-BqK">
-                                <rect key="frame" x="16" y="66" width="18" height="18"/>
+                                <rect key="frame" x="7" y="57" width="36" height="36"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="18" id="6MK-5N-ZFp"/>
-                                    <constraint firstAttribute="width" constant="18" id="Rgr-g7-hvz"/>
+                                    <constraint firstAttribute="height" constant="36" id="6MK-5N-ZFp"/>
+                                    <constraint firstAttribute="width" constant="36" id="Rgr-g7-hvz"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemGray2Color"/>
                                 <state key="normal" image="xmark" catalog="system">
@@ -86,19 +86,19 @@
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="bottom" secondItem="pyu-uY-QJ9" secondAttribute="bottom" constant="16" id="HEg-YP-jbn"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="6bu-JP-wsF" secondAttribute="trailing" constant="18" id="HtK-xg-0Z5"/>
                             <constraint firstItem="6bu-JP-wsF" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="I15-NO-jcM"/>
-                            <constraint firstItem="6bu-JP-wsF" firstAttribute="top" secondItem="pBc-OE-BqK" secondAttribute="bottom" constant="72" id="KAv-LX-SJC"/>
-                            <constraint firstItem="BGB-76-Seg" firstAttribute="top" secondItem="pBc-OE-BqK" secondAttribute="bottom" constant="28" id="Q4a-o2-M9H"/>
                             <constraint firstItem="Mbq-c8-3cw" firstAttribute="leading" secondItem="5EZ-qb-Rvc" secondAttribute="leading" id="Rjs-GZ-LH4"/>
-                            <constraint firstItem="fDX-rX-JuC" firstAttribute="top" secondItem="pBc-OE-BqK" secondAttribute="bottom" constant="20" id="V00-fU-qTs"/>
+                            <constraint firstItem="BGB-76-Seg" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="68" id="UJY-Bu-qkC"/>
+                            <constraint firstItem="6bu-JP-wsF" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="112" id="UKe-Wo-CWH"/>
+                            <constraint firstItem="BGB-76-Seg" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Zpo-Gp-MmC"/>
                             <constraint firstItem="pyu-uY-QJ9" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="Zsw-mS-loA"/>
-                            <constraint firstItem="pBc-OE-BqK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="22" id="ak2-SX-Kkd"/>
-                            <constraint firstItem="pBc-OE-BqK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="16" id="axZ-g9-XCT"/>
+                            <constraint firstItem="pBc-OE-BqK" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="13" id="ak2-SX-Kkd"/>
+                            <constraint firstItem="pBc-OE-BqK" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" constant="7" id="bx2-ls-udF"/>
                             <constraint firstItem="Mbq-c8-3cw" firstAttribute="top" secondItem="fDX-rX-JuC" secondAttribute="bottom" constant="1" id="gal-jA-MYb"/>
                             <constraint firstItem="vDu-zF-Fre" firstAttribute="trailing" secondItem="fDX-rX-JuC" secondAttribute="trailing" id="mSd-Wx-qkT"/>
                             <constraint firstItem="fDX-rX-JuC" firstAttribute="leading" secondItem="vDu-zF-Fre" secondAttribute="leading" id="oae-pF-hlC"/>
                             <constraint firstItem="pyu-uY-QJ9" firstAttribute="top" secondItem="fDX-rX-JuC" secondAttribute="bottom" constant="17" id="qdJ-6I-BhZ"/>
                             <constraint firstItem="pyu-uY-QJ9" firstAttribute="top" secondItem="6bu-JP-wsF" secondAttribute="bottom" constant="8" symbolic="YES" id="r9c-W7-wGd"/>
-                            <constraint firstItem="BGB-76-Seg" firstAttribute="leading" secondItem="pBc-OE-BqK" secondAttribute="leading" id="wQ9-AL-Bvc"/>
+                            <constraint firstItem="fDX-rX-JuC" firstAttribute="top" secondItem="vDu-zF-Fre" secondAttribute="top" constant="60" id="xfS-yJ-8rD"/>
                         </constraints>
                     </view>
                     <connections>

@@ -48,30 +48,10 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func loginButtonTapHandler(_ sender: Any) {
-        // id, password check
-        // 두 유저가 같다는 것은 id와 비번이 모두 같은 것임을 정의했다.
-//        guard let loginUser = loginUserCreate(id: idTextField.text, password: passwordTextField.text) else { return }
-//        guard userViewModel.isCorrectUser(user: loginUser) else {
-//            let storyBoard = UIStoryboard.init(name: "LoginPopUp", bundle: nil)
-//            let popUpViewController = storyBoard.instantiateViewController(identifier: "CheckIDInfoPopUpViewController") as! CheckIDInfoPopUpViewController
-//            popUpViewController.modalPresentationStyle = .overCurrentContext
-//            self.present(popUpViewController, animated: false, completion: nil)
-//            return
-//        }
-//
-//        // permission check
-//        guard userViewModel.doneUser.contains(loginUser) else {
-//            let storyBoard = UIStoryboard.init(name: "LoginPopUp", bundle: nil)
-//            let popUpViewController = storyBoard.instantiateViewController(identifier: "WaitingForApprovalPopUpViewController") as! WaitingForApprovalPopUpViewController
-//            popUpViewController.modalPresentationStyle = .overCurrentContext
-//            self.present(popUpViewController, animated: false, completion: nil)
-//            return
-//        }
-        
         // To Home
         showLoader(true)
         guard let id = idTextField.text, let password = passwordTextField.text else { return }
-        AuthService.loginUserIn(withID: id, password: password) { isSucceded, error in
+        AuthService.loginUserIn(withID: id, password: password) { isRight, isApproved, error in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.showLoader(false)
@@ -82,15 +62,27 @@ class LoginViewController: UIViewController {
                     self.present(alert, animated: true, completion: nil)
                 }
                 
-                if isSucceded {
-                    print("DEBUG: Login success..")
-                    // UserDefaults ID 정보 저장
-                    UserDefaults.standard.set(id, forKey: "id")
-                    UserDefaults.standard.set(password, forKey: "password")
-                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.switchRootViewToMain(animated: true)
+                if isRight {
+                    if isApproved {
+                        print("DEBUG: Login success..")
+                        // UserDefaults ID 정보 저장
+                        UserDefaults.standard.set(id, forKey: "id")
+                        UserDefaults.standard.set(password, forKey: "password")
+                        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                        sceneDelegate.switchRootViewToMain(animated: true)
+                    } else {
+                        print("DEBUG: Not approved User..")
+                        let viewController = PopUpViewController()
+                        viewController.detailText = "가입 승인 대기중이에요\n공간 관리자님께 문의해주세요."
+                        viewController.modalPresentationStyle = .overCurrentContext
+                        self.present(viewController, animated: false, completion: nil)
+                    }
                 } else {
                     print("DEBUG: Login faield..")
+                    let viewController = PopUpViewController()
+                    viewController.detailText = "아이디나 비밀번호를 확인해주세요."
+                    viewController.modalPresentationStyle = .overCurrentContext
+                    self.present(viewController, animated: false, completion: nil)
                 }
             }
         }

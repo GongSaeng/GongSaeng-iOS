@@ -2,7 +2,7 @@
 //  freeNetwork.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2021/11/29.
+//  Created by 유경민 on 2021/11/29.
 //
 
 import UIKit

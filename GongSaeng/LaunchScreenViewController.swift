@@ -43,7 +43,7 @@ class LaunchScreenViewController: UIViewController {
                 print("DEBUG: No password key..")
                 return
             }
-            AuthService.loginUserIn(withID: id, password: password) { isSucceded, error in
+            AuthService.loginUserIn(withID: id, password: password) { isSucceded, bool, error in
                 DispatchQueue.main.async { [weak self] in
                     guard let self = self else { return }
                     self.showLoader(false)

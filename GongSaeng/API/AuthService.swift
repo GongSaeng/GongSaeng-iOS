@@ -8,7 +8,7 @@
 import Foundation
 
 struct AuthService {
-    static func loginUserIn(withID id: String, password: String, completion: ((Bool, Error?) -> Void)? = nil) {
+    static func loginUserIn(withID id: String, password: String, completion: ((Bool, Bool, Error?) -> Void)? = nil) {
         var urlComponents = URLComponents(string: "\(SERVER_URL)/login?")
         
         let paramQuery1 = URLQueryItem(name: "id", value: id)
@@ -25,25 +25,19 @@ struct AuthService {
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
-                  let data = data else {
+                  let data = data,
+                  let returnValue = try? JSONSerialization.jsonObject(with: data, options: []) as? [[String: String]],
+                  let jsonArr = returnValue.first  else {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                      guard let completion = completion else { return }
-                      completion(false, error)
                       return
                   }
-            guard let returnValue = String(data: data, encoding: .utf8) else {
-                print("DEBUG: No ReturnValue")
-                return
-            }
     
             switch response.statusCode {
             case (200...299):
                 guard let completion = completion else { return }
-                if returnValue == "true" {
-                    completion(true, nil)
-                } else {
-                    completion(false, nil)
-                }
+                let isRight: Bool = (jsonArr["login"] == "true") ? true : false
+                let isApproved: Bool = (jsonArr["approve"] == "true") ? true : false
+                completion(isRight, isApproved, nil)
             case (400...499):
                 print("""
                     ERROR: Client ERROR \(response.statusCode)
