@@ -14,6 +14,7 @@ enum ButtonColor {
 class BannerButton: UIButton {
     var buttonTitle: String
     var buttonColor: ButtonColor
+    var isActivated: Bool = true
     
     required init(title: String, backgroundColor: ButtonColor) {
         self.buttonTitle = title

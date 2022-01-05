@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 class PostTextView: UITextView {
+    
     // MARK: Properties
     var placeHolderText: String? {
         didSet { placeholderLabel.text = placeHolderText }
@@ -27,14 +28,7 @@ class PostTextView: UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         
-        addSubview(placeholderLabel)
-        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
-        placeholderLabel.snp.makeConstraints {
-            $0.top.equalToSuperview()
-            $0.leading.equalToSuperview()
-            $0.width.equalToSuperview()
-        }
-        
+        layout()
         confiugre()
         disableInputTraits()
     }
@@ -49,9 +43,20 @@ class PostTextView: UITextView {
         setHeightFlexible()
     }
     
+    // MARK: Helpers
+    private func layout() {
+        addSubview(placeholderLabel)
+        placeholderLabel.translatesAutoresizingMaskIntoConstraints = false
+        placeholderLabel.snp.makeConstraints {
+            $0.top.equalToSuperview()
+            $0.leading.equalToSuperview()
+            $0.width.equalToSuperview()
+        }
+    }
+    
     private func confiugre() {
+        font = .systemFont(ofSize: 14.0)
         NotificationCenter.default.addObserver(self, selector: #selector(handleTextDidChange), name: UITextView.textDidChangeNotification, object: nil)
-        tintColor = .black
         isScrollEnabled = false
         textContainerInset = UIEdgeInsets(top: 0, left: -6, bottom: -6, right: 0)
         self.snp.makeConstraints { $0.height.equalTo(300) }

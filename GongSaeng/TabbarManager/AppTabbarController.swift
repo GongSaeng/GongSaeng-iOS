@@ -30,7 +30,7 @@ class AppTabbarController: UITabBarController {
                 print("DEBUG: No userID in server..")
                 DispatchQueue.main.async {
                     guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.switchRootViewToMain(animated: true)
+                    sceneDelegate.switchRootViewToInitial(animated: true)
                 }
             } else {
                 print("DEBUG: Has userID in server..")

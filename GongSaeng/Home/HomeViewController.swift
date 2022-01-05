@@ -28,6 +28,11 @@ class HomeViewController: UIViewController {
         super.viewWillAppear(animated)
         print("DEBUG: HomeViewController viewWillAppear")
         
+//        popItem
+
+//        UIApplication.statusBarMan
+//        UIWindowScene.statusBarMa
+//        navigationController?.navigationBar.alpha = 0
 //        navigationController?.setNavigationBarHidden(true, animated: animated)
         navigationController?.navigationBar.isHidden = true
     }

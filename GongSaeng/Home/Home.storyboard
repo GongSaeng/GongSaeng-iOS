@@ -13,7 +13,7 @@
         <!--공용-->
         <scene sceneID="UTt-AA-BaZ">
             <objects>
-                <viewController id="xhK-am-vmN" customClass="PublicViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="PublicViewController" id="xhK-am-vmN" customClass="PublicViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b0n-pV-vm3">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -116,7 +116,7 @@
                                 </constraints>
                             </view>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2qn-0S-Dpt">
-                                <rect key="frame" x="0.0" y="140.5" width="414" height="672.5"/>
+                                <rect key="frame" x="0.0" y="140.5" width="414" height="721.5"/>
                             </containerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vcC-RJ-2Vg"/>
@@ -142,18 +142,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mzp-yX-Ghf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-852.17391304347836" y="644.86607142857144"/>
+            <point key="canvasLocation" x="-1174" y="644"/>
         </scene>
         <!--Community View Controller-->
         <scene sceneID="rEi-UK-wgv">
             <objects>
-                <viewController id="jAw-0d-jUw" customClass="CommunityViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CommunityViewController" id="jAw-0d-jUw" customClass="CommunityViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="6ax-Dj-dLP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Vb-gs-Wfi">
-                                <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="56"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="커뮤니티" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A1l-Y3-f8w">
                                         <rect key="frame" x="18" y="16" width="69.5" height="24"/>
@@ -162,7 +162,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyO-tU-1aE">
-                                        <rect key="frame" x="311.5" y="-105.5" width="88.5" height="267"/>
+                                        <rect key="frame" x="311.5" y="-39.5" width="88.5" height="135"/>
                                         <color key="tintColor" red="0.99977022410000005" green="0.60017317530000003" blue="0.40167617799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain">
@@ -189,14 +189,14 @@
                                 </constraints>
                             </view>
                             <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUH-V4-lI5">
-                                <rect key="frame" x="0.0" y="144" width="414" height="1"/>
+                                <rect key="frame" x="0.0" y="100" width="414" height="1"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="MSG-SC-usQ"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="28s-HG-FBn">
-                                <rect key="frame" x="0.0" y="145" width="414" height="668"/>
+                                <rect key="frame" x="0.0" y="101" width="414" height="761"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommunityCell" rowHeight="82" id="hfX-jk-oFf" customClass="CommunityCell" customModule="GongSaeng" customModuleProvider="target">
@@ -275,7 +275,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFR-dX-AJY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="960.86956521739137" y="644.86607142857144"/>
+            <point key="canvasLocation" x="-472" y="644"/>
         </scene>
         <!--알림-->
         <scene sceneID="bJW-Hv-L5a">
@@ -472,7 +472,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oJ9-Ad-8SO">
-                                <rect key="frame" x="0.0" y="151.5" width="414" height="661.5"/>
+                                <rect key="frame" x="0.0" y="151.5" width="414" height="710.5"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eFf-fo-LdS">
                                     <size key="itemSize" width="414" height="90"/>
@@ -573,7 +573,7 @@
                                 </constraints>
                             </imageView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UA3-9s-wDL">
-                                <rect key="frame" x="0.0" y="811" width="414" height="2"/>
+                                <rect key="frame" x="0.0" y="860" width="414" height="2"/>
                                 <color key="backgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.94901960784313721" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="vMI-AN-fZN"/>
@@ -660,31 +660,31 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SJZ-ju-DKq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1771.0144927536232" y="644.86607142857144"/>
+            <point key="canvasLocation" x="230" y="644"/>
         </scene>
         <!--My Page View Controller-->
         <scene sceneID="ZdA-LT-yXD">
             <objects>
-                <viewController id="831-R5-ggr" customClass="MyPageViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyPageViewController" id="831-R5-ggr" customClass="MyPageViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wNv-RQ-cuW">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="마이페이지" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mmh-kE-XCE">
-                                <rect key="frame" x="15" y="104" width="147" height="24"/>
+                                <rect key="frame" x="15" y="60" width="147" height="24"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQ8-ob-dUV">
-                                <rect key="frame" x="0.0" y="143.5" width="414" height="1"/>
+                                <rect key="frame" x="0.0" y="99.5" width="414" height="1"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="H1V-sb-feR"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="닉네임" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Noq-eC-QZN">
-                                <rect key="frame" x="16" y="174.5" width="42" height="24"/>
+                                <rect key="frame" x="16" y="130.5" width="42" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="B85-cy-zIc"/>
                                 </constraints>
@@ -693,7 +693,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MHc-Jd-25W">
-                                <rect key="frame" x="16" y="214.5" width="158" height="40"/>
+                                <rect key="frame" x="16" y="170.5" width="158" height="40"/>
                                 <color key="backgroundColor" red="0.066666666666666666" green="0.40392156862745099" blue="0.38039215686274508" alpha="0.10120033112582781" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="158" id="4QY-jk-Da6"/>
@@ -708,21 +708,21 @@
                                 </connections>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="no_image" translatesAutoresizingMaskIntoConstraints="NO" id="xqS-um-kXE">
-                                <rect key="frame" x="318" y="174.5" width="80" height="80"/>
+                                <rect key="frame" x="318" y="130.5" width="80" height="80"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="YNt-1M-uX7"/>
                                     <constraint firstAttribute="height" constant="80" id="ddL-m5-bXf"/>
                                 </constraints>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JxD-Bv-GyR">
-                                <rect key="frame" x="0.0" y="284.5" width="414" height="8"/>
+                                <rect key="frame" x="0.0" y="240.5" width="414" height="8"/>
                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.050000000000000003" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="zfz-qA-4hh"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="58o-BK-uYz">
-                                <rect key="frame" x="0.0" y="292.5" width="414" height="520.5"/>
+                                <rect key="frame" x="0.0" y="248.5" width="414" height="613.5"/>
                                 <subviews>
                                     <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EpN-tr-A8I">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="360"/>
@@ -852,7 +852,7 @@
                                 </constraints>
                             </view>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Mbp-k8-5n3">
-                                <rect key="frame" x="0.0" y="811" width="414" height="2"/>
+                                <rect key="frame" x="0.0" y="860" width="414" height="2"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="vFV-kQ-6g0"/>
@@ -873,6 +873,8 @@
                             <constraint firstItem="MHc-Jd-25W" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" constant="16" id="GYK-Mq-Dxh"/>
                             <constraint firstItem="58o-BK-uYz" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" id="IDK-sk-JSz"/>
                             <constraint firstItem="Noq-eC-QZN" firstAttribute="top" secondItem="XQ8-ob-dUV" secondAttribute="bottom" constant="30" id="LqE-VJ-Fjk"/>
+                            <constraint firstItem="EpN-tr-A8I" firstAttribute="top" secondItem="Sf1-N3-2wb" secondAttribute="top" constant="204.5" id="N6B-MZ-2bW"/>
+                            <constraint firstItem="xqS-um-kXE" firstAttribute="top" secondItem="XQ8-ob-dUV" secondAttribute="bottom" constant="30" id="Tz9-oZ-eKx"/>
                             <constraint firstItem="MHc-Jd-25W" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" constant="16" id="aEn-IC-In4"/>
                             <constraint firstItem="JxD-Bv-GyR" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" id="dS9-F5-6Os"/>
                             <constraint firstItem="Noq-eC-QZN" firstAttribute="leading" secondItem="Sf1-N3-2wb" secondAttribute="leading" constant="16" id="dvC-rg-4u6"/>
@@ -896,7 +898,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7W9-mz-zqy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3476.811594202899" y="644.86607142857144"/>
+            <point key="canvasLocation" x="916" y="644"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="mD1-zO-Wod">
@@ -907,7 +909,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bo3-Kb-rgC">
-                                <rect key="frame" x="0.0" y="88" width="414" height="770"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="863"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X3I-jd-lv7">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="258"/>
@@ -1078,7 +1080,7 @@
                                 </constraints>
                             </scrollView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AZG-MI-Wxg">
-                                <rect key="frame" x="0.0" y="856" width="414" height="2"/>
+                                <rect key="frame" x="0.0" y="905" width="414" height="2"/>
                                 <color key="backgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.94901960780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="2" id="D4V-65-Xfa"/>
@@ -1109,28 +1111,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AeR-f0-QfX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2628.985507246377" y="644.53125"/>
-        </scene>
-        <!--App Tabbar Controller-->
-        <scene sceneID="KaK-Rc-ytx">
-            <objects>
-                <tabBarController storyboardIdentifier="AppTabbarController" id="h7Q-wD-ksR" customClass="AppTabbarController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="dl0-wd-MWF">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    </tabBar>
-                    <connections>
-                        <segue destination="HOK-GG-r4D" kind="relationship" relationship="viewControllers" id="IiA-IY-9EC"/>
-                        <segue destination="xhK-am-vmN" kind="relationship" relationship="viewControllers" id="IYo-En-kFi"/>
-                        <segue destination="cVn-WF-PRl" kind="relationship" relationship="viewControllers" id="fha-Ow-80Z"/>
-                        <segue destination="AsK-aE-v5d" kind="relationship" relationship="viewControllers" id="IoX-8j-yeb"/>
-                        <segue destination="fI9-PN-Lm8" kind="relationship" relationship="viewControllers" id="HHO-4C-NFk"/>
-                    </connections>
-                </tabBarController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Uaq-SY-JZJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-859" y="-138"/>
         </scene>
         <!--Notice View Controller-->
         <scene sceneID="PFj-1u-p9B">
@@ -1404,81 +1384,18 @@
             </objects>
             <point key="canvasLocation" x="-1849.2753623188407" y="793.19196428571422"/>
         </scene>
-        <!--홈-->
-        <scene sceneID="vE5-Po-3s4">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="HOK-GG-r4D" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="홈" image="homeIcon" selectedImage="homeIconOn" id="RWe-f8-CGd"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="L5C-mI-E1M">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="AYN-gc-rdz" kind="relationship" relationship="rootViewController" id="4Aa-X6-VvA"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jDQ-nB-Xfv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3539.130434782609" y="644.86607142857144"/>
-        </scene>
-        <!--마이페이지-->
-        <scene sceneID="Bfy-5Q-fWK">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fI9-PN-Lm8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="마이페이지" image="mypage" selectedImage="mypageOn" id="Txg-c7-SGd"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="3kx-5A-4yF">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="831-R5-ggr" kind="relationship" relationship="rootViewController" id="Xcw-4q-0KV"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="8bg-VZ-AVI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2568.1159420289855" y="644.86607142857144"/>
-        </scene>
-        <!--커뮤니티-->
-        <scene sceneID="OCp-Gh-WsW">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="cVn-WF-PRl" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="커뮤니티" image="cummunity" selectedImage="cummunityOn" id="JBx-YZ-Zbr"/>
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" hidden="YES" contentMode="scaleToFill" id="Bts-cx-Jms">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="jAw-0d-jUw" kind="relationship" relationship="rootViewController" id="Q0R-F1-jOl"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Wp2-Ii-l9W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="50.724637681159422" y="644.86607142857144"/>
-        </scene>
     </scenes>
     <resources>
         <image name="493" width="26" height="26"/>
         <image name="alert" width="23" height="26"/>
         <image name="alertOn" width="21" height="24"/>
         <image name="bagIcon" width="32" height="32"/>
-        <image name="cummunity" width="24" height="24"/>
-        <image name="cummunityOn" width="22" height="22"/>
         <image name="free_community" width="32" height="32"/>
-        <image name="homeIcon" width="26" height="26"/>
-        <image name="homeIconOn" width="24" height="24"/>
         <image name="home_1" width="32" height="32"/>
         <image name="home_2" width="32" height="32"/>
         <image name="home_3" width="31.5" height="23.5"/>
         <image name="home_4" width="32" height="32"/>
         <image name="home_5" width="32" height="32.5"/>
-        <image name="mypage" width="26" height="26"/>
-        <image name="mypageOn" width="25" height="25"/>
         <image name="no_image" width="80" height="80"/>
         <image name="nof_emergency_icon" width="24" height="24.5"/>
         <image name="notifiaion_delete_icon" width="23" height="25"/>

@@ -9,9 +9,9 @@ import UIKit
 import SnapKit
 
 class FreeWriteController: UIViewController {
+    
     // MARK: Properties
     let scrollView = UIScrollView()
-    
     let contentsView = UIView()
     
     private let titleLabel: UILabel = {
@@ -107,6 +107,11 @@ class FreeWriteController: UIViewController {
             $0.edges.equalTo(0)
         }
         
+        contentsView.snp.makeConstraints {
+            $0.edges.equalTo(0)
+            $0.width.equalTo(view.frame.width)
+        }
+        
         titleLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(11.0)
             $0.leading.equalToSuperview().inset(16.0)
@@ -137,11 +142,6 @@ class FreeWriteController: UIViewController {
             $0.leading.equalTo(contentLabel)
             $0.trailing.equalToSuperview().inset(18.0)
             $0.bottom.equalToSuperview().inset(30.0)
-        }
-        
-        contentsView.snp.makeConstraints {
-            $0.edges.equalTo(0)
-            $0.width.equalTo(view.frame.width)
         }
     }
 }

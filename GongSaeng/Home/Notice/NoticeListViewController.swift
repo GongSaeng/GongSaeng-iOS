@@ -38,7 +38,8 @@ class NoticeListViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+//        navigationController?.navigationBar.layer.removeAllAnimations()
+//        navigationController?.navigationBar.popItem(animated: false)
 //        navigationController?.setNavigationBarHidden(true, animated: true)
 //        navigationController?.isNavigationBarHidden = true
     }

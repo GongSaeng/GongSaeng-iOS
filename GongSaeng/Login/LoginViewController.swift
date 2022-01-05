@@ -81,7 +81,7 @@ class LoginViewController: UIViewController {
                     UserDefaults.standard.set(id, forKey: "id")
                     UserDefaults.standard.set(password, forKey: "password")
                     guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                    sceneDelegate.switchRootViewToHome(animated: true)
+                    sceneDelegate.switchRootViewToMain(animated: true)
                 } else {
                     print("DEBUG: Login faield..")
                 }

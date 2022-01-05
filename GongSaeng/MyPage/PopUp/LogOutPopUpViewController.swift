@@ -39,7 +39,7 @@ class LogOutPopUpViewController: UIViewController {
                     let storyBoard = UIStoryboard.init(name: "LogOutPopUp", bundle: nil)
                     let popUpViewController = storyBoard.instantiateViewController(identifier: "LogOutCompletedPopUpViewController")
                     popUpViewController.modalPresentationStyle = .overCurrentContext
-                    sceneDelegate.switchRootViewToMain(animated: true) { viewController in
+                    sceneDelegate.switchRootViewToInitial(animated: true) { viewController in
                         viewController?.present(popUpViewController, animated: false, completion: nil)
                     }
                 }

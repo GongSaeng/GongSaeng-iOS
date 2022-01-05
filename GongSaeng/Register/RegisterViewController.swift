@@ -82,7 +82,9 @@ class RegisterViewController: UIViewController {
     @IBAction func nextButtonHandler(_ sender: Any) {
         // 누르면 이동
         if allAgree.isSelected {
-            performSegue(withIdentifier: "department", sender: nil)
+            let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "DepartmentViewController") as! DepartmentViewController
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
@@ -95,7 +97,8 @@ class RegisterViewController: UIViewController {
     }
     
     func nextButtonChange() {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
             if self.allAgree.isSelected {
                 self.nextButton.backgroundColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
             } else {

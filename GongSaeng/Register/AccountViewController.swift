@@ -10,7 +10,8 @@ import UIKit
 class AccountViewController: UIViewController {
 //    let viewModel: UserViewModel = UserViewModel()
     
-    var user: User?
+    var register: Register?
+//    var user: User?
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -78,15 +79,6 @@ class AccountViewController: UIViewController {
         }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "completedRegister" {
-            let vc = segue.destination as? CompletedRegisterViewController
-            if let user = sender as? User {
-                vc?.user = user
-            }
-        }
-    }
-    
     @IBAction func tapBG(_ sender: Any) {
         resignAll()
     }
@@ -96,6 +88,7 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func nextButtonTapHandler(_ sender: UIStoryboardSegue) {
+        guard var register = register else { return }
         guard let nickNameString = nickNameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty, idReduplicationConstraint.constant == 0, nickNameReduplicationConstraint.constant == 0 else {
             return
         }
@@ -122,8 +115,13 @@ class AccountViewController: UIViewController {
             return
         }
         
-        guard let user = registerAccountUserCreate(memberUser: self.user, id: idString, password: passwordString, nickName: nickNameString) else { return }
-        performSegue(withIdentifier: "completedRegister", sender: user)
+        register.updateRegister(id: idString, password: passwordString, nickName: nickNameString)
+        // 회원가입 API 구현
+        print("DEBUG: 회원가입 유저정보 ->", register)
+        // pushViewController
+        let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "CompletedRegisterViewController") as! CompletedRegisterViewController
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func changeActivationStatusOfNextButton() {
@@ -158,16 +156,10 @@ class AccountViewController: UIViewController {
         }
     }
     
-    func registerAccountUserCreate(memberUser: User?, id: String?, password: String?, nickName: String?) -> User? {
-        guard let idString = id, let passwordString = password, let nickNameString = nickName else { return nil }
-        guard let nameString = memberUser?.name, let birthString = memberUser?.dateOfBirth, let phoneString = memberUser?.phoneNumber, let departmentString = memberUser?.department else { return nil }
-//        var user = User(id: "", password: "", isDone: false, name: "", dateOfBirth: "", phoneNumber: "", department: "", nickName: "")
-//        user.update(id: idString, password: passwordString, name: nameString , dateOfBirth: birthString, phoneNumber: phoneString, department: departmentString, nickName: nickNameString)
-        return user
-    }
-    
     @IBAction func idReduplicationButtonHandler(_ sender: Any) {
-        guard let text = idTextField.text else { return }
+//        guard let text = idTextField.text else { return }
+        idReduplicationConstraint.constant = 0
+        changeActivationStatusOfNextButton()
 //        if !viewModel.idReduplicationCheck(id: text) {
 //            idReduplicationConstraint.constant = 0
 //            changeActivationStatusOfNextButton()
@@ -178,7 +170,9 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func nickNameReduplicationButtonHandler(_ sender: Any) {
-        guard let text = nickNameTextField.text else { return }
+//        guard let text = nickNameTextField.text else { return }
+        nickNameReduplicationConstraint.constant = 0
+        changeActivationStatusOfNextButton()
 //        if !viewModel.nickNameReduplicationCheck(nickName: text) {
 //            nickNameReduplicationConstraint.constant = 0
 //            changeActivationStatusOfNextButton()

@@ -8,9 +8,6 @@
 import UIKit
 
 class CompletedRegisterViewController: UIViewController {
-
-    var user: User?
-//    let viewModel: UserViewModel = UserViewModel()
     
     @IBOutlet weak var triangleButton: UIButton!
     @IBOutlet weak var orageView: UIView!
@@ -18,8 +15,6 @@ class CompletedRegisterViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let registerUser = user else { return }
-//        viewModel.addUser(registerUser)
         prepareAnimation()
     }
     

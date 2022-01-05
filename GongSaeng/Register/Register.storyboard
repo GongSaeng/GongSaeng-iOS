@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19455" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19454"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -245,7 +245,6 @@
                         <outlet property="firstAgree" destination="GAf-rf-9i2" id="3io-5i-91w"/>
                         <outlet property="nextButton" destination="MYG-SW-mD2" id="NP1-iN-chV"/>
                         <outlet property="secondAgree" destination="O2K-Cs-c8D" id="Bt7-5h-o59"/>
-                        <segue destination="PZq-Lm-4Nc" kind="show" identifier="department" id="J9E-6f-nsP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ief-a0-LHa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -255,7 +254,7 @@
         <!--Department View Controller-->
         <scene sceneID="fvD-gm-B6I">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="PZq-Lm-4Nc" customClass="DepartmentViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DepartmentViewController" modalPresentationStyle="fullScreen" id="PZq-Lm-4Nc" customClass="DepartmentViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ceN-dY-0hb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -522,7 +521,6 @@
                         <outlet property="noResultView" destination="g3W-aD-ePn" id="OcV-u5-enF"/>
                         <outlet property="searchButton" destination="fiC-9w-pUR" id="9cB-Ec-WRV"/>
                         <outlet property="searchTextField" destination="jye-m9-bT0" id="uYz-Dr-XYl"/>
-                        <segue destination="GUg-cK-mbe" kind="show" identifier="member" id="cfx-9y-Qfa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bu0-4d-8up" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -532,7 +530,7 @@
         <!--Member View Controller-->
         <scene sceneID="v6g-Vd-zMz">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="GUg-cK-mbe" customClass="MemberViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemberViewController" modalPresentationStyle="fullScreen" id="GUg-cK-mbe" customClass="MemberViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dkp-wb-IhW">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -886,7 +884,6 @@
                         <outlet property="phoneTextField" destination="YIo-t6-pDj" id="lzB-Vw-ZWj"/>
                         <outlet property="phoneUnderlinedView" destination="w6C-dF-EQH" id="E1j-Vo-0SU"/>
                         <outlet property="scrollView" destination="Ud3-e9-Y6D" id="cXp-B8-p3k"/>
-                        <segue destination="dfQ-j7-rry" kind="show" identifier="account" id="F6f-if-NFz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Wx-U4-qDz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -901,7 +898,7 @@
         <!--Completed Register View Controller-->
         <scene sceneID="92z-rc-pQo">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="Tak-uI-eVw" customClass="CompletedRegisterViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CompletedRegisterViewController" modalPresentationStyle="fullScreen" id="Tak-uI-eVw" customClass="CompletedRegisterViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="e4v-6i-u2H">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1103,7 +1100,7 @@
         <!--Account View Controller-->
         <scene sceneID="Hkk-lt-Kqi">
             <objects>
-                <viewController modalPresentationStyle="fullScreen" id="dfQ-j7-rry" customClass="AccountViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AccountViewController" modalPresentationStyle="fullScreen" id="dfQ-j7-rry" customClass="AccountViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vsh-1y-ujE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="900"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1613,7 +1610,6 @@
                         <outlet property="passwordTextField" destination="FuF-ko-9KS" id="86B-bm-pKd"/>
                         <outlet property="passwordUnderlinedView" destination="2b3-xC-Jpc" id="Ul5-lT-MvQ"/>
                         <outlet property="scrollView" destination="B6N-Ey-1cS" id="oFO-4n-vCf"/>
-                        <segue destination="Tak-uI-eVw" kind="show" identifier="completedRegister" id="h9A-G2-20x"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GXl-zp-OqM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

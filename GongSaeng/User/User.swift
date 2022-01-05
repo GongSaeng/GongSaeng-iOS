@@ -7,7 +7,8 @@
 import UIKit
 
 struct User: Codable {
-    var id, name, dateOfBirth, phoneNumber, department, nickName, job, email, introduce: String
+    var id, name, dateOfBirth, phoneNumber, department, nickName: String
+    var job, email, introduce, profileImageUrl: String?
     
     enum CodingKeys: String, CodingKey {
         case id, name, department, job

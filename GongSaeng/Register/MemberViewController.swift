@@ -29,17 +29,9 @@ class MemberViewController: UIViewController {
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var nextButton: UIButton!
     
-    var department: String = ""
+    var register: Register?
     let grayColorLiteral = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.05)
     let orangeColorLiteral = #colorLiteral(red: 1, green: 0.4431372549, blue: 0.2745098039, alpha: 1)
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "account" {
-            let vc = segue.destination as? AccountViewController
-            guard let user = sender as? User else { return }
-            vc?.user = user
-        }
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +61,7 @@ class MemberViewController: UIViewController {
     }
     
     @IBAction func nextButtonTapHandler(_ sender: Any) {
+        guard var register = register else { return }
         guard let nameString = nameTextField.text, !nameString.isEmpty, let birthString = birthTextField.text, !birthString.isEmpty, let phoneString = phoneTextField.text, !phoneString.isEmpty else {
             return
         }
@@ -90,9 +83,16 @@ class MemberViewController: UIViewController {
         if validCount > 0 {
             return
         }
+        
+        register.updateRegister(name: nameString, dateOfBirth: birthString, phoneNumber: phoneString)
+        print("DEBUG: 회원가입 유저정보 ->", register)
+        
+        // pushViewController
+        let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "AccountViewController") as! AccountViewController
+        viewController.register = register
+        navigationController?.pushViewController(viewController, animated: true)
 
-//        let registerUser = registerMemberUserCreate(name: nameString, birth: birthString, phone: phoneString)
-//        performSegue(withIdentifier: "account", sender: //registerUser)
     }
     
     func changeUnderlineColor(textField: UITextField, color: UIColor) {

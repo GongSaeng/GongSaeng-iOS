@@ -17,18 +17,6 @@ class DepartmentViewController: UIViewController {
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var noResultView: UIView!
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // segueway를 수행하기 직전 준비단계에서 데이터를 넘겨주자 를 여기서 작성한다.
-        // 즉, perform이 수행되기 직전에 호출되는 함수이다.
-        // DetailViewController에게 데이터를 줄 것이다.
-        if segue.identifier == "member" {
-            let vc = segue.destination as? MemberViewController
-            if let department = sender as? String {
-                vc?.department = department
-            }
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         noResultView.isHidden = true
@@ -65,7 +53,11 @@ class DepartmentViewController: UIViewController {
     @IBAction func nextButtonHandler(_ sender: Any) {
         // DepartmentViewModel갖고 가자잉
         if viewModel.isDoneDepartment() {
-            performSegue(withIdentifier: "member", sender: viewModel.isDoneName)
+            let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+            viewController.register = Register(department: viewModel.isDoneName)
+            print("DEBUG: 회원가입 유저정보 ->", Register(department: viewModel.isDoneName))
+            navigationController?.pushViewController(viewController, animated: true)
         }
     }
     
