@@ -8,7 +8,7 @@
 import UIKit
 
 // 바로 사용에서 사용할 아이템을 선택하고 사용을 하게 되면 현재시간에서 추가한 시간만큼 더하고 끝나는 시간을 기록하는 것이 좋을 듯 하다.
-struct Public: Codable, Equatable {
+struct Public: Decodable, Equatable {
     var imgTitle: String // 무조건
     var title: String // 무조건
     var maxTime: Int // 각 아이템은 최대 사용 가능 시간이 무조건 존재

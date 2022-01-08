@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct free: Codable, Equatable {
+struct free: Decodable, Equatable {
     let title: String
     let contents: String
     let time: String

@@ -35,6 +35,12 @@ class NotificationViewController: UIViewController {
         buttonSetUp()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.navigationBar.isHidden = true
+    }
+    
     private func buttonTapped(button: UIButton) {
         let buttonList: [UIButton] = [allButton, noticeButton, publicButton, emergencyButton, joinButton, suggestButton, marketButton]
         let buttonUnderlinedViewList: [UIView] = [allButtonUnderlinedView, noticeButtonUnderlinedView, publicButtonUnderlinedView, emergencyButtonUnderlinedView, joinButtonUnderlinedView, suggestButtonUnderlinedView, marketButtonUnderlinedView]

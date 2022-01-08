@@ -22,12 +22,10 @@ struct UserService {
                       return
                   }
             
-            guard let userArr = try? JSONDecoder().decode([User].self, from: data) else {
+            guard let userArr = try? JSONDecoder().decode([User].self, from: data), let user = userArr.first else {
                 completion(nil)
                 return
             }
-            
-            let user = !userArr.isEmpty ? userArr[0] : nil
             
             switch response.statusCode {
             case (200...299):
@@ -51,5 +49,9 @@ struct UserService {
         }
         
         dataTask.resume()
+    }
+    
+    static func editProfile() {
+        
     }
 }

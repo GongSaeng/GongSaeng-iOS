@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct free_comment: Codable, Equatable {
+struct free_comment: Decodable, Equatable {
     let comment: String
     let writer: String
     let time: String

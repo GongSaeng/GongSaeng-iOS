@@ -29,7 +29,8 @@ class ImmediationTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.loginUser = LoginUser.loginUser
+        guard let data = UserDefaults.standard.object(forKey: "loginUser") as? Data, let user = try? PropertyListDecoder().decode(User.self, from: data) else { return }
+        self.loginUser = user
         Timer.scheduledTimer(timeInterval: 30, target: self, selector: #selector(observerTime), userInfo: nil, repeats: true)
         
         if #available(iOS 15.0, *) {

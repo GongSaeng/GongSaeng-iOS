@@ -23,7 +23,8 @@ class EnterUsageTimeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginUser = LoginUser.loginUser
+        guard let data = UserDefaults.standard.object(forKey: "loginUser") as? Data, let user = try? PropertyListDecoder().decode(User.self, from: data) else { return }
+        self.loginUser = user
         NotificationCenter.default.addObserver(self, selector: #selector(textDidChange(_:)), name: UITextField.textDidChangeNotification, object: itemTimeTextField)
     }
     

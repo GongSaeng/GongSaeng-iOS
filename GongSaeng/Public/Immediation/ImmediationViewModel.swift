@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ImmediationViewModel: Codable {
+struct ImmediationViewModel: Decodable {
     var user: User?
     var Immediations: [Immediation] = [
         Immediation(usingUser: "banana", kindOfEquipment: "세탁기", nameOfEquipment: "세탁기1", isUsing: false)

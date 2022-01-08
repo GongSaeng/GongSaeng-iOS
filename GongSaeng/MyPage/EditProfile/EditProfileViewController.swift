@@ -2,91 +2,213 @@
 //  EditProfileViewController.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2021/09/12.
+//  Created by 정동천 on 2022/01/04.
 //
 
 import UIKit
+import SnapKit
 
 class EditProfileViewController: UIViewController {
-    @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var nickNameTextField: UITextField!
-    @IBOutlet weak var affiliationTextField: UITextField!
-    @IBOutlet weak var websiteTextField: UITextField!
-    @IBOutlet weak var introductionTextView: UITextView!
-    @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var completeButton: UIButton!
     
+    // MARK: Properties
+    var viewModel: EditProfileViewModel?
+    
+    let scrollView = UIScrollView()
+    let contentsView = UIView()
+    
+    private let userImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.layer.cornerRadius = 64.0
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
+        return imageView
+    }()
+    
+    private let imageSettingButton: UIButton = {
+        let button = UIButton()
+        button.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: "변경", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .bold)]), for: .normal)
+        button.addTarget(self, action: #selector(didTapImageSettingButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private let nickNameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "닉네임"
+        label.font = .systemFont(ofSize: 14.0, weight: .bold)
+        label.textColor = .black
+        return label
+    }()
+    
+    private let nickNameTextField: UITextField = {
+        let textField = UITextField()
+        textField.font = .systemFont(ofSize: 14.0)
+        return textField
+    }()
+    
+    private let jobLabel: UILabel = {
+        let label = UILabel()
+        label.text = "소속"
+        label.font = .systemFont(ofSize: 14.0, weight: .bold)
+        label.textColor = .black
+        return label
+    }()
+    
+    private let jobTextField: UITextField = {
+        let textField = UITextField()
+        textField.font = .systemFont(ofSize: 14.0)
+        return textField
+    }()
+    
+    private let introduceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "소개"
+        label.font = .systemFont(ofSize: 14.0, weight: .bold)
+        label.textColor = .black
+        return label
+    }()
+    
+    private let introduceTextView: PostTextView = {
+        let textView = PostTextView()
+        return textView
+    }()
+    
+    
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupView()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardHideShow(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        layout()
+        configure()
+        configureNavigationView()
     }
     
+    // MARK: Actions
+    @objc func didTapImageSettingButton() {
+        print("DEBUG: Did tap imageSettingButton..")
+        let picker = UIImagePickerController()
+        picker.delegate = self
+        picker.allowsEditing = true
+        present(picker, animated: true, completion: nil)
+    }
     
-// MARK:- 키보드 보일 때 함수
-    @objc func keyboardWillShow(_ notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        if let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect {
-            let scrollContentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.size.height, right: 0)
-            scrollView.contentInset = scrollContentInset
-            scrollView.contentOffset = CGPoint(x: 0, y: keyboardFrame.size.height)
+    @objc func didTapCompleteButton() {
+        guard let viewModel = viewModel,
+              let nickName = nickNameTextField.text,
+              let job = jobTextField.text,
+              let introduce = introduceTextView.text else { return }
+        print("DEBUG: Did tap complete")
+        print("DEBUG: userImage ->", userImageView.image ?? "")
+        if viewModel.isChangedUserImage {
+            print("DEBUG: userImage ->", userImageView.image ?? "")
+        }
+        print("DEBUG: nickName ->", !nickName.isEmpty ? nickName : viewModel.nickNamePlaceholder)
+        print("DEBUG: job ->", !job.isEmpty ? job : viewModel.jobPlaceholder)
+        print("DEBUG: introduce ->", !introduce.isEmpty ? introduce : viewModel.introducePlaceholder)
+    }
+    
+    // MARK: Helpers
+    private func configure() {
+        guard let data = UserDefaults.standard.object(forKey: "loginUser") as? Data, let user = try? PropertyListDecoder().decode(User.self, from: data) else { return }
+        viewModel = EditProfileViewModel(user: user)
+        guard let viewModel = viewModel else { return }
+        view.backgroundColor = .white
+        scrollView.keyboardDismissMode = .interactive
+        userImageView.image = viewModel.profileImage ?? UIImage(named: "no_image")
+        nickNameTextField.attributedPlaceholder = NSAttributedString(string: viewModel.nickNamePlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        jobTextField.attributedPlaceholder = NSAttributedString(string: viewModel.jobPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        introduceTextView.placeHolderText = viewModel.introducePlaceholder
+//        userImageView.layer.masksToBounds = true
+    }
+    
+    private func layout() {
+        [userImageView, imageSettingButton, nickNameLabel, nickNameTextField , jobLabel, jobTextField, introduceLabel, introduceTextView].forEach { contentsView.addSubview($0) }
+        scrollView.addSubview(contentsView)
+        view.addSubview(scrollView)
+        
+        scrollView.snp.makeConstraints {
+            $0.edges.equalTo(0)
+        }
+        
+        contentsView.snp.makeConstraints {
+            $0.edges.equalTo(0)
+            $0.width.equalTo(view.frame.width)
+        }
+        
+        userImageView.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(44.0)
+            $0.centerX.equalToSuperview()
+            $0.width.height.equalTo(128.0)
+        }
+        
+        imageSettingButton.snp.makeConstraints {
+            $0.top.equalTo(userImageView.snp.bottom).offset(16.0)
+            $0.centerX.equalTo(userImageView)
+        }
+        
+        nickNameLabel.snp.makeConstraints {
+            $0.top.equalTo(imageSettingButton.snp.bottom).offset(40.0)
+            $0.leading.equalToSuperview().inset(16.0)
+        }
+        
+        nickNameTextField.snp.makeConstraints {
+            $0.top.equalTo(nickNameLabel.snp.bottom).offset(10.0)
+            $0.leading.equalTo(nickNameLabel)
+            $0.trailing.equalToSuperview().inset(18.0)
+        }
+        
+        jobLabel.snp.makeConstraints {
+            $0.top.equalTo(nickNameTextField.snp.bottom).offset(30.0)
+            $0.leading.equalTo(nickNameLabel)
+        }
+        
+        jobTextField.snp.makeConstraints {
+            $0.top.equalTo(jobLabel.snp.bottom).offset(10.0)
+            $0.leading.equalTo(nickNameLabel)
+            $0.trailing.equalTo(nickNameTextField)
+        }
+
+        introduceLabel.snp.makeConstraints {
+            $0.top.equalTo(jobTextField.snp.bottom).offset(30.0)
+            $0.leading.equalTo(nickNameLabel)
+        }
+        
+        introduceTextView.snp.makeConstraints {
+            $0.top.equalTo(introduceLabel.snp.bottom).offset(10.0)
+            $0.leading.equalTo(nickNameLabel)
+            $0.trailing.equalTo(nickNameTextField)
+            $0.height.equalTo(80.0)
+            
+            $0.bottom.equalToSuperview().inset(400.0)
         }
     }
-// MARK:- 키보드 내릴 때 함수
-    @objc func keyboardHideShow(_ notification: NSNotification) {
-        guard let userInfo = notification.userInfo else { return }
-        let animationDuration = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! NSNumber).doubleValue
+    
+    private func configureNavigationView() {
+        navigationController?.navigationBar.isHidden = false
+        navigationItem.title = "프로필 수정"
+        navigationController?.navigationBar.tintColor = UIColor(white: 0, alpha: 0.8)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+        
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")
+        navigationController?.navigationBar.topItem?.title = ""
 
-        UIView.animate(withDuration: animationDuration, animations: { [weak self] in
-            guard let self = self else { return }
-            self.view.layoutIfNeeded()
-        })
-
-        let scrollContentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-        scrollView.contentInset = scrollContentInset
-        scrollView.contentOffset = CGPoint(x: 0, y: 0)
-    }
-    
-    
-    
-    
-    @IBAction func backwardButtonTapped(_ sender: UIButton) {
-        dismiss(animated: true, completion: nil)
+        let rightBarButton = UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didTapCompleteButton))
+        rightBarButton.tintColor = UIColor(named: "colorBlueGreen")
+        rightBarButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)], for: .normal)
+        navigationItem.rightBarButtonItem = rightBarButton
     }
 }
 
-private extension EditProfileViewController {
-    func setupView() {
-        userImageView.roundCornerOfImageView()
-        
-        [nickNameTextField, affiliationTextField, websiteTextField].forEach { $0.underlined(viewSize: view.bounds.width, color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)) }
-        
-        let size = CGSize(width: introductionTextView.frame.width, height: .infinity)
-        let estimatedSize = introductionTextView.sizeThatFits(size)
-        
-        introductionTextView.constraints.forEach { (constraint) in
-            if constraint.firstAttribute == .height {
-                constraint.constant = estimatedSize.height
-            }
-        }
-    }
-}
-
-
-// MARK:- 텍스트뷰 델리게이트
-extension EditProfileViewController: UITextViewDelegate {
-    func textViewDidChange(_ textView: UITextView) {
-        let size = CGSize(width: textView.frame.width, height: .infinity)
-        let estimatedSize = textView.sizeThatFits(size)
-        
-        textView.constraints.forEach { (constraint) in
-            if constraint.firstAttribute == .height {
-                constraint.constant = estimatedSize.height
-            }
-        }
+// MARK: UIImagePickerControllerDelegate, UINavigationControllerDelegate
+extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let seledtedImage = info[.editedImage] as? UIImage else { return }
+//        userImageView.layer.masksToBounds = true
+        userImageView.image = seledtedImage.withRenderingMode(.alwaysOriginal)
+        viewModel?.isChangedUserImage = true
+        dismiss(animated: true)
     }
 }

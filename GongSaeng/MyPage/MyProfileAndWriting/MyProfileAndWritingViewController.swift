@@ -9,6 +9,8 @@ import UIKit
 
 class MyProfileAndWritingViewController: UIViewController {
     // 임시 데이터
+    var user: User?
+    
     var postDataList: [(String, String, String, String)] = [("온천천 러닝 같이 뛰실분 구합니다.", "함께게시판", "04/25 13:05", "3"), ("BBQ 치킨 키프티콘 판매합니다.", "장터게시판", "03/24 18:53", "1"), ("20X호 새벽 2시에 너무 시끄럽습니다.", "자유게시판", "02/12 02:12", "18"), ("온천천 러닝 같이 뛰실분 구합니다.", "함께게시판", "04/25 13:05", "3"), ("BBQ 치킨 키프티콘 판매합니다.", "장터게시판", "03/24 18:53", "1"), ("20X호 새벽 2시에 너무 시끄럽습니다.", "자유게시판", "02/12 02:12", "18")]
     
     @IBOutlet weak var userImageView: UIImageView!
@@ -26,6 +28,8 @@ class MyProfileAndWritingViewController: UIViewController {
         
         writtenTextButton.isEnabled = false
         inactivateButton(button: writtrnCommentButton)
+        
+//        userImageView.image = LoginUser.loginUser?.image
     }
     
     override func viewWillAppear(_ animated: Bool) {

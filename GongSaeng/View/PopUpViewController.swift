@@ -65,7 +65,6 @@ class PopUpViewController: UIViewController {
         
         contentView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-//            $0.height.equalTo(200.0)
             $0.leading.trailing.equalToSuperview().inset(17.0)
         }
         
@@ -79,10 +78,6 @@ class PopUpViewController: UIViewController {
             $0.width.equalTo(74.0)
             $0.height.equalTo(36.0)
         }
-        
-        
-        
-        
     }
     
     private func configure() {

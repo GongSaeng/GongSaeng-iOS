@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Notice: Codable, Equatable {
+struct Notice: Decodable, Equatable {
     let title: String
     let contents: String
     let category: String

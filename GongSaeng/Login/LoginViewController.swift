@@ -51,40 +51,59 @@ class LoginViewController: UIViewController {
         // To Home
         showLoader(true)
         guard let id = idTextField.text, let password = passwordTextField.text else { return }
-        AuthService.loginUserIn(withID: id, password: password) { isRight, isApproved, error in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.showLoader(false)
-                if error?.localizedDescription == "Could not connect to the server." {
-                    print("DEBUG: 서버에 연결할 수 없습니다..")
+        AuthService.loginUserIn(withID: id, password: password) { [weak self] isRight, isApproved, error in
+            guard let self = self else { return }
+            
+            if error?.localizedDescription == "Could not connect to the server." {
+                print("DEBUG: 서버에 연결할 수 없습니다..")
+                DispatchQueue.main.async {
+                    self.showLoader(false)
                     let alert = UIAlertController(title: "Error", message: "서버에 연결할 수 없습니다.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
                 }
-                
-                if isRight {
-                    if isApproved {
-                        print("DEBUG: Login success..")
-                        // UserDefaults ID 정보 저장
-                        UserDefaults.standard.set(id, forKey: "id")
-                        UserDefaults.standard.set(password, forKey: "password")
-                        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-                        sceneDelegate.switchRootViewToMain(animated: true)
-                    } else {
-                        print("DEBUG: Not approved User..")
-                        let viewController = PopUpViewController()
-                        viewController.detailText = "가입 승인 대기중이에요\n공간 관리자님께 문의해주세요."
-                        viewController.modalPresentationStyle = .overCurrentContext
-                        self.present(viewController, animated: false, completion: nil)
-                    }
-                } else {
-                    print("DEBUG: Login faield..")
+                return
+            }
+            
+            guard isRight else {
+                print("DEBUG: Login faield..")
+                DispatchQueue.main.async {
+                    self.showLoader(false)
                     let viewController = PopUpViewController()
                     viewController.detailText = "아이디나 비밀번호를 확인해주세요."
                     viewController.modalPresentationStyle = .overCurrentContext
                     self.present(viewController, animated: false, completion: nil)
                 }
+                return
             }
+            
+            guard isApproved else {
+                print("DEBUG: Not approved User..")
+                DispatchQueue.main.async {
+                    self.showLoader(false)
+                    let viewController = PopUpViewController()
+                    viewController.detailText = "가입 승인 대기중이에요\n공간 관리자님께 문의해주세요."
+                    viewController.modalPresentationStyle = .overCurrentContext
+                    self .present(viewController, animated: false, completion: nil)
+                }
+                return
+            }
+            
+            print("DEBUG: Login success..")
+            // UserDefaults ID 정보 저장
+            UserDefaults.standard.set(id, forKey: "id")
+            UserDefaults.standard.set(password, forKey: "password")
+            UserService.fetchCurrentUser { user in
+                guard let user = user else { return }
+                UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "loginUser")
+                print("DEBUG: Login user data -> \(user)")
+                DispatchQueue.main.async {
+                    self.showLoader(false)
+                    guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
+                    sceneDelegate.switchRootViewToMain(animated: true)
+                }
+            }
+            
         }
     }
     

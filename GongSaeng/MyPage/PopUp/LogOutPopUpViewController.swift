@@ -31,10 +31,11 @@ class LogOutPopUpViewController: UIViewController {
         // 로그아웃
         AuthService.logUserOut { isSucceded in
             if isSucceded {
+                UserDefaults.standard.removeObject(forKey: "id")
+                UserDefaults.standard.removeObject(forKey: "password")
+                UserDefaults.standard.removeObject(forKey: "loginUser")
+                UserDefaults.standard.removeObject(forKey: "userImage")
                 DispatchQueue.main.async {
-                    // UserDefaults ID 삭제
-                    UserDefaults.standard.removeObject(forKey: "id")
-                    
                     guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
                     let storyBoard = UIStoryboard.init(name: "LogOutPopUp", bundle: nil)
                     let popUpViewController = storyBoard.instantiateViewController(identifier: "LogOutCompletedPopUpViewController")

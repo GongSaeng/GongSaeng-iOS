@@ -15,7 +15,8 @@ class ReservationViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.loginUser = LoginUser.loginUser
+        guard let data = UserDefaults.standard.object(forKey: "loginUser") as? Data, let user = try? PropertyListDecoder().decode(User.self, from: data) else { return }
+        self.loginUser = user
         
         collectionView.contentInset = UIEdgeInsets(top: -20, left: 0, bottom: 0, right: 0)
     }

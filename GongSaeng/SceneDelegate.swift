@@ -17,14 +17,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
         window?.tintColor = .black
+        print("DEBUG: Stored user data ->")
         
-//        let viewController = LaunchScreenViewController()
-//        window?.rootViewController = viewController
-//        window?.makeKeyAndVisible()
-        switchRootViewToInitial()
+        let viewController = LaunchScreenViewController()
+        window?.rootViewController = viewController
+        window?.makeKeyAndVisible()
     }
     
-    func switchRootViewToInitial(animated: Bool = false, completion: ((UIViewController?) -> Void)? = nil) {
+    func switchRootViewToInitial(animated: Bool = false, completion: ((UINavigationController?) -> Void)? = nil) {
         let naviRootViewController = InitialViewController()
         let viewController = UINavigationController(rootViewController: naviRootViewController)
         self.window?.rootViewController = viewController
@@ -41,7 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
     }
     
-    func switchRootViewToMain(animated: Bool = false, completion: ((UIViewController?) -> Void)? = nil) {
+    func switchRootViewToMain(animated: Bool = false, completion: ((MainTabBarController?) -> Void)? = nil) {
         let viewController = MainTabBarController()
         self.window?.rootViewController = viewController
         window?.makeKeyAndVisible()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Mate: Codable, Equatable {
+struct Mate: Decodable, Equatable {
 //    var id: Int
     var nickName: String
     var job: String

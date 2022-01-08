@@ -9,6 +9,20 @@ import UIKit
 struct User: Codable {
     var id, name, dateOfBirth, phoneNumber, department, nickName: String
     var job, email, introduce, profileImageUrl: String?
+    var image: UIImage? {
+        print("DEBUG: User.image get property..")
+        guard let fileName = profileImageUrl else { return nil }
+        let semaphore = DispatchSemaphore(value: 0)
+        var cachedImage = UIImage()
+        ImageCacheManager.getCachedImage(fileName: fileName) { image in
+            cachedImage = image
+            print("DEBUG: cachedImage = image")
+            semaphore.signal()
+        }
+        semaphore.wait()
+        print("DEBUG: return cachedImage")
+        return cachedImage
+        }
     
     enum CodingKeys: String, CodingKey {
         case id, name, department, job
@@ -17,6 +31,7 @@ struct User: Codable {
         case phoneNumber = "phone"
         case nickName = "nickname"
         case introduce = "profile"
+        case profileImageUrl = "profile_image_url"
     }
 }
 

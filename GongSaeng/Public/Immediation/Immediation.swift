@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Immediation: Codable {
+struct Immediation: Decodable {
     var usingUser: String
     var kindOfEquipment: String
     var nameOfEquipment: String

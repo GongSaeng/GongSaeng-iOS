@@ -11,6 +11,17 @@ import SnapKit
 class MyPageViewController: UITableViewController {
     
     // MARK: Properties
+    var user: User
+    var profileImage: UIImage? {
+        didSet {
+            print("DEBUG: ProfileImage didSet..")
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.userImageView.image = self.profileImage
+            }
+        }
+    }
+    
     private let cellTitleList = ["내 프로필/작성글/댓글", "입/퇴실 신청", "계정 정보 관리", "알림 설정", "로그아웃", "회원탈퇴"]
     
     private let titleLabel: UILabel = {
@@ -22,7 +33,6 @@ class MyPageViewController: UITableViewController {
     
     private let nicknameLabel: UILabel = {
         let label = UILabel()
-        label.text = "닉네임"
         label.font = .systemFont(ofSize: 16.0)
         return label
     }()
@@ -39,6 +49,11 @@ class MyPageViewController: UITableViewController {
     
     private let userImageView: UIImageView = {
         let imageView = UIImageView()
+        imageView.layer.cornerRadius = 40.0
+        imageView.layer.borderWidth = 1.0
+        imageView.layer.borderColor = UIColor(white: 0, alpha: 0.2).cgColor
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.masksToBounds = true
         imageView.image = UIImage(named: "no_image")
         return imageView
     }()
@@ -46,11 +61,21 @@ class MyPageViewController: UITableViewController {
     private let headerView = UIView()
     
     // MARK: Lifecycle
+    init(user: User) {
+        self.user = user
+        super.init(style: UITableView.Style.plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("DEBUG: MyPageViewController ViewDidLoad..")
         layoutHeaderView()
         layout()
-        configureTableView()
+        configure()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -62,11 +87,7 @@ class MyPageViewController: UITableViewController {
     // MARK: Actions
     @objc func didTapProfileEditButton() {
         print("DEBUG: Did tap profileEditButton..")
-//        let storyboard = UIStoryboard(name: "EditProfile", bundle: Bundle.main)
-//        let viewController = storyboard.instantiateViewController(withIdentifier: "EditProfileViewController") as! EditProfileViewController
-//        viewController.modalPresentationStyle = .fullScreen
-//        present(viewController, animated: true, completion: nil)
-        let viewController = EdittProfileViewController()
+        let viewController = EditProfileViewController()
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -76,8 +97,22 @@ class MyPageViewController: UITableViewController {
         tableView.tableHeaderView?.frame.size.height = 204.5
     }
     
-    private func configureTableView() {
+    private func configure() {
+        print("DEBUG: MyPageViewController configure()..")
         tableView.separatorStyle = .none
+        nicknameLabel.text = user.nickName
+        if let imageUrl = user.profileImageUrl {
+            print("DEBUG: user.profileImageUrl ->", imageUrl)
+            if let imageData = UserDefaults.standard.object(forKey: "userImage") as? Data, let image = UIImage(data: imageData) {
+                profileImage = image
+            } else {
+                ImageCacheManager.getCachedImage(fileName: imageUrl) { [weak self] image in
+                    guard let self = self, let imageData = image.pngData() else { return }
+                    UserDefaults.standard.set(imageData, forKey: "userImage")
+                    self.profileImage = image
+                }
+            }
+        }
     }
     
     private func layoutHeaderView() {

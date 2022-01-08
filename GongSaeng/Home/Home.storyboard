@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -161,31 +162,22 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tyO-tU-1aE">
-                                        <rect key="frame" x="311.5" y="-39.5" width="88.5" height="135"/>
-                                        <color key="tintColor" red="0.99977022410000005" green="0.60017317530000003" blue="0.40167617799999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <state key="normal" title="Button"/>
-                                        <buttonConfiguration key="configuration" style="plain">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="게시판 추가">
-                                                    <attributes>
-                                                        <font key="NSFont" size="14" name="AppleSDGothicNeo-Regular"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
-                                        </buttonConfiguration>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NDs-I3-Rkx">
+                                        <rect key="frame" x="335" y="13.5" width="65" height="29"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                        <state key="normal" title="게시판 추가">
+                                            <color key="titleColor" name="colorPaleOrange"/>
+                                        </state>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="tyO-tU-1aE" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="A1l-Y3-f8w" secondAttribute="trailing" constant="8" symbolic="YES" id="53E-GQ-LDM"/>
+                                    <constraint firstItem="NDs-I3-Rkx" firstAttribute="centerY" secondItem="A1l-Y3-f8w" secondAttribute="centerY" id="2bo-62-3ms"/>
                                     <constraint firstItem="A1l-Y3-f8w" firstAttribute="top" secondItem="0Vb-gs-Wfi" secondAttribute="top" constant="16" id="W3t-pP-aEw"/>
                                     <constraint firstItem="A1l-Y3-f8w" firstAttribute="leading" secondItem="0Vb-gs-Wfi" secondAttribute="leading" constant="18" id="l4i-L8-MS8"/>
                                     <constraint firstItem="A1l-Y3-f8w" firstAttribute="centerY" secondItem="0Vb-gs-Wfi" secondAttribute="centerY" id="mfd-FD-oIg"/>
-                                    <constraint firstAttribute="trailing" secondItem="tyO-tU-1aE" secondAttribute="trailing" constant="14" id="s6r-h8-Wlg"/>
-                                    <constraint firstItem="A1l-Y3-f8w" firstAttribute="firstBaseline" secondItem="tyO-tU-1aE" secondAttribute="firstBaseline" id="w01-Ve-e3N"/>
-                                    <constraint firstItem="A1l-Y3-f8w" firstAttribute="centerY" secondItem="tyO-tU-1aE" secondAttribute="centerY" id="wLd-z6-SyA"/>
+                                    <constraint firstAttribute="trailing" secondItem="NDs-I3-Rkx" secondAttribute="trailing" constant="14" id="mj2-Xr-Akn"/>
                                 </constraints>
                             </view>
                             <view alpha="0.10000000149011612" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mUH-V4-lI5">
@@ -275,7 +267,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GFR-dX-AJY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-472" y="644"/>
+            <point key="canvasLocation" x="-472.46376811594206" y="643.52678571428567"/>
         </scene>
         <!--알림-->
         <scene sceneID="bJW-Hv-L5a">
@@ -1404,6 +1396,9 @@
         <image name="public" width="26.5" height="26.5"/>
         <image name="publicOn" width="24" height="24"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
+        <namedColor name="colorPaleOrange">
+            <color red="1" green="0.59999999999999998" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
