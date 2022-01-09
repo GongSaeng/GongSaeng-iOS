@@ -127,7 +127,6 @@
 		A7DC1CA527077918002F395C /* FinishUsingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA427077918002F395C /* FinishUsingPopUpViewController.swift */; };
 		A7DE0107270836760098AACF /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DE0106270836760098AACF /* NotificationViewController.swift */; };
 		A7EB35692786DB42001BCD03 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB35682786DB42001BCD03 /* ImageCacheManager.swift */; };
-		A7EB356B2786E446001BCD03 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB356A2786E445001BCD03 /* MainTabBarController.swift */; };
 		A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */; };
 		A7EE4A9027860329001A8C2E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE4A8F27860329001A8C2E /* PopUpViewController.swift */; };
 		A7F3C4922779A0410019B5F4 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F3C4912779A0410019B5F4 /* AuthService.swift */; };
@@ -260,7 +259,6 @@
 		A7DC1CA427077918002F395C /* FinishUsingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishUsingPopUpViewController.swift; sourceTree = "<group>"; };
 		A7DE0106270836760098AACF /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		A7EB35682786DB42001BCD03 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
-		A7EB356A2786E445001BCD03 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInContainerViewController.swift; sourceTree = "<group>"; };
 		A7EE4A8F27860329001A8C2E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		A7F3C4912779A0410019B5F4 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
@@ -424,7 +422,6 @@
 		3DB686F8268D8C2D0061BCB0 /* TabBarManager */ = {
 			isa = PBXGroup;
 			children = (
-				A7EB356A2786E445001BCD03 /* MainTabBarController.swift */,
 			);
 			path = TabBarManager;
 			sourceTree = "<group>";
@@ -753,7 +750,6 @@
 				A79C58E426EEF33400F608D1 /* ChangePasswordViewController.swift in Sources */,
 				A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */,
 				A73AE4C926F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift in Sources */,
-				A7EB356B2786E446001BCD03 /* MainTabBarController.swift in Sources */,
 				A753C036277C3F1700039D5F /* withViewController.swift in Sources */,
 				3D40E5302658089600B19E32 /* TermsOfServicesViewController.swift in Sources */,
 				A7FA636426EE2519005D9785 /* UITextView.swift in Sources */,
