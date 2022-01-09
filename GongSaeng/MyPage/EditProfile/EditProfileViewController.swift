@@ -11,7 +11,16 @@ import SnapKit
 class EditProfileViewController: UIViewController {
     
     // MARK: Properties
-    var viewModel: EditProfileViewModel?
+    var viewModel: EditProfileViewModel? {
+        didSet {
+            guard let viewModel = viewModel, !viewModel.isChangedUserImage else { return }
+            print("DEBUG: EditProfileViewController viewModel didSet..")
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.configure()
+            }
+        }
+    }
     
     let scrollView = UIScrollView()
     let contentsView = UIView()
@@ -81,7 +90,7 @@ class EditProfileViewController: UIViewController {
         super.viewDidLoad()
         
         layout()
-        configure()
+//        configure()
         configureNavigationView()
     }
     
@@ -96,23 +105,48 @@ class EditProfileViewController: UIViewController {
     
     @objc func didTapCompleteButton() {
         guard let viewModel = viewModel,
-              let nickName = nickNameTextField.text,
-              let job = jobTextField.text,
-              let introduce = introduceTextView.text else { return }
+              let nickNameText = nickNameTextField.text,
+              let jobText = jobTextField.text,
+              let introduceText = introduceTextView.text else { return }
         print("DEBUG: Did tap complete")
-        print("DEBUG: userImage ->", userImageView.image ?? "")
-        if viewModel.isChangedUserImage {
-            print("DEBUG: userImage ->", userImageView.image ?? "")
+        
+        let profileImage: UIImage? = viewModel.isChangedUserImage ? userImageView.image : nil
+        let nickName = !nickNameText.isEmpty ? nickNameText : viewModel.nickNamePlaceholder
+        let job = !jobText.isEmpty ? jobText : viewModel.jobPlaceholder
+        let introduce = !introduceText.isEmpty ? introduceText : viewModel.introducePlaceholder
+        print("DEBUG: profileImage ->", profileImage)
+        print("DEBUG: nickName ->", nickName)
+        print("DEBUG: job ->", job)
+        print("DEBUG: introduce ->", introduce)
+        
+        showLoader(true)
+        UserService.editProfile(nickName: nickName, job: job, introduce: introduce, profileImage: profileImage) { [weak self] isSucceded in
+            guard let self = self else { return }
+            guard isSucceded else {
+                print("DEBUG: Editing failed..")
+                self.showLoader(false)
+                return
+            }
+            print("DEBUG: Before fetchUser ->", viewModel.user)
+            print("DEBUG: isSucceded ->", isSucceded)
+            UserService.fetchCurrentUser { user in
+                print("DEBUG: After fetchUser ->", user)
+                UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "loginUser")
+                DispatchQueue.main.async {
+                    self.showLoader(false)
+                    guard let viewController = self.navigationController?.viewControllers.first as? MyPageViewController else { return }
+                    viewController.user = user
+                    self.navigationController?.popViewController(animated: true )
+                }
+            }
         }
-        print("DEBUG: nickName ->", !nickName.isEmpty ? nickName : viewModel.nickNamePlaceholder)
-        print("DEBUG: job ->", !job.isEmpty ? job : viewModel.jobPlaceholder)
-        print("DEBUG: introduce ->", !introduce.isEmpty ? introduce : viewModel.introducePlaceholder)
+        
     }
     
     // MARK: Helpers
     private func configure() {
-        guard let data = UserDefaults.standard.object(forKey: "loginUser") as? Data, let user = try? PropertyListDecoder().decode(User.self, from: data) else { return }
-        viewModel = EditProfileViewModel(user: user)
+//        guard let data = UserDefaults.standard.object(forKey: "loginUser") as? Data, let user = try? PropertyListDecoder().decode(User.self, from: data) else { return }
+//        viewModel = EditProfileViewModel(user: user)
         guard let viewModel = viewModel else { return }
         view.backgroundColor = .white
         scrollView.keyboardDismissMode = .interactive

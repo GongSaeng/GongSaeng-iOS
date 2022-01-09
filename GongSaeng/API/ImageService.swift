@@ -15,10 +15,10 @@ struct ImageService {
         
         let boundary = UUID().uuidString
         
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = "POST"
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
         
-        urlRequest.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
         
         let data: Data = {
             var data = Data()
@@ -30,7 +30,7 @@ struct ImageService {
             return data
         }()
         
-        URLSession.shared.uploadTask(with: urlRequest, from: data) { data, response, error in
+        URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
                   let data = data,

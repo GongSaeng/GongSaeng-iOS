@@ -33,6 +33,19 @@ struct User: Codable {
         case introduce = "profile"
         case profileImageUrl = "profile_image_url"
     }
+    
+    mutating func updateUser(id: String? = nil, name: String? = nil, dateOfBirh: String? = nil, phoneNumber: String? = nil, department: String? = nil, nickName: String? = nil, job: String? = nil, email: String? = nil, introduce: String? = nil, profileImageUrl: String? = nil) {
+        if let id = id { self.id = id }
+        if let name = name { self.name = name }
+        if let dateOfBirh = dateOfBirh { self.dateOfBirth = dateOfBirh }
+        if let phoneNumber = phoneNumber { self.phoneNumber = phoneNumber }
+        if let department = department { self.department = department }
+        if let nickName = nickName { self.nickName = nickName }
+        if let job = job { self.job = job }
+        if let email = email { self.email = email }
+        if let introduce = introduce { self.introduce = introduce }
+        if let profileImageUrl = profileImageUrl { self.profileImageUrl = profileImageUrl }
+    }
 }
 
 //struct User: Codable, Equatable {

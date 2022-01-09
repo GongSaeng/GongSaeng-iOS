@@ -40,8 +40,10 @@ class MainTabBarController: UITabBarController {
         let communityViewController = templateNavigationController(tabTitle: "커뮤니티", unselectedImage: UIImage(named: "community"), selectedIamge: UIImage(named: "communityOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "CommunityViewController"))
         
         let notificationViewController = templateNavigationController(tabTitle: "알림", unselectedImage: UIImage(named: "alert"), selectedIamge: UIImage(named: "alertOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "NotificationViewController"))
-
-        let myPageViewController = templateNavigationController(tabTitle: "마이페이지", unselectedImage: UIImage(named: "mypage"), selectedIamge: UIImage(named: "mypageOn"), rootViewController: MyPageViewController(user: user))
+        
+        let rootViewController = MyPageViewController()
+        rootViewController.user = user
+        let myPageViewController = templateNavigationController(tabTitle: "마이페이지", unselectedImage: UIImage(named: "mypage"), selectedIamge: UIImage(named: "mypageOn"), rootViewController: rootViewController)
         
         viewControllers = [homeViewController, publicViewController, communityViewController, notificationViewController, myPageViewController]
         

@@ -11,10 +11,18 @@ import SnapKit
 class MyPageViewController: UITableViewController {
     
     // MARK: Properties
-    var user: User
+    var user: User? {
+        didSet {
+            print("DEBUG: MypageViewController user didSet..")
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.configureUser()
+            }
+        }
+    }
     var profileImage: UIImage? {
         didSet {
-            print("DEBUG: ProfileImage didSet..")
+            print("DEBUG: MypageViewController profileImage didSet..")
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 self.userImageView.image = self.profileImage
@@ -61,15 +69,6 @@ class MyPageViewController: UITableViewController {
     private let headerView = UIView()
     
     // MARK: Lifecycle
-    init(user: User) {
-        self.user = user
-        super.init(style: UITableView.Style.plain)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("DEBUG: MyPageViewController ViewDidLoad..")
@@ -87,7 +86,9 @@ class MyPageViewController: UITableViewController {
     // MARK: Actions
     @objc func didTapProfileEditButton() {
         print("DEBUG: Did tap profileEditButton..")
+        guard let user = user else { return }
         let viewController = EditProfileViewController()
+        viewController.viewModel = EditProfileViewModel(user: user)
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -98,8 +99,12 @@ class MyPageViewController: UITableViewController {
     }
     
     private func configure() {
-        print("DEBUG: MyPageViewController configure()..")
         tableView.separatorStyle = .none
+    }
+    
+    private func configureUser() {
+        print("DEBUG: MyPageViewController configure()..")
+        guard let user = user else { return }
         nicknameLabel.text = user.nickName
         if let imageUrl = user.profileImageUrl {
             print("DEBUG: user.profileImageUrl ->", imageUrl)
@@ -216,10 +221,14 @@ extension MyPageViewController {
             popUpViewController.modalPresentationStyle = .overCurrentContext
             self.present(popUpViewController, animated: false, completion: nil)
         case 5: // 회원탈퇴
-            let storyBoard = UIStoryboard.init(name: "MembershipWithdrawlPopUp", bundle: Bundle.main)
-            let popUpViewController = storyBoard.instantiateViewController(identifier: "MembershipWithdrawlPopUpViewController") as! MembershipWithdrawlPopUpViewController
-            popUpViewController.modalPresentationStyle = .overCurrentContext
-            self.present(popUpViewController, animated: false, completion: nil)
+//            let storyBoard = UIStoryboard.init(name: "MembershipWithdrawlPopUp", bundle: Bundle.main)
+//            let popUpViewController = storyBoard.instantiateViewController(identifier: "MembershipWithdrawlPopUpViewController") as! MembershipWithdrawlPopUpViewController
+//            popUpViewController.modalPresentationStyle = .overCurrentContext
+//            self.present(popUpViewController, animated: false, completion: nil)
+            
+            UserService.fetchCurrentUser { user in
+                print("DEBUG: fetchUser ->", user)
+            }
         default:
             return
         }
