@@ -18,7 +18,7 @@ struct EditProfileViewModel {
         if let job = user.job {
             return job
         } else {
-            return "어떤 일을 하고 있으신가요?"
+            return "어떤 직업을 갖고 있으신가요?"
         }
     }
 

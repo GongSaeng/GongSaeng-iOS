@@ -22,7 +22,7 @@ struct MateCellViewModel {
         return mate.email
     }
     
-    var introduce: String {
+    var introduce: String? {
         return mate.introduce
     }
     

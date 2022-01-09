@@ -17,9 +17,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
         window?.tintColor = .black
-        print("DEBUG: Stored user data ->")
-        
         let viewController = LaunchScreenViewController()
+//        let rootViewController = PasswordChangingViewController()
+//        let viewController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
     }

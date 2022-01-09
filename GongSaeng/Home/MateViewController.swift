@@ -19,20 +19,20 @@ class MateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        print("DEBUG: MateViewController viewDidLoad..")
         fetchMates()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.isHidden = true
-        if mates == [] {
-            fetchMates()
-        }
+        print("DEBUG: MateViewController ViewWillApper..")
+//        navigationController?.navigationBar.isHidden = true
     }
     
     // MARK: API
     private func fetchMates() {
+        print("DEBUG: Called fetchMates()..")
         MateNetwork.fetchMate(department: "한국장학재단") { [weak self] mates in
             guard let self = self else { return }
             self.mates = mates

@@ -47,13 +47,11 @@ class NoticeDetailViewController: UITableViewController {
     
     // 화면터치 시 키보드 내리기
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
+        view.endEditing(true)
     }
     
     // MARK: Helpers
     private func configure() {
-        tabBarController?.tabBar.isHidden = true
-        
         postingUserImageView.layer.cornerRadius = postingUserImageView.frame.height / 2
         postingUserImageView.layer.borderWidth = 1
         postingUserImageView.layer.borderColor = UIColor(white: 0.0, alpha: 0.1).cgColor
@@ -67,7 +65,6 @@ class NoticeDetailViewController: UITableViewController {
     }
     
     private func configureNavigationView() {
-        navigationController?.navigationBar.isHidden = false
         navigationItem.title = "공지사항"
         navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]

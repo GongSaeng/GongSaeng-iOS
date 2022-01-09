@@ -30,24 +30,8 @@ class NoticeListViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-//        navigationController?.setNavigationBarHidden(false, animated: animated)
-//        navigationController?.isNavigationBarHidden = false
+
         configureNavigationView()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-//        navigationController?.navigationBar.layer.removeAllAnimations()
-//        navigationController?.navigationBar.popItem(animated: false)
-//        navigationController?.setNavigationBarHidden(true, animated: true)
-//        navigationController?.isNavigationBarHidden = true
-    }
-    
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        
-//        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
     // MARK: API
@@ -91,9 +75,6 @@ class NoticeListViewController: UIViewController {
     }
     
     private func configureNavigationView() {
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.isHidden = false
-        
         navigationItem.title = "공지사항"
         navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]

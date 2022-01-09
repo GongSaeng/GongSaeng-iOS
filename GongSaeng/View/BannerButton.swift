@@ -14,7 +14,9 @@ enum ButtonColor {
 class BannerButton: UIButton {
     var buttonTitle: String
     var buttonColor: ButtonColor
-    var isActivated: Bool = true
+    var isActivated: Bool = true {
+        didSet { changeButtonState() }
+    }
     
     required init(title: String, backgroundColor: ButtonColor) {
         self.buttonTitle = title
@@ -29,7 +31,7 @@ class BannerButton: UIButton {
     }
     
     private func configure() {
-        guard let greenColor = UIColor(named: "colorBlueGreen") else { return }
+        let greenColor = UIColor(named: "colorBlueGreen")!
         let whiteColor = UIColor.white
         setAttributedTitle(NSAttributedString(string: buttonTitle, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .bold)]), for: .normal)
         
@@ -43,6 +45,20 @@ class BannerButton: UIButton {
         } else if buttonColor == .green {
             setTitleColor(whiteColor, for: .normal)
             backgroundColor = greenColor
+        }
+    }
+    
+    private func changeButtonState() {
+        guard buttonColor == .green else { return }
+        let greenColor = UIColor(named: "colorBlueGreen")!
+        let grayColor = UIColor(white: 0, alpha: 0.2)
+        
+        if isActivated {
+            backgroundColor = greenColor
+            isEnabled = true
+        } else {
+            backgroundColor = grayColor
+            isEnabled = false
         }
     }
 }

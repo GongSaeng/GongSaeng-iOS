@@ -12,34 +12,25 @@ class HomeViewController: UIViewController {
     var user: User? {
         didSet {
             print("DEBUG: HomeViewController get user property")
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self, let user = self.user else { return }
+                self.affiliationLabel.text = user.department
+            }
         }
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        print("DEBUG: HomeViewController ViewDidLoad")
-//        self.loginUser = LoginUser.loginUser
-//        guard let tabBarController = tabBarController as? AppTabbarController else { return }
-//        tabBarController.user
-    }
+    @IBOutlet weak var affiliationLabel: UILabel!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print("DEBUG: HomeViewController viewWillAppear")
         
-//        popItem
-
-//        UIApplication.statusBarMan
-//        UIWindowScene.statusBarMa
-//        navigationController?.navigationBar.alpha = 0
-//        navigationController?.setNavigationBarHidden(true, animated: animated)
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-//        navigationController?.setNavigationBarHidden(false, animated: animated)
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
 }

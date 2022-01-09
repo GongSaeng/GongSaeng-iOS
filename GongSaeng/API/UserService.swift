@@ -51,7 +51,7 @@ struct UserService {
         dataTask.resume()
     }
     
-    static func editProfile(nickName: String, job: String, introduce: String, profileImage: UIImage?, completion: @escaping(Bool) -> Void) {
+    static func editProfile(nickName: String, job: String, introduce: String, profileImage: UIImage?, completion: @escaping(Bool, String?) -> Void) {
         var urlComponents = URLComponents(string: "\(SERVER_URL)/profile/edit?")
 
         let paramQuery1 = URLQueryItem(name: "nickname", value: nickName)
@@ -69,7 +69,7 @@ struct UserService {
             let fileName = "\(UUID().uuidString).jpg"
             let boundary = UUID().uuidString
             
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
             
             let data: Data = {
@@ -93,8 +93,10 @@ struct UserService {
 
                 switch response.statusCode {
                 case (200...299):
-                    let isSucceded = (returnValue == "true") ? true : false
-                    completion(isSucceded)
+                    print("DEBUG: UserService.editProfile() response succeded..", returnValue)
+                    let isSucceded = (returnValue == "false") ? false : true
+                    let imageUrl = (isSucceded && (returnValue != "true")) ? returnValue : nil
+                    completion(isSucceded, imageUrl)
                 case (400...499):
                     print("""
                         ERROR: Client ERROR \(response.statusCode)
@@ -129,7 +131,7 @@ struct UserService {
                 switch response.statusCode {
                 case (200...299):
                     let isSucceded = (returnValue == "true") ? true : false
-                    completion(isSucceded)
+                    completion(isSucceded, nil)
                 case (400...499):
                     print("""
                         ERROR: Client ERROR \(response.statusCode)

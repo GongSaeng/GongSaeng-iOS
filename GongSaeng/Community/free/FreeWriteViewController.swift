@@ -65,7 +65,7 @@ class FreeWriteController: UIViewController {
         
         let titleText = titleInputTextField.text ?? "test title"
         let contentsText = contentInputTextView.text ?? "test contents"
-        freeNetwork.freeWrite(titleText: titleText, contentsText: contentsText) { [weak self] isSucceded in
+        FreeNetwork.freeWrite(titleText: titleText, contentsText: contentsText) { [weak self] isSucceded in
             guard let self = self, isSucceded else { return }
             self.showLoader(false)
             DispatchQueue.main.async {

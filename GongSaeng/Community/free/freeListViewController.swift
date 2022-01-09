@@ -37,7 +37,7 @@ class freeListViewController: UIViewController {
     
     // MARK: API
     func fetchfrees() {
-        freeNetwork.fetchfree { [weak self] frees in
+        FreeNetwork.fetchfree { [weak self] frees in
             guard let self = self else { return }
             self.frees = frees
             DispatchQueue.main.async {

@@ -32,7 +32,9 @@ class MainTabBarController: UITabBarController {
         
         let storyboard = UIStoryboard(name: "Home", bundle: Bundle.main)
         
-        let homeViewController = templateNavigationController(tabTitle: "홈", unselectedImage: UIImage(named: "homeIcon"), selectedIamge: UIImage(named: "homeIconOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "HomeViewController"))
+        let homeRootViewController = storyboard.instantiateViewController(withIdentifier: "HomeViewController") as! HomeViewController
+        homeRootViewController.user = user
+        let homeViewController = templateNavigationController(tabTitle: "홈", unselectedImage: UIImage(named: "homeIcon"), selectedIamge: UIImage(named: "homeIconOn"), rootViewController: homeRootViewController)
         
         let publicViewController = templateNavigationController(tabTitle: "공용", unselectedImage: UIImage(named: "public"), selectedIamge: UIImage(named: "publicOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "PublicViewController"))
         
@@ -40,9 +42,9 @@ class MainTabBarController: UITabBarController {
         
         let notificationViewController = templateNavigationController(tabTitle: "알림", unselectedImage: UIImage(named: "alert"), selectedIamge: UIImage(named: "alertOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "NotificationViewController"))
         
-        let rootViewController = MyPageViewController()
-        rootViewController.user = user
-        let myPageViewController = templateNavigationController(tabTitle: "마이페이지", unselectedImage: UIImage(named: "mypage"), selectedIamge: UIImage(named: "mypageOn"), rootViewController: rootViewController)
+        let myPageRootViewController = MyPageViewController()
+        myPageRootViewController.user = user
+        let myPageViewController = templateNavigationController(tabTitle: "마이페이지", unselectedImage: UIImage(named: "mypage"), selectedIamge: UIImage(named: "mypageOn"), rootViewController: myPageRootViewController)
         
         viewControllers = [homeViewController, publicViewController, communityViewController, notificationViewController, myPageViewController]
         
@@ -55,6 +57,7 @@ class MainTabBarController: UITabBarController {
         navigationController.tabBarItem.image = unselectedImage
         navigationController.tabBarItem.selectedImage = selectedIamge
         navigationController.navigationBar.tintColor = .black
+        navigationController.navigationBar.topItem?.backButtonDisplayMode = .minimal
         return navigationController
     }
 }

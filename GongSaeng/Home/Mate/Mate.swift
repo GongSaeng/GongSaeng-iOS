@@ -8,20 +8,12 @@
 import Foundation
 
 struct Mate: Decodable, Equatable {
-//    var id: Int
+    
     var nickName: String
-    var job: String
-    var email: String
-    var introduce: String
-    
-//    init(dictionary: [String: Any]) {
-//        self.id = 0
-//        self.nickName = dictionary["name"] as? String ?? ""
-//        self.job = dictionary["job"] as? String ?? ""
-//        self.email = dictionary["mail"] as? String ?? ""
-//        self.introduce = dictionary["profile"] as? String ?? ""
-//    }
-    
+    var job: String?
+    var email: String?
+    var introduce: String?
+
     enum CodingKeys: String, CodingKey {
         case nickName = "name"
         case job
@@ -29,12 +21,11 @@ struct Mate: Decodable, Equatable {
         case introduce = "profile"
     }
     
-    mutating func update(nickName: String, job: String, email: String, introduce: String) {
-//        self.id = id
-        self.nickName = nickName
-        self.job = job
-        self.email = email
-        self.introduce = introduce
+    mutating func update(nickName: String? = nil, job: String? = nil, email: String? = nil, introduce: String? = nil) {
+        if let nickName = nickName { self.nickName = nickName }
+        if let job = job { self.job = job }
+        if let email = email { self.email = email }
+        if let introduce = introduce { self.introduce = introduce }
     }
     
 //    static func == (lhs: Self, rhs: Self) -> Bool {

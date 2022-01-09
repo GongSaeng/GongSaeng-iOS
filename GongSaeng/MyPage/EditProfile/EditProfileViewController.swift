@@ -11,16 +11,7 @@ import SnapKit
 class EditProfileViewController: UIViewController {
     
     // MARK: Properties
-    var viewModel: EditProfileViewModel? {
-        didSet {
-            guard let viewModel = viewModel, !viewModel.isChangedUserImage else { return }
-            print("DEBUG: EditProfileViewController viewModel didSet..")
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.configure()
-            }
-        }
-    }
+    var viewModel: EditProfileViewModel?
     
     let scrollView = UIScrollView()
     let contentsView = UIView()
@@ -90,7 +81,7 @@ class EditProfileViewController: UIViewController {
         super.viewDidLoad()
         
         layout()
-//        configure()
+        configure()
         configureNavigationView()
     }
     
@@ -112,19 +103,25 @@ class EditProfileViewController: UIViewController {
         
         let profileImage: UIImage? = viewModel.isChangedUserImage ? userImageView.image : nil
         let nickName = !nickNameText.isEmpty ? nickNameText : viewModel.nickNamePlaceholder
-        let job = !jobText.isEmpty ? jobText : viewModel.jobPlaceholder
-        let introduce = !introduceText.isEmpty ? introduceText : viewModel.introducePlaceholder
+        let job = !jobText.isEmpty ? jobText : viewModel.user.job ?? ""
+        let introduce = !introduceText.isEmpty ? introduceText : viewModel.user.introduce ?? ""
         print("DEBUG: profileImage ->", profileImage)
         print("DEBUG: nickName ->", nickName)
         print("DEBUG: job ->", job)
         print("DEBUG: introduce ->", introduce)
         
         showLoader(true)
-        UserService.editProfile(nickName: nickName, job: job, introduce: introduce, profileImage: profileImage) { [weak self] isSucceded in
+        UserService.editProfile(nickName: nickName, job: job, introduce: introduce, profileImage: profileImage) { [weak self] isSucceded, imageUrl in
             guard let self = self else { return }
             guard isSucceded else {
                 print("DEBUG: Editing failed..")
-                self.showLoader(false)
+                DispatchQueue.main.async {
+                    self.showLoader(false)
+                    let viewController = PopUpViewController()
+                    viewController.detailText = "중복한 닉네임이 존재합니다."
+                    viewController.modalPresentationStyle = .overCurrentContext
+                    self.present(viewController, animated: false, completion: nil)
+                }
                 return
             }
             print("DEBUG: Before fetchUser ->", viewModel.user)
@@ -132,6 +129,10 @@ class EditProfileViewController: UIViewController {
             UserService.fetchCurrentUser { user in
                 print("DEBUG: After fetchUser ->", user)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "loginUser")
+                UserDefaults.standard.removeObject(forKey: "userImage")
+                if let imageUrl = imageUrl {
+                    ImageCacheManager.shared.removeObject(forKey: NSString(string: imageUrl))
+                }
                 DispatchQueue.main.async {
                     self.showLoader(false)
                     guard let viewController = self.navigationController?.viewControllers.first as? MyPageViewController else { return }
@@ -145,8 +146,6 @@ class EditProfileViewController: UIViewController {
     
     // MARK: Helpers
     private func configure() {
-//        guard let data = UserDefaults.standard.object(forKey: "loginUser") as? Data, let user = try? PropertyListDecoder().decode(User.self, from: data) else { return }
-//        viewModel = EditProfileViewModel(user: user)
         guard let viewModel = viewModel else { return }
         view.backgroundColor = .white
         scrollView.keyboardDismissMode = .interactive
@@ -154,7 +153,6 @@ class EditProfileViewController: UIViewController {
         nickNameTextField.attributedPlaceholder = NSAttributedString(string: viewModel.nickNamePlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         jobTextField.attributedPlaceholder = NSAttributedString(string: viewModel.jobPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
         introduceTextView.placeHolderText = viewModel.introducePlaceholder
-//        userImageView.layer.masksToBounds = true
     }
     
     private func layout() {
@@ -220,7 +218,6 @@ class EditProfileViewController: UIViewController {
     }
     
     private func configureNavigationView() {
-        navigationController?.navigationBar.isHidden = false
         navigationItem.title = "프로필 수정"
         navigationController?.navigationBar.tintColor = UIColor(white: 0, alpha: 0.8)
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]

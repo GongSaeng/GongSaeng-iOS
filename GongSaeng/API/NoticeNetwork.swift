@@ -9,7 +9,7 @@ import UIKit
 
 struct NoticeNetwork {
     static func fetchNotice(completion: @escaping([Notice]) -> Void) {
-        guard let url = URL(string: "\(SERVER_URL)/notice") else { return }
+        guard let url = URL(string: "\(SERVER_URL)/notify/read_notify") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in

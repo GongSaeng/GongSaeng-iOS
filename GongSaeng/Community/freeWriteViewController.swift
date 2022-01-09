@@ -23,7 +23,7 @@ class freeWriteViewController: UIViewController {
     @IBAction func completeButtonTapped(_ sender: UIButton) {
         let titleText = titleField.text ?? "test title"
         let contentsText = contentsField.text ?? "test contents"
-        freeNetwork.freeWrite(titleText: titleText, contentsText: contentsText)
+        FreeNetwork.freeWrite(titleText: titleText, contentsText: contentsText)
         self.navigationController?.popViewController(animated: true)
     }
     @IBAction func backward(_ sender: UIButton) {

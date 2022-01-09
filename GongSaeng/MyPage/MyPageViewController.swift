@@ -80,7 +80,13 @@ class MyPageViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     // MARK: Actions
@@ -89,6 +95,7 @@ class MyPageViewController: UITableViewController {
         guard let user = user else { return }
         let viewController = EditProfileViewController()
         viewController.viewModel = EditProfileViewModel(user: user)
+        viewController.hidesBottomBarWhenPushed = true
         navigationController?.pushViewController(viewController, animated: true)
     }
     
@@ -175,6 +182,7 @@ extension MyPageViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
+        cell.selectionStyle = .none
         let titleLabel = UILabel()
         titleLabel.text = cellTitleList[indexPath.row]
         titleLabel.font = .systemFont(ofSize: 14.0, weight: .medium)
@@ -197,24 +205,28 @@ extension MyPageViewController {
         print("DEBUG: did Tap \(cellTitleList[indexPath.row])..")
         switch indexPath.row {
         case 0: // 내 프로필/작성글/댓글
-            let storyboard = UIStoryboard(name: "MyProfileAndWriting", bundle: Bundle.main)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "MyProfileAndWritingViewController") as! MyProfileAndWritingViewController
-            navigationController?.pushViewController(viewController, animated: true)
+//            let storyboard = UIStoryboard(name: "MyProfileAndWriting", bundle: Bundle.main)
+//            let viewController = storyboard.instantiateViewController(withIdentifier: "MyProfileAndWritingViewController") as! MyProfileAndWritingViewController
+//            navigationController?.pushViewController(viewController, animated: true)
+            print("DEBUG: Did tap 내 프로필/작성글/댓글..")
         case 1: // 입/퇴실 신청
-            let storyboard = UIStoryboard(name: "RequestCheckInOut", bundle: Bundle.main)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "RequestCheckInOutViewController") as! RequestCheckInOutViewController
-            viewController.modalPresentationStyle = .fullScreen
-            present(viewController, animated: true, completion: nil)
+//            let storyboard = UIStoryboard(name: "RequestCheckInOut", bundle: Bundle.main)
+//            let viewController = storyboard.instantiateViewController(withIdentifier: "RequestCheckInOutViewController") as! RequestCheckInOutViewController
+//            viewController.modalPresentationStyle = .fullScreen
+//            present(viewController, animated: true, completion: nil)
+            print("DEBUG: Did tap 입/퇴실 신청..")
         case 2: // 계정 정보 관리
-            let storyboard = UIStoryboard(name: "ManageAccountInfo", bundle: Bundle.main)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "ManageAccountInfoViewController") as! ManageAccountInfoViewController
-            viewController.modalPresentationStyle = .fullScreen
-            present(viewController, animated: true, completion: nil)
+            guard let user = user else { return }
+            let viewController = ManageAccountViewController()
+            viewController.viewModel = ManageAccountViewModel(user: user)
+            viewController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(viewController, animated: true)
         case 3: // 알림 설정
-            let storyboard = UIStoryboard(name: "SetNotification", bundle: Bundle.main)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "SetNotificationViewController") as! SetNotificationViewController
-            viewController.modalPresentationStyle = .fullScreen
-            present(viewController, animated: true, completion: nil)
+//            let storyboard = UIStoryboard(name: "SetNotification", bundle: Bundle.main)
+//            let viewController = storyboard.instantiateViewController(withIdentifier: "SetNotificationViewController") as! SetNotificationViewController
+//            viewController.modalPresentationStyle = .fullScreen
+//            present(viewController, animated: true, completion: nil)
+            print("DEBUG: Did tap 알림 설정..")
         case 4: // 로그아웃
             let storyBoard = UIStoryboard.init(name: "LogOutPopUp", bundle: Bundle.main)
             let popUpViewController = storyBoard.instantiateViewController(identifier: "LogOutPopUpViewController") as! LogOutPopUpViewController
@@ -225,10 +237,7 @@ extension MyPageViewController {
 //            let popUpViewController = storyBoard.instantiateViewController(identifier: "MembershipWithdrawlPopUpViewController") as! MembershipWithdrawlPopUpViewController
 //            popUpViewController.modalPresentationStyle = .overCurrentContext
 //            self.present(popUpViewController, animated: false, completion: nil)
-            
-            UserService.fetchCurrentUser { user in
-                print("DEBUG: fetchUser ->", user)
-            }
+            print("DEBUG: Did tap 회원탈퇴..")
         default:
             return
         }

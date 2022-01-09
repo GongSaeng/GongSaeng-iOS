@@ -71,7 +71,7 @@ class freeDetailViewController: UIViewController {
     }
     
     private func fetchfree_comments() {
-        freeNetwork.fetch_freecomment { [weak self] free_comments in
+        FreeNetwork.fetch_freecomment { [weak self] free_comments in
             guard let self = self else { return }
             self.free_comments = free_comments
             DispatchQueue.main.async {
@@ -120,7 +120,7 @@ extension freeDetailViewController: CommentInputAccesoryViewDelegate {
         showLoader(true)
         let parent_num = "3"
         let contents = contents ?? "test"
-        freeNetwork.freeCommentWrite(num: parent_num, contentsText: contents) { [weak self] isSucceded in
+        FreeNetwork.freeCommentWrite(num: parent_num, contentsText: contents) { [weak self] isSucceded in
             guard let self = self else { return }
             self.showLoader(false)
             self.fetchfree_comments()

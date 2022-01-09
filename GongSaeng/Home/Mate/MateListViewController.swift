@@ -16,17 +16,30 @@ class MateListViewController: UIViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureNavigationBar()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        tabBarController?.tabBar.isHidden = true
+//        tabBarController?.tabBar.isHidden = true
     }
     
     // MARK: Actions
     @IBAction func back(_ sender: Any) {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    // MARK: Helpers
+    private func configureNavigationBar() {
+        navigationItem.title = "공생메이트"
+        navigationController?.navigationBar.tintColor = UIColor(white: 0, alpha: 0.8)
+        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+        
+        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")
+        navigationController?.navigationBar.topItem?.title = ""
     }
     
 }
