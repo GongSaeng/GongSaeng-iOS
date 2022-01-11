@@ -83,7 +83,7 @@ extension NoticeDetailViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCell else { return CommentTableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommentTableViewCell", for: indexPath) as? CommentTableViewCelll else { return CommentTableViewCelll() }
         
         return cell
     }
@@ -97,7 +97,7 @@ extension NoticeDetailViewController{
 }
 
 // MARK: UITableViewCell  ->  댓글 Cell
-class CommentTableViewCell: UITableViewCell {
+class CommentTableViewCelll: UITableViewCell {
     @IBOutlet weak var commentWriterImageView: UIImageView!
     @IBOutlet weak var commentWriterNicknameLabel: UILabel!
     @IBOutlet weak var commentedTimeLabel: UILabel!

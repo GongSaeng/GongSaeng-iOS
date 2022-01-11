@@ -16,7 +16,7 @@ class CommentInputAccesoryView: UIView {
     // MARK: Properties
     weak var delegate: CommentInputAccesoryViewDelegate?
     
-    let commentTextView: InputTextView = {
+    private let commentTextView: InputTextView = {
         let textView = InputTextView()
         textView.placeHolderText = "댓글을 남겨보세요"
         textView.font = .systemFont(ofSize: 14.0)
@@ -53,6 +53,10 @@ class CommentInputAccesoryView: UIView {
     }
     
     // MARK: Actions
+    func clearComment() {
+        commentTextView.shouldDeleteText = true
+    }
+    
     @objc func handlePostTapped() {
         print("DEBUG: Did tap post button..")
         delegate?.transferComment(commentTextView.text)

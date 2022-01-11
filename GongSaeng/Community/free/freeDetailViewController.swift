@@ -126,9 +126,7 @@ extension freeDetailViewController: CommentInputAccesoryViewDelegate {
             self.fetchfree_comments()
             DispatchQueue.main.async {
                 self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentSize.height - self.tableView.bounds.height), animated: true)
-                self.freeCommentInputView.commentTextView.resignFirstResponder()
-                self.freeCommentInputView.commentTextView.text = ""
-                self.freeCommentInputView.commentTextView.placeholderLabel.isHidden = false
+                self.freeCommentInputView.clearComment()
             }
             
         }

@@ -13,8 +13,8 @@ class EditProfileViewController: UIViewController {
     // MARK: Properties
     var viewModel: EditProfileViewModel?
     
-    let scrollView = UIScrollView()
-    let contentsView = UIView()
+    private let scrollView = UIScrollView()
+    private let contentsView = UIView()
     
     private let userImageView: UIImageView = {
         let imageView = UIImageView()
@@ -88,9 +88,12 @@ class EditProfileViewController: UIViewController {
     // MARK: Actions
     @objc func didTapImageSettingButton() {
         print("DEBUG: Did tap imageSettingButton..")
+        showLoader(true)
         let picker = UIImagePickerController()
         picker.delegate = self
         picker.allowsEditing = true
+        picker.modalPresentationStyle = .currentContext
+        showLoader(false)
         present(picker, animated: true, completion: nil)
     }
     
@@ -212,7 +215,6 @@ class EditProfileViewController: UIViewController {
             $0.leading.equalTo(nickNameLabel)
             $0.trailing.equalTo(nickNameTextField)
             $0.height.equalTo(80.0)
-            
             $0.bottom.equalToSuperview().inset(400.0)
         }
     }
@@ -237,7 +239,6 @@ class EditProfileViewController: UIViewController {
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let seledtedImage = info[.editedImage] as? UIImage else { return }
-//        userImageView.layer.masksToBounds = true
         userImageView.image = seledtedImage.withRenderingMode(.alwaysOriginal)
         viewModel?.isChangedUserImage = true
         dismiss(animated: true)

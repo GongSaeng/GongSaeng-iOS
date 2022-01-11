@@ -77,13 +77,16 @@ final class PasswordChangingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configure()
         layout()
         configureNotificationObservers()
         updateSecureMode()
         updateButtonActivation()
     }
     
-    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
     
     // MARK: Actions
     @objc func textDidChange(_ sender: UITextField) {
@@ -128,6 +131,10 @@ final class PasswordChangingViewController: UIViewController {
         [passwordTextField, passwordCheckTextField].forEach {
             $0.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         }
+    }
+    
+    private func configure() {
+        view.backgroundColor = .white
     }
     
     private func layout() {

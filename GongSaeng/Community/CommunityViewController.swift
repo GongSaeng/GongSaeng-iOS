@@ -29,7 +29,13 @@ class CommunityViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBar.isHidden = true
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     
@@ -61,35 +67,39 @@ extension CommunityViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
-        case 0:
+        case 0: // 자유게시판
             let storyboard = UIStoryboard(name: "free", bundle: Bundle.main)
             let viewController = storyboard.instantiateViewController(withIdentifier: "freeListViewController")
             viewController.modalPresentationStyle = .fullScreen
             viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
             
-        case 1:
+        case 1: // 긴급게시판
             let storyboard = UIStoryboard(name: "Community", bundle: Bundle.main)
             let viewController = storyboard.instantiateViewController(withIdentifier: "emergencycommunity")
             viewController.modalPresentationStyle = .fullScreen
             viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
             
-        case 2:
+        case 2: // 건의게시판
             let storyboard = UIStoryboard(name: "Community", bundle: Bundle.main)
             let viewController = storyboard.instantiateViewController(withIdentifier: "suggestcommunity")
             viewController.modalPresentationStyle = .fullScreen
             viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
             
-        case 3:
-            let storyboard = UIStoryboard(name: "Community", bundle: Bundle.main)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "withcommunity")
-            viewController.modalPresentationStyle = .fullScreen
-            viewController.hidesBottomBarWhenPushed = true
+        case 3: // 함께게시판
+            let viewController = GatheringBoardViewController()
+            viewController.navigationItem.title = "함께게시판"
+            viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+            let backBarButton = UIBarButtonItem(title: "게시판목록", style: UIBarButtonItem.Style.plain, target: self, action: nil)
+//            backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
+            viewController.navigationItem.backBarButtonItem = backBarButton
+//            viewController.navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
+//            viewController.hidesBottomBarWhenPushed = true
             self.navigationController?.pushViewController(viewController, animated: true)
             
-        case 4:
+        case 4: // 장터게시판
             let storyboard = UIStoryboard(name: "free", bundle: Bundle.main)
             let viewController = storyboard.instantiateViewController(withIdentifier: "freeListViewController")
             viewController.modalPresentationStyle = .fullScreen

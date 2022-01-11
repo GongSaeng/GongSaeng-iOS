@@ -39,12 +39,14 @@ class MainTabBarController: UITabBarController {
         let publicViewController = templateNavigationController(tabTitle: "공용", unselectedImage: UIImage(named: "public"), selectedIamge: UIImage(named: "publicOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "PublicViewController"))
         
         let communityViewController = templateNavigationController(tabTitle: "커뮤니티", unselectedImage: UIImage(named: "community"), selectedIamge: UIImage(named: "communityOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "CommunityViewController"))
+        communityViewController.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
         
         let notificationViewController = templateNavigationController(tabTitle: "알림", unselectedImage: UIImage(named: "alert"), selectedIamge: UIImage(named: "alertOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "NotificationViewController"))
         
         let myPageRootViewController = MyPageViewController()
         myPageRootViewController.user = user
         let myPageViewController = templateNavigationController(tabTitle: "마이페이지", unselectedImage: UIImage(named: "mypage"), selectedIamge: UIImage(named: "mypageOn"), rootViewController: myPageRootViewController)
+        myPageViewController.navigationBar.tintColor = UIColor(named: "colorBlueGreen")
         
         viewControllers = [homeViewController, publicViewController, communityViewController, notificationViewController, myPageViewController]
         
@@ -56,7 +58,6 @@ class MainTabBarController: UITabBarController {
         navigationController.tabBarItem.title = tabTitle
         navigationController.tabBarItem.image = unselectedImage
         navigationController.tabBarItem.selectedImage = selectedIamge
-        navigationController.navigationBar.tintColor = .black
         navigationController.navigationBar.topItem?.backButtonDisplayMode = .minimal
         return navigationController
     }

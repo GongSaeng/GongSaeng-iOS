@@ -74,11 +74,7 @@ class freeListViewController: UIViewController {
     }
     
     private func configureNavigationView() {
-//        navigationController?.setNavigationBarHidden(false, animated: true)
-        navigationController?.navigationBar.isHidden = false
-        
         navigationItem.title = "자유게시판"
-        navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "write"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(writeButtonTap))

@@ -15,7 +15,16 @@ class InputTextView: UITextView {
         didSet { placeholderLabel.text = placeHolderText }
     }
     
-    let placeholderLabel: UILabel = {
+    var shouldDeleteText: Bool? {
+        didSet {
+            guard let _ = shouldDeleteText else { return }
+            text = ""
+            placeholderLabel.isHidden = false
+            resignFirstResponder()
+        }
+    }
+    
+    private let placeholderLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
         label.font = .systemFont(ofSize: 14.0)
