@@ -30,7 +30,7 @@ class PopUpViewController: UIViewController {
         return label
     }()
     
-    private let confirmationButton: UIButton = {
+    private lazy var confirmationButton: UIButton = {
         let button = UIButton()
         button.setAttributedTitle(NSAttributedString(string: "확인", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
         button.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
@@ -53,7 +53,7 @@ class PopUpViewController: UIViewController {
     // MARK: Actions
     @objc func didTapConfirmationButton() {
         print("DEBUG: Did tap confirmationButton..")
-        self.dismiss(animated: false, completion: nil)
+        dismiss(animated: false)
     }
     
     // MARK: Helpers

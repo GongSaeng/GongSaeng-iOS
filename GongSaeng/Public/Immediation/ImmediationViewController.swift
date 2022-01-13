@@ -64,15 +64,15 @@ extension ImmediationViewController: UICollectionViewDataSource {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
             guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "PublicHeaderView", for: indexPath) as? PublicHeaderView else {
-                return UICollectionReusableView()
+                return PublicHeaderView()
             }            
             guard let section = PublicViewModel.Section(rawValue: indexPath.section) else {
-                return UICollectionReusableView()
+                return PublicHeaderView()
             }
             header.updateUI(sectionTitleString: section.title)
             return header
         default:
-            return UICollectionReusableView()
+            return PublicHeaderView()
         }
     }
 }

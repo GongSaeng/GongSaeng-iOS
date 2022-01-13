@@ -12,13 +12,22 @@ class PostTextView: UITextView {
     
     // MARK: Properties
     var placeHolderText: String? {
-        didSet { placeholderLabel.text = placeHolderText }
+        didSet {
+            guard let placeHolderText = placeHolderText else { return }
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = 5.0
+            placeholderLabel.attributedText = NSAttributedString(string: placeHolderText, attributes: [.paragraphStyle: paragraphStyle, .font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor.lightGray])
+            let screenWidth = UIScreen.main.bounds.width
+            let size = CGSize(width: screenWidth - 36.0, height: .infinity)
+            let estimatedSize = placeholderLabel.sizeThatFits(size)
+            self.snp.makeConstraints { $0.height.equalTo(estimatedSize.height) }
+        }
     }
     
     private let placeholderLabel: UILabel = {
         let label = UILabel()
         label.textColor = .lightGray
-        label.font = .systemFont(ofSize: 14.0)
+//        label.font = .systemFont(ofSize: 14.0)
         label.lineBreakMode = .byCharWrapping
         label.numberOfLines = 0
         return label
@@ -40,7 +49,7 @@ class PostTextView: UITextView {
     // MARK: Actions
     @objc func handleTextDidChange() {
         placeholderLabel.isHidden = !text.isEmpty
-        setHeightFlexible()
+        updateTextViewHeight()
     }
     
     // MARK: Helpers
@@ -59,7 +68,7 @@ class PostTextView: UITextView {
         NotificationCenter.default.addObserver(self, selector: #selector(handleTextDidChange), name: UITextView.textDidChangeNotification, object: nil)
         isScrollEnabled = false
         textContainerInset = UIEdgeInsets(top: 0, left: -6, bottom: -6, right: 0)
-        self.snp.makeConstraints { $0.height.equalTo(300) }
+        
     }
     
     private func disableInputTraits() {
@@ -71,11 +80,16 @@ class PostTextView: UITextView {
         smartInsertDeleteType = .no
     }
     
-    private func setHeightFlexible() {
+    private func updateTextViewHeight() {
+        guard !text.isEmpty else {
+            let screenWidth = UIScreen.main.bounds.width
+            let size = CGSize(width: screenWidth - 36.0, height: .infinity)
+            let estimatedSize = placeholderLabel.sizeThatFits(size)
+            self.snp.updateConstraints { $0.height.equalTo(estimatedSize.height) }
+            return
+        }
         let size = CGSize(width: self.frame.width, height: .infinity)
         let estimatedSize = self.sizeThatFits(size)
-        self.snp.updateConstraints {
-            $0.height.equalTo(estimatedSize.height + 50.0)
-        }
+        self.snp.updateConstraints { $0.height.equalTo(estimatedSize.height + 6.0) }
     }
 }

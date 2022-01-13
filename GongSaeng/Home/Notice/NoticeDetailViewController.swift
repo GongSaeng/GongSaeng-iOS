@@ -12,9 +12,9 @@ class NoticeDetailViewController: UITableViewController {
     // MARK: Properties
     var notice: Notice?
     
-    private lazy var commentInputView: CommentInputAccesoryView = {
+    private lazy var commentInputView: CommentInputAccessoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100.0)
-        let commentInputAccesoryView = CommentInputAccesoryView(frame: frame)
+        let commentInputAccesoryView = CommentInputAccessoryView(frame: frame)
         return commentInputAccesoryView
     }()
     

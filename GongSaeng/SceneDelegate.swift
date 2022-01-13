@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .white
         window?.tintColor = .black
         let viewController = LaunchScreenViewController()
-//        let rootViewController = PasswordChangingViewController()
+//        let rootViewController = GatheringWriteViewController()
 //        let viewController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()

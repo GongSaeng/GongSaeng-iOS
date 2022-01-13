@@ -47,13 +47,12 @@ extension CommunityViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommunityCell") as? CommunityCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CommunityCell") as? CommunityCell else { return CommunityCell() }
         cell.accessoryType = .disclosureIndicator
         cell.selectionStyle = .none
         cell.boardTitleLabel.text = postDataList[indexPath.row].0
         cell.boardIntroduceLabel.text = postDataList[indexPath.row].1
         cell.boardImageView.image = UIImage(named: postDataList[indexPath.row].2)
-        
         
         return cell
     }
@@ -91,13 +90,11 @@ extension CommunityViewController: UITableViewDelegate {
         case 3: // 함께게시판
             let viewController = GatheringBoardViewController()
             viewController.navigationItem.title = "함께게시판"
-            viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
-            let backBarButton = UIBarButtonItem(title: "게시판목록", style: UIBarButtonItem.Style.plain, target: self, action: nil)
-//            backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
-            viewController.navigationItem.backBarButtonItem = backBarButton
-//            viewController.navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
-//            viewController.hidesBottomBarWhenPushed = true
-            self.navigationController?.pushViewController(viewController, animated: true)
+            viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+            let backBarButton = UIBarButtonItem(title: "게시판목록", style: .plain, target: self, action: nil)
+            backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
+            navigationItem.backBarButtonItem = backBarButton
+            navigationController?.pushViewController(viewController, animated: true)
             
         case 4: // 장터게시판
             let storyboard = UIStoryboard(name: "free", bundle: Bundle.main)

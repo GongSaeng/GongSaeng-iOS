@@ -136,7 +136,7 @@ extension freeListViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "freeTableViewCell", for: indexPath) as? freeTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "freeTableViewCell", for: indexPath) as? freeTableViewCell else { return freeTableViewCell() }
         let free = frees[indexPath.row]
         cell.viewModel = freeListCellViewModel(free: free)
         return cell

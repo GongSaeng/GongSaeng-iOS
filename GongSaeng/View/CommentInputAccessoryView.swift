@@ -6,15 +6,16 @@
 //
 
 import UIKit
+import SnapKit
 
-protocol CommentInputAccesoryViewDelegate: AnyObject {
+protocol CommentInputAccessoryViewDelegate: AnyObject {
     func transferComment(_ contents: String?)
 }
 
-class CommentInputAccesoryView: UIView {
+class CommentInputAccessoryView: UIView {
     
     // MARK: Properties
-    weak var delegate: CommentInputAccesoryViewDelegate?
+    weak var delegate: CommentInputAccessoryViewDelegate?
     
     private let commentTextView: InputTextView = {
         let textView = InputTextView()
@@ -59,6 +60,7 @@ class CommentInputAccesoryView: UIView {
     
     @objc func handlePostTapped() {
         print("DEBUG: Did tap post button..")
+        commentTextView.resignFirstResponder()//임시코드
         delegate?.transferComment(commentTextView.text)
     }
     

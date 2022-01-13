@@ -159,7 +159,7 @@ extension CheckOutRequestDetailViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CheckOutCommentTableViewCell", for: indexPath) as? CheckOutCommentTableViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CheckOutCommentTableViewCell", for: indexPath) as? CheckOutCommentTableViewCell else { return CheckOutCommentTableViewCell() }
         cell.commentedUserImageView.image = commentedUserDataList[indexPath.row].0
         cell.commentedUserImageView.contentMode = .scaleAspectFill
         cell.commentedUserImageView.roundCornerOfImageView()

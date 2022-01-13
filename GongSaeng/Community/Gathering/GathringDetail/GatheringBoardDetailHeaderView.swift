@@ -13,8 +13,8 @@ class GatheringBoardDetailHeaderView: UIView {
     // MARK: Properties
     var viewModel: GatheringBoardDetialHeaderViewModel? {
         didSet {
-            layout()
             configure()
+            layout()
         }
     }
     
@@ -22,8 +22,9 @@ class GatheringBoardDetailHeaderView: UIView {
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
-//        collectionView.isScrollEnabled = true
         collectionView.showsHorizontalScrollIndicator = false
+        collectionView.decelerationRate = .fast
+//        collectionView.isPagingEnabled = true
         return collectionView
     }()
     
@@ -39,12 +40,12 @@ class GatheringBoardDetailHeaderView: UIView {
         let label = UILabel()
         label.font = .systemFont(ofSize: 18.0, weight: .medium)
         label.numberOfLines = 0
+        label.lineBreakMode = .byCharWrapping
         return label
     }()
     
     private let contentsLabel: UILabel = {
         let label = UILabel()
-//        label.lineBreakMode = .byTruncatingTail
         label.numberOfLines = 0//
         return label
     }()
@@ -105,17 +106,7 @@ class GatheringBoardDetailHeaderView: UIView {
         button.addTarget(self, action: #selector(didTapCompletionButton), for: .touchUpInside)
         return button
     }()
-    
-    // MARK: Lifecycle
-//    override init(frame: CGRect) {
-//        super.init(frame: frame)
-//
-//        backgroundColor = .gray
-//    }
-//
-//    required init?(coder: NSCoder) {
-//        fatalError("init(coder:) has not been implemented")
-//    }
+
     // MARK: Actions
     @objc func didTapCompletionButton() {
         print("DEBUG: Did tap completionButton..")
@@ -159,6 +150,9 @@ class GatheringBoardDetailHeaderView: UIView {
         [titleLabel, contentsLabel, writerImageView, writerNicknameLabel, uploadedTimeLabel, commentImageView, numberOfCommentsLabel, dividingView].forEach { addSubview($0) }
         
         titleLabel.snp.makeConstraints {
+            let screenWidth = UIScreen.main.bounds.width
+            let newSize = titleLabel.sizeThatFits(CGSize(width: screenWidth - 36.0, height: .greatestFiniteMagnitude))
+            $0.height.equalTo(newSize.height)
             $0.top.equalTo(hasImages ? collectionView.snp.bottom : self).offset(12.0)
             $0.leading.equalToSuperview().inset(20.0)
             $0.trailing.lessThanOrEqualToSuperview().inset(18.0)
@@ -182,6 +176,9 @@ class GatheringBoardDetailHeaderView: UIView {
         }
         
         contentsLabel.snp.makeConstraints {
+            let screenWidth = UIScreen.main.bounds.width
+            let newSize = contentsLabel.sizeThatFits(CGSize(width: screenWidth - 36.0, height: .greatestFiniteMagnitude))
+            $0.height.equalTo(newSize.height)
             $0.leading.equalTo(titleLabel)
             $0.top.equalTo(writerImageView.snp.bottom).offset(10.0)
             $0.trailing.equalToSuperview().inset(18.0)

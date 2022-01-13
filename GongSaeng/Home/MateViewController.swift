@@ -63,7 +63,7 @@ extension MateViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MateCell", for: indexPath) as? MateCell else {
-            return UICollectionViewCell()
+            return MateCell()
         }
         let mate = mates[indexPath.item]
         cell.viewModel = MateCellViewModel(mate: mate)

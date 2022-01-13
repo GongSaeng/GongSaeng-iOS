@@ -99,7 +99,7 @@ extension DepartmentViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "DepartmentCell", for: indexPath) as? DepartmentCell else {
-            return UITableViewCell()
+            return DepartmentCell()
         }
         cell.updateUI(department: viewModel.searchDepartmentOfIndex(at: indexPath.row))
         return cell

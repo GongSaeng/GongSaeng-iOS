@@ -13,9 +13,9 @@ class freeDetailViewController: UIViewController {
     var free: free?
     private var free_comments = [free_comment]()
     
-    private lazy var freeCommentInputView: CommentInputAccesoryView = {
+    private lazy var freeCommentInputView: CommentInputAccessoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 150.0)
-        let CommentInputAccesoryView = CommentInputAccesoryView(frame: frame)
+        let CommentInputAccesoryView = CommentInputAccessoryView(frame: frame)
         CommentInputAccesoryView.delegate = self
         return CommentInputAccesoryView
     }()
@@ -115,7 +115,7 @@ class freeDetailViewController: UIViewController {
     }
 }
 
-extension freeDetailViewController: CommentInputAccesoryViewDelegate {
+extension freeDetailViewController: CommentInputAccessoryViewDelegate {
     func transferComment(_ contents: String?) {
         showLoader(true)
         let parent_num = "3"

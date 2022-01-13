@@ -118,7 +118,7 @@ extension NotificationViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NotificationCollectionViewCell", for: indexPath) as? NotificationCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "NotificationCollectionViewCell", for: indexPath) as? NotificationCollectionViewCell else { return NotificationCollectionViewCell() }
         if deleteNotificationButton.isSelected {
             cell.deleteCellButton.isHidden = false
         } else {

@@ -41,7 +41,7 @@ extension ReservationViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCell", for: indexPath) as? ReservationCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ReservationCell", for: indexPath) as? ReservationCell else { return ReservationCell() }
         
         cell.delegate = self
         
@@ -64,7 +64,7 @@ extension ReservationViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         switch kind {
         case UICollectionView.elementKindSectionHeader:
-            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ReservationHeaderView", for: indexPath) as? ReservationHeaderView else { return UICollectionReusableView() }
+            guard let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "ReservationHeaderView", for: indexPath) as? ReservationHeaderView else { return ReservationHeaderView() }
             
             guard let section = ReservationViewModel.Section(rawValue: indexPath.section) else { return UICollectionReusableView() }
             

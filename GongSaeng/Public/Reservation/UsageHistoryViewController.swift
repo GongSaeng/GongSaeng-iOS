@@ -69,7 +69,7 @@ extension UsageHistoryViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UsageDetailCollectionViewCell", for: indexPath) as? UsageDetailCollectionViewCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UsageDetailCollectionViewCell", for: indexPath) as? UsageDetailCollectionViewCell else { return UsageDetailCollectionViewCell() }
         
         return cell
     }

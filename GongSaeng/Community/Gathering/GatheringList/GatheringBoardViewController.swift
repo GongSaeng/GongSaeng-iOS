@@ -27,8 +27,13 @@ final class GatheringBoardViewController: UITableViewController {
     }
     
     // MARK: Actions
-    @objc func didTapCompleteButton() {
-        print("DEBUG: Did tap completeButton..")
+    @objc func didTapWriteButton() {
+        print("DEBUG: Did tap writeButton..")
+        let viewController = GatheringWriteViewController()
+        viewController.hidesBottomBarWhenPushed = true
+        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        navigationItem.backBarButtonItem = backBarButton
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     // MARK: Helpers
@@ -40,7 +45,7 @@ final class GatheringBoardViewController: UITableViewController {
     }
     
     private func configureNavigationBar() {
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "write"), style: .plain, target: self, action: #selector(didTapCompleteButton))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "write"), style: .plain, target: self, action: #selector(didTapWriteButton))
     }
     
     private func layout() { }
@@ -54,7 +59,7 @@ extension GatheringBoardViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? GatheringBoardCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? GatheringBoardCell else { return GatheringBoardCell() }
         cell.viewModel = GatheringBoardCellViewModel(gathering: gatherings[indexPath.row])
         cell.selectionStyle = .none
         return cell
@@ -65,12 +70,12 @@ extension GatheringBoardViewController {
 extension GatheringBoardViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let viewController = GatheringBoardDetailViewController()
+        viewController.hidesBottomBarWhenPushed = true
         viewController.navigationItem.title = "함께게시판"
         viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
         let backBarButton = UIBarButtonItem(title: "목록", style: UIBarButtonItem.Style.plain, target: self, action: nil)
-//            backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
-        viewController.navigationItem.backBarButtonItem = backBarButton
-        viewController.hidesBottomBarWhenPushed = true
+        backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
+        navigationItem.backBarButtonItem = backBarButton
         navigationController?.pushViewController(viewController, animated: true)
     }
 }
