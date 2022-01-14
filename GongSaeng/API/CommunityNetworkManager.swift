@@ -26,7 +26,7 @@ final class CommunityNetworkManager {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                       return
                   }
-            print("DEBUG: gatherings ->", gatherings)
+            print("DEBUG: gatherings index ->", gatherings.map { $0.index })
             
             switch response.statusCode {
             case (200...299):
@@ -63,12 +63,6 @@ final class CommunityNetworkManager {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
-//            guard error == nil,
-//                  let response = response as? HTTPURLResponse,
-//                  let data = data else {
-//                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-//                      return
-//                  }
             guard error == nil,
                   let response = response as? HTTPURLResponse,
                   let data = data,
@@ -77,9 +71,6 @@ final class CommunityNetworkManager {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                       return
                   }
-//            print("DEBUG: \(String(data: data, encoding: .utf8))")
-//            let post = Post(title: "", contents: "", writerImageUrl: nil, writerId: "", writerNickname: "", uploadedTime: "", numberOfComments: 0, postingImagesUrl: nil)
-//            print("DEBUG: post ->", post)
             
             switch response.statusCode {
             case (200...299):
@@ -130,7 +121,7 @@ final class CommunityNetworkManager {
             let boundary = "Boundary-\(UUID().uuidString)"
             request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
             
-            var httpBody = NSMutableData()
+            let httpBody = NSMutableData() // let var //
             for image in images {
                 guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
                 httpBody.append(convertFileData(fileData: imageData, using: boundary))
@@ -168,53 +159,7 @@ final class CommunityNetworkManager {
                 }
             }
             dataTask.resume()
-            
-            
-//            var data = Data()
-//            let boundary = UUID().uuidString
-//            request.addValue("multipart/form-data; boundary=\(boundary)\r\n", forHTTPHeaderField: "Content-Type")
-//            for image in images {
-//                let fileName = "\(UUID().uuidString).jpg"
-//                data.append("--\(boundary)\r\n".data(using: .utf8)!)
-//                data.append("Content-Disposition: form-data; name=\"image\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
-//                data.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-//                data.append(image.jpegData(compressionQuality: 0.75)!)
-//                data.append("\r\n".data(using: .utf8)!)
-//            }
-//            data.append("--\(boundary)--\r\n".data(using: .utf8)!)
-//
-//            let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
-//                guard error == nil,
-//                      let response = response as? HTTPURLResponse,
-//                      let data = data,
-//                      let returnValue = String(data: data, encoding: .utf8)  else {
-//                          print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-//                          return
-//                      }
-//
-//                switch response.statusCode {
-//                case (200...299):
-//                    print("DEBUG: postCommunity response is succeded..", returnValue)
-//                    let isSucceded = (returnValue == "true") ? true : false
-//                    completion(isSucceded)
-//                case (400...499):
-//                    print("""
-//                        ERROR: Client ERROR \(response.statusCode)
-//                        Response: \(response)
-//                    """)
-//                case (500...599):
-//                    print("""
-//                        ERROR: Server ERROR \(response.statusCode)
-//                        Response: \(response)
-//                    """)
-//                default:
-//                    print("""
-//                        ERROR: \(response.statusCode)
-//                        Response: \(response)
-//                    """)
-//                }
-//            }
-//            dataTask.resume()
+             
         } else {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 

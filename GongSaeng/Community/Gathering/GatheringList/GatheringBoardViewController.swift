@@ -38,17 +38,36 @@ final class GatheringBoardViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        print("DEBUG: viewWillAppear")
+        print("DEBUG: gatheringList \(gatheringList)")
         fetchGatherings(of: currentPage)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        print("DEBUG: viewWillDisappear")
+        gatheringList.removeAll()
+    }
+    
     // MARK: API
-    private func fetchGatherings(of page: Int) {
-        guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
+    private func fetchGatherings(of page: Int, shouldRefresh: Bool = false) {
+        print("DEBUG: fetchedPageList -> \(fetchedPageList)")
+        guard fetchedPageList.firstIndex(of: currentPage) == nil else {
+            print("DEBUG: fetch else..")
+            return }
+        print("DEBUG: fetch page \(page)")
         fetchedPageList.append(page)
         CommunityNetworkManager.fetchGatheringPosts(page: page) { [weak self] gatherings in
             guard let self = self else { return }
-            self.gatheringList += gatherings
+            if shouldRefresh {
+                self.gatheringList = gatherings
+            } else {
+                self.gatheringList += gatherings
+            }
+            print("DEBUG: gatheringIndexs \(self.gatheringList.map { $0.index })")
             self.currentPage += 1
+            print("DEBUG: currentPage(\(self.currentPage)")
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.tableView.refreshControl?.endRefreshing()
@@ -69,7 +88,10 @@ final class GatheringBoardViewController: UITableViewController {
     // MARK: Helpers
     @objc
     private func refresh() {
-        self.fetchGatherings(of: currentPage)
+        currentPage = 1
+        fetchedPageList.removeAll()
+        print("DEBUG: fetched page list \(fetchedPageList)")
+        fetchGatherings(of: currentPage, shouldRefresh: true)
     }
     
     private func configureRefreshControl() {
