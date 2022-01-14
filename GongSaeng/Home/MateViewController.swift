@@ -33,7 +33,7 @@ class MateViewController: UIViewController {
     // MARK: API
     private func fetchMates() {
         print("DEBUG: Called fetchMates()..")
-        MateNetwork.fetchMate(department: "한국장학재단") { [weak self] mates in
+        MateNetworkManager.fetchMate(department: "한국장학재단") { [weak self] mates in
             guard let self = self else { return }
             self.mates = mates
             DispatchQueue.main.async {

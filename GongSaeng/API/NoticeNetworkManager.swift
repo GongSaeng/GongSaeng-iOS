@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct NoticeNetwork {
+struct NoticeNetworkManager {
     static func fetchNotice(completion: @escaping([Notice]) -> Void) {
         guard let url = URL(string: "\(SERVER_URL)/notify/read_notify") else { return }
         var request = URLRequest(url: url)

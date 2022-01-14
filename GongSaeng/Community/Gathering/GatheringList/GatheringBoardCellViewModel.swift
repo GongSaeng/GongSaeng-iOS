@@ -8,48 +8,72 @@
 import UIKit
 
 struct GatheringBoardCellViewModel {
-    private let gathering: Gathering
     
-    var isGathering: Bool? {
-        guard gathering.gatheringStatus == "true" else { return false }
-        return true
+    var isGathering: Bool
+    var hasThumbnailImage: Bool
+    var title: String
+    var contents: String
+    var writerNickname: String
+    var uploadedTime: String
+    var numberOfComments: String
+    var writerImageUrl: String?
+    var thumbnailIamgeUrl: String?
+    
+    var uploadedTimeText: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let secondsInterval = dateFormatter.date(from: uploadedTime)
+            .map { Calendar.current.dateComponents([.second], from: $0, to: Date()).second }
+            .flatMap { $0 } ?? 0
+        switch secondsInterval {
+        case ..<60: // 초 단위
+            return "방금"
+        case 60 ..< 3600: // 분 단위 [1분~60분]
+            return "\(secondsInterval / 60)분 전"
+        case 3600 ..< 86400: // 시간 단위 [1시간~24시간]
+            return "\(secondsInterval / 3600)시간 전"
+        case 86400 ..< 2592000: // 일 단위 [1일~30일]
+            return "\(secondsInterval / 86400)일 전"
+        case 2592000 ..< 31536000: // 월 단위 [1개월~12개월]
+            return "\(secondsInterval / 2592000)개월 전"
+        default:
+            return "\(secondsInterval / 31536000)년 전"
+        }
     }
-    var title: String? { gathering.title }
-    var contents: String? { gathering.contents }
-    var writerNickname: String? { gathering.writerNickname }
-    var uploadedTime: String? { gathering.uploadedTime }
-    var numberOfComments: String? { gathering.numberOfComments }
+    
     var writerImage: UIImage? {
-        guard let fileName = gathering.writerImageUrl else { return nil }
+        guard let fileName = writerImageUrl else { return nil }
         let semaphore = DispatchSemaphore(value: 0)
         var cachedImage = UIImage()
         ImageCacheManager.getCachedImage(fileName: fileName) { image in
             cachedImage = image
-            print("DEBUG: cachedImage = image")
             semaphore.signal()
         }
         semaphore.wait()
-        print("DEBUG: return cachedImage")
         return cachedImage
     }
-    var postingImages: [UIImage]? {
-        guard let fileNames = gathering.postingImagesUrl else { return nil }
+    
+    var thumbnailImage: UIImage? {
+        guard let fileName = thumbnailIamgeUrl else { return nil }
         let semaphore = DispatchSemaphore(value: 0)
-        var cachedImages = [UIImage]()
-        for fileName in fileNames {
-            ImageCacheManager.getCachedImage(fileName: fileName) { image in
-                cachedImages.append(image)
-                print("DEBUG: cachedImages.append(image)")
-                if cachedImages.count == fileNames.count {
-                    semaphore.signal()
-                }
-            }
+        var cachedImage = UIImage()
+        ImageCacheManager.getCachedImage(fileName: fileName) { image in
+            cachedImage = image
+            semaphore.signal()
         }
         semaphore.wait()
-        return cachedImages
+        return cachedImage
     }
     
     init(gathering: Gathering) {
-        self.gathering = gathering
+        self.isGathering = gathering.gatheringStatus == 0
+        self.hasThumbnailImage = !(gathering.postingImagesUrl ?? []).isEmpty
+        self.title = gathering.title
+        self.contents = gathering.contents
+        self.writerNickname = gathering.writerNickname
+        self.uploadedTime = gathering.uploadedTime
+        self.numberOfComments = "\(gathering.numberOfComments)"
+        self.writerImageUrl = gathering.writerImageUrl
+        self.thumbnailIamgeUrl = gathering.postingImagesUrl?.first
     }
 }

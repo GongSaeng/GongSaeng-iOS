@@ -107,7 +107,6 @@ class GatheringWriteViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        print("DEBUG: viewDidLayoutSubviews()")
         guard imageInputView.imageCollectionView == nil else { return }
         imageInputView.imageCollectionView = collectionView
     }
@@ -137,6 +136,19 @@ class GatheringWriteViewController: UIViewController {
             viewController.modalPresentationStyle = .overCurrentContext
             present(viewController, animated: false, completion: nil)
             return
+        }
+        showLoader(true)
+        CommunityNetworkManager().postCommunity(code: 0, title: titleText, contents: contentsText, images: selectedImages) { [weak self] isSucceded in
+            guard let self = self else { return }
+            guard isSucceded else {
+                print("DEBUG: failed..")
+                self.showLoader(false)
+                return
+            }
+            self.showLoader(false)
+            DispatchQueue.main.async {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
     
@@ -254,7 +266,7 @@ extension GatheringWriteViewController: PHPickerViewControllerDelegate {
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
                 guard let self = self, let image = object as? UIImage else { return }
-                self.selectedImages.append(image)
+                self.selectedImages.append(image.downSize(newWidth: 500))
             }
         }
     }

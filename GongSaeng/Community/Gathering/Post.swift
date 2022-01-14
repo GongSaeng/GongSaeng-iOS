@@ -1,15 +1,13 @@
 //
-//  Gathering.swift
+//  Post.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2022/01/10.
+//  Created by 정동천 on 2022/01/14.
 //
 
-import Foundation
+import UIKit
 
-struct Gathering: Codable {
-    var index: Int
-    var gatheringStatus: Int
+struct Post: Decodable {
     var title: String
     var contents: String
     var writerImageUrl: String?
@@ -20,14 +18,12 @@ struct Gathering: Codable {
     var postingImagesUrl: [String]?
     
     enum CodingKeys: String, CodingKey {
-        case index = "idx"
         case title, contents
         case writerId = "id"
         case writerNickname = "nickname"
-        case numberOfComments = "comment_cnt"
+        case numberOfComments = "comment_num"
         case uploadedTime = "time"
-        case gatheringStatus = "gather_status"
-//        case postingImagesUrl = "image_url"
-        case writerImageUrl = "writer_profile_image"
+//        case postingImagesUrl = "contents_images_url"
+        case writerImageUrl = "profile_image_irl"
     }
 }

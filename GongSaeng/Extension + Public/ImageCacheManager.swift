@@ -13,13 +13,12 @@ class ImageCacheManager {
     private init() {}
     
     static func getCachedImage(fileName: String, completion: @escaping(UIImage) -> Void) {
-        print("DEBUG: ImageCacheManager.getCachedImage()")
         let cacheKey = NSString(string: fileName)
         if let cachedImage = shared.object(forKey: cacheKey) {
             completion(cachedImage)
         } else {
             ImageService.getImage(fileName: fileName) { image in
-                shared.setObject(image, forKey: cacheKey)
+                shared.setObject(image.downSize(newWidth: 400), forKey: cacheKey)
                 completion(image)
             }
         }

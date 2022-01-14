@@ -11,13 +11,16 @@ import SnapKit
 class GatheringBoardDetailViewController: UITableViewController {
     
     // MARK: Propeties
-    private var currentIndex: CGFloat = 0
+    var userID: String
+    var post: Post
+    var gatheringStatus: Int
+    
     private let collectionReuseIdentifier = "GatheringImageCell"
     private let tableReuserIdetifier = "CommentTableViewCell"
     private let headerView = GatheringBoardDetailHeaderView()
     private var postingImages: [UIImage]? { return headerView.viewModel?.postingImages }
     
-    private let gathering = Gathering(index: "1", gatheringStatus: "true", title: "저녁에 떡볶이 같이 드실분??", contents: "엽떡 시킬건데 떡볶이 혼자 다 먹기 힘들어서.. 같이 드실분 구합니다~ 엽떡 3단계 이상으로 주문하고 싶어서 매운거 잘 드시는 분이면 좋겠어요!ㅎㅎ 사이드도 협의 후에 시킬 예정입니다~ 부담없이 댓글남겨주세요! 최대 4명까지만 선착순으로 구하겠습니다~", writerImageUrl: "10", writerNickname: "떡볶이가좋아", uploadedTime: "1시간 전", numberOfComments: "5", postingImagesUrl: ["10", "10", "10"])
+//    private let gathering = Gathering(index: 1, gatheringStatus: 0, title: "저녁에 떡볶이 같이 드실분??", contents: "엽떡 시킬건데 떡볶이 혼자 다 먹기 힘들어서.. 같이 드실분 구합니다~ 엽떡 3단계 이상으로 주문하고 싶어서 매운거 잘 드시는 분이면 좋겠어요!ㅎㅎ 사이드도 협의 후에 시킬 예정입니다~ 부담없이 댓글남겨주세요! 최대 4명까지만 선착순으로 구하겠습니다~", writerImageUrl: "10", writerId: "sdfasdf", writerNickname: "떡볶이가좋아", uploadedTime: "1시간 전", numberOfComments: 5, postingImagesUrl: ["10", "10", "10"])
     
     private lazy var commentInputView: CommentInputAccessoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100.0)
@@ -34,11 +37,21 @@ class GatheringBoardDetailViewController: UITableViewController {
     }
     
     // MARK: Lifecycle
+    init(withUser user: User, post: Post, gatheringStatus: Int) {
+        self.userID = user.id
+        self.post = post
+        self.gatheringStatus = gatheringStatus
+        super.init(style: .plain)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configure()
-        layout()
     }
     
     override func viewWillLayoutSubviews() {
@@ -57,11 +70,10 @@ class GatheringBoardDetailViewController: UITableViewController {
         }
     }
     
-    // MARK: Actions
-    
     // MARK: Helpers
     private func configure() {
-        headerView.viewModel = GatheringBoardDetialHeaderViewModel(gathering: gathering)
+        headerView.delegate = self
+        headerView.viewModel = GatheringBoardDetialHeaderViewModel(post: post, userID: userID, gatheringStatus: gatheringStatus)
         tableView.tableHeaderView = headerView
         tableView.keyboardDismissMode = .interactive
         tableView.rowHeight = UITableView.automaticDimension
@@ -70,10 +82,6 @@ class GatheringBoardDetailViewController: UITableViewController {
         headerView.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: collectionReuseIdentifier)
         headerView.collectionView.dataSource = self
         headerView.collectionView.delegate = self
-    }
-    
-    private func layout() {
-        
     }
 }
 
@@ -107,6 +115,13 @@ class GatheringBoardDetailViewController: UITableViewController {
 //        targetContentOffset.pointee = offset
 //    }
 //}
+
+// MARK: GatheringBoardDetailHeaderViewDelegate
+extension GatheringBoardDetailViewController: GatheringBoardDetailHeaderViewDelegate {
+    func completeGatheringStatus() {
+        //
+    }
+}
 
 // MARK: UITableViewDataSource, Delegate
 extension GatheringBoardDetailViewController {

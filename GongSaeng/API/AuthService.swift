@@ -78,6 +78,7 @@ struct AuthService {
             
             switch response.statusCode {
             case (200...299):
+                print("DEBUG: logout \(json)")
                 if json == "OK" {
                     print("DEBUG: logout succeded")
                     completion(true)

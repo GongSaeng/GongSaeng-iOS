@@ -8,9 +8,15 @@
 import UIKit
 import SnapKit
 
+protocol GatheringBoardDetailHeaderViewDelegate: AnyObject {
+    func completeGatheringStatus()
+}
+
 class GatheringBoardDetailHeaderView: UIView {
     
     // MARK: Properties
+    weak var delegate: GatheringBoardDetailHeaderViewDelegate?
+    
     var viewModel: GatheringBoardDetialHeaderViewModel? {
         didSet {
             configure()
@@ -55,7 +61,6 @@ class GatheringBoardDetailHeaderView: UIView {
         imageView.layer.borderWidth = 1.0
         imageView.layer.borderColor = UIColor(white: 0, alpha: 0.1).cgColor
         imageView.layer.cornerRadius = 12.0
-        imageView.image = UIImage(named: "3")
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -106,35 +111,39 @@ class GatheringBoardDetailHeaderView: UIView {
         button.addTarget(self, action: #selector(didTapCompletionButton), for: .touchUpInside)
         return button
     }()
+    
+    private let gatheringStatusContentView = UIView()
+    private let gatheringCompletionContentView = UIView()
+    private let dividingView = UIView()
 
     // MARK: Actions
     @objc func didTapCompletionButton() {
         print("DEBUG: Did tap completionButton..")
+        delegate?.completeGatheringStatus()
     }
     
     // MARK: Helpers
     private func configure() {
-        guard let viewModel = viewModel, let title = viewModel.title, let contents = viewModel.contents, let writerNickname = viewModel.writerNickname, let uploadedTime = viewModel.uploadedTime, let numberOfComments = viewModel.numberOfComments else { return }
+        guard let viewModel = viewModel else { return }
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5.0
-        contentsLabel.attributedText = NSAttributedString(string: contents, attributes: [.paragraphStyle: paragraphStyle, .font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor(white: 0, alpha: 0.8)])
-        titleLabel.text = title
-        writerNicknameLabel.text = writerNickname
-        uploadedTimeLabel.text = uploadedTime
-        numberOfCommentsLabel.text = numberOfComments
-        writerImageView.image = viewModel.writerImage
+        contentsLabel.attributedText = NSAttributedString(string: viewModel.contents, attributes: [.paragraphStyle: paragraphStyle, .font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor(white: 0, alpha: 0.8)])
+        titleLabel.text = viewModel.title
+        writerNicknameLabel.text = viewModel.writerNickname
+        uploadedTimeLabel.text = viewModel.uploadedTimeText
+        numberOfCommentsLabel.text = viewModel.numberOfCommentsText
+        writerImageView.image = viewModel.writerImage ?? UIImage(named: "3")
     }
     
     private func layout() {
-        guard let viewModel = viewModel, let isGathering = viewModel.isGathering, let hasImages = viewModel.hasImages else { return }
-        let canCompleteGathering = true
+        guard let viewModel = viewModel else { return }
+        let isGathering = viewModel.isGathering
+        let hasImages = viewModel.hasImages
+        let canCompleteGathering = viewModel.canCompleteGathering
         
-        let gatheringStatusContentView = UIView()
-        let gatheringCompletionContentView = UIView()
         gatheringStatusContentView.layer.cornerRadius = 6.0
         
-        let dividingView = UIView()
         dividingView.backgroundColor = UIColor(white: 0, alpha: 0.05)
         
         if hasImages {

@@ -38,7 +38,7 @@ class MyPageViewController: UITableViewController {
         label.font = .systemFont(ofSize: 20.0, weight: .medium)
         return label
     }()
-    
+
     private let nicknameLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16.0)

@@ -8,6 +8,10 @@
 import UIKit
 
 class CommunityViewController: UIViewController {
+    
+    // MARK: Properties
+    var user: User?
+    
     var postDataList: [(String, String, String)] =
     [("자유게시판","자유롭게 소통해요","free_community")
      ,("긴급게시판","바로 해결해야하는 건의사항이 있나요?","emergency_community")
@@ -20,12 +24,7 @@ class CommunityViewController: UIViewController {
     var viewcons: [String] =
     ["NoticeListViewController","emergencycommunity","suggestcommunity","withcommunity","marketcommunity"]
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        
-    }
-    
+    // MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -41,6 +40,7 @@ class CommunityViewController: UIViewController {
     
 }
 
+// MARK: UITableViewDataSource
 extension CommunityViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return postDataList.count
@@ -58,6 +58,7 @@ extension CommunityViewController: UITableViewDataSource {
     }
 }
 
+// MARK: UITableViewDelegate
 extension CommunityViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let height: CGFloat = 83.0
@@ -65,6 +66,7 @@ extension CommunityViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let user = user else { return }
         switch indexPath.row {
         case 0: // 자유게시판
             let storyboard = UIStoryboard(name: "free", bundle: Bundle.main)
@@ -88,7 +90,7 @@ extension CommunityViewController: UITableViewDelegate {
             self.navigationController?.pushViewController(viewController, animated: true)
             
         case 3: // 함께게시판
-            let viewController = GatheringBoardViewController()
+            let viewController = GatheringBoardViewController(withUser: user)
             viewController.navigationItem.title = "함께게시판"
             viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
             let backBarButton = UIBarButtonItem(title: "게시판목록", style: .plain, target: self, action: nil)

@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct MateNetwork {
+struct MateNetworkManager {
     static func fetchMate(department: String, completion: @escaping([Mate]) -> Void) {
         guard let url = URL(string: "\(SERVER_URL)/mate") else { return }
         var request = URLRequest(url: url)

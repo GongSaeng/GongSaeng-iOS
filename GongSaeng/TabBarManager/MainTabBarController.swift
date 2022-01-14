@@ -38,7 +38,9 @@ class MainTabBarController: UITabBarController {
         
         let publicViewController = templateNavigationController(tabTitle: "공용", unselectedImage: UIImage(named: "public"), selectedIamge: UIImage(named: "publicOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "PublicViewController"))
         
-        let communityViewController = templateNavigationController(tabTitle: "커뮤니티", unselectedImage: UIImage(named: "community"), selectedIamge: UIImage(named: "communityOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "CommunityViewController"))
+        let communityRootViewController = storyboard.instantiateViewController(withIdentifier: "CommunityViewController") as! CommunityViewController
+        communityRootViewController.user = user
+        let communityViewController = templateNavigationController(tabTitle: "커뮤니티", unselectedImage: UIImage(named: "community"), selectedIamge: UIImage(named: "communityOn"), rootViewController: communityRootViewController)
         communityViewController.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
         communityViewController.navigationBar.topItem?.backButtonDisplayMode = .default
         
