@@ -35,7 +35,7 @@ class MateListViewController: UIViewController {
     private func configureNavigationBar() {
         navigationItem.title = "공생메이트"
         navigationController?.navigationBar.tintColor = UIColor(white: 0, alpha: 0.8)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
         
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")

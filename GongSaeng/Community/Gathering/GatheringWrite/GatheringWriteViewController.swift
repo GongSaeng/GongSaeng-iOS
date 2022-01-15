@@ -53,7 +53,7 @@ class GatheringWriteViewController: UIViewController {
     
     private let titleInputTextField: UITextField = {
         let textField = UITextField()
-        textField.attributedPlaceholder = NSAttributedString(string: "제목을 입력해주세요.", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0), NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        textField.attributedPlaceholder = NSAttributedString(string: "제목을 입력해주세요.", attributes: [.font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor.lightGray])
         textField.font = .systemFont(ofSize: 14.0)
         textField.tintColor = .black
         return textField
@@ -181,10 +181,10 @@ class GatheringWriteViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "함께글쓰기"
         navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
         
-        let rightBarButton = UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didTapCompleteButton))
-        rightBarButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)], for: .normal)
+        let rightBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(didTapCompleteButton))
+        rightBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)], for: .normal)
         navigationItem.rightBarButtonItem = rightBarButton
     }
     

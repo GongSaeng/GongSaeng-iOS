@@ -75,12 +75,12 @@ class freeListViewController: UIViewController {
     
     private func configureNavigationView() {
         navigationItem.title = "자유게시판"
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
         
-        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "write"), style: UIBarButtonItem.Style.plain, target: self, action: #selector(writeButtonTap))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "write"), style: .plain, target: self, action: #selector(writeButtonTap))
         
-        let backBarButton = UIBarButtonItem(title: "게시판목록", style: UIBarButtonItem.Style.plain, target: self, action: nil)
-        backBarButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)], for: .normal)
+        let backBarButton = UIBarButtonItem(title: "게시판목록", style: .plain, target: self, action: nil)
+        backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 16.0)], for: .normal)
         
         navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
     }

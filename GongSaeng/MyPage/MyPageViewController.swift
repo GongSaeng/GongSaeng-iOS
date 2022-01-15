@@ -47,7 +47,7 @@ class MyPageViewController: UITableViewController {
     
     private let profileEditButton: UIButton = {
         let button = UIButton()
-        button.setAttributedTitle(NSAttributedString(string: "프로필 수정", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: "프로필 수정", attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
         button.backgroundColor = UIColor(named: "colorBlueGreen")?.withAlphaComponent(0.1)
         button.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
         button.addTarget(self, action: #selector(didTapProfileEditButton), for: .touchUpInside)

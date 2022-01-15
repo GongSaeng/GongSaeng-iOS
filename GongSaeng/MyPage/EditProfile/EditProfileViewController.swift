@@ -29,7 +29,7 @@ class EditProfileViewController: UIViewController {
     private let imageSettingButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
-        button.setAttributedTitle(NSAttributedString(string: "변경", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .bold)]), for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: "변경", attributes: [.font: UIFont.systemFont(ofSize: 16.0, weight: .bold)]), for: .normal)
         button.addTarget(self, action: #selector(didTapImageSettingButton), for: .touchUpInside)
         return button
     }()
@@ -153,8 +153,8 @@ class EditProfileViewController: UIViewController {
         view.backgroundColor = .white
         scrollView.keyboardDismissMode = .interactive
         userImageView.image = viewModel.profileImage ?? UIImage(named: "no_image")
-        nickNameTextField.attributedPlaceholder = NSAttributedString(string: viewModel.nickNamePlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        jobTextField.attributedPlaceholder = NSAttributedString(string: viewModel.jobPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        nickNameTextField.attributedPlaceholder = NSAttributedString(string: viewModel.nickNamePlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
+        jobTextField.attributedPlaceholder = NSAttributedString(string: viewModel.jobPlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
         introduceTextView.placeHolderText = viewModel.introducePlaceholder
     }
     
@@ -222,15 +222,15 @@ class EditProfileViewController: UIViewController {
     private func configureNavigationView() {
         navigationItem.title = "프로필 수정"
         navigationController?.navigationBar.tintColor = UIColor(white: 0, alpha: 0.8)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
         
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")
         navigationController?.navigationBar.topItem?.title = ""
 
-        let rightBarButton = UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didTapCompleteButton))
+        let rightBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(didTapCompleteButton))
         rightBarButton.tintColor = UIColor(named: "colorBlueGreen")
-        rightBarButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)], for: .normal)
+        rightBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)], for: .normal)
         navigationItem.rightBarButtonItem = rightBarButton
     }
 }

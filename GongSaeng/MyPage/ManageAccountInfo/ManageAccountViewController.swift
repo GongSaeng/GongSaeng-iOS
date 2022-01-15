@@ -59,7 +59,7 @@ class ManageAccountViewController: UIViewController {
         let button = UIButton()
         button.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
 //        button.setTitleColor(UIColor.gray, for: .normal)
-        button.setAttributedTitle(NSAttributedString(string: "비밀번호 변경", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]), for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: "비밀번호 변경", attributes: [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]), for: .normal)
         button.addTarget(self, action: #selector(didTapPasswordChangingButton), for: .touchUpInside)
         return button
     }()
@@ -101,9 +101,9 @@ class ManageAccountViewController: UIViewController {
     private func configure() {
         guard let viewModel = viewModel else { return }
         view.backgroundColor = .white
-        nameTextField.attributedPlaceholder = NSAttributedString(string: viewModel.namePlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        emailTextField.attributedPlaceholder = NSAttributedString(string: viewModel.emailPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
-        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: viewModel.phoneNumberPlaceholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.lightGray])
+        nameTextField.attributedPlaceholder = NSAttributedString(string: viewModel.namePlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
+        emailTextField.attributedPlaceholder = NSAttributedString(string: viewModel.emailPlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
+        phoneNumberTextField.attributedPlaceholder = NSAttributedString(string: viewModel.phoneNumberPlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
     }
     
     private func layout() {
@@ -151,15 +151,15 @@ class ManageAccountViewController: UIViewController {
         navigationItem.backButtonDisplayMode = .minimal
         navigationItem.title = "계정 정보 관리"
         navigationController?.navigationBar.tintColor = UIColor(white: 0, alpha: 0.8)
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
         
         navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")
         navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")
         navigationController?.navigationBar.topItem?.title = ""
 
-        let rightBarButton = UIBarButtonItem(title: "완료", style: UIBarButtonItem.Style.plain, target: self, action: #selector(didTapCompleteButton))
+        let rightBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(didTapCompleteButton))
         rightBarButton.tintColor = UIColor(named: "colorBlueGreen")
-        rightBarButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)], for: .normal)
+        rightBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)], for: .normal)
         navigationItem.rightBarButtonItem = rightBarButton
     }
 }

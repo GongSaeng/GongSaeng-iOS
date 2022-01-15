@@ -33,7 +33,7 @@ class BannerButton: UIButton {
     private func configure() {
         let greenColor = UIColor(named: "colorBlueGreen")!
         let whiteColor = UIColor.white
-        setAttributedTitle(NSAttributedString(string: buttonTitle, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .bold)]), for: .normal)
+        setAttributedTitle(NSAttributedString(string: buttonTitle, attributes: [.font: UIFont.systemFont(ofSize: 16.0, weight: .bold)]), for: .normal)
         
         layer.cornerRadius = 8
         

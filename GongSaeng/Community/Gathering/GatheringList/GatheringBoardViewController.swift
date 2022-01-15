@@ -38,25 +38,19 @@ final class GatheringBoardViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        print("DEBUG: viewWillAppear")
-        print("DEBUG: gatheringList \(gatheringList)")
-        fetchGatherings(of: currentPage)
+        fetchGatherings(of: currentPage, shouldRefresh: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        print("DEBUG: viewWillDisappear")
-        gatheringList.removeAll()
+
+        currentPage = 1
+        fetchedPageList.removeAll()
     }
     
     // MARK: API
     private func fetchGatherings(of page: Int, shouldRefresh: Bool = false) {
-        print("DEBUG: fetchedPageList -> \(fetchedPageList)")
-        guard fetchedPageList.firstIndex(of: currentPage) == nil else {
-            print("DEBUG: fetch else..")
-            return }
-        print("DEBUG: fetch page \(page)")
+        guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
         fetchedPageList.append(page)
         CommunityNetworkManager.fetchGatheringPosts(page: page) { [weak self] gatherings in
             guard let self = self else { return }
@@ -137,7 +131,7 @@ extension GatheringBoardViewController: UITableViewDataSourcePrefetching {
         guard currentPage != 1 else { return }
         
         indexPaths.forEach {
-            if ($0.row + 1) / 10 + 1 == currentPage {
+            if ($0.row + 1) / 10 + 1 == currentPage { // 10개씩 불러올 때 숫자 값
                 self.fetchGatherings(of: currentPage)
             }
         }
@@ -159,8 +153,8 @@ extension GatheringBoardViewController {
                 let viewController = GatheringBoardDetailViewController(withUser: self.user, post: post, gatheringStatus: gatheringStatus)
                 viewController.hidesBottomBarWhenPushed = true
                 viewController.navigationItem.title = "함께게시판"
-                viewController.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
-                let backBarButton = UIBarButtonItem(title: "목록", style: UIBarButtonItem.Style.plain, target: self, action: nil)
+                viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+                let backBarButton = UIBarButtonItem(title: "목록", style: .plain, target: self, action: nil)
                 backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
                 self.navigationItem.backBarButtonItem = backBarButton
                 self.showLoader(false)

@@ -32,7 +32,7 @@ class PopUpViewController: UIViewController {
     
     private lazy var confirmationButton: UIButton = {
         let button = UIButton()
-        button.setAttributedTitle(NSAttributedString(string: "확인", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: "확인", attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
         button.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 18.0

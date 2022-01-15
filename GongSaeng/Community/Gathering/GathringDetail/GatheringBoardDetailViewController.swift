@@ -15,12 +15,12 @@ class GatheringBoardDetailViewController: UITableViewController {
     var post: Post
     var gatheringStatus: Int
     
+    private var currentIndex: CGFloat = 0
+    
     private let collectionReuseIdentifier = "GatheringImageCell"
     private let tableReuserIdetifier = "CommentTableViewCell"
     private let headerView = GatheringBoardDetailHeaderView()
     private var postingImages: [UIImage]? { return headerView.viewModel?.postingImages }
-    
-//    private let gathering = Gathering(index: 1, gatheringStatus: 0, title: "저녁에 떡볶이 같이 드실분??", contents: "엽떡 시킬건데 떡볶이 혼자 다 먹기 힘들어서.. 같이 드실분 구합니다~ 엽떡 3단계 이상으로 주문하고 싶어서 매운거 잘 드시는 분이면 좋겠어요!ㅎㅎ 사이드도 협의 후에 시킬 예정입니다~ 부담없이 댓글남겨주세요! 최대 4명까지만 선착순으로 구하겠습니다~", writerImageUrl: "10", writerId: "sdfasdf", writerNickname: "떡볶이가좋아", uploadedTime: "1시간 전", numberOfComments: 5, postingImagesUrl: ["10", "10", "10"])
     
     private lazy var commentInputView: CommentInputAccessoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100.0)
@@ -85,41 +85,10 @@ class GatheringBoardDetailViewController: UITableViewController {
     }
 }
 
-// MARK: UIScrollViewDelegate
-//extension GatheringBoardDetailViewController {
-//    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-//        let layout = headerView.collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-//        let cellWidthIncludingSpacing = layout.itemSize.width + layout.minimumLineSpacing
-//
-//        var offset = targetContentOffset.pointee
-//        let index = (offset.x + scrollView.contentInset.left) / cellWidthIncludingSpacing
-//        var roundedIndex = round(index)
-//
-//        if scrollView.contentOffset.x > targetContentOffset.pointee.x {
-//            roundedIndex = floor(index)
-//        } else if scrollView.contentOffset.x < targetContentOffset.pointee.x {
-//            roundedIndex = ceil(index)
-//        } else {
-//            roundedIndex = round(index)
-//        }
-//
-//        if currentIndex > roundedIndex {
-//            currentIndex -= 1
-//            roundedIndex = currentIndex
-//        } else if currentIndex < roundedIndex {
-//            currentIndex += 1
-//            roundedIndex = currentIndex
-//        }
-//
-//        offset = CGPoint(x: roundedIndex * cellWidthIncludingSpacing - scrollView.contentInset.left, y: -scrollView.contentInset.top)
-//        targetContentOffset.pointee = offset
-//    }
-//}
-
 // MARK: GatheringBoardDetailHeaderViewDelegate
 extension GatheringBoardDetailViewController: GatheringBoardDetailHeaderViewDelegate {
     func completeGatheringStatus() {
-        //
+        print("DEBUG: completeGatheringStatus()")
     }
 }
 

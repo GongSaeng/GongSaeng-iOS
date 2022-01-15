@@ -91,7 +91,7 @@ class freeDetailViewController: UIViewController {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         
         if let free = free {
-            titleLabel.attributedText = NSAttributedString(string: free.title, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)])
+            titleLabel.attributedText = NSAttributedString(string: free.title, attributes: [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)])
             timeLabel.text = free.time
             contentsLabel.text = free.contents
             writerLabel.text = free.writer
@@ -102,10 +102,10 @@ class freeDetailViewController: UIViewController {
         navigationController?.navigationBar.isHidden = false
         navigationItem.title = "자유게시판"
         navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
-        navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
+        navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
         
-        let backBarButton = UIBarButtonItem(title: "목록", style: UIBarButtonItem.Style.plain, target: self, action: nil)
-        backBarButton.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0)], for: .normal)
+        let backBarButton = UIBarButtonItem(title: "목록", style: .plain, target: self, action: nil)
+        backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 16.0)], for: .normal)
         
         navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
     }
