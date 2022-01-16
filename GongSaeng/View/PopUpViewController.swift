@@ -14,9 +14,15 @@ enum PopUpButtonType {
     case cancelAndAction
 }
 
+protocol PopUpViewControllerDelegate: AnyObject {
+    func didTapActionButton()
+}
+
 class PopUpViewController: UIViewController {
     
     // MARK: Properties
+    weak var delegate: PopUpViewControllerDelegate?
+    
     var cancelButtonTitle: String?
     var actionButtonTitle: String?
     
@@ -98,7 +104,7 @@ class PopUpViewController: UIViewController {
     @objc
     private func didTapActionButton() {
         print("DEBUG: Did tap actionButton..")
-        //
+        delegate?.didTapActionButton()
     }
     
     // MARK: Helpers
