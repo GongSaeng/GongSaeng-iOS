@@ -250,7 +250,7 @@ extension GatheringWriteViewController: ImageInputAccessoryViewDelegate {
     func didTapimageAddingButton() {
         print("DEBUG: Delegate succeded")
         var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 10
+        configuration.selectionLimit = 9
         configuration.filter = .images
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self

@@ -14,8 +14,13 @@ class GatheringBoardDetailViewController: UITableViewController {
     var userID: String
     var post: Post
     var gatheringStatus: Int
+    var postIndex: Int
     
     private var currentIndex: CGFloat = 0
+    private var currentPage = 1
+    private var fetchedPageList = [Int]()
+    private var commentList = [Comment]()
+//    private var commentList = [Comment(contents: "가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하", writerImageUrl: "40", writerNickname: "자몽허니블랙티", uploadedTime: "2022-01-12 20:30:24"), Comment(contents: "가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하", writerImageUrl: "40", writerNickname: "자몽허니블랙티", uploadedTime: "2022-01-12 20:14:24"), Comment(contents: "임시 댓글 테스트!", writerImageUrl: nil, writerNickname: "로제떡볶이", uploadedTime: "2022-01-15 23:06:30"), Comment(contents: "임시 댓글 테스트!", writerImageUrl: nil, writerNickname: "로제떡볶이", uploadedTime: "2022-01-14 23:06:30"), Comment(contents: "임시 댓글 테스트!", writerImageUrl: nil, writerNickname: "로제떡볶이", uploadedTime: "2022-01-13 23:20:30")]
     
     private let collectionReuseIdentifier = "GatheringImageCell"
     private let tableReuserIdetifier = "CommentTableViewCell"
@@ -25,6 +30,7 @@ class GatheringBoardDetailViewController: UITableViewController {
     private lazy var commentInputView: CommentInputAccessoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100.0)
         let commentInputAccesoryView = CommentInputAccessoryView(frame: frame)
+        commentInputAccesoryView.delegate = self
         return commentInputAccesoryView
     }()
     
@@ -37,10 +43,11 @@ class GatheringBoardDetailViewController: UITableViewController {
     }
     
     // MARK: Lifecycle
-    init(withUser user: User, post: Post, gatheringStatus: Int) {
+    init(withUser user: User, post: Post, gatheringStatus: Int, postIndex: Int) {
         self.userID = user.id
         self.post = post
         self.gatheringStatus = gatheringStatus
+        self.postIndex = postIndex
         super.init(style: .plain)
     }
     
@@ -52,6 +59,12 @@ class GatheringBoardDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         configure()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        fetchComments(of: currentPage)
     }
     
     override func viewWillLayoutSubviews() {
@@ -70,6 +83,25 @@ class GatheringBoardDetailViewController: UITableViewController {
         }
     }
     
+    // MARK: API
+    private func fetchComments(of page: Int, shouldRefresh: Bool = false) {
+        guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
+        fetchedPageList.append(page)
+        CommunityNetworkManager.fetchComments(page: page, index: postIndex) { [weak self] comments in
+            guard let self = self else { return }
+            if shouldRefresh {
+                self.commentList = comments
+            } else {
+                self.commentList += comments
+            }
+            self.currentPage += 1
+            
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     // MARK: Helpers
     private func configure() {
         headerView.delegate = self
@@ -82,6 +114,7 @@ class GatheringBoardDetailViewController: UITableViewController {
         headerView.collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: collectionReuseIdentifier)
         headerView.collectionView.dataSource = self
         headerView.collectionView.delegate = self
+        tableView.prefetchDataSource = self
     }
 }
 
@@ -92,16 +125,32 @@ extension GatheringBoardDetailViewController: GatheringBoardDetailHeaderViewDele
     }
 }
 
+// MARK: CommentInputAccessoryViewDelegate
+extension GatheringBoardDetailViewController: CommentInputAccessoryViewDelegate {
+    func transferComment(_ contents: String) {
+        print("DEBUG: Comment contents -> \(contents)")
+        CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] isSucceded in
+            guard let self = self, isSucceded else {
+                print("DEBUG: Posting comment is failed..")
+                return
+            }
+            DispatchQueue.main.async {
+                self.commentInputView.clearComment()
+            }
+            self.fetchComments(of: self.currentPage, shouldRefresh: true)
+        }
+    }
+}
+
 // MARK: UITableViewDataSource, Delegate
 extension GatheringBoardDetailViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return commentList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: tableReuserIdetifier) as? CommentTableViewCell else {
-            print("DEBUG: Return UITableViewCell() ")
-            return CommentTableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: tableReuserIdetifier) as? CommentTableViewCell else { return CommentTableViewCell() }
+        cell.viewModel = CommentTableViewCellViewModel(comment: commentList[indexPath.row])
         cell.selectionStyle = .none
         return cell
     }
@@ -133,10 +182,28 @@ extension GatheringBoardDetailViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: UITableViewDataSourcePrefetching
+extension GatheringBoardDetailViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        print("DEBUG: prefetchRow \(indexPaths.map { $0.row })")
+        guard currentPage != 1 else { return }
+        
+        indexPaths.forEach {
+            if ($0.row + 1) / 10 + 1 == currentPage { // 10개씩 불러올 때 숫자 값
+                self.fetchComments(of: currentPage)
+            }
+        }
+    }
+}
+
 // MARK: UICollectionViewDelegate
 extension GatheringBoardDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("DEBUG: Did tap collectionViewCell..")
+        guard let postingImages = postingImages else { return }
+        let viewController = FullImageViewController(imageList: postingImages, page: indexPath.item + 1)
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true)
     }
 }
 

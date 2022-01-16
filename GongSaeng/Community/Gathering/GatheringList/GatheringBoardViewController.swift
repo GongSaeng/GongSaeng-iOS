@@ -12,6 +12,7 @@ final class GatheringBoardViewController: UITableViewController {
     
     // MARK: Properties
     var user: User
+    
     private let reuseIdentifier = "GatheringBoardCell"
     private var gatheringList = [Gathering]()
     private var fetchedPageList = [Int]()
@@ -79,7 +80,6 @@ final class GatheringBoardViewController: UITableViewController {
         navigationController?.pushViewController(viewController, animated: true)
     }
     
-    // MARK: Helpers
     @objc
     private func refresh() {
         currentPage = 1
@@ -88,6 +88,7 @@ final class GatheringBoardViewController: UITableViewController {
         fetchGatherings(of: currentPage, shouldRefresh: true)
     }
     
+    // MARK: Helpers
     private func configureRefreshControl() {
         tableView.refreshControl = UIRefreshControl()
         let refreshControl = self.tableView.refreshControl
@@ -144,13 +145,14 @@ extension GatheringBoardViewController {
         print("DEBUG: Did tap \(indexPath.row) tableViewCell")
         let index = gatheringList[indexPath.row].index
         let gatheringStatus = gatheringList[indexPath.row].gatheringStatus
+        let postIndex = gatheringList[indexPath.row].index
         print("DEBUG: index is \(index)")
         showLoader(true)
         CommunityNetworkManager.fetchPost(index: index) { [weak self] post in
             print("DEBUG: fetch succeded ->", post)
             guard let self = self else { return }
             DispatchQueue.main.async {
-                let viewController = GatheringBoardDetailViewController(withUser: self.user, post: post, gatheringStatus: gatheringStatus)
+                let viewController = GatheringBoardDetailViewController(withUser: self.user, post: post, gatheringStatus: gatheringStatus, postIndex: postIndex)
                 viewController.hidesBottomBarWhenPushed = true
                 viewController.navigationItem.title = "함께게시판"
                 viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]

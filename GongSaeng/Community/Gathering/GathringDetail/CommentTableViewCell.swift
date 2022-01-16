@@ -11,6 +11,10 @@ import SnapKit
 class CommentTableViewCell: UITableViewCell {
     
     // MARK: Properties
+    var viewModel: CommentTableViewCellViewModel? {
+        didSet { configure() }
+    }
+    
     private let writerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderWidth = 1.0
@@ -55,12 +59,14 @@ class CommentTableViewCell: UITableViewCell {
     
     // MARK: Helpers
     private func configure() {
-        writerNicknameLabel.text = "로제떡볶이"
-        uploadedTimeLabel.text = "1시간 전"
+        guard let viewModel = viewModel else { return }
+        writerNicknameLabel.text = viewModel.writerNicknameText
+        uploadedTimeLabel.text = viewModel.uploadedTimeText
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5.0
         paragraphStyle.lineBreakMode = .byTruncatingTail
-        contentsLabel.attributedText = NSAttributedString(string: "저요! 7시에 엘리베이터 앞에서 만나요. 가나다라마바사아자차카타파하 글자 길이 늘려서 테스트 중입니다. 안녕하세요~~~ 가나다라마바사아자차카타파하 가나다라마바사아자차카타파하 가나다라마바사아자차카타파하 가나다라마바사아자차카타파하 가나다라마바사아자차카타파하 가나다라마바사아자차카타파하", attributes: [.paragraphStyle: paragraphStyle, .font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor(white: 0, alpha: 0.7)])
+        contentsLabel.attributedText = NSAttributedString(string: viewModel.contentsText, attributes: [.paragraphStyle: paragraphStyle, .font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor(white: 0, alpha: 0.7)])
+        writerImageView.image = viewModel.writerImage
     }
     
     private func layout() {

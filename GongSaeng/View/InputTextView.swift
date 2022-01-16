@@ -17,7 +17,7 @@ class InputTextView: UITextView {
     
     var shouldDeleteText: Bool? {
         didSet {
-            guard let _ = shouldDeleteText else { return }
+            guard let shouldDeleteText = shouldDeleteText, shouldDeleteText else { return }
             text = ""
             placeholderLabel.isHidden = false
             resignFirstResponder()

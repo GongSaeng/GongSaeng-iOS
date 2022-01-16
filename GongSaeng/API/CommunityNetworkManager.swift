@@ -196,6 +196,104 @@ final class CommunityNetworkManager {
             dataTask.resume()
         }
     }
+    
+    static func fetchComments(page: Int, index: Int, completion: @escaping([Comment]) -> Void) {
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/comment/read_comment?")
+        let paramQuery1 = URLQueryItem(name: "parent_num", value: "\(index)")
+        let paramQuery2 = URLQueryItem(name: "page", value: "\(page)")
+        urlComponents?.queryItems?.append(paramQuery1)
+        urlComponents?.queryItems?.append(paramQuery2)
+        guard let url = urlComponents?.url else { return }
+     
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data,
+                  let comments = try? JSONDecoder().decode([Comment].self, from: data) else {
+                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      return
+                  }
+            print("DEBUG: comments index ->", comments)
+            
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: Network succeded")
+                completion(comments)
+            case (400...499):
+                print("""
+                    ERROR: Client ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            case (500...599):
+                print("""
+                    ERROR: Server ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            default:
+                print("""
+                    ERROR: \(response.statusCode)
+                    Response: \(response)
+                """)
+            }
+        }
+        
+        dataTask.resume()
+    }
+    
+    static func postComment(index: Int, contents: String, completion: @escaping(Bool) -> Void) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let time = dateFormatter.string(from: Date())
+        
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/comment/write_comment?")
+        
+        let paramQuery1 = URLQueryItem(name: "parent_num", value: "\(index)")
+        let paramQuery2 = URLQueryItem(name: "contents", value: contents)
+        let paramQuery3 = URLQueryItem(name: "time", value: time)
+        urlComponents?.queryItems?.append(paramQuery1)
+        urlComponents?.queryItems?.append(paramQuery2)
+        urlComponents?.queryItems?.append(paramQuery3)
+        
+        guard let url = urlComponents?.url else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data else {
+                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      return
+                  }
+    
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: postComment() data -> \(String(data: data, encoding: .utf8))")
+                let isSucceded = String(data: data, encoding: .utf8) == "true" ? true : false
+                completion(isSucceded)
+            case (400...499):
+                print("""
+                    ERROR: Client ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            case (500...599):
+                print("""
+                    ERROR: Server ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            default:
+                print("""
+                    ERROR: \(response.statusCode)
+                    Response: \(response)
+                """)
+            }
+        }
+        dataTask.resume()
+    }
 }
 
 private extension CommunityNetworkManager {

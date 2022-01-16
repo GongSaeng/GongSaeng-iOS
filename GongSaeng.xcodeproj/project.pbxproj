@@ -87,13 +87,14 @@
 		A76B9DAD27842B2B006AF832 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76B9DAC27842B2A006AF832 /* MyPageViewController.swift */; };
 		A76B9DAF2784694B006AF832 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76B9DAE2784694B006AF832 /* EditProfileViewController.swift */; };
 		A76B9DB12784CD64006AF832 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76B9DB02784CD64006AF832 /* EditProfileViewModel.swift */; };
-		A76B9DB42784DA8A006AF832 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A76B9DB32784DA8A006AF832 /* SDWebImage */; };
 		A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */; };
 		A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */; };
 		A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777950D2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift */; };
 		A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */; };
 		A777C8D62707A32600670556 /* CanceledReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */; };
 		A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */; };
+		A777FD512792D52600228969 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777FD502792D52600228969 /* Comment.swift */; };
+		A777FD532792D78800228969 /* CommentTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777FD522792D78800228969 /* CommentTableViewCellViewModel.swift */; };
 		A77B7B6E2748CFF200D0D5B1 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A77B7B6D2748CFF200D0D5B1 /* splash.png */; };
 		A780F69A277C7D7A00016898 /* free.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A780F695277C7D7A00016898 /* free.storyboard */; };
 		A780F69B277C7D7A00016898 /* freeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A780F696277C7D7A00016898 /* freeListViewController.swift */; };
@@ -131,6 +132,8 @@
 		A7B756E6277C9BCD00BFFBC0 /* PostTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */; };
 		A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10227784A4E00943207 /* InputTextView.swift */; };
 		A7C9D10627784A8A00943207 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7C9D10527784A8A00943207 /* SnapKit */; };
+		A7DB07AD2792629800FE7ABA /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB07AC2792629800FE7ABA /* FullImageViewController.swift */; };
+		A7DB07AF2792A2A300FE7ABA /* FullImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB07AE2792A2A300FE7ABA /* FullImageCell.swift */; };
 		A7DC1CA12707788A002F395C /* ConfirmReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */; };
 		A7DC1CA3270778CE002F395C /* CancelReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA2270778CE002F395C /* CancelReservationPopUpViewController.swift */; };
 		A7DC1CA527077918002F395C /* FinishUsingPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA427077918002F395C /* FinishUsingPopUpViewController.swift */; };
@@ -243,6 +246,8 @@
 		A777C8D32707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmedReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A777C8D52707A32600670556 /* CanceledReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CanceledReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A777C8D72707A43B00670556 /* FinishedUsingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishedUsingPopUpViewController.swift; sourceTree = "<group>"; };
+		A777FD502792D52600228969 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		A777FD522792D78800228969 /* CommentTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		A77B7B6D2748CFF200D0D5B1 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
 		A780F695277C7D7A00016898 /* free.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = free.storyboard; sourceTree = "<group>"; };
 		A780F696277C7D7A00016898 /* freeListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = freeListViewController.swift; sourceTree = "<group>"; };
@@ -279,6 +284,8 @@
 		A7B756E3277C9B5E00BFFBC0 /* FreeWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeWriteViewController.swift; sourceTree = "<group>"; };
 		A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextView.swift; sourceTree = "<group>"; };
 		A7C9D10227784A4E00943207 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
+		A7DB07AC2792629800FE7ABA /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
+		A7DB07AE2792A2A300FE7ABA /* FullImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageCell.swift; sourceTree = "<group>"; };
 		A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A7DC1CA2270778CE002F395C /* CancelReservationPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelReservationPopUpViewController.swift; sourceTree = "<group>"; };
 		A7DC1CA427077918002F395C /* FinishUsingPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinishUsingPopUpViewController.swift; sourceTree = "<group>"; };
@@ -308,7 +315,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A76B9DB42784DA8A006AF832 /* SDWebImage in Frameworks */,
 				A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */,
 				A7C9D10627784A8A00943207 /* SnapKit in Frameworks */,
 			);
@@ -464,6 +470,7 @@
 			isa = PBXGroup;
 			children = (
 				A736F97F278BF98D0075A665 /* Gathering.swift */,
+				A777FD502792D52600228969 /* Comment.swift */,
 				A7EE6D3727910B44000AC151 /* Post.swift */,
 				A736F981278C37160075A665 /* GatheringList */,
 				A736F982278C37280075A665 /* GathringDetail */,
@@ -489,6 +496,9 @@
 				A736F986278C569E0075A665 /* GatheringBoardDetailHeaderView.swift */,
 				A736F988278C58730075A665 /* GatheringBoardDetialHeaderViewModel.swift */,
 				A73BC91C278D54F0003FF406 /* CommentTableViewCell.swift */,
+				A777FD522792D78800228969 /* CommentTableViewCellViewModel.swift */,
+				A7DB07AC2792629800FE7ABA /* FullImageViewController.swift */,
+				A7DB07AE2792A2A300FE7ABA /* FullImageCell.swift */,
 			);
 			path = GathringDetail;
 			sourceTree = "<group>";
@@ -735,7 +745,6 @@
 			packageProductDependencies = (
 				A7C9D10527784A8A00943207 /* SnapKit */,
 				A732CA47277CF0DD00A11E68 /* JGProgressHUD */,
-				A76B9DB32784DA8A006AF832 /* SDWebImage */,
 			);
 			productName = GongSaeng;
 			productReference = 3D5D5985265247F40018FE63 /* GongSaeng.app */;
@@ -767,7 +776,6 @@
 			packageReferences = (
 				A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
-				A76B9DB22784DA8A006AF832 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 3D5D5986265247F40018FE63 /* Products */;
 			projectDirPath = "";
@@ -865,6 +873,7 @@
 				A753C03C277C3F1700039D5F /* withWriteViewController.swift in Sources */,
 				A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */,
 				A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */,
+				A777FD512792D52600228969 /* Comment.swift in Sources */,
 				3DE755E9265975CE001FE813 /* Department.swift in Sources */,
 				A753C03F277C3F1700039D5F /* suggestViewController.swift in Sources */,
 				A736F97E278BF8020075A665 /* GatheringBoardCellViewModel.swift in Sources */,
@@ -898,6 +907,7 @@
 				A780F69E277C7D7A00016898 /* free.swift in Sources */,
 				A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */,
 				A7EE6D34278FB541000AC151 /* CommunityNetworkManager.swift in Sources */,
+				A7DB07AD2792629800FE7ABA /* FullImageViewController.swift in Sources */,
 				A7F9DCED27759495005E9113 /* MateNetworkManager.swift in Sources */,
 				A736F989278C58730075A665 /* GatheringBoardDetialHeaderViewModel.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
@@ -923,12 +933,14 @@
 				A736F980278BF98D0075A665 /* Gathering.swift in Sources */,
 				A753C035277C3F1700039D5F /* EmergencyController.swift in Sources */,
 				A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */,
+				A7DB07AF2792A2A300FE7ABA /* FullImageCell.swift in Sources */,
 				A7A9B3DA2754DBB6009B22DF /* NoticeNetworkManager.swift in Sources */,
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,
 				A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */,
 				A7674F7426EF9A6500AE60FA /* RequestCheckInOutViewController.swift in Sources */,
 				A793D757277D917900BC1E5F /* free_comment.swift in Sources */,
 				A7F15F08278A96C70080DCE7 /* MainTabBarController.swift in Sources */,
+				A777FD532792D78800228969 /* CommentTableViewCellViewModel.swift in Sources */,
 				A753C03E277C3F1700039D5F /* withDetailVewController.swift in Sources */,
 				A7EE4A9027860329001A8C2E /* PopUpViewController.swift in Sources */,
 				A7F15F0A278AB10C0080DCE7 /* ManageAccountViewController.swift in Sources */,
@@ -1149,14 +1161,6 @@
 				minimumVersion = 2.0.0;
 			};
 		};
-		A76B9DB22784DA8A006AF832 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
 		A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
@@ -1172,11 +1176,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
 			productName = JGProgressHUD;
-		};
-		A76B9DB32784DA8A006AF832 /* SDWebImage */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A76B9DB22784DA8A006AF832 /* XCRemoteSwiftPackageReference "SDWebImage" */;
-			productName = SDWebImage;
 		};
 		A7C9D10527784A8A00943207 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;

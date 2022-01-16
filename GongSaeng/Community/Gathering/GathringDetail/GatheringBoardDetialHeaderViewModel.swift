@@ -8,12 +8,10 @@
 import UIKit
 
 struct GatheringBoardDetialHeaderViewModel {
-    private let post: Post
-    
     var isGathering: Bool
     var hasImages: Bool
 
-    var numberOfImages: Int? { return post.postingImagesUrl.map { $0.count } }
+    var numberOfImages: Int?
     var canCompleteGathering: Bool
     
     var title: String
@@ -63,7 +61,6 @@ struct GatheringBoardDetialHeaderViewModel {
     }
     
     init(post: Post, userID: String, gatheringStatus: Int) {
-        self.post = post
         self.title = post.title
         self.contents = post.contents
         self.writerNickname = post.writerNickname
@@ -71,7 +68,7 @@ struct GatheringBoardDetialHeaderViewModel {
         self.numberOfCommentsText = "댓글 \(post.numberOfComments)"
         self.writerImageUrl = post.writerImageUrl
         self.postingImagesUrl = post.postingImagesUrl
-        
+        self.numberOfImages = post.postingImagesUrl.map { $0.count }
         self.isGathering = (gatheringStatus == 0)
         self.hasImages = !(post.postingImagesUrl ?? []).isEmpty
         self.canCompleteGathering = (userID == post.writerId && self.isGathering)

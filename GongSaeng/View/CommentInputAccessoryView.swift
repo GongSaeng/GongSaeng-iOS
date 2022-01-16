@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol CommentInputAccessoryViewDelegate: AnyObject {
-    func transferComment(_ contents: String?)
+    func transferComment(_ contents: String)
 }
 
 class CommentInputAccessoryView: UIView {
@@ -60,8 +60,8 @@ class CommentInputAccessoryView: UIView {
     
     @objc func handlePostTapped() {
         print("DEBUG: Did tap post button..")
-        commentTextView.resignFirstResponder()//임시코드
-        delegate?.transferComment(commentTextView.text)
+        guard let commentText = commentTextView.text, !commentText.isEmpty else { return }
+        delegate?.transferComment(commentText)
     }
     
     // MARK: Helpers

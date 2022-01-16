@@ -116,17 +116,16 @@ class freeDetailViewController: UIViewController {
 }
 
 extension freeDetailViewController: CommentInputAccessoryViewDelegate {
-    func transferComment(_ contents: String?) {
+    func transferComment(_ contents: String) {
         showLoader(true)
         let parent_num = "3"
-        let contents = contents ?? "test"
         FreeNetwork.freeCommentWrite(num: parent_num, contentsText: contents) { [weak self] isSucceded in
             guard let self = self else { return }
             self.showLoader(false)
             self.fetchfree_comments()
             DispatchQueue.main.async {
                 self.tableView.setContentOffset(CGPoint(x: 0, y: self.tableView.contentSize.height - self.tableView.bounds.height), animated: true)
-                self.freeCommentInputView.clearComment()
+//                self.freeCommentInputView.clearComment()
             }
             
         }
