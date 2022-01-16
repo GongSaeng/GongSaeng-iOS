@@ -69,8 +69,8 @@ class LoginViewController: UIViewController {
                 print("DEBUG: Login faield..")
                 DispatchQueue.main.async {
                     self.showLoader(false)
-                    let viewController = PopUpViewController()
-                    viewController.detailText = "아이디나 비밀번호를 확인해주세요."
+                    let popUpContents = "아이디나 비밀번호를 확인해주세요."
+                    let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
                     viewController.modalPresentationStyle = .overCurrentContext
                     self.present(viewController, animated: false, completion: nil)
                 }
@@ -81,8 +81,8 @@ class LoginViewController: UIViewController {
                 print("DEBUG: Not approved User..")
                 DispatchQueue.main.async {
                     self.showLoader(false)
-                    let viewController = PopUpViewController()
-                    viewController.detailText = "가입 승인 대기중이에요\n공간 관리자님께 문의해주세요."
+                    let popUpContents = "가입 승인 대기중이에요\n공간 관리자님께 문의해주세요."
+                    let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
                     viewController.modalPresentationStyle = .overCurrentContext
                     self .present(viewController, animated: false, completion: nil)
                 }

@@ -177,8 +177,8 @@ class AccountViewController: UIViewController {
                     self.changeActivationStatusOfNextButton()
                 } else {
                     self.idReduplicationConstraint.constant = 17
-                    let viewController = PopUpViewController()
-                    viewController.detailText = "중복한 아이디가 존재합니다."
+                    let popUpContents = "중복한 아이디가 존재합니다."
+                    let viewController = PopUpViewController(contents: popUpContents)
                     viewController.modalPresentationStyle = .overCurrentContext
                     self.present(viewController, animated: false, completion: nil)
                 }
@@ -196,8 +196,8 @@ class AccountViewController: UIViewController {
                     self.changeActivationStatusOfNextButton()
                 } else {
                     self.nickNameReduplicationConstraint.constant = 17
-                    let viewController = PopUpViewController()
-                    viewController.detailText = "중복한 닉네임이 존재합니다."
+                    let popUpContents = "중복한 닉네임이 존재합니다."
+                    let viewController = PopUpViewController(contents: popUpContents)
                     viewController.modalPresentationStyle = .overCurrentContext
                     self.present(viewController, animated: false, completion: nil)
                 }

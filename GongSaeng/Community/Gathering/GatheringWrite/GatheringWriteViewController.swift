@@ -22,6 +22,8 @@ class GatheringWriteViewController: UIViewController {
         }
     }
     
+    private var numberOfImages = 0
+    
     private let reuseIdentifier = "WriteImageCell"
     
     private let scrollView = UIScrollView()
@@ -123,16 +125,16 @@ class GatheringWriteViewController: UIViewController {
         print("DEBUG: contentsText", contentsText)
         print("DEBUG: selectedImages", selectedImages)
         guard titleText != "" else {
-            let viewController = PopUpViewController()
-            viewController.detailText = "제목을 입력해주세요."
+            let popUpContents = "제목을 입력해주세요."
+            let viewController = PopUpViewController(contents: popUpContents)
             viewController.modalPresentationStyle = .overCurrentContext
             present(viewController, animated: false, completion: nil)
             return
         }
         
         guard contentsText != "" else {
-            let viewController = PopUpViewController()
-            viewController.detailText = "내용을 입력해주세요."
+            let popUpContents = "내용을 입력해주세요."
+            let viewController = PopUpViewController(contents: popUpContents)
             viewController.modalPresentationStyle = .overCurrentContext
             present(viewController, animated: false, completion: nil)
             return
@@ -248,9 +250,16 @@ class GatheringWriteViewController: UIViewController {
 // MARK: ImageInputAccessoryViewDelegate
 extension GatheringWriteViewController: ImageInputAccessoryViewDelegate {
     func didTapimageAddingButton() {
-        print("DEBUG: Delegate succeded")
+        guard numberOfImages < 9 else {
+            let popUpContents = "사진은 최대 9장까지 첨부할 수 있습니다."
+            let popUpViewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
+            popUpViewController.modalPresentationStyle = .overCurrentContext
+            present(popUpViewController, animated: false)
+            return
+        }
+        
         var configuration = PHPickerConfiguration()
-        configuration.selectionLimit = 9
+        configuration.selectionLimit = 9 - numberOfImages
         configuration.filter = .images
         let picker = PHPickerViewController(configuration: configuration)
         picker.delegate = self
@@ -263,6 +272,7 @@ extension GatheringWriteViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         guard !results.isEmpty else { return }
+        self.numberOfImages += results.count
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
                 guard let self = self, let image = object as? UIImage else { return }
@@ -276,6 +286,7 @@ extension GatheringWriteViewController: PHPickerViewControllerDelegate {
 extension GatheringWriteViewController: WriteImageCellDelegate {
     func subtractImage(indexPath: IndexPath) {
         selectedImages.remove(at: indexPath.item)
+        numberOfImages -= 1
     }
 }
 

@@ -107,8 +107,8 @@ final class PasswordChangingViewController: UIViewController {
     @objc func changePassword() {
         print("DEBUG: Did tap passwordChangingButton..")
         guard viewModel.password == viewModel.passwordCheck else {
-            let viewController = PopUpViewController()
-            viewController.detailText = "비밀번호가 일치하지 않습니다."
+            let popUpContents = "비밀번호가 일치하지 않습니다."
+            let viewController = PopUpViewController(contents: popUpContents)
             viewController.modalPresentationStyle = .overCurrentContext
             self.present(viewController, animated: false, completion: nil)
             return

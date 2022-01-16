@@ -18,7 +18,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .white
         window?.tintColor = .black
         let viewController = LaunchScreenViewController()
-//        let viewController = FullImageViewController(imageList: [UIImage(named: "profileImage_0")!, UIImage(named: "profileImage_1")!, UIImage(named: "profileImage_2")!], page: 2)//
 //        let rootViewController = GatheringWriteViewController()
 //        let viewController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = viewController

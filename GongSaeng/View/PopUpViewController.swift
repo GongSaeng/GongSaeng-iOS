@@ -8,12 +8,20 @@
 import UIKit
 import SnapKit
 
+enum PopUpButtonType {
+    case none
+    case cancel
+    case cancelAndAction
+}
+
 class PopUpViewController: UIViewController {
     
     // MARK: Properties
-    var detailText: String? {
-        didSet { detailsLabel.text = detailText }
-    }
+    var cancelButtonTitle: String?
+    var actionButtonTitle: String?
+    
+    private let buttonType: PopUpButtonType
+    private let popUpContents: String
     
     private let contentView: UIView = {
         let contentView = UIView()
@@ -22,7 +30,7 @@ class PopUpViewController: UIViewController {
         return contentView
     }()
     
-    private let detailsLabel: UILabel = {
+    private let contentsLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14.0)
         label.textColor = UIColor(white: 0, alpha: 0.87)
@@ -30,57 +38,144 @@ class PopUpViewController: UIViewController {
         return label
     }()
     
-    private lazy var confirmationButton: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let button = UIButton()
-        button.setAttributedTitle(NSAttributedString(string: "확인", attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
         button.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
         button.backgroundColor = .white
         button.layer.cornerRadius = 18.0
         button.layer.borderWidth = 1.0
         button.layer.borderColor = UIColor(named: "colorBlueGreen")?.cgColor
-        button.addTarget(self, action: #selector(didTapConfirmationButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var actionButton: UIButton = {
+        let button = UIButton()
+        button.setAttributedTitle(NSAttributedString(string: "확인", attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
+        button.setTitleColor(UIColor(named: "colorPinkishOrange"), for: .normal)
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 18.0
+        button.layer.borderWidth = 1.0
+        button.layer.borderColor = UIColor(named: "colorPinkishOrange")?.cgColor
+        button.addTarget(self, action: #selector(didTapActionButton), for: .touchUpInside)
         return button
     }()
     
     // MARK: Lifecycle
+    init(buttonType: PopUpButtonType = .none, contents: String) {
+        self.buttonType = buttonType
+        self.popUpContents = contents
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("DEBUG: viewDidLoad")
         
-        layout()
         configure()
+        layout()
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if buttonType == .none {
+            print("DEBUG: touchesBegan()")
+            dismiss(animated: false)
+        }
     }
     
     // MARK: Actions
-    @objc func didTapConfirmationButton() {
-        print("DEBUG: Did tap confirmationButton..")
+    @objc
+    private func didTapCancelButton() {
+        print("DEBUG: Did tap cancelButton..")
         dismiss(animated: false)
+    }
+    
+    @objc
+    private func didTapActionButton() {
+        print("DEBUG: Did tap actionButton..")
+        //
     }
     
     // MARK: Helpers
     private func layout() {
         view.addSubview(contentView)
-        [detailsLabel, confirmationButton].forEach {
-            contentView.addSubview($0)
-        }
-        
         contentView.snp.makeConstraints {
             $0.centerY.equalToSuperview()
-            $0.leading.trailing.equalToSuperview().inset(17.0)
+            $0.leading.trailing.equalToSuperview().inset(18.0)
         }
         
-        detailsLabel.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview().inset(24.0)
-        }
+        contentView.addSubview(contentsLabel)
         
-        confirmationButton.snp.makeConstraints {
-            $0.top.equalTo(detailsLabel.snp.bottom).offset(17.0)
-            $0.bottom.trailing.equalToSuperview().inset(24.0)
-            $0.width.equalTo(74.0)
-            $0.height.equalTo(36.0)
+        switch buttonType {
+        case .none: // 버튼 0개
+            contentsLabel.snp.makeConstraints { $0.edges.equalToSuperview().inset(24.0) }
+            
+        case .cancel: // 버튼 1개
+            var cancelButtonWidth = 74.0
+            if let title = cancelButtonTitle, !title.isEmpty {
+                cancelButtonWidth = Double(title.count * 13 + 48)
+            }
+            contentView.addSubview(cancelButton)
+            contentsLabel.snp.makeConstraints { $0.top.leading.trailing.equalToSuperview().inset(24.0) }
+            
+            cancelButton.snp.makeConstraints {
+                $0.top.equalTo(contentsLabel.snp.bottom).offset(17.0)
+                $0.bottom.trailing.equalToSuperview().inset(24.0)
+                $0.height.equalTo(36.0)
+                $0.width.equalTo(cancelButtonWidth)
+            }
+            
+        case .cancelAndAction: // 버튼 2개
+            var actionButtonWidth = 51.0
+            if let title = actionButtonTitle, !title.isEmpty {
+                actionButtonWidth = Double(title.count * 13 + 25)
+            }
+            
+            var cancelButtonWidth = 51.0
+            if let title = cancelButtonTitle, !title.isEmpty {
+                cancelButtonWidth = Double(title.count * 13 + 25)
+            }
+            
+            [actionButton, cancelButton].forEach { contentView.addSubview($0) }
+            contentsLabel.snp.makeConstraints { $0.top.leading.trailing.equalToSuperview().inset(24.0) }
+            
+            actionButton.snp.makeConstraints {
+                $0.top.equalTo(contentsLabel.snp.bottom).offset(17.0)
+                $0.bottom.trailing.equalToSuperview().inset(24.0)
+                $0.height.equalTo(36.0)
+                $0.width.equalTo(actionButtonWidth)
+            }
+            
+            cancelButton.snp.makeConstraints {
+                $0.centerY.equalTo(actionButton)
+                $0.trailing.equalTo(actionButton.snp.leading).offset(-14.0)
+                $0.height.equalTo(36.0)
+                $0.width.equalTo(cancelButtonWidth)
+            }
         }
     }
     
     private func configure() {
         view.backgroundColor = UIColor(white: 0, alpha: 0.3)
+        contentsLabel.text = popUpContents
+        
+        switch buttonType {
+        case .none:
+            return
+            
+        case .cancel:
+            let cancelButtonTitle = cancelButtonTitle ?? "확인"
+            cancelButton.setAttributedTitle(NSAttributedString(string: cancelButtonTitle, attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
+        case .cancelAndAction:
+            let actionButtonTitle = actionButtonTitle ?? "확인"
+            let cancelButtonTitle = cancelButtonTitle ?? "취소"
+            actionButton.setAttributedTitle(NSAttributedString(string: actionButtonTitle, attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
+            cancelButton.setAttributedTitle(NSAttributedString(string: cancelButtonTitle, attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
+        }
     }
 }

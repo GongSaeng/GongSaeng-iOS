@@ -120,8 +120,8 @@ class EditProfileViewController: UIViewController {
                 print("DEBUG: Editing failed..")
                 DispatchQueue.main.async {
                     self.showLoader(false)
-                    let viewController = PopUpViewController()
-                    viewController.detailText = "중복한 닉네임이 존재합니다."
+                    let popUpContents = "중복한 닉네임이 존재합니다."
+                    let viewController = PopUpViewController(contents: popUpContents)
                     viewController.modalPresentationStyle = .overCurrentContext
                     self.present(viewController, animated: false, completion: nil)
                 }
