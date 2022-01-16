@@ -102,7 +102,7 @@ class GatheringBoardCell: UITableViewCell {
         writerNicknameLabel.text = viewModel.writerNickname
         uploadedTimeLabel.text = viewModel.uploadedTimeText
         numberOfCommentsLabel.text = viewModel.numberOfComments
-        writerImageView.image = viewModel.writerImage ?? UIImage(named: "3")
+        writerImageView.image = viewModel.writerImage
         gatheringStatusContentView.backgroundColor = viewModel.isGathering ? UIColor(named: "colorPinkishOrange")?.withAlphaComponent(0.15) : UIColor(white: 0, alpha: 0.2)
         gatheringStatusLabel.text = viewModel.isGathering ? "모집중" : "모집완료"
         gatheringStatusLabel.textColor = viewModel.isGathering ? UIColor(named: "colorPinkishOrange") : .white

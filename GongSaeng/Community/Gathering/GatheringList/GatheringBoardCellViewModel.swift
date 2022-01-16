@@ -41,8 +41,8 @@ struct GatheringBoardCellViewModel {
         }
     }
     
-    var writerImage: UIImage? {
-        guard let fileName = writerImageUrl else { return nil }
+    var writerImage: UIImage {
+        guard let fileName = writerImageUrl else { return UIImage(named: "3")! }
         let semaphore = DispatchSemaphore(value: 0)
         var cachedImage = UIImage()
         ImageCacheManager.getCachedImage(fileName: fileName) { image in
@@ -72,7 +72,7 @@ struct GatheringBoardCellViewModel {
         self.contents = gathering.contents
         self.writerNickname = gathering.writerNickname
         self.uploadedTime = gathering.uploadedTime
-        self.numberOfComments = "\(gathering.numberOfComments)"
+        self.numberOfComments = gathering.numberOfComments > 99 ? "99+" : "\(gathering.numberOfComments)"
         self.writerImageUrl = gathering.writerImageUrl
         self.thumbnailIamgeUrl = gathering.postingImagesUrl?.first
     }

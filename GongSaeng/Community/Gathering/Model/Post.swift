@@ -15,7 +15,7 @@ struct Post: Decodable {
     var writerNickname: String
     var uploadedTime: String
     var numberOfComments: Int
-    var postingImagesUrl: [String]? = ["59", "60", "61"]//
+    var postingImagesUrl: [String]? = ["61"]//
     
     enum CodingKeys: String, CodingKey {
         case title, contents

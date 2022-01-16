@@ -11,8 +11,8 @@ import SnapKit
 class GatheringBoardDetailViewController: UITableViewController {
     
     // MARK: Propeties
-    var userID: String
     var post: Post
+    var userID: String
     var gatheringStatus: Int
     var postIndex: Int
     
@@ -25,7 +25,7 @@ class GatheringBoardDetailViewController: UITableViewController {
     private let collectionReuseIdentifier = "GatheringImageCell"
     private let tableReuserIdetifier = "CommentTableViewCell"
     private let headerView = GatheringBoardDetailHeaderView()
-    private var postingImages: [UIImage]? { return headerView.viewModel?.postingImages }
+    private var postingImages: [UIImage] { return headerView.viewModel?.postingImages ?? [] }
     
     private lazy var commentInputView: CommentInputAccessoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100.0)
@@ -163,11 +163,10 @@ extension GatheringBoardDetailViewController {
 // MARK: UICollectionViewDataSource
 extension GatheringBoardDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postingImages?.count ?? 0
+        return postingImages.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let postingImages = postingImages else { return UICollectionViewCell() }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath) as UICollectionViewCell
         let imageView = UIImageView()
         imageView.image = postingImages[indexPath.item]
@@ -200,7 +199,6 @@ extension GatheringBoardDetailViewController: UITableViewDataSourcePrefetching {
 extension GatheringBoardDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("DEBUG: Did tap collectionViewCell..")
-        guard let postingImages = postingImages else { return }
         let viewController = FullImageViewController(imageList: postingImages, page: indexPath.item + 1)
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
@@ -210,7 +208,7 @@ extension GatheringBoardDetailViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDelegateFlowLayout
 extension GatheringBoardDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = collectionView.frame.width - 72.0
+        let width: CGFloat = collectionView.frame.width - (postingImages.count == 1 ? 36.0 : 72.0)
         let height: CGFloat = collectionView.frame.height
         return CGSize(width: width, height: height)
     }

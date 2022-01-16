@@ -30,7 +30,6 @@ class GatheringBoardDetailHeaderView: UIView {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: flowLayout)
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.decelerationRate = .fast
-//        collectionView.isPagingEnabled = true
         return collectionView
     }()
     
@@ -52,7 +51,7 @@ class GatheringBoardDetailHeaderView: UIView {
     
     private let contentsLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0//
+        label.numberOfLines = 0
         return label
     }()
     
@@ -133,7 +132,7 @@ class GatheringBoardDetailHeaderView: UIView {
         writerNicknameLabel.text = viewModel.writerNickname
         uploadedTimeLabel.text = viewModel.uploadedTimeText
         numberOfCommentsLabel.text = viewModel.numberOfCommentsText
-        writerImageView.image = viewModel.writerImage ?? UIImage(named: "3")
+        writerImageView.image = viewModel.writerImage
     }
     
     private func layout() {

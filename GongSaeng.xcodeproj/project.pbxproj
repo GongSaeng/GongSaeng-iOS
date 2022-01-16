@@ -469,9 +469,7 @@
 		A736F978278BF4B40075A665 /* Gathering */ = {
 			isa = PBXGroup;
 			children = (
-				A736F97F278BF98D0075A665 /* Gathering.swift */,
-				A777FD502792D52600228969 /* Comment.swift */,
-				A7EE6D3727910B44000AC151 /* Post.swift */,
+				A73E81EB2793D95400A4C46D /* Model */,
 				A736F981278C37160075A665 /* GatheringList */,
 				A736F982278C37280075A665 /* GathringDetail */,
 				A736F983278C373D0075A665 /* GatheringWrite */,
@@ -562,6 +560,16 @@
 				A73AE4C826F1CA0E00FA1F06 /* CheckOutCompletedPopUpViewController.swift */,
 			);
 			path = PopUp;
+			sourceTree = "<group>";
+		};
+		A73E81EB2793D95400A4C46D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				A736F97F278BF98D0075A665 /* Gathering.swift */,
+				A777FD502792D52600228969 /* Comment.swift */,
+				A7EE6D3727910B44000AC151 /* Post.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		A745D04527269D2200844189 /* Notice */ = {

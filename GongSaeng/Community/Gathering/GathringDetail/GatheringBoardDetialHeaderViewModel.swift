@@ -23,8 +23,8 @@ struct GatheringBoardDetialHeaderViewModel {
     var writerImageUrl: String?
     var postingImagesUrl: [String]?
     
-    var writerImage: UIImage? {
-        guard let fileName = writerImageUrl else { return nil }
+    var writerImage: UIImage {
+        guard let fileName = writerImageUrl else { return UIImage(named: "3")! }
         let semaphore = DispatchSemaphore(value: 0)
         var cachedImage = UIImage()
         ImageCacheManager.getCachedImage(fileName: fileName) { image in
@@ -35,8 +35,8 @@ struct GatheringBoardDetialHeaderViewModel {
         return cachedImage
     }
     
-    var postingImages: [UIImage]? {
-        guard let fileNames = postingImagesUrl else { return nil }
+    var postingImages: [UIImage] {
+        guard let fileNames = postingImagesUrl else { return [] }
         let semaphore = DispatchSemaphore(value: 0)
         var cachedImages = [UIImage]()
         for fileName in fileNames {
