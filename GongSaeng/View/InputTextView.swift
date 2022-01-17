@@ -66,7 +66,6 @@ class InputTextView: UITextView {
             self.isScrollEnabled = false
             self.snp.updateConstraints { $0.height.equalTo(estimatedHeight) }
         } else {
-            print("DEBUG: estimatedSize", estimatedHeight)
             self.isScrollEnabled = true
             self.snp.updateConstraints { $0.height.equalTo(66.5) } // 66.5 -> 3줄크기
         }

@@ -11,10 +11,11 @@ import SnapKit
 class GatheringBoardDetailViewController: UITableViewController {
     
     // MARK: Propeties
-    var post: Post
-    var userID: String
-    var gatheringStatus: Int
-    var postIndex: Int
+    private var post: Post
+    private let communityType: CommunityType
+    private let userID: String
+    private var gatheringStatus: Int
+    private var postIndex: Int
     
     private var currentIndex: CGFloat = 0
     private var currentPage = 1
@@ -43,11 +44,13 @@ class GatheringBoardDetailViewController: UITableViewController {
     }
     
     // MARK: Lifecycle
-    init(withUser user: User, post: Post, gatheringStatus: Int, postIndex: Int) {
+    init(withUser user: User, post: Post, gatheringStatus: Int, postIndex: Int, communityType: CommunityType) {
         self.userID = user.id
         self.post = post
         self.gatheringStatus = gatheringStatus
         self.postIndex = postIndex
+        self.communityType = communityType
+        
         super.init(style: .plain)
     }
     
@@ -59,6 +62,7 @@ class GatheringBoardDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         configure()
+        configureNavigationBar()
         addKeyboardObserver()
     }
     
@@ -152,6 +156,21 @@ class GatheringBoardDetailViewController: UITableViewController {
         headerView.collectionView.dataSource = self
         headerView.collectionView.delegate = self
         tableView.prefetchDataSource = self
+    }
+    
+    private func configureNavigationBar() {
+        switch communityType {
+        case .free:
+            navigationItem.title = "자유게시판"
+        case .emergency:
+            navigationItem.title = "긴급게시판"
+        case .suggestion:
+            navigationItem.title = "건의게시판"
+        case .gathering:
+            navigationItem.title = "함께게시판"
+        case .market:
+            navigationItem.title = "장터게시판"
+        }
     }
 }
 

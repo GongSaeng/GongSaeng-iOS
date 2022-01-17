@@ -12,7 +12,7 @@ protocol WriteImageCellDelegate: AnyObject {
     func subtractImage(indexPath: IndexPath)
 }
 
-class WriteImageCell: UICollectionViewCell {
+final class WriteImageCell: UICollectionViewCell {
     
     // MARK: Properties
     var indexPath: IndexPath?

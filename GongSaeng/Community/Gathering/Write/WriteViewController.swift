@@ -1,5 +1,5 @@
 //
-//  GatheringWriteViewController.swift
+//  WriteViewController.swift
 //  GongSaeng
 //
 //  Created by 정동천 on 2022/01/11.
@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 import PhotosUI
 
-class GatheringWriteViewController: UIViewController {
+final class WriteViewController: UIViewController {
     
     // MARK: Properties
     private let communityType: CommunityType
@@ -551,7 +551,7 @@ class GatheringWriteViewController: UIViewController {
 }
 
 // MARK: ImageInputAccessoryViewDelegate
-extension GatheringWriteViewController: ImageInputAccessoryViewDelegate {
+extension WriteViewController: ImageInputAccessoryViewDelegate {
     func didTapimageAddingButton() {
         guard numberOfImages < 9 else {
             let popUpContents = "사진은 최대 9장까지 첨부할 수 있습니다."
@@ -571,7 +571,7 @@ extension GatheringWriteViewController: ImageInputAccessoryViewDelegate {
 }
 
 // MARK: WriteImageCellDelegate
-extension GatheringWriteViewController: WriteImageCellDelegate {
+extension WriteViewController: WriteImageCellDelegate {
     func subtractImage(indexPath: IndexPath) {
         selectedImages.remove(at: indexPath.item)
         numberOfImages -= 1
@@ -579,7 +579,7 @@ extension GatheringWriteViewController: WriteImageCellDelegate {
 }
 
 // MARK: PHPickerViewControllerDelegate
-extension GatheringWriteViewController: PHPickerViewControllerDelegate {
+extension WriteViewController: PHPickerViewControllerDelegate {
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
         picker.dismiss(animated: true)
         guard !results.isEmpty else { return }
@@ -594,7 +594,7 @@ extension GatheringWriteViewController: PHPickerViewControllerDelegate {
 }
 
 // MARK: UIPickerViewDataSource, Delegate
-extension GatheringWriteViewController: UIPickerViewDataSource, UIPickerViewDelegate {
+extension WriteViewController: UIPickerViewDataSource, UIPickerViewDelegate {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -623,7 +623,7 @@ extension GatheringWriteViewController: UIPickerViewDataSource, UIPickerViewDele
 }
 
 // MARK: UITextFieldDelegate
-extension GatheringWriteViewController: UITextFieldDelegate {
+extension WriteViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if textField == priceInputTextField {
             guard var text = textField.text else { return false }
@@ -686,7 +686,7 @@ extension GatheringWriteViewController: UITextFieldDelegate {
     }
 }
 
-extension GatheringWriteViewController: UITextViewDelegate {
+extension WriteViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == contentsInputTextView {
             contentsUnderlinedView.backgroundColor = UIColor(named: "colorBlueGreen")
@@ -703,7 +703,7 @@ extension GatheringWriteViewController: UITextViewDelegate {
 }
 
 // MARK: UICollectionViewDataSource
-extension GatheringWriteViewController: UICollectionViewDataSource {
+extension WriteViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return selectedImages.count
     }
@@ -718,7 +718,7 @@ extension GatheringWriteViewController: UICollectionViewDataSource {
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
-extension GatheringWriteViewController: UICollectionViewDelegateFlowLayout {
+extension WriteViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 114.0, height: 82.0)
     }

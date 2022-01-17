@@ -108,10 +108,7 @@ class EditProfileViewController: UIViewController {
         let nickName = !nickNameText.isEmpty ? nickNameText : viewModel.nickNamePlaceholder
         let job = !jobText.isEmpty ? jobText : viewModel.user.job ?? ""
         let introduce = !introduceText.isEmpty ? introduceText : viewModel.user.introduce ?? ""
-        print("DEBUG: profileImage ->", profileImage)
-        print("DEBUG: nickName ->", nickName)
-        print("DEBUG: job ->", job)
-        print("DEBUG: introduce ->", introduce)
+
         
         showLoader(true)
         UserService.editProfile(nickName: nickName, job: job, introduce: introduce, profileImage: profileImage) { [weak self] isSucceded, imageUrl in
@@ -130,7 +127,6 @@ class EditProfileViewController: UIViewController {
             print("DEBUG: Before fetchUser ->", viewModel.user)
             print("DEBUG: isSucceded ->", isSucceded)
             UserService.fetchCurrentUser { user in
-                print("DEBUG: After fetchUser ->", user)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "loginUser")
                 UserDefaults.standard.removeObject(forKey: "userImage")
                 if let imageUrl = imageUrl {

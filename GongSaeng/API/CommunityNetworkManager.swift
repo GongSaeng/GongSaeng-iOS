@@ -273,7 +273,7 @@ final class CommunityNetworkManager {
     
             switch response.statusCode {
             case (200...299):
-                print("DEBUG: Updated number of comments -> \(jsonData["count"])")
+                print("DEBUG: Updated number of comments -> \(jsonData["count"]!)")
                 completion(jsonData["count"])
             case (400...499):
                 print("""
@@ -317,7 +317,7 @@ final class CommunityNetworkManager {
     
             switch response.statusCode {
             case (200...299):
-                print("DEBUG: postComment() data -> \(String(data: data, encoding: .utf8))")
+                print("DEBUG: postComment() data -> \(String(data: data, encoding: .utf8)!)")
                 let isSucceded = String(data: data, encoding: .utf8) == "true" ? true : false
                 completion(isSucceded)
             case (400...499):
