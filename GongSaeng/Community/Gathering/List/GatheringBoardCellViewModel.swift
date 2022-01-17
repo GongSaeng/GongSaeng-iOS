@@ -72,7 +72,7 @@ struct GatheringBoardCellViewModel {
         self.contents = gathering.contents
         self.writerNickname = gathering.writerNickname
         self.uploadedTime = gathering.uploadedTime
-        self.numberOfComments = gathering.numberOfComments > 99 ? "99+" : "\(gathering.numberOfComments)"
+        self.numberOfComments = (gathering.numberOfComments > 99) ? "99+" : "\(gathering.numberOfComments)"
         self.writerImageUrl = gathering.writerImageUrl
         self.thumbnailIamgeUrl = gathering.postingImagesUrl?.first
     }

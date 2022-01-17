@@ -470,24 +470,24 @@
 			isa = PBXGroup;
 			children = (
 				A73E81EB2793D95400A4C46D /* Model */,
-				A736F981278C37160075A665 /* GatheringList */,
-				A736F982278C37280075A665 /* GathringDetail */,
-				A736F983278C373D0075A665 /* GatheringWrite */,
+				A736F981278C37160075A665 /* List */,
+				A736F982278C37280075A665 /* Detail */,
+				A736F983278C373D0075A665 /* Write */,
 			);
 			path = Gathering;
 			sourceTree = "<group>";
 		};
-		A736F981278C37160075A665 /* GatheringList */ = {
+		A736F981278C37160075A665 /* List */ = {
 			isa = PBXGroup;
 			children = (
 				A736F979278BF5100075A665 /* GatheringBoardViewController.swift */,
 				A736F97B278BF7890075A665 /* GatheringBoardCell.swift */,
 				A736F97D278BF8020075A665 /* GatheringBoardCellViewModel.swift */,
 			);
-			path = GatheringList;
+			path = List;
 			sourceTree = "<group>";
 		};
-		A736F982278C37280075A665 /* GathringDetail */ = {
+		A736F982278C37280075A665 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				A736F984278C55510075A665 /* GatheringBoardDetailViewController.swift */,
@@ -498,16 +498,16 @@
 				A7DB07AC2792629800FE7ABA /* FullImageViewController.swift */,
 				A7DB07AE2792A2A300FE7ABA /* FullImageCell.swift */,
 			);
-			path = GathringDetail;
+			path = Detail;
 			sourceTree = "<group>";
 		};
-		A736F983278C373D0075A665 /* GatheringWrite */ = {
+		A736F983278C373D0075A665 /* Write */ = {
 			isa = PBXGroup;
 			children = (
 				A73BC91E278DA670003FF406 /* GatheringWriteViewController.swift */,
 				A73BC920278DA718003FF406 /* WriteImageCell.swift */,
 			);
-			path = GatheringWrite;
+			path = Write;
 			sourceTree = "<group>";
 		};
 		A73AE4C126F1B97700FA1F06 /* MyProfileAndWriting */ = {

@@ -26,58 +26,6 @@ class LaunchScreenViewController: UIViewController {
     }
     
     // MARK: API
-//    private func checkOutUserData() {
-//        guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
-//        guard let id = UserDefaults.standard.string(forKey: "id"), let password = UserDefaults.standard.string(forKey: "password") else {
-//            print("DEBUG: No userID key..")
-//            sceneDelegate.switchRootViewToInitial()
-//            return
-//        }
-//        print("DEBUG: Has userID key..")
-//        showLoader(true)
-//
-//        DispatchQueue.global().sync {
-//            print("DEBUG: First DispatchQueue.global().sync")
-//            AuthService.loginUserIn(withID: id, password: password) { [weak self] isSucceded, bool, error in
-//                guard let self = self else { return }
-//                print("DEBUG: AuthService.loginUserIn() called..")
-//                guard isSucceded else {
-//                    // 서버 연결 에러
-//                    self.showLoader(false)
-//                    if error?.localizedDescription == "Could not connect to the server." {
-//                        print("DEBUG: 서버에 연결할 수 없습니다..")
-//                        DispatchQueue.main.async {
-//                            let alert = UIAlertController(title: "Error", message: "서버에 연결할 수 없습니다.", preferredStyle: .alert)
-//                            alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-//                            self.present(alert, animated: true, completion: nil)
-//                        }
-//                    }
-//                    return
-//                }
-//                print("DEBUG: Login success..")
-//                guard let _ = UserDefaults.standard.object(forKey: "loginUser") else {
-//                    print("DEBUG: UserCacheManager.shared.object -> nil")
-//                    DispatchQueue.global().sync {
-//                        UserService.fetchCurrentUser { user in
-//                            guard let user = user else { return }
-//                            UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "loginUser")
-//                            print("DEBUG: Login user data -> \(user)")
-//                            DispatchQueue.main.async {
-//                                print("DEBUG: sceneDelegate.switchRootViewToMain(animated: true)")//
-//                                sceneDelegate.switchRootViewToMain(animated: true)
-//                            }
-//                        }
-//                    }
-//                    return
-//                }
-//                DispatchQueue.main.async {
-//                    print("DEBUG: sceneDelegate.switchRootViewToMain(animated: true)")//
-//                    sceneDelegate.switchRootViewToMain(animated: true)
-//                }
-//            }
-//        }
-//    }
-    
     private func checkOutUserData() {
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
         guard let id = UserDefaults.standard.string(forKey: "id"), let password = UserDefaults.standard.string(forKey: "password") else {

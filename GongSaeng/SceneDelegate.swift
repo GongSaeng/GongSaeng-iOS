@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .white
         window?.tintColor = .black
         let viewController = LaunchScreenViewController()
-//        let rootViewController = GatheringWriteViewController()
+//        let rootViewController = GatheringWriteViewController(commuityType: .emergency)
 //        let viewController = UINavigationController(rootViewController: rootViewController)
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()

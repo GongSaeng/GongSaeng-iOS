@@ -19,8 +19,8 @@ class GatheringBoardDetailViewController: UITableViewController {
     private var currentIndex: CGFloat = 0
     private var currentPage = 1
     private var fetchedPageList = [Int]()
+    private var isKeyboardShowing = false
     private var commentList = [Comment]()
-//    private var commentList = [Comment(contents: "가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하", writerImageUrl: "40", writerNickname: "자몽허니블랙티", uploadedTime: "2022-01-12 20:30:24"), Comment(contents: "가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하\n가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하", writerImageUrl: "40", writerNickname: "자몽허니블랙티", uploadedTime: "2022-01-12 20:14:24"), Comment(contents: "임시 댓글 테스트!", writerImageUrl: nil, writerNickname: "로제떡볶이", uploadedTime: "2022-01-15 23:06:30"), Comment(contents: "임시 댓글 테스트!", writerImageUrl: nil, writerNickname: "로제떡볶이", uploadedTime: "2022-01-14 23:06:30"), Comment(contents: "임시 댓글 테스트!", writerImageUrl: nil, writerNickname: "로제떡볶이", uploadedTime: "2022-01-13 23:20:30")]
     
     private let collectionReuseIdentifier = "GatheringImageCell"
     private let tableReuserIdetifier = "CommentTableViewCell"
@@ -59,11 +59,11 @@ class GatheringBoardDetailViewController: UITableViewController {
         super.viewDidLoad()
         
         configure()
+        addKeyboardObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         fetchComments(of: currentPage)
     }
     
@@ -84,6 +84,17 @@ class GatheringBoardDetailViewController: UITableViewController {
     }
     
     // MARK: API
+    private func fetchPost(postIndex index: Int) {
+        CommunityNetworkManager.fetchPost(index: index) { [weak self] post in
+            print("DEBUG: fetch succeded ->", post)
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                self.headerView.viewModel = GatheringBoardDetialHeaderViewModel(post: post, userID: self.userID, gatheringStatus: self.gatheringStatus)
+                self.tableView.reloadData()
+            }
+        }
+    }
+    
     private func fetchComments(of page: Int, shouldRefresh: Bool = false) {
         guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
         fetchedPageList.append(page)
@@ -102,7 +113,33 @@ class GatheringBoardDetailViewController: UITableViewController {
         }
     }
     
+    // MARK: Actions
+    @objc
+    private func keyboardWillShow(_ notification: NSNotification) {
+        print("DEBUG: keyboardWillShow")
+        guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        guard keyboardFrame.height > 150 else {
+            isKeyboardShowing = false
+            return
+        }
+        guard keyboardFrame.height > 300, !isKeyboardShowing else { return }
+        let bottomPadding = UIApplication.shared.connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .map { $0 as? UIWindowScene }
+            .compactMap { $0 }
+            .first?.windows
+            .filter { $0.isKeyWindow }.first
+            .map { $0.safeAreaInsets.bottom } ?? 0
+        let newOffsetY = tableView.contentOffset.y + keyboardFrame.height - commentInputView.frame.height - bottomPadding
+        tableView.setContentOffset(CGPoint(x: 0, y: newOffsetY), animated: true)
+        isKeyboardShowing = true
+    }
+    
     // MARK: Helpers
+    private func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+    }
+    
     private func configure() {
         headerView.delegate = self
         headerView.viewModel = GatheringBoardDetialHeaderViewModel(post: post, userID: userID, gatheringStatus: gatheringStatus)
@@ -121,7 +158,14 @@ class GatheringBoardDetailViewController: UITableViewController {
 // MARK: GatheringBoardDetailHeaderViewDelegate
 extension GatheringBoardDetailViewController: GatheringBoardDetailHeaderViewDelegate {
     func completeGatheringStatus() {
-        print("DEBUG: completeGatheringStatus()")
+        CommunityNetworkManager.completeGatheringStatus(index: postIndex) { [weak self] isSucceded in
+            guard let self = self, isSucceded else {
+                print("DEBUG: Completing gatheringStatus is failed..")
+                return
+            }
+            self.fetchPost(postIndex: self.postIndex)
+        }
+        
     }
 }
 
@@ -129,13 +173,15 @@ extension GatheringBoardDetailViewController: GatheringBoardDetailHeaderViewDele
 extension GatheringBoardDetailViewController: CommentInputAccessoryViewDelegate {
     func transferComment(_ contents: String) {
         print("DEBUG: Comment contents -> \(contents)")
-        CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] isSucceded in
-            guard let self = self, isSucceded else {
+        CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] numOfComments in
+            guard let self = self, let numOfComments = numOfComments else {
                 print("DEBUG: Posting comment is failed..")
                 return
             }
             DispatchQueue.main.async {
                 self.commentInputView.clearComment()
+                self.post.updateNumberOfComments(numberOfComments: numOfComments)
+                self.headerView.viewModel = GatheringBoardDetialHeaderViewModel(post: self.post, userID: self.userID, gatheringStatus: self.gatheringStatus)
             }
             self.fetchComments(of: self.currentPage, shouldRefresh: true)
         }

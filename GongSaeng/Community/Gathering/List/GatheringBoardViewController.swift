@@ -73,7 +73,7 @@ final class GatheringBoardViewController: UITableViewController {
     // MARK: Actions
     @objc
     private func didTapWriteButton() {
-        let viewController = GatheringWriteViewController()
+        let viewController = GatheringWriteViewController(commuityType: .gathering)
         viewController.hidesBottomBarWhenPushed = true
         let backBarButton = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem = backBarButton

@@ -148,7 +148,7 @@ class GatheringBoardDetailHeaderView: UIView {
         if hasImages {
             addSubview(collectionView)
             let height: CGFloat = (UIScreen.main.bounds.width - 72.0) / 270 * 195
-            collectionView.snp.makeConstraints {
+            collectionView.snp.remakeConstraints {
                 $0.top.equalToSuperview().inset(3.0)
                 $0.leading.trailing.equalToSuperview()
                 $0.height.equalTo(height)
@@ -157,7 +157,7 @@ class GatheringBoardDetailHeaderView: UIView {
         
         [titleLabel, contentsLabel, writerImageView, writerNicknameLabel, uploadedTimeLabel, commentImageView, numberOfCommentsLabel, dividingView].forEach { addSubview($0) }
         
-        titleLabel.snp.makeConstraints {
+        titleLabel.snp.remakeConstraints {
             let screenWidth = UIScreen.main.bounds.width
             let newSize = titleLabel.sizeThatFits(CGSize(width: screenWidth - 36.0, height: .greatestFiniteMagnitude))
             $0.height.equalTo(newSize.height)
@@ -166,24 +166,24 @@ class GatheringBoardDetailHeaderView: UIView {
             $0.trailing.lessThanOrEqualToSuperview().inset(18.0)
         }
         
-        writerImageView.snp.makeConstraints {
+        writerImageView.snp.remakeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(12.0)
             $0.leading.equalTo(titleLabel)
             $0.width.height.equalTo(24.0)
         }
         
-        writerNicknameLabel.snp.makeConstraints {
+        writerNicknameLabel.snp.remakeConstraints {
             $0.leading.equalTo(writerImageView.snp.trailing).offset(4.0)
             $0.centerY.equalTo(writerImageView)
         }
         
-        uploadedTimeLabel.snp.makeConstraints {
+        uploadedTimeLabel.snp.remakeConstraints {
             $0.leading.equalTo(writerNicknameLabel.snp.trailing).offset(8.0)
             $0.centerY.equalTo(writerImageView)
             $0.trailing.lessThanOrEqualToSuperview().inset(18.0)
         }
         
-        contentsLabel.snp.makeConstraints {
+        contentsLabel.snp.remakeConstraints {
             let screenWidth = UIScreen.main.bounds.width
             let newSize = contentsLabel.sizeThatFits(CGSize(width: screenWidth - 36.0, height: .greatestFiniteMagnitude))
             $0.height.equalTo(newSize.height)
@@ -196,17 +196,17 @@ class GatheringBoardDetailHeaderView: UIView {
             gatheringCompletionContentView.backgroundColor = UIColor(named: "colorPaleOrange")?.withAlphaComponent(0.1)
             addSubview(gatheringCompletionContentView)
             [questionLabel, gatheringCompletionButton].forEach { gatheringCompletionContentView.addSubview($0) }
-            gatheringCompletionContentView.snp.makeConstraints {
+            gatheringCompletionContentView.snp.remakeConstraints {
                 $0.top.equalTo(contentsLabel.snp.bottom).offset(20.0)
                 $0.leading.trailing.equalToSuperview().inset(18.0)
                 $0.height.equalTo(129.0)
             }
             
-            questionLabel.snp.makeConstraints {
+            questionLabel.snp.remakeConstraints {
                 $0.top.leading.equalToSuperview().inset(20.0)
             }
             
-            gatheringCompletionButton.snp.makeConstraints {
+            gatheringCompletionButton.snp.remakeConstraints {
                 $0.leading.equalToSuperview().inset(21.0)
                 $0.bottom.equalToSuperview().inset(16.0)
                 $0.width.equalTo(137.0)
@@ -217,17 +217,17 @@ class GatheringBoardDetailHeaderView: UIView {
         if !isGathering {
             gatheringStatusContentView.backgroundColor = UIColor(white: 0, alpha: 0.5)
             addSubview(gatheringStatusContentView)
-            gatheringStatusContentView.snp.makeConstraints {
+            gatheringStatusContentView.snp.remakeConstraints {
                 $0.top.equalTo(contentsLabel.snp.bottom).offset(22.0)
                 $0.leading.trailing.equalToSuperview().inset(18.0)
                 $0.height.equalTo(44.0)
             }
             
             gatheringStatusContentView.addSubview(gatheredLabel)
-            gatheredLabel.snp.makeConstraints { $0.center.equalToSuperview() }
+            gatheredLabel.snp.remakeConstraints { $0.center.equalToSuperview() }
         }
         
-        dividingView.snp.makeConstraints {
+        dividingView.snp.remakeConstraints {
 //            $0.top.equalTo(contentsLabel.snp.bottom).offset(24.0)
             $0.top.equalTo(canCompleteGathering ? gatheringCompletionContentView.snp.bottom :
                             (!isGathering ? gatheringStatusContentView.snp.bottom : contentsLabel.snp.bottom)).offset(24.0)
@@ -235,14 +235,14 @@ class GatheringBoardDetailHeaderView: UIView {
             $0.height.equalTo(8.0)
         }
         
-        commentImageView.snp.makeConstraints {
+        commentImageView.snp.remakeConstraints {
             $0.top.equalTo(dividingView.snp.bottom).offset(14.0)
             $0.leading.equalTo(titleLabel)
             $0.bottom.equalToSuperview().inset(6.0)
             $0.width.height.equalTo(14.0)
         }
         
-        numberOfCommentsLabel.snp.makeConstraints {
+        numberOfCommentsLabel.snp.remakeConstraints {
             $0.leading.equalTo(commentImageView.snp.trailing).offset(8.0)
             $0.centerY.equalTo(commentImageView)
         }

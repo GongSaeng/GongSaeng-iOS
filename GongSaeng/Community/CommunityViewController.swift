@@ -7,6 +7,14 @@
 
 import UIKit
 
+enum CommunityType: Int {
+    case gathering = 0
+    case market = 1
+    case free = 2
+    case emergency = 3
+    case suggestion = 4
+}
+
 class CommunityViewController: UIViewController {
     
     // MARK: Properties
@@ -21,8 +29,8 @@ class CommunityViewController: UIViewController {
      ]
     
     
-    var viewcons: [String] =
-    ["NoticeListViewController","emergencycommunity","suggestcommunity","withcommunity","marketcommunity"]
+//    var viewcons: [String] =
+//    ["NoticeListViewController","emergencycommunity","suggestcommunity","withcommunity","marketcommunity"]
     
     // MARK: Lifecycle
     override func viewWillAppear(_ animated: Bool) {
@@ -115,10 +123,4 @@ class CommunityCell: UITableViewCell {
     @IBOutlet weak var boardImageView: UIImageView!
     @IBOutlet weak var boardTitleLabel: UILabel!
     @IBOutlet weak var boardIntroduceLabel: UILabel!
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
-        print("DEBUG: Cell height:", self.frame.height)
-    }
 }

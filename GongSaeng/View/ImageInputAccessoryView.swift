@@ -29,7 +29,6 @@ class ImageInputAccessoryView: UIView {
     
     var imageCollectionView: UICollectionView? {
         didSet {
-            print("DEBUG: didSet")
             guard let imageCollectionView = imageCollectionView else { return }
             imageContentView.addSubview(imageCollectionView)
             imageCollectionView.snp.makeConstraints {
@@ -37,6 +36,10 @@ class ImageInputAccessoryView: UIView {
                 $0.leading.trailing.equalToSuperview()
             }
         }
+    }
+    
+    var hideImageAddingButton: Bool = false {
+        didSet { imageAddingButton.isHidden = hideImageAddingButton }
     }
     
     private let imageContentView = UIView()

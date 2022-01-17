@@ -242,7 +242,7 @@ final class CommunityNetworkManager {
         dataTask.resume()
     }
     
-    static func postComment(index: Int, contents: String, completion: @escaping(Bool) -> Void) {
+    static func postComment(index: Int, contents: String, completion: @escaping(Int?) -> Void) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let time = dateFormatter.string(from: Date())
@@ -258,6 +258,51 @@ final class CommunityNetworkManager {
         
         guard let url = urlComponents?.url else { return }
         
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data,
+                  let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Int] else {
+                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      return
+                  }
+    
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: Updated number of comments -> \(jsonData["count"])")
+                completion(jsonData["count"])
+            case (400...499):
+                print("""
+                    ERROR: Client ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            case (500...599):
+                print("""
+                    ERROR: Server ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            default:
+                print("""
+                    ERROR: \(response.statusCode)
+                    Response: \(response)
+                """)
+            }
+        }
+        dataTask.resume()
+    }
+    
+    static func completeGatheringStatus(index: Int, completion: @escaping(Bool) -> Void) {
+        
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/together_complete?")
+        
+        let paramQuery = URLQueryItem(name: "idx", value: "\(index)")
+        urlComponents?.queryItems?.append(paramQuery)
+        
+        guard let url = urlComponents?.url else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
