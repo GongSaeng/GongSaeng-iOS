@@ -11,11 +11,12 @@ import SnapKit
 final class BoardListViewController: UITableViewController {
     
     // MARK: Properties
-    var user: User
-    
+    private var user: User
     private let communityType: CommunityType
-    private let reuseIdentifier = "GatheringBoardCell"
-    private var gatheringList = [Gathering]()
+    
+    private let reuseIdentifier = "BoardListCell"
+    private var communityList = [Community]()
+//    private var marketList: [Market] = [Market(index: 0, salesStatus: 0, title: "안입는 옷 팝니다.", writerId: "jdc0407", uploadedTime: "2022-01-17 21:26:30", numberOfComments: 5, thumbnailImageUrl: ["40"], price: "43750"), Market(index: 1, salesStatus: 1, title: "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하", writerId: "jdc0407", uploadedTime: "2022-01-18 00:24:31", numberOfComments: 3, thumbnailImageUrl: ["61"], price: "123456789")]
     private var fetchedPageList = [Int]()
     private var currentPage = 1
     
@@ -42,7 +43,7 @@ final class BoardListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        fetchGatherings(of: currentPage, shouldRefresh: true)
+        fetchCommunitys(of: currentPage, shouldRefresh: true)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -53,17 +54,17 @@ final class BoardListViewController: UITableViewController {
     }
     
     // MARK: API
-    private func fetchGatherings(of page: Int, shouldRefresh: Bool = false) {
+    private func fetchCommunitys(of page: Int, shouldRefresh: Bool = false) {
         guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
         fetchedPageList.append(page)
-        CommunityNetworkManager.fetchGatheringPosts(page: page) { [weak self] gatherings in
+        CommunityNetworkManager.fetchCommunitys(page: page, communityType: communityType) { [weak self] communitys in
             guard let self = self else { return }
             if shouldRefresh {
-                self.gatheringList = gatherings
+                self.communityList = communitys
             } else {
-                self.gatheringList += gatherings
+                self.communityList += communitys
             }
-            print("DEBUG: gatheringIndexs \(self.gatheringList.map { $0.index })")
+            print("DEBUG: communitysIndexs \(self.communityList.map { $0.index })")
             self.currentPage += 1
             print("DEBUG: currentPage(\(self.currentPage)")
             DispatchQueue.main.async {
@@ -76,7 +77,7 @@ final class BoardListViewController: UITableViewController {
     // MARK: Actions
     @objc
     private func didTapWriteButton() {
-        let viewController = WriteViewController(commuityType: .gathering)
+        let viewController = WriteViewController(commuityType: communityType)
         viewController.hidesBottomBarWhenPushed = true
         let backBarButton = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
         navigationItem.backBarButtonItem = backBarButton
@@ -88,7 +89,7 @@ final class BoardListViewController: UITableViewController {
         currentPage = 1
         fetchedPageList.removeAll()
         print("DEBUG: fetched page list \(fetchedPageList)")
-        fetchGatherings(of: currentPage, shouldRefresh: true)
+        fetchCommunitys(of: currentPage, shouldRefresh: true)
     }
     
     // MARK: Helpers
@@ -102,7 +103,7 @@ final class BoardListViewController: UITableViewController {
     }
     
     private func configureTableView() {
-        tableView.register(GatheringBoardCell.self, forCellReuseIdentifier: reuseIdentifier)
+        tableView.register(BoardListCell.self, forCellReuseIdentifier: reuseIdentifier)
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.prefetchDataSource = self
@@ -128,15 +129,21 @@ final class BoardListViewController: UITableViewController {
 // MARK: UITableViewDataSource
 extension BoardListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("DEBUG: gatherings.count ->", gatheringList.count)
-        return gatheringList.count
+        return communityList.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? GatheringBoardCell else { return GatheringBoardCell() }
-        cell.viewModel = GatheringBoardCellViewModel(gathering: gatheringList[indexPath.row])
-        cell.selectionStyle = .none
-        return cell
+        if communityType == .market {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? MarketBoardCell else { return MarketBoardCell() }
+            cell.viewModel = MarketBoardCellViewModel(community: communityList[indexPath.row])
+            cell.selectionStyle = .none
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? BoardListCell else { return BoardListCell() }
+            cell.viewModel = BoardCellListViewModel(communityType: communityType, community: communityList[indexPath.row])
+            cell.selectionStyle = .none
+            return cell
+        }
     }
 }
 
@@ -148,7 +155,7 @@ extension BoardListViewController: UITableViewDataSourcePrefetching {
         
         indexPaths.forEach {
             if ($0.row + 1) / 10 + 1 == currentPage { // 10개씩 불러올 때 숫자 값
-                self.fetchGatherings(of: currentPage)
+                self.fetchCommunitys(of: currentPage)
             }
         }
     }
@@ -158,24 +165,14 @@ extension BoardListViewController: UITableViewDataSourcePrefetching {
 extension BoardListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("DEBUG: Did tap \(indexPath.row) tableViewCell")
-        let index = gatheringList[indexPath.row].index
-        let gatheringStatus = gatheringList[indexPath.row].gatheringStatus
-        let postIndex = gatheringList[indexPath.row].index
-        print("DEBUG: index is \(index)")
-        showLoader(true)
-        CommunityNetworkManager.fetchPost(index: index) { [weak self] post in
-            print("DEBUG: fetch succeded ->", post)
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                let viewController = GatheringBoardDetailViewController(withUser: self.user, post: post, gatheringStatus: gatheringStatus, postIndex: postIndex, communityType: self.communityType)
-                viewController.hidesBottomBarWhenPushed = true
-                viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
-                let backBarButton = UIBarButtonItem(title: "목록", style: .plain, target: self, action: nil)
-                backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
-                self.navigationItem.backBarButtonItem = backBarButton
-                self.showLoader(false)
-                self.navigationController?.pushViewController(viewController, animated: true)
-            }
-        }
+        let postIndex = communityList[indexPath.row].index
+        print("DEBUG: index is \(postIndex)")
+        let viewController = BoardDetailViewController(withUser: user, postIndex: postIndex, communityType: communityType)
+        viewController.hidesBottomBarWhenPushed = true
+        viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+        let backBarButton = UIBarButtonItem(title: "목록", style: .plain, target: self, action: nil)
+        backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
+        navigationItem.backBarButtonItem = backBarButton
+        navigationController?.pushViewController(viewController, animated: true)
     }
 }

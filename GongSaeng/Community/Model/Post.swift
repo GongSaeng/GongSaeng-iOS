@@ -16,6 +16,9 @@ struct Post: Decodable {
     var uploadedTime: String
     var numberOfComments: Int
     var postingImagesUrl: [String]?
+    var status: Int?
+    var category: String?
+    var price: String? // Int??
     
     enum CodingKeys: String, CodingKey {
         case title, contents
@@ -25,6 +28,7 @@ struct Post: Decodable {
         case uploadedTime = "time"
         case postingImagesUrl = "contents_images_url"
         case writerImageUrl = "profile_image_irl"
+        case status, category, price
     }
     
     mutating func updateNumberOfComments(numberOfComments: Int) {

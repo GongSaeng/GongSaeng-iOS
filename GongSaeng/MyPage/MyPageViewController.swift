@@ -119,7 +119,7 @@ class MyPageViewController: UITableViewController {
                 profileImage = image
             } else {
                 ImageCacheManager.getCachedImage(fileName: imageUrl) { [weak self] image in
-                    guard let self = self, let imageData = image.pngData() else { return }
+                    guard let self = self, let imageData = image.jpegData(compressionQuality: 0.5) else { return }
                     UserDefaults.standard.set(imageData, forKey: "userImage")
                     self.profileImage = image
                 }

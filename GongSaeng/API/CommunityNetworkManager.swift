@@ -8,9 +8,9 @@
 import UIKit
 
 final class CommunityNetworkManager {
-    static func fetchGatheringPosts(page: Int, completion: @escaping([Gathering]) -> Void) {
+    static func fetchCommunitys(page: Int, communityType: CommunityType, completion: @escaping([Community]) -> Void) {
         var urlComponents = URLComponents(string: "\(SERVER_URL)/community/read_community?")
-        let paramQuery1 = URLQueryItem(name: "code", value: "0")
+        let paramQuery1 = URLQueryItem(name: "code", value: "\(communityType.rawValue)")
         let paramQuery2 = URLQueryItem(name: "page", value: "\(page)")
         urlComponents?.queryItems?.append(paramQuery1)
         urlComponents?.queryItems?.append(paramQuery2)
@@ -22,16 +22,16 @@ final class CommunityNetworkManager {
             guard error == nil,
                   let response = response as? HTTPURLResponse,
                   let data = data,
-                  let gatherings = try? JSONDecoder().decode([Gathering].self, from: data) else {
+                  let communitys = try? JSONDecoder().decode([Community].self, from: data) else {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                       return
                   }
-            print("DEBUG: gatherings index ->", gatherings.map { $0.index })
+            print("DEBUG: communitys index ->", communitys.map { $0.index })
             
             switch response.statusCode {
             case (200...299):
                 print("DEBUG: Network succeded")
-                completion(gatherings)
+                completion(communitys)
             case (400...499):
                 print("""
                     ERROR: Client ERROR \(response.statusCode)
@@ -117,11 +117,14 @@ final class CommunityNetworkManager {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
-        if let images = images {
+        if let images = images, let thumbnailImage = images.first {
             let boundary = "Boundary-\(UUID().uuidString)"
             request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
             
             let httpBody = NSMutableData() // let var //
+            guard let imageData = thumbnailImage.downSize(newWidth: 100)
+                    .jpegData(compressionQuality: 0.5) else { return }
+            httpBody.append(convertFileData(fileData: imageData, using: boundary))
             for image in images {
                 guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
                 httpBody.append(convertFileData(fileData: imageData, using: boundary))

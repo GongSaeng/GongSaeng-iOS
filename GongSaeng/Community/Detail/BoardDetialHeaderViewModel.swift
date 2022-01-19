@@ -7,12 +7,12 @@
 
 import UIKit
 
-struct GatheringBoardDetialHeaderViewModel {
-    var isGathering: Bool
+struct BoardDetialHeaderViewModel {
+    var isValid: Bool
     var hasImages: Bool
-
+    var category: String?
     var numberOfImages: Int?
-    var canCompleteGathering: Bool
+    var canCompletePost: Bool
     
     var title: String
     var contents: String
@@ -22,6 +22,8 @@ struct GatheringBoardDetialHeaderViewModel {
     
     var writerImageUrl: String?
     var postingImagesUrl: [String]?
+    
+    var price: String?
     
     var writerImage: UIImage {
         guard let fileName = writerImageUrl else { return UIImage(named: "3")! }
@@ -60,7 +62,7 @@ struct GatheringBoardDetialHeaderViewModel {
             .map { afterFormat.string(from: $0) } ?? ""
     }
     
-    init(post: Post, userID: String, gatheringStatus: Int) {
+    init(post: Post, userID: String) {
         self.title = post.title
         self.contents = post.contents
         self.writerNickname = post.writerNickname
@@ -69,8 +71,15 @@ struct GatheringBoardDetialHeaderViewModel {
         self.writerImageUrl = post.writerImageUrl
         self.postingImagesUrl = post.postingImagesUrl
         self.numberOfImages = post.postingImagesUrl.map { $0.count }
-        self.isGathering = (gatheringStatus == 0)
+        self.isValid = (post.status ?? 1) == 0 ? true : false
         self.hasImages = !(post.postingImagesUrl ?? []).isEmpty
-        self.canCompleteGathering = (userID == post.writerId && self.isGathering)
+        self.canCompletePost = (userID == post.writerId && self.isValid)
+        self.category = post.category
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        self.price = numberFormatter.number(from: post.price ?? "")
+            .flatMap { numberFormatter.string(from: $0) }
+            .map { "\(String(describing: $0))원" }
     }
 }

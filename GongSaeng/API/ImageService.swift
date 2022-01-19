@@ -25,7 +25,7 @@ struct ImageService {
             data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
             data.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
             data.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-            data.append(image.jpegData(compressionQuality: 0.75)!)
+            data.append(image.jpegData(compressionQuality: 0.5)!)
             data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
             return data
         }()
@@ -76,6 +76,7 @@ struct ImageService {
                   let data = data,
                   let image = UIImage(data: data) else {
                       print("ERROR: getImage URLSession data task \(error?.localizedDescription ?? "")")
+                      completion(UIImage())
                       return
                   }
             switch response.statusCode {

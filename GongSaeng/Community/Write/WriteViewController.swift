@@ -320,8 +320,17 @@ final class WriteViewController: UIViewController {
             present(viewController, animated: false, completion: nil)
             return
         }
+        
+        guard !(communityType == .market && selectedImages.isEmpty) else {
+            let popUpContents = "사진을 1장 이상 첨부해주세요."
+            let viewController = PopUpViewController(contents: popUpContents)
+            viewController.modalPresentationStyle = .overCurrentContext
+            present(viewController, animated: false, completion: nil)
+            return
+        }
+        
         showLoader(true)
-        CommunityNetworkManager().postCommunity(code: 0, title: titleText, contents: contentsText, images: selectedImages) { [weak self] isSucceded in
+        CommunityNetworkManager().postCommunity(code: communityType.rawValue, title: titleText, contents: contentsText, images: selectedImages) { [weak self] isSucceded in
             guard let self = self else { return }
             guard isSucceded else {
                 print("DEBUG: failed..")
@@ -587,7 +596,7 @@ extension WriteViewController: PHPickerViewControllerDelegate {
         for result in results {
             result.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
                 guard let self = self, let image = object as? UIImage else { return }
-                self.selectedImages.append(image.downSize(newWidth: 500))
+                self.selectedImages.append(image.downSize(newWidth: 300))
             }
         }
     }
@@ -686,6 +695,7 @@ extension WriteViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: UITextViewDelegate
 extension WriteViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == contentsInputTextView {

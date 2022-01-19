@@ -1,23 +1,19 @@
 //
-//  GatheringBoardCellViewModel.swift
+//  MarketBoardCellViewModel.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2022/01/10.
+//  Created by 정동천 on 2022/01/17.
 //
 
 import UIKit
 
-struct GatheringBoardCellViewModel {
-    
-    var isGathering: Bool
-    var hasThumbnailImage: Bool
+struct MarketBoardCellViewModel {
+    var thumbnailIamgeUrl: String?
     var title: String
-    var contents: String
-    var writerNickname: String
+    var price: String
     var uploadedTime: String
     var numberOfComments: String
-    var writerImageUrl: String?
-    var thumbnailIamgeUrl: String?
+    var isOnSale: Bool
     
     var uploadedTimeText: String {
         let dateFormatter = DateFormatter()
@@ -41,8 +37,8 @@ struct GatheringBoardCellViewModel {
         }
     }
     
-    var writerImage: UIImage {
-        guard let fileName = writerImageUrl else { return UIImage(named: "3")! }
+    var thumbnailImage: UIImage {
+        guard let fileName = thumbnailIamgeUrl else { return UIImage(named: "3")! }
         let semaphore = DispatchSemaphore(value: 0)
         var cachedImage = UIImage()
         ImageCacheManager.getCachedImage(fileName: fileName) { image in
@@ -53,27 +49,17 @@ struct GatheringBoardCellViewModel {
         return cachedImage
     }
     
-    var thumbnailImage: UIImage? {
-        guard let fileName = thumbnailIamgeUrl else { return nil }
-        let semaphore = DispatchSemaphore(value: 0)
-        var cachedImage = UIImage()
-        ImageCacheManager.getCachedImage(fileName: fileName) { image in
-            cachedImage = image
-            semaphore.signal()
-        }
-        semaphore.wait()
-        return cachedImage
-    }
-    
-    init(gathering: Gathering) {
-        self.isGathering = gathering.gatheringStatus == 0
-        self.hasThumbnailImage = !(gathering.postingImagesUrl ?? []).isEmpty
-        self.title = gathering.title
-        self.contents = gathering.contents
-        self.writerNickname = gathering.writerNickname
-        self.uploadedTime = gathering.uploadedTime
-        self.numberOfComments = (gathering.numberOfComments > 99) ? "99+" : "\(gathering.numberOfComments)"
-        self.writerImageUrl = gathering.writerImageUrl
-        self.thumbnailIamgeUrl = gathering.postingImagesUrl?.first
+    init(community: Community) {
+        self.thumbnailIamgeUrl = community.thumbnailImageUrl
+        self.title = community.title
+        self.uploadedTime = community.uploadedTime
+        self.numberOfComments = (community.numberOfComments > 99) ? "99+" : "\(community.numberOfComments)"
+        self.isOnSale = community.validStatus == 0 ? true : false
+        
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = .decimal
+        self.price = numberFormatter.number(from: community.price ?? "")
+            .flatMap { numberFormatter.string(from: $0) }
+            .map { "\(String(describing: $0))원" }!
     }
 }

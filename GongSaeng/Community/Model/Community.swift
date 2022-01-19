@@ -1,5 +1,5 @@
 //
-//  Gathering.swift
+//  Community.swift
 //  GongSaeng
 //
 //  Created by 정동천 on 2022/01/10.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-struct Gathering: Codable {
+struct Community: Decodable {
     var index: Int
-    var gatheringStatus: Int
+    var validStatus: Int?
     var title: String
     var contents: String
     var writerImageUrl: String?
@@ -17,17 +17,19 @@ struct Gathering: Codable {
     var writerNickname: String
     var uploadedTime: String
     var numberOfComments: Int
-    var postingImagesUrl: [String]?
+    var thumbnailImageUrl: String?
+    var category: String?
+    var price: String?
     
     enum CodingKeys: String, CodingKey {
         case index = "idx"
-        case title, contents
+        case title, contents, category, price
         case writerId = "id"
         case writerNickname = "nickname"
         case numberOfComments = "comment_cnt"
         case uploadedTime = "time"
-        case gatheringStatus = "gather_status"
-//        case postingImagesUrl = "image_url"
+        case validStatus = "status"
+        case thumbnailImageUrl = "image_url"
         case writerImageUrl = "writer_profile_image"
     }
 }

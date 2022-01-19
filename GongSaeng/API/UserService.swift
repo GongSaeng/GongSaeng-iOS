@@ -69,7 +69,6 @@ struct UserService {
             let fileName = "\(UUID().uuidString).jpg"
             let boundary = UUID().uuidString
             
-//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
             
             let data: Data = {
@@ -77,7 +76,7 @@ struct UserService {
                 data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
                 data.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
                 data.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-                data.append(profileImage.jpegData(compressionQuality: 0.75)!)
+                data.append(profileImage.jpegData(compressionQuality: 0.5)!)
                 data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
                 return data
             }()

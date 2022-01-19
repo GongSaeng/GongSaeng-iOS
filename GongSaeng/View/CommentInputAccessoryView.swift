@@ -32,7 +32,7 @@ class CommentInputAccessoryView: UIView {
         button.setImage(UIImage(systemName: "arrow.up.circle.fill"), for: .normal)
         button.tintColor = UIColor(named: "colorPaleOrange")
         
-        let configuration = UIImage.SymbolConfiguration(pointSize: 40.0)
+        let configuration = UIImage.SymbolConfiguration(pointSize: 48.0, weight: .thin)
         button.setPreferredSymbolConfiguration(configuration, forImageIn: .normal)
         button.addTarget(self, action: #selector(handlePostTapped), for: .touchUpInside)
         return button
@@ -78,23 +78,23 @@ class CommentInputAccessoryView: UIView {
         [commentBackgroundView, commentTextView, postButton, divider].forEach { addSubview($0) }
         
         postButton.snp.makeConstraints {
-            $0.top.equalToSuperview().inset(8.0)
-            $0.trailing.equalToSuperview().inset(18.0)
-            $0.width.height.equalTo(40.0)
+            $0.top.equalToSuperview().inset(3.0)
+            $0.trailing.equalToSuperview().inset(10.0)
+            $0.width.height.equalTo(48.0)
         }
         
         commentBackgroundView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(16.0)
             $0.top.equalToSuperview().inset(6.0)
             $0.bottom.equalTo(safeAreaLayoutGuide.snp.bottom).offset(-6.0)
-            $0.trailing.equalTo(postButton.snp.leading).offset(-6.0)
+            $0.trailing.equalTo(postButton.snp.leading).offset(-2.0)
         }
         
         commentTextView.snp.makeConstraints {
             $0.leading.equalTo(commentBackgroundView.snp.leading).offset(20.0)
             $0.trailing.equalTo(commentBackgroundView.snp.trailing).offset(-10.0)
-            $0.top.equalTo(commentBackgroundView.snp.top).offset(6.0)
-            $0.bottom.equalTo(commentBackgroundView.snp.bottom).offset(-6.0)
+            $0.top.equalTo(commentBackgroundView.snp.top).offset(5.0)
+            $0.bottom.equalTo(commentBackgroundView.snp.bottom).offset(-5.0)
         }
         
         divider.snp.makeConstraints {

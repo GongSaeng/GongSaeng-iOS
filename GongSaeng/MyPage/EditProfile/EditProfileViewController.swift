@@ -235,7 +235,8 @@ class EditProfileViewController: UIViewController {
 extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         guard let seledtedImage = info[.editedImage] as? UIImage else { return }
-        userImageView.image = seledtedImage.withRenderingMode(.alwaysOriginal)
+        userImageView.image = seledtedImage.downSize(newWidth: 100)
+            .withRenderingMode(.alwaysOriginal)
         viewModel?.isChangedUserImage = true
         dismiss(animated: true)
     }

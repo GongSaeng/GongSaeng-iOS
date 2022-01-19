@@ -8,28 +8,26 @@
 import UIKit
 import SnapKit
 
-class GatheringBoardDetailViewController: UITableViewController {
+class BoardDetailViewController: UITableViewController {
     
     // MARK: Propeties
-    private var post: Post
+    private var post: Post?
     private let communityType: CommunityType
     private let userID: String
-    private var gatheringStatus: Int
     private var postIndex: Int
     
     private var currentIndex: CGFloat = 0
     private var currentPage = 1
     private var fetchedPageList = [Int]()
-    private var isKeyboardShowing = false
     private var commentList = [Comment]()
+    private var isKeyboardShowing = false
     
-    private let collectionReuseIdentifier = "GatheringImageCell"
+    private let collectionReuseIdentifier = "ImageCollectioViewCell"
     private let tableReuserIdetifier = "CommentTableViewCell"
-    private let headerView = GatheringBoardDetailHeaderView()
-    private var postingImages: [UIImage] { return headerView.viewModel?.postingImages ?? [] }
+    private var postingImages = [UIImage]()
     
     private lazy var commentInputView: CommentInputAccessoryView = {
-        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 100.0)
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50.0)
         let commentInputAccesoryView = CommentInputAccessoryView(frame: frame)
         commentInputAccesoryView.delegate = self
         return commentInputAccesoryView
@@ -44,10 +42,8 @@ class GatheringBoardDetailViewController: UITableViewController {
     }
     
     // MARK: Lifecycle
-    init(withUser user: User, post: Post, gatheringStatus: Int, postIndex: Int, communityType: CommunityType) {
+    init(withUser user: User, postIndex: Int, communityType: CommunityType) {
         self.userID = user.id
-        self.post = post
-        self.gatheringStatus = gatheringStatus
         self.postIndex = postIndex
         self.communityType = communityType
         
@@ -61,14 +57,22 @@ class GatheringBoardDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        configure()
         configureNavigationBar()
+        configure()
+        fetchPost(postIndex: postIndex)
         addKeyboardObserver()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        fetchComments(of: currentPage)
+        
+        commentInputView.isHidden = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        commentInputView.isHidden = true
     }
     
     override func viewWillLayoutSubviews() {
@@ -89,12 +93,15 @@ class GatheringBoardDetailViewController: UITableViewController {
     
     // MARK: API
     private func fetchPost(postIndex index: Int) {
-        CommunityNetworkManager.fetchPost(index: index) { [weak self] post in
+        CommunityNetworkManager.fetchPost(index: index) { post in
             print("DEBUG: fetch succeded ->", post)
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                self.headerView.viewModel = GatheringBoardDetialHeaderViewModel(post: post, userID: self.userID, gatheringStatus: self.gatheringStatus)
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self, let headerView = self.tableView.tableHeaderView as? BoardDetailHeaderView else { return }
+                headerView.viewModel = BoardDetialHeaderViewModel(post: post, userID: self.userID)
+                self.postingImages = headerView.viewModel?.postingImages ?? []
+                self.tableView.tableHeaderView = headerView
                 self.tableView.reloadData()
+                self.fetchComments(of: self.currentPage, shouldRefresh: true)
             }
         }
     }
@@ -122,6 +129,7 @@ class GatheringBoardDetailViewController: UITableViewController {
     private func keyboardWillShow(_ notification: NSNotification) {
         print("DEBUG: keyboardWillShow")
         guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        print("DEBUG: keyboardHeight -> \(keyboardFrame.height)")
         guard keyboardFrame.height > 150 else {
             isKeyboardShowing = false
             return
@@ -145,8 +153,8 @@ class GatheringBoardDetailViewController: UITableViewController {
     }
     
     private func configure() {
+        let headerView = BoardDetailHeaderView(communityType: communityType)
         headerView.delegate = self
-        headerView.viewModel = GatheringBoardDetialHeaderViewModel(post: post, userID: userID, gatheringStatus: gatheringStatus)
         tableView.tableHeaderView = headerView
         tableView.keyboardDismissMode = .interactive
         tableView.rowHeight = UITableView.automaticDimension
@@ -175,7 +183,7 @@ class GatheringBoardDetailViewController: UITableViewController {
 }
 
 // MARK: GatheringBoardDetailHeaderViewDelegate
-extension GatheringBoardDetailViewController: GatheringBoardDetailHeaderViewDelegate {
+extension BoardDetailViewController: BoardDetailHeaderViewDelegate {
     func completeGatheringStatus() {
         CommunityNetworkManager.completeGatheringStatus(index: postIndex) { [weak self] isSucceded in
             guard let self = self, isSucceded else {
@@ -189,7 +197,27 @@ extension GatheringBoardDetailViewController: GatheringBoardDetailHeaderViewDele
 }
 
 // MARK: CommentInputAccessoryViewDelegate
-extension GatheringBoardDetailViewController: CommentInputAccessoryViewDelegate {
+extension BoardDetailViewController: CommentInputAccessoryViewDelegate {
+//    func transferComment(_ contents: String) {
+//        print("DEBUG: Comment contents -> \(contents)")
+//        CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] numOfComments in
+//            guard let self = self, let numOfComments = numOfComments else {
+//                print("DEBUG: Posting comment is failed..")
+//                return
+//            }
+//            DispatchQueue.main.async {
+//                guard let headerView = self.tableView.tableHeaderView as? BoardDetailHeaderView else { return }
+//                self.commentInputView.clearComment()
+//                self.post?.updateNumberOfComments(numberOfComments: numOfComments)
+//                guard let post = self.post else { return }
+//                headerView.viewModel = BoardDetialHeaderViewModel(post: post, userID: self.userID)
+//                self.tableView.tableHeaderView = headerView
+//                self.tableView.reloadData()
+//            }
+//            self.fetchComments(of: self.currentPage, shouldRefresh: true)
+//        }
+//    }
+    
     func transferComment(_ contents: String) {
         print("DEBUG: Comment contents -> \(contents)")
         CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] numOfComments in
@@ -197,18 +225,23 @@ extension GatheringBoardDetailViewController: CommentInputAccessoryViewDelegate 
                 print("DEBUG: Posting comment is failed..")
                 return
             }
+            self.fetchPost(postIndex: self.postIndex)
             DispatchQueue.main.async {
+//                guard let headerView = self.tableView.tableHeaderView as? BoardDetailHeaderView else { return }
                 self.commentInputView.clearComment()
-                self.post.updateNumberOfComments(numberOfComments: numOfComments)
-                self.headerView.viewModel = GatheringBoardDetialHeaderViewModel(post: self.post, userID: self.userID, gatheringStatus: self.gatheringStatus)
+//                self.post?.updateNumberOfComments(numberOfComments: numOfComments)
+//                guard let post = self.post else { return }
+//                headerView.viewModel = BoardDetialHeaderViewModel(post: post, userID: self.userID)
+//                self.tableView.tableHeaderView = headerView
+//                self.tableView.reloadData()
             }
-            self.fetchComments(of: self.currentPage, shouldRefresh: true)
+//            self.fetchComments(of: self.currentPage, shouldRefresh: true)
         }
     }
 }
 
 // MARK: UITableViewDataSource, Delegate
-extension GatheringBoardDetailViewController {
+extension BoardDetailViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return commentList.count
     }
@@ -226,7 +259,7 @@ extension GatheringBoardDetailViewController {
 }
 
 // MARK: UICollectionViewDataSource
-extension GatheringBoardDetailViewController: UICollectionViewDataSource {
+extension BoardDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return postingImages.count
     }
@@ -247,7 +280,7 @@ extension GatheringBoardDetailViewController: UICollectionViewDataSource {
 }
 
 // MARK: UITableViewDataSourcePrefetching
-extension GatheringBoardDetailViewController: UITableViewDataSourcePrefetching {
+extension BoardDetailViewController: UITableViewDataSourcePrefetching {
     func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
         print("DEBUG: prefetchRow \(indexPaths.map { $0.row })")
         guard currentPage != 1 else { return }
@@ -261,7 +294,7 @@ extension GatheringBoardDetailViewController: UITableViewDataSourcePrefetching {
 }
 
 // MARK: UICollectionViewDelegate
-extension GatheringBoardDetailViewController: UICollectionViewDelegate {
+extension BoardDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("DEBUG: Did tap collectionViewCell..")
         let viewController = FullImageViewController(imageList: postingImages, page: indexPath.item + 1)
@@ -271,7 +304,7 @@ extension GatheringBoardDetailViewController: UICollectionViewDelegate {
 }
 
 // MARK: UICollectionViewDelegateFlowLayout
-extension GatheringBoardDetailViewController: UICollectionViewDelegateFlowLayout {
+extension BoardDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width: CGFloat = collectionView.frame.width - (postingImages.count == 1 ? 36.0 : 72.0)
         let height: CGFloat = collectionView.frame.height
