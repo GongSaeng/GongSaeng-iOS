@@ -11,7 +11,7 @@ import SnapKit
 final class FullImageViewController: UIViewController {
     
     // MARK: Properties
-    private var imageList: [UIImage]
+    private var imageUrlList: [URL]
     private var page: Int
     
     private let reuseIdentifier = "FullImageCell"
@@ -64,8 +64,8 @@ final class FullImageViewController: UIViewController {
     }
     
     // MARK: Lifecycle
-    init(imageList: [UIImage], page: Int) {
-        self.imageList = imageList
+    init(imageUrlList: [URL], page: Int) {
+        self.imageUrlList = imageUrlList
         self.page = page
 
         super.init(nibName: nil, bundle: nil)
@@ -106,7 +106,7 @@ final class FullImageViewController: UIViewController {
     
     // MARK: Helpers
     private func updateIndexLabel() {
-        imageIndexLabel.text = "\(page) / \(imageList.count)"
+        imageIndexLabel.text = "\(page) / \(imageUrlList.count)"
     }
     
     private func configureCollectionView() {
@@ -156,14 +156,14 @@ final class FullImageViewController: UIViewController {
 // MARK: UICollectionViewDataSource
 extension FullImageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print("DEBUG: imageList.count -> \(imageList.count)")
-        return imageList.count
+        print("DEBUG: imageList.count -> \(imageUrlList.count)")
+        return imageUrlList.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as? FullImageCell else { return FullImageCell() }
         cell.clipsToBounds = true
-        cell.image = imageList[indexPath.item]
+        cell.imageUrl = imageUrlList[indexPath.item]
         return cell
     }
 }

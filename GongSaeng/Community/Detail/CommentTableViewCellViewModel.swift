@@ -11,18 +11,10 @@ struct CommentTableViewCellViewModel {
     var contentsText: String
     var writerNicknameText: String
     var uploadedTime: String
-    var writerImageUrl: String?
+    var writerImageFilename: String?
     
-    var writerImage: UIImage {
-        guard let fileName = writerImageUrl else { return UIImage(named: "3")! }
-        let semaphore = DispatchSemaphore(value: 0)
-        var cachedImage = UIImage()
-        ImageCacheManager.getCachedImage(fileName: fileName) { image in
-            cachedImage = image
-            semaphore.signal()
-        }
-        semaphore.wait()
-        return cachedImage
+    var writerImageUrl: URL? {
+        writerImageFilename.flatMap { URL(string: SERVER_IMAGE_URL + $0) }
     }
     
     var uploadedTimeText: String {
@@ -51,6 +43,6 @@ struct CommentTableViewCellViewModel {
         self.contentsText = comment.contents
         self.writerNicknameText = comment.writerNickname
         self.uploadedTime = comment.uploadedTime
-        self.writerImageUrl = comment.writerImageUrl
+        self.writerImageFilename = comment.writerImageFilename
     }
 }

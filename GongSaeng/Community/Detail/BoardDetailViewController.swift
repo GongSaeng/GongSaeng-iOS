@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class BoardDetailViewController: UITableViewController {
     
@@ -24,7 +25,7 @@ class BoardDetailViewController: UITableViewController {
     
     private let collectionReuseIdentifier = "ImageCollectioViewCell"
     private let tableReuserIdetifier = "CommentTableViewCell"
-    private var postingImages = [UIImage]()
+    private var postingImageUrls = [URL]()
     
     private lazy var commentInputView: CommentInputAccessoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50.0)
@@ -98,7 +99,7 @@ class BoardDetailViewController: UITableViewController {
             DispatchQueue.main.async { [weak self] in
                 guard let self = self, let headerView = self.tableView.tableHeaderView as? BoardDetailHeaderView else { return }
                 headerView.viewModel = BoardDetialHeaderViewModel(post: post, userID: self.userID)
-                self.postingImages = headerView.viewModel?.postingImages ?? []
+                self.postingImageUrls = headerView.viewModel?.postingImageUrls ?? []
                 self.tableView.tableHeaderView = headerView
                 self.tableView.reloadData()
                 self.fetchComments(of: self.currentPage, shouldRefresh: true)
@@ -261,13 +262,13 @@ extension BoardDetailViewController {
 // MARK: UICollectionViewDataSource
 extension BoardDetailViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return postingImages.count
+        return postingImageUrls.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: collectionReuseIdentifier, for: indexPath) as UICollectionViewCell
         let imageView = UIImageView()
-        imageView.image = postingImages[indexPath.item]
+        imageView.kf.setImage(with: postingImageUrls[indexPath.row])
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         imageView.layer.borderWidth = 1.0
@@ -297,7 +298,7 @@ extension BoardDetailViewController: UITableViewDataSourcePrefetching {
 extension BoardDetailViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         print("DEBUG: Did tap collectionViewCell..")
-        let viewController = FullImageViewController(imageList: postingImages, page: indexPath.item + 1)
+        let viewController = FullImageViewController(imageUrlList: postingImageUrls, page: indexPath.item + 1)
         viewController.modalPresentationStyle = .fullScreen
         present(viewController, animated: true)
     }
@@ -306,7 +307,7 @@ extension BoardDetailViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDelegateFlowLayout
 extension BoardDetailViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width: CGFloat = collectionView.frame.width - (postingImages.count == 1 ? 36.0 : 72.0)
+        let width: CGFloat = collectionView.frame.width - (postingImageUrls.count == 1 ? 36.0 : 72.0)
         let height: CGFloat = collectionView.frame.height
         return CGSize(width: width, height: height)
     }

@@ -9,16 +9,14 @@ import Foundation
 
 struct Comment: Decodable {
     var contents: String
-    var writerImageUrl: String?
+    var writerImageFilename: String?
     var writerNickname: String
     var uploadedTime: String
-//    var writerId: String
     
     enum CodingKeys: String, CodingKey {
         case contents
         case writerNickname = "nickname"
         case uploadedTime = "time"
-        case writerImageUrl = "profile_image_url"
-//        case writerId = "id"
+        case writerImageFilename = "profile_image_url"
     }
 }

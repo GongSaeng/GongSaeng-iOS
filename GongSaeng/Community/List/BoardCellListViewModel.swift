@@ -18,8 +18,8 @@ struct BoardCellListViewModel {
     var writerNickname: String
     var uploadedTime: String
     var numberOfComments: String
-    var writerImageUrl: String?
-    var thumbnailIamgeUrl: String?
+    var writerImageFilename: String?
+    var thumbnailIamgeFilename: String?
     var category: String?
     
     var uploadedTimeText: String {
@@ -44,41 +44,25 @@ struct BoardCellListViewModel {
         }
     }
     
-    var writerImage: UIImage {
-        guard let fileName = writerImageUrl else { return UIImage(named: "3")! }
-        let semaphore = DispatchSemaphore(value: 0)
-        var cachedImage = UIImage()
-        ImageCacheManager.getCachedImage(fileName: fileName) { image in
-            cachedImage = image
-            semaphore.signal()
-        }
-        semaphore.wait()
-        return cachedImage
+    var writerImageUrl: URL? {
+        writerImageFilename.flatMap { URL(string: SERVER_IMAGE_URL + $0) }
     }
     
-    var thumbnailImage: UIImage? {
-        guard let fileName = thumbnailIamgeUrl else { return nil }
-        let semaphore = DispatchSemaphore(value: 0)
-        var cachedImage = UIImage()
-        ImageCacheManager.getCachedImage(fileName: fileName) { image in
-            cachedImage = image
-            semaphore.signal()
-        }
-        semaphore.wait()
-        return cachedImage
+    var thumbnailImageUrl: URL? {
+        thumbnailIamgeFilename.flatMap { URL(string: SERVER_IMAGE_URL + $0) }
     }
     
     init(communityType: CommunityType, community: Community) {
         self.communityType = communityType
         self.isGathering = community.validStatus == 0
-        self.hasThumbnailImage = community.thumbnailImageUrl != nil
+        self.hasThumbnailImage = community.thumbnailImageFilename != nil
         self.title = community.title
         self.contents = community.contents
         self.writerNickname = community.writerNickname
         self.uploadedTime = community.uploadedTime
         self.numberOfComments = (community.numberOfComments > 99) ? "99+" : "\(community.numberOfComments)"
-        self.writerImageUrl = community.writerImageUrl
-        self.thumbnailIamgeUrl = community.thumbnailImageUrl
+        self.writerImageFilename = community.writerImageFilename
+        self.thumbnailIamgeFilename = community.thumbnailImageFilename
         self.category = community.category
     }
 }

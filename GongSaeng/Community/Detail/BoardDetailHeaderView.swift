@@ -168,7 +168,7 @@ class BoardDetailHeaderView: UIView {
         writerNicknameLabel.text = viewModel.writerNickname
         uploadedTimeLabel.text = viewModel.uploadedTimeText
         numberOfCommentsLabel.text = viewModel.numberOfCommentsText
-        writerImageView.image = viewModel.writerImage
+        writerImageView.kf.setImage(with: viewModel.writerImageUrl, placeholder: UIImage(named: "3"))
         switch communityType {
         case .gathering:
             if canCompletePost {

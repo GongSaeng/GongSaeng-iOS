@@ -10,7 +10,7 @@ import UIKit
 struct EditProfileViewModel {
     var hasChangedUserImage: Bool = false
     
-    var profileImage: UIImage?
+    var profileImageUrl: URL?
     var previousNickname: String
     var previousJob: String?
     var previousIntroduce: String?
@@ -26,7 +26,7 @@ struct EditProfileViewModel {
     }
     
     init(user: User) {
-        self.profileImage = user.image
+        self.profileImageUrl = user.profileImageUrl
         self.previousNickname = user.nickname
         self.previousJob = user.job
         self.previousIntroduce = user.introduce

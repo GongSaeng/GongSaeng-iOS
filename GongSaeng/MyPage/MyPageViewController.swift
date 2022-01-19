@@ -113,7 +113,7 @@ class MyPageViewController: UITableViewController {
         print("DEBUG: MyPageViewController configure()..")
         guard let user = user else { return }
         nicknameLabel.text = user.nickname
-        if let imageUrl = user.profileImageUrl {
+        if let imageUrl = user.profileImageFilename {
             print("DEBUG: user.profileImageUrl ->", imageUrl)
             if let imageData = UserDefaults.standard.object(forKey: "userImage") as? Data, let image = UIImage(data: imageData) {
                 profileImage = image

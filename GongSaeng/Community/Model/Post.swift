@@ -10,12 +10,12 @@ import UIKit
 struct Post: Decodable {
     var title: String
     var contents: String
-    var writerImageUrl: String?
+    var writerImageFilename: String?
     var writerId: String
     var writerNickname: String
     var uploadedTime: String
     var numberOfComments: Int
-    var postingImagesUrl: [String]?
+    var postingImagesFilename: [String]?
     var status: Int?
     var category: String?
     var price: String? // Int??
@@ -26,8 +26,8 @@ struct Post: Decodable {
         case writerNickname = "nickname"
         case numberOfComments = "comment_num"
         case uploadedTime = "time"
-        case postingImagesUrl = "contents_images_url"
-        case writerImageUrl = "profile_image_irl"
+        case postingImagesFilename = "contents_images_url"
+        case writerImageFilename = "profile_image_irl"
         case status, category, price
     }
     

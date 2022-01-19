@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
+import SwiftUI
 
 class CommentTableViewCell: UITableViewCell {
     
@@ -66,7 +68,7 @@ class CommentTableViewCell: UITableViewCell {
         paragraphStyle.lineSpacing = 5.0
         paragraphStyle.lineBreakMode = .byTruncatingTail
         contentsLabel.attributedText = NSAttributedString(string: viewModel.contentsText, attributes: [.paragraphStyle: paragraphStyle, .font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor(white: 0, alpha: 0.7)])
-        writerImageView.image = viewModel.writerImage
+        writerImageView.kf.setImage(with: viewModel.writerImageUrl, placeholder: UIImage(named: "3"))
     }
     
     private func layout() {

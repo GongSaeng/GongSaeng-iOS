@@ -12,12 +12,12 @@ struct Community: Decodable {
     var validStatus: Int?
     var title: String
     var contents: String
-    var writerImageUrl: String?
+    var writerImageFilename: String?
     var writerId: String
     var writerNickname: String
     var uploadedTime: String
     var numberOfComments: Int
-    var thumbnailImageUrl: String?
+    var thumbnailImageFilename: String?
     var category: String?
     var price: String?
     
@@ -29,7 +29,7 @@ struct Community: Decodable {
         case numberOfComments = "comment_cnt"
         case uploadedTime = "time"
         case validStatus = "status"
-        case thumbnailImageUrl = "image_url"
-        case writerImageUrl = "writer_profile_image"
+        case thumbnailImageFilename = "image_url"
+        case writerImageFilename = "writer_profile_image"
     }
 }

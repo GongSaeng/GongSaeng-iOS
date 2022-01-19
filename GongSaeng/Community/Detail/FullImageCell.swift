@@ -7,12 +7,13 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class FullImageCell: UICollectionViewCell {
     
     // MARK: Properties
-    var image: UIImage? {
-        didSet { fullImageView.image = image }
+    var imageUrl: URL? {
+        didSet { fullImageView.kf.setImage(with: imageUrl) }
     }
     
     private let fullImageView: UIImageView = {

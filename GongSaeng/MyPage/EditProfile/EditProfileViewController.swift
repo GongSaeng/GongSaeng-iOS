@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class EditProfileViewController: UIViewController {
     
@@ -146,7 +147,7 @@ class EditProfileViewController: UIViewController {
         guard let viewModel = viewModel else { return }
         view.backgroundColor = .white
         scrollView.keyboardDismissMode = .interactive
-        userImageView.image = viewModel.profileImage ?? UIImage(named: "no_image")
+        userImageView.kf.setImage(with: viewModel.profileImageUrl)
         nicknameTextField.attributedPlaceholder = NSAttributedString(string: viewModel.nicknamePlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
         jobTextField.attributedPlaceholder = NSAttributedString(string: viewModel.jobPlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
         introduceTextView.placeHolderText = viewModel.introducePlaceholder

@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class BoardListCell: UITableViewCell {
     
@@ -109,7 +110,7 @@ class BoardListCell: UITableViewCell {
     private func configure() {
         guard let viewModel = viewModel else { return }
         
-        if let image = viewModel.thumbnailImage { thumbnailImageView.image = image }
+        if let thumbnailImageUrl = viewModel.thumbnailImageUrl { thumbnailImageView.kf.setImage(with: thumbnailImageUrl) }
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5.0
@@ -119,7 +120,7 @@ class BoardListCell: UITableViewCell {
         writerNicknameLabel.text = viewModel.writerNickname
         uploadedTimeLabel.text = viewModel.uploadedTimeText
         numberOfCommentsLabel.text = viewModel.numberOfComments
-        writerImageView.image = viewModel.writerImage
+        writerImageView.kf.setImage(with: viewModel.writerImageUrl, placeholder: UIImage(named: "3"))
         
         switch viewModel.communityType {
         case .gathering:

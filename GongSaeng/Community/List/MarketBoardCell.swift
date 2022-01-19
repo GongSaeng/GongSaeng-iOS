@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 class MarketBoardCell: UITableViewCell {
     
@@ -92,7 +93,7 @@ class MarketBoardCell: UITableViewCell {
     private func configure() {
         guard let viewModel = viewModel else { return }
         let textColor =  UIColor(white: 0, alpha: viewModel.isOnSale ? 0.87 : 0.25)
-        thumbnailImageView.image = viewModel.thumbnailImage
+        thumbnailImageView.kf.setImage(with: viewModel.thumbnailImageUrl)
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3.0
         paragraphStyle.lineBreakMode = .byTruncatingTail

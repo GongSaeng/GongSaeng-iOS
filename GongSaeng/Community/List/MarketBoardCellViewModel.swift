@@ -8,7 +8,7 @@
 import UIKit
 
 struct MarketBoardCellViewModel {
-    var thumbnailIamgeUrl: String?
+    var thumbnailIamgeFilename: String?
     var title: String
     var price: String
     var uploadedTime: String
@@ -37,20 +37,12 @@ struct MarketBoardCellViewModel {
         }
     }
     
-    var thumbnailImage: UIImage {
-        guard let fileName = thumbnailIamgeUrl else { return UIImage(named: "3")! }
-        let semaphore = DispatchSemaphore(value: 0)
-        var cachedImage = UIImage()
-        ImageCacheManager.getCachedImage(fileName: fileName) { image in
-            cachedImage = image
-            semaphore.signal()
-        }
-        semaphore.wait()
-        return cachedImage
+    var thumbnailImageUrl: URL? {
+        thumbnailIamgeFilename.flatMap { URL(string: SERVER_IMAGE_URL + $0) }
     }
     
     init(community: Community) {
-        self.thumbnailIamgeUrl = community.thumbnailImageUrl
+        self.thumbnailIamgeFilename = community.thumbnailImageFilename
         self.title = community.title
         self.uploadedTime = community.uploadedTime
         self.numberOfComments = (community.numberOfComments > 99) ? "99+" : "\(community.numberOfComments)"
