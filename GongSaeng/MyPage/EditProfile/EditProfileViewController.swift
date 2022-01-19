@@ -34,7 +34,7 @@ class EditProfileViewController: UIViewController {
         return button
     }()
     
-    private let nickNameLabel: UILabel = {
+    private let nicknameLabel: UILabel = {
         let label = UILabel()
         label.text = "닉네임"
         label.font = .systemFont(ofSize: 14.0, weight: .bold)
@@ -42,7 +42,7 @@ class EditProfileViewController: UIViewController {
         return label
     }()
     
-    private let nickNameTextField: UITextField = {
+    private let nicknameTextField: UITextField = {
         let textField = UITextField()
         textField.font = .systemFont(ofSize: 14.0)
         return textField
@@ -99,19 +99,18 @@ class EditProfileViewController: UIViewController {
     
     @objc func didTapCompleteButton() {
         guard let viewModel = viewModel,
-              let nickNameText = nickNameTextField.text,
+              let nickNameText = nicknameTextField.text,
               let jobText = jobTextField.text,
               let introduceText = introduceTextView.text else { return }
         print("DEBUG: Did tap complete")
         
-        let profileImage: UIImage? = viewModel.isChangedUserImage ? userImageView.image : nil
-        let nickName = !nickNameText.isEmpty ? nickNameText : viewModel.nickNamePlaceholder
-        let job = !jobText.isEmpty ? jobText : viewModel.user.job ?? ""
-        let introduce = !introduceText.isEmpty ? introduceText : viewModel.user.introduce ?? ""
+        let profileImage: UIImage? = viewModel.hasChangedUserImage ? userImageView.image : nil
+        let nickName = !nickNameText.isEmpty ? nickNameText : viewModel.previousNickname
+        let job = !jobText.isEmpty ? jobText : (viewModel.previousJob ?? "")
+        let introduce = !introduceText.isEmpty ? introduceText : (viewModel.previousIntroduce ?? "")
 
-        
         showLoader(true)
-        UserService.editProfile(nickName: nickName, job: job, introduce: introduce, profileImage: profileImage) { [weak self] isSucceded, imageUrl in
+        UserService.editProfile(nickname: nickName, job: job, introduce: introduce, profileImage: profileImage) { [weak self] isSucceded, imageUrl in
             guard let self = self else { return }
             guard isSucceded else {
                 print("DEBUG: Editing failed..")
@@ -124,7 +123,6 @@ class EditProfileViewController: UIViewController {
                 }
                 return
             }
-            print("DEBUG: Before fetchUser ->", viewModel.user)
             print("DEBUG: isSucceded ->", isSucceded)
             UserService.fetchCurrentUser { user in
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "loginUser")
@@ -149,13 +147,13 @@ class EditProfileViewController: UIViewController {
         view.backgroundColor = .white
         scrollView.keyboardDismissMode = .interactive
         userImageView.image = viewModel.profileImage ?? UIImage(named: "no_image")
-        nickNameTextField.attributedPlaceholder = NSAttributedString(string: viewModel.nickNamePlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
+        nicknameTextField.attributedPlaceholder = NSAttributedString(string: viewModel.nicknamePlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
         jobTextField.attributedPlaceholder = NSAttributedString(string: viewModel.jobPlaceholder, attributes: [.foregroundColor: UIColor.lightGray])
         introduceTextView.placeHolderText = viewModel.introducePlaceholder
     }
     
     private func layout() {
-        [userImageView, imageSettingButton, nickNameLabel, nickNameTextField , jobLabel, jobTextField, introduceLabel, introduceTextView].forEach { contentsView.addSubview($0) }
+        [userImageView, imageSettingButton, nicknameLabel, nicknameTextField , jobLabel, jobTextField, introduceLabel, introduceTextView].forEach { contentsView.addSubview($0) }
         scrollView.addSubview(contentsView)
         view.addSubview(scrollView)
         
@@ -179,37 +177,37 @@ class EditProfileViewController: UIViewController {
             $0.centerX.equalTo(userImageView)
         }
         
-        nickNameLabel.snp.makeConstraints {
+        nicknameLabel.snp.makeConstraints {
             $0.top.equalTo(imageSettingButton.snp.bottom).offset(40.0)
             $0.leading.equalToSuperview().inset(16.0)
         }
         
-        nickNameTextField.snp.makeConstraints {
-            $0.top.equalTo(nickNameLabel.snp.bottom).offset(10.0)
-            $0.leading.equalTo(nickNameLabel)
+        nicknameTextField.snp.makeConstraints {
+            $0.top.equalTo(nicknameLabel.snp.bottom).offset(10.0)
+            $0.leading.equalTo(nicknameLabel)
             $0.trailing.equalToSuperview().inset(18.0)
         }
         
         jobLabel.snp.makeConstraints {
-            $0.top.equalTo(nickNameTextField.snp.bottom).offset(30.0)
-            $0.leading.equalTo(nickNameLabel)
+            $0.top.equalTo(nicknameTextField.snp.bottom).offset(30.0)
+            $0.leading.equalTo(nicknameLabel)
         }
         
         jobTextField.snp.makeConstraints {
             $0.top.equalTo(jobLabel.snp.bottom).offset(10.0)
-            $0.leading.equalTo(nickNameLabel)
-            $0.trailing.equalTo(nickNameTextField)
+            $0.leading.equalTo(nicknameLabel)
+            $0.trailing.equalTo(nicknameTextField)
         }
 
         introduceLabel.snp.makeConstraints {
             $0.top.equalTo(jobTextField.snp.bottom).offset(30.0)
-            $0.leading.equalTo(nickNameLabel)
+            $0.leading.equalTo(nicknameLabel)
         }
         
         introduceTextView.snp.makeConstraints {
             $0.top.equalTo(introduceLabel.snp.bottom).offset(10.0)
-            $0.leading.equalTo(nickNameLabel)
-            $0.trailing.equalTo(nickNameTextField)
+            $0.leading.equalTo(nicknameLabel)
+            $0.trailing.equalTo(nicknameTextField)
             $0.height.equalTo(80.0)
             $0.bottom.equalToSuperview().inset(400.0)
         }
@@ -237,7 +235,7 @@ extension EditProfileViewController: UIImagePickerControllerDelegate, UINavigati
         guard let seledtedImage = info[.editedImage] as? UIImage else { return }
         userImageView.image = seledtedImage.downSize(newWidth: 100)
             .withRenderingMode(.alwaysOriginal)
-        viewModel?.isChangedUserImage = true
+        viewModel?.hasChangedUserImage = true
         dismiss(animated: true)
     }
 }

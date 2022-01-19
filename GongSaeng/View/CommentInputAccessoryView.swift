@@ -38,6 +38,10 @@ class CommentInputAccessoryView: UIView {
         return button
     }()
     
+    override var intrinsicContentSize: CGSize {
+        return .zero
+    }
+    
     // MARK: Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,10 +51,6 @@ class CommentInputAccessoryView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-    }
-    
-    override var intrinsicContentSize: CGSize {
-        return .zero
     }
     
     // MARK: Actions

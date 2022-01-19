@@ -108,7 +108,7 @@ struct AuthService {
         guard let id = register.id, let password = register.password,
               let department = register.department, let name = register.name,
               let dateOfBirth = register.dateOfBirth, let phoneNumber = register.phoneNumber,
-              let nickName = register.nickName else { return }
+              let nickname = register.nickname else { return }
         
         var urlComponents = URLComponents(string: "\(SERVER_URL)/register?")
         
@@ -118,7 +118,7 @@ struct AuthService {
         let paramQuery4 = URLQueryItem(name: "name", value: name)
         let paramQuery5 = URLQueryItem(name: "birth", value: dateOfBirth)
         let paramQuery6 = URLQueryItem(name: "phone", value: phoneNumber)
-        let paramQuery7 = URLQueryItem(name: "nickname", value: nickName)
+        let paramQuery7 = URLQueryItem(name: "nickname", value: nickname)
         
         urlComponents?.queryItems?.append(paramQuery1)
         urlComponents?.queryItems?.append(paramQuery2)

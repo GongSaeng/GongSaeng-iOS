@@ -85,15 +85,33 @@ class ManageAccountViewController: UIViewController {
     @objc func didTapCompleteButton() {
         print("DEBUG: Did tap completeButton..")
         guard let viewModel = viewModel, let nameText = nameTextField.text, let emailText = emailTextField.text, let phoneNumberText = phoneNumberTextField.text else { return }
-        let name = !nameText.isEmpty ? nameText : viewModel.namePlaceholder
-        let email = !emailText.isEmpty ? emailText : viewModel.emailPlaceholder
-        let phoneNumber = !phoneNumberText.isEmpty ? phoneNumberText : viewModel.phoneNumberPlaceholder
+        let name = !nameText.isEmpty ? nameText : viewModel.previousName
+        let email = !emailText.isEmpty ? emailText : viewModel.previousEmail ?? ""
+        let phoneNumber = !phoneNumberText.isEmpty ? phoneNumberText : viewModel.previousPhoneNumber
         print("DEBUG: name ->", name)
         print("DEBUG: email ->", email)
         print("DEBUG: phoneNumber ->", phoneNumber)
+        showLoader(true)
+        UserService.editAccount(name: name, email: email, phoneNumber: phoneNumber) { [weak self] isSucceded in
+            guard let self = self else { return }
+            guard isSucceded else {
+                print("DEBUG: Edit account failed..")
+                self.showLoader(false)
+                return
+            }
+            UserService.fetchCurrentUser { user in
+                UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "loginUser")
+                DispatchQueue.main.async {
+                    self.showLoader(false)
+                    guard let viewController = self.navigationController?.viewControllers.first as? MyPageViewController else { return }
+                    viewController.user = user
+                    self.navigationController?.popViewController(animated: true )
+                }
+            }
+        }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     

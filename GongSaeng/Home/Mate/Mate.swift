@@ -9,20 +9,20 @@ import Foundation
 
 struct Mate: Decodable, Equatable {
     
-    var nickName: String
+    var nickname: String
     var job: String?
     var email: String?
     var introduce: String?
 
     enum CodingKeys: String, CodingKey {
-        case nickName = "name"
+        case nickname = "name"
         case job
         case email = "mail"
         case introduce = "profile"
     }
     
-    mutating func update(nickName: String? = nil, job: String? = nil, email: String? = nil, introduce: String? = nil) {
-        if let nickName = nickName { self.nickName = nickName }
+    mutating func update(nickname: String? = nil, job: String? = nil, email: String? = nil, introduce: String? = nil) {
+        if let nickname = nickname { self.nickname = nickname }
         if let job = job { self.job = job }
         if let email = email { self.email = email }
         if let introduce = introduce { self.introduce = introduce }

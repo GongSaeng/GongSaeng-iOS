@@ -87,9 +87,8 @@ class PopUpViewController: UIViewController {
         layout()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         if buttonType == .none {
-            print("DEBUG: touchesBegan()")
             dismiss(animated: false)
         }
     }

@@ -67,10 +67,11 @@ final class PasswordChangingViewController: UIViewController {
         return button
     }()
     
-    private let passwordChangingButton: BannerButton = {
-        let button = BannerButton(title: "비밀번호 변경하기", backgroundColor: .green)
-        button.addTarget(self, action: #selector(changePassword), for: .touchUpInside)
-        return button
+    private lazy var passwordInputAccessoryView: BannerButtonInputAccessoryView = {
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 80.0)
+        let passwordInputAccessoryView = BannerButtonInputAccessoryView(frame: frame, buttonTitle: "비밀번호 변경하기", buttonColor: .green)
+        passwordInputAccessoryView.delegate = self
+        return passwordInputAccessoryView
     }()
     
     // MARK: Lifecycle
@@ -84,7 +85,15 @@ final class PasswordChangingViewController: UIViewController {
         updateButtonActivation()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override var inputAccessoryView: UIView? {
+        get { return passwordInputAccessoryView }
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
     }
     
@@ -104,18 +113,6 @@ final class PasswordChangingViewController: UIViewController {
         updateSecureMode()
     }
     
-    @objc func changePassword() {
-        print("DEBUG: Did tap passwordChangingButton..")
-        guard viewModel.password == viewModel.passwordCheck else {
-            let popUpContents = "비밀번호가 일치하지 않습니다."
-            let viewController = PopUpViewController(contents: popUpContents)
-            viewController.modalPresentationStyle = .overCurrentContext
-            self.present(viewController, animated: false, completion: nil)
-            return
-        }
-        print("DEBUG: 비밀번호가 일치합니다.")
-    }
-    
     // MARK: Helpers
     private func updateSecureMode() {
         [passwordLookingButton, passwordCheckLookingButton].forEach { $0.isSelected = !viewModel.isSecureMode }
@@ -124,7 +121,7 @@ final class PasswordChangingViewController: UIViewController {
     }
     
     private func updateButtonActivation() {
-        passwordChangingButton.isActivated = viewModel.formIsValid
+        passwordInputAccessoryView.isActivated = viewModel.formIsValid
     }
     
     private func configureNotificationObservers() {
@@ -138,22 +135,7 @@ final class PasswordChangingViewController: UIViewController {
     }
     
     private func layout() {
-        let dividingView = UIView()
-        dividingView.backgroundColor = UIColor(white: 0, alpha: 0.1)
-        let contentView = UIView()
-        contentView.backgroundColor = .white
-        [dividingView, passwordChangingButton].forEach { contentView.addSubview($0) }
-        
-        dividingView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
-            $0.height.equalTo(1.0)
-        }
-        
-        passwordChangingButton.snp.makeConstraints {
-            $0.top.bottom.leading.trailing.equalToSuperview().inset(16.0)
-        }
-        
-        [changingPasswordLabel, passwordLabel, passwordTextField, passwordCheckLabel, passwordCheckTextField, passwordLookingButton, passwordCheckLookingButton, contentView].forEach { view.addSubview($0) }
+        [changingPasswordLabel, passwordLabel, passwordTextField, passwordCheckLabel, passwordCheckTextField, passwordLookingButton, passwordCheckLookingButton].forEach { view.addSubview($0) }
         
         changingPasswordLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(30.0)
@@ -193,10 +175,37 @@ final class PasswordChangingViewController: UIViewController {
             $0.trailing.equalTo(passwordLookingButton)
             $0.width.height.equalTo(40.0)
         }
-        
-        contentView.snp.makeConstraints {
-            $0.bottom.leading.trailing.equalTo(view.safeAreaLayoutGuide)
-            $0.height.equalTo(80.0)
+    }
+}
+
+// MARK: BannerButtonInputAccessoryViewDelegate
+extension PasswordChangingViewController: BannerButtonInputAccessoryViewDelegate {
+    func didTapBannerButton() {
+        print("DEBUG: Did tap passwordChangingButton..")
+        guard let password = viewModel.password else { return }
+        guard viewModel.password == viewModel.passwordCheck else {
+            let popUpContents = "비밀번호가 일치하지 않습니다."
+            let viewController = PopUpViewController(contents: popUpContents)
+            viewController.modalPresentationStyle = .overCurrentContext
+            self.present(viewController, animated: false, completion: nil)
+            return
         }
+        
+        guard Normalization.isValidRegEx(regExKinds: "password", objectString: viewModel.password) else {
+            let popUpContents = "8~22자리의 영문, 숫자로 입력해주세요."
+            let viewController = PopUpViewController(contents: popUpContents)
+            viewController.modalPresentationStyle = .overCurrentContext
+            self.present(viewController, animated: false, completion: nil)
+            return
+        }
+        
+        UserService.editPassword(password: password) { isSucceded in
+            guard isSucceded else {
+                print("DEBUG: 비밀번호 변경 실패")
+                return
+            }
+            
+        }
+        print("DEBUG: 비밀번호가 일치합니다.")
     }
 }

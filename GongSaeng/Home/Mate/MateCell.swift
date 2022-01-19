@@ -15,7 +15,7 @@ class MateCell: UICollectionViewCell {
     }
     
     @IBOutlet weak var profileImage: UIImageView!
-    @IBOutlet weak var nickNameLabel: UILabel!
+    @IBOutlet weak var nicknameLabel: UILabel!
     @IBOutlet weak var jobLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var introduceLabel: UILabel!
@@ -36,7 +36,7 @@ class MateCell: UICollectionViewCell {
         guard let viewModel = viewModel else { return }
         
         profileImage.image = UIImage(named: "profileImage_0")
-        nickNameLabel.text = viewModel.nickName
+        nicknameLabel.text = viewModel.nickname
         jobLabel.text = viewModel.job
         emailLabel.text = viewModel.email
         introduceLabel.text = viewModel.introduce

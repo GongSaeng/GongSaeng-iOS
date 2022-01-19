@@ -7,7 +7,7 @@
 import UIKit
 
 struct User: Codable {
-    var id, name, dateOfBirth, phoneNumber, department, nickName: String
+    var id, name, dateOfBirth, phoneNumber, department, nickname: String
     var job, email, introduce, profileImageUrl: String?
     var image: UIImage? {
         guard let fileName = profileImageUrl else { return nil }
@@ -26,7 +26,7 @@ struct User: Codable {
         case email = "mail"
         case dateOfBirth = "birth"
         case phoneNumber = "phone"
-        case nickName = "nickname"
+        case nickname = "nickname"
         case introduce = "profile"
         case profileImageUrl = "profile_image_url"
     }
@@ -37,7 +37,7 @@ struct User: Codable {
         if let dateOfBirh = dateOfBirh { self.dateOfBirth = dateOfBirh }
         if let phoneNumber = phoneNumber { self.phoneNumber = phoneNumber }
         if let department = department { self.department = department }
-        if let nickName = nickName { self.nickName = nickName }
+        if let nickName = nickName { self.nickname = nickName }
         if let job = job { self.job = job }
         if let email = email { self.email = email }
         if let introduce = introduce { self.introduce = introduce }

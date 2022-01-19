@@ -105,6 +105,7 @@ class MarketBoardCell: UITableViewCell {
         uploadedTimeLabel.text = viewModel.uploadedTimeText
         numberOfCommentsLabel.text = viewModel.numberOfComments
         completedDealView.isHidden = viewModel.isOnSale
+        print("DEBUG: ViewModel -> \(viewModel)")
     }
 
     private func layout() {

@@ -287,6 +287,9 @@ final class WriteViewController: UIViewController {
     @objc
     private func didTapCompleteButton() {
         guard let titleText = titleInputTextField.text, let contentsText = contentsInputTextView.text else { return }
+        var priceText: String?
+        var categoryText: String?
+        
         guard !titleText.isEmpty else {
             let popUpContents = "제목을 입력해주세요."
             let viewController = PopUpViewController(contents: popUpContents)
@@ -296,25 +299,29 @@ final class WriteViewController: UIViewController {
         }
         
         if communityType == .market {
-            guard let priceText = priceInputTextField.text, !priceText.isEmpty else {
+            guard let price = priceInputTextField.text, !price.isEmpty else {
                 let popUpContents = "가격을 입력해주세요."
                 let viewController = PopUpViewController(contents: popUpContents)
                 viewController.modalPresentationStyle = .overCurrentContext
                 present(viewController, animated: false, completion: nil)
                 return
             }
+            priceText = price.filter { $0.isNumber }
+            
         } else if communityType == .emergency || communityType == .suggestion {
-            guard let categoryText = categoryInputTextField.text, !categoryText.isEmpty else {
+            guard let category = categoryInputTextField.text, !category.isEmpty else {
                 let popUpContents = "분류를 선택해주세요."
                 let viewController = PopUpViewController(contents: popUpContents)
                 viewController.modalPresentationStyle = .overCurrentContext
                 present(viewController, animated: false, completion: nil)
                 return
             }
+            categoryText = category
         }
         
         guard !contentsText.isEmpty else {
             let popUpContents = "내용을 입력해주세요."
+            
             let viewController = PopUpViewController(contents: popUpContents)
             viewController.modalPresentationStyle = .overCurrentContext
             present(viewController, animated: false, completion: nil)
@@ -330,7 +337,8 @@ final class WriteViewController: UIViewController {
         }
         
         showLoader(true)
-        CommunityNetworkManager().postCommunity(code: communityType.rawValue, title: titleText, contents: contentsText, images: selectedImages) { [weak self] isSucceded in
+        
+        CommunityNetworkManager().postCommunity(code: communityType.rawValue, title: titleText, contents: contentsText, images: selectedImages, category: categoryText, price: priceText) { [weak self] isSucceded in
             guard let self = self else { return }
             guard isSucceded else {
                 print("DEBUG: failed..")
@@ -658,7 +666,7 @@ extension WriteViewController: UITextFieldDelegate {
             titleUnderlinedView.backgroundColor = UIColor(named: "colorBlueGreen")
             titleUnderlinedView.snp.updateConstraints { $0.height.equalTo(1.5) }
         case priceInputTextField:
-            priceUnderlinedView.backgroundColor = UIColor(named: "colorPaleOrange")
+            priceUnderlinedView.backgroundColor = UIColor(named: "colorBlueGreen")
             priceUnderlinedView.snp.updateConstraints { $0.height.equalTo(1.5) }
         case categoryInputTextField:
             categoryUnderlinedView.backgroundColor = UIColor(named: "colorBlueGreen")
@@ -700,7 +708,7 @@ extension WriteViewController: UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView == contentsInputTextView {
             contentsUnderlinedView.backgroundColor = UIColor(named: "colorBlueGreen")
-            contentsUnderlinedView.snp.updateConstraints { $0.height.equalTo(1.8) }
+            contentsUnderlinedView.snp.updateConstraints { $0.height.equalTo(1.5) }
         }
     }
     

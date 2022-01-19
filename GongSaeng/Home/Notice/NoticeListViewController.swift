@@ -36,7 +36,7 @@ class NoticeListViewController: UIViewController {
     
     // MARK: API
     private func fetchNotices() {
-        NoticeNetworkManager.fetchNotice { [weak self] notices in
+        HomeNetworkManager.fetchNotice { [weak self] notices in
             guard let self = self else { return }
             self.notices = notices
             DispatchQueue.main.async {

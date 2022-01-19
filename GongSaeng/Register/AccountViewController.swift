@@ -17,33 +17,33 @@ class AccountViewController: UIViewController {
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var passwordCheckTextField: UITextField!
-    @IBOutlet weak var nickNameTextField: UITextField!
+    @IBOutlet weak var nicknameTextField: UITextField!
     
     @IBOutlet weak var idUnderlinedView: UIView!
     @IBOutlet weak var passwordUnderlinedView: UIView!
     @IBOutlet weak var passwordCheckUnderlinedView: UIView!
-    @IBOutlet weak var nickNameUnderlinedView: UIView!
+    @IBOutlet weak var nicknameUnderlinedView: UIView!
     
     @IBOutlet weak var idHintLabel: UILabel!
     @IBOutlet weak var passwordHintLabel: UILabel!
     @IBOutlet weak var passwordCheckHintLabel: UILabel!
-    @IBOutlet weak var nickNameHintLabel: UILabel!
+    @IBOutlet weak var nicknameHintLabel: UILabel!
     
     @IBOutlet weak var idHintConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordHintConstraint: NSLayoutConstraint!
     @IBOutlet weak var passwordCheckHintConstraint: NSLayoutConstraint!
-    @IBOutlet weak var nickNameHintConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nicknameHintConstraint: NSLayoutConstraint!
     @IBOutlet weak var extraViewHeight: UIView!
     
     // 중복체크 Label
     @IBOutlet weak var idReduplicationHintLabel: UILabel!
-    @IBOutlet weak var nickNameReduplicationHintLabel: UILabel!
+    @IBOutlet weak var nicknameReduplicationHintLabel: UILabel!
     @IBOutlet weak var idReduplicationConstraint: NSLayoutConstraint!
-    @IBOutlet weak var nickNameReduplicationConstraint: NSLayoutConstraint!
+    @IBOutlet weak var nicknameReduplicationConstraint: NSLayoutConstraint!
     
     
     @IBOutlet weak var idReduplicationButton: UIButton!
-    @IBOutlet weak var nickNameReduplicationButton: UIButton!
+    @IBOutlet weak var nicknameReduplicationButton: UIButton!
     @IBOutlet weak var passwordLookButton: UIButton!
     @IBOutlet weak var passwordCheckLookButton: UIButton!
     
@@ -59,7 +59,7 @@ class AccountViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        [idReduplicationButton, nickNameReduplicationButton].forEach {
+        [idReduplicationButton, nicknameReduplicationButton].forEach {
             $0?.layer.cornerRadius = 15
             $0?.layer.borderWidth = 1
             $0?.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
@@ -75,7 +75,7 @@ class AccountViewController: UIViewController {
         passwordLookButton.isSelected = false
         passwordCheckLookButton.isSelected = false
         
-        [idHintConstraint,passwordHintConstraint,passwordCheckHintConstraint,nickNameHintConstraint].forEach{
+        [idHintConstraint,passwordHintConstraint,passwordCheckHintConstraint,nicknameHintConstraint].forEach{
             $0?.constant = 0
         }
     }
@@ -90,7 +90,7 @@ class AccountViewController: UIViewController {
     
     @IBAction func nextButtonTapHandler(_ sender: UIStoryboardSegue) {
         guard var register = register else { return }
-        guard let nickNameString = nickNameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty, idReduplicationConstraint.constant == 0, nickNameReduplicationConstraint.constant == 0 else {
+        guard let nickNameString = nicknameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty, idReduplicationConstraint.constant == 0, nicknameReduplicationConstraint.constant == 0 else {
             return
         }
         
@@ -105,7 +105,7 @@ class AccountViewController: UIViewController {
             validCount += 1
         }
         if !Normalization.isValidRegEx(regExKinds: "nickName", objectString: nickNameString) {
-            nickNameHintConstraint.constant = 17
+            nicknameHintConstraint.constant = 17
             validCount += 1
         }
         if passwordString != passwordCheckString {
@@ -116,7 +116,7 @@ class AccountViewController: UIViewController {
             return
         }
         
-        register.updateRegister(id: idString, password: passwordString, nickName: nickNameString)
+        register.updateRegister(id: idString, password: passwordString, nickname: nickNameString)
         // 회원가입 API 구현
         showLoader(true)
         print("DEBUG: 회원가입 유저정보 ->", register)
@@ -137,10 +137,10 @@ class AccountViewController: UIViewController {
     
     func changeActivationStatusOfNextButton() {
         // 중복확인 체크상태 확인
-        guard idReduplicationConstraint.constant == 0, nickNameReduplicationConstraint.constant == 0 else { return }
+        guard idReduplicationConstraint.constant == 0, nicknameReduplicationConstraint.constant == 0 else { return }
         
         // 확률적으로 밑에가 비었을 확률이 크다. 아래부터 check하면 불필요한 연산을 하지 않는다.
-        guard let nickNameString = nickNameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty else {
+        guard let nickNameString = nicknameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty else {
             DispatchQueue.main.async {
                 self.nextButton.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.2)
             }
@@ -160,8 +160,8 @@ class AccountViewController: UIViewController {
             return passwordUnderlinedView.backgroundColor = color
         case passwordCheckTextField:
             return passwordCheckUnderlinedView.backgroundColor = color
-        case nickNameTextField:
-            return nickNameUnderlinedView.backgroundColor = color
+        case nicknameTextField:
+            return nicknameUnderlinedView.backgroundColor = color
         default:
             return
         }
@@ -187,15 +187,15 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func nickNameReduplicationButtonHandler(_ sender: Any) {
-        guard let nickName = nickNameTextField.text else { return }
+        guard let nickName = nicknameTextField.text else { return }
         AuthService.checkNicknameDuplicate(nickNameToCheck: nickName) { [weak self] isAvailable in
             guard let self = self else { return }
             DispatchQueue.main.async {
                 if isAvailable {
-                    self.nickNameReduplicationConstraint.constant = 0
+                    self.nicknameReduplicationConstraint.constant = 0
                     self.changeActivationStatusOfNextButton()
                 } else {
-                    self.nickNameReduplicationConstraint.constant = 17
+                    self.nicknameReduplicationConstraint.constant = 17
                     let popUpContents = "중복한 닉네임이 존재합니다."
                     let viewController = PopUpViewController(contents: popUpContents)
                     viewController.modalPresentationStyle = .overCurrentContext
@@ -224,7 +224,7 @@ class AccountViewController: UIViewController {
     }
     
     func resignAll() {
-        [idTextField,passwordTextField,passwordCheckTextField,nickNameTextField].forEach({
+        [idTextField,passwordTextField,passwordCheckTextField,nicknameTextField].forEach({
             $0?.resignFirstResponder()
         })
     }
@@ -238,7 +238,7 @@ extension AccountViewController: UITextFieldDelegate {
         case "idTextField": idHintConstraint.constant = 17
         case "passwordTextField": passwordHintConstraint.constant = 17
         case "passwordCheckTextField": passwordCheckHintConstraint.constant = 17
-        case "nickNameTextField": nickNameHintConstraint.constant = 17
+        case "nickNameTextField": nicknameHintConstraint.constant = 17
         default:
             return
         }
@@ -252,7 +252,7 @@ extension AccountViewController: UITextFieldDelegate {
         case "idTextField": idHintConstraint.constant = 0
         case "passwordTextField": passwordHintConstraint.constant = 0
         case "passwordCheckTextField": passwordCheckHintConstraint.constant = 0
-        case "nickNameTextField":nickNameHintConstraint.constant = 0
+        case "nickNameTextField":nicknameHintConstraint.constant = 0
         default:
             return
         }

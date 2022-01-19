@@ -1,5 +1,5 @@
 //
-//  CommunityNetwork.swift
+//  CommunityNetworkManager.swift
 //  GongSaeng
 //
 //  Created by 정동천 on 2022/01/13.
@@ -98,7 +98,7 @@ final class CommunityNetworkManager {
         dataTask.resume()
     }
     
-    func postCommunity(code: Int, title: String, contents: String, images: [UIImage]?, completion: @escaping(Bool) -> Void) {
+    func postCommunity(code: Int, title: String, contents: String, images: [UIImage]?, category: String? = nil, price: String? = nil, completion: @escaping(Bool) -> Void) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let time = dateFormatter.string(from: Date())
@@ -112,6 +112,14 @@ final class CommunityNetworkManager {
         urlComponents?.queryItems?.append(paramQuery2)
         urlComponents?.queryItems?.append(paramQuery3)
         urlComponents?.queryItems?.append(paramQuery4)
+        if let category = category {
+            let paramQuery = URLQueryItem(name: "category", value: category)
+            urlComponents?.queryItems?.append(paramQuery)
+        }
+        if let price = price {
+            let paramQuery = URLQueryItem(name: "price", value: price)
+            urlComponents?.queryItems?.append(paramQuery)
+        }
 
         guard let url = urlComponents?.url else { return }
         
@@ -126,7 +134,7 @@ final class CommunityNetworkManager {
                     .jpegData(compressionQuality: 0.5) else { return }
             httpBody.append(convertFileData(fileData: imageData, using: boundary))
             for image in images {
-                guard let imageData = image.jpegData(compressionQuality: 0.75) else { return }
+                guard let imageData = image.jpegData(compressionQuality: 1) else { return }
                 httpBody.append(convertFileData(fileData: imageData, using: boundary))
             }
             httpBody.appendString("--\(boundary)--")
@@ -298,9 +306,10 @@ final class CommunityNetworkManager {
         dataTask.resume()
     }
     
-    static func completeGatheringStatus(index: Int, completion: @escaping(Bool) -> Void) {
+    static func completeValidStatus(index: Int, communityType: CommunityType , completion: @escaping(Bool) -> Void) {
         
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/together_complete?")
+        let communityStr = communityType == .gathering ? "together_complete?" : "market_complete?"
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/\(communityStr)")
         
         let paramQuery = URLQueryItem(name: "idx", value: "\(index)")
         urlComponents?.queryItems?.append(paramQuery)

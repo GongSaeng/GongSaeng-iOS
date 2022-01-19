@@ -185,7 +185,7 @@ class BoardDetailViewController: UITableViewController {
 // MARK: GatheringBoardDetailHeaderViewDelegate
 extension BoardDetailViewController: BoardDetailHeaderViewDelegate {
     func completeGatheringStatus() {
-        CommunityNetworkManager.completeGatheringStatus(index: postIndex) { [weak self] isSucceded in
+        CommunityNetworkManager.completeValidStatus(index: postIndex, communityType: communityType) { [weak self] isSucceded in
             guard let self = self, isSucceded else {
                 print("DEBUG: Completing gatheringStatus is failed..")
                 return
@@ -221,7 +221,7 @@ extension BoardDetailViewController: CommentInputAccessoryViewDelegate {
     func transferComment(_ contents: String) {
         print("DEBUG: Comment contents -> \(contents)")
         CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] numOfComments in
-            guard let self = self, let numOfComments = numOfComments else {
+            guard let self = self, let _ = numOfComments else {
                 print("DEBUG: Posting comment is failed..")
                 return
             }

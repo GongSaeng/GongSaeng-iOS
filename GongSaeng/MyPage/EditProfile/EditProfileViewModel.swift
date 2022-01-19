@@ -8,33 +8,27 @@
 import UIKit
 
 struct EditProfileViewModel {
-    var user: User
+    var hasChangedUserImage: Bool = false
     
-    var profileImage: UIImage? { user.image }
-    var isChangedUserImage: Bool = false
+    var profileImage: UIImage?
+    var previousNickname: String
+    var previousJob: String?
+    var previousIntroduce: String?
     
-    var nickNamePlaceholder: String { user.nickName }
+    var nicknamePlaceholder: String {
+        return previousNickname
+    }
     var jobPlaceholder: String {
-        if let job = user.job {
-            return job
-        } else {
-            return "어떤 직업을 갖고 있으신가요?"
-        }
+        return previousJob ?? "어떤 직업을 갖고 있으신가요?"
     }
-
     var introducePlaceholder: String {
-        if let introduce = user.introduce {
-            return introduce
-        } else {
-            return "이웃에게 본인을 소개해보세요!"
-        }
+        return previousIntroduce ?? "이웃에게 본인을 소개해보세요!"
     }
-    
-    var nickName: String?
-    var job: String?
-    var introduce: String?
     
     init(user: User) {
-        self.user = user
+        self.profileImage = user.image
+        self.previousNickname = user.nickname
+        self.previousJob = user.job
+        self.previousIntroduce = user.introduce
     }
 }

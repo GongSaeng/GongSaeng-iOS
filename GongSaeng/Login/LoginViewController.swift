@@ -39,12 +39,8 @@ class LoginViewController: UIViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if idTextField.isFirstResponder {
-            idTextField.resignFirstResponder()
-        } else if passwordTextField.isFirstResponder {
-            passwordTextField.resignFirstResponder()
-        }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
     }
     
     @IBAction func loginButtonTapHandler(_ sender: Any) {

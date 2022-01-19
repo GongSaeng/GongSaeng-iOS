@@ -8,24 +8,18 @@
 import Foundation
 
 struct ManageAccountViewModel {
-    var user: User
     
-    var namePlaceholder: String { user.name }
-    var emailPlaceholder: String {
-        if let email = user.email {
-            return email
-        } else {
-            return "이메일을 남겨보세요!"
-        }
-    }
-
-    var phoneNumberPlaceholder: String { user.phoneNumber }
+    var previousName: String
+    var previousEmail: String?
+    var previousPhoneNumber: String
     
-    var name: String?
-    var email: String?
-    var phoneNumber: String?
+    var namePlaceholder: String { previousName }
+    var emailPlaceholder: String { previousEmail ?? "이메일을 남겨보세요!" }
+    var phoneNumberPlaceholder: String { previousPhoneNumber }
     
     init(user: User) {
-        self.user = user
+        self.previousName = user.name
+        self.previousEmail = user.email
+        self.previousPhoneNumber = user.phoneNumber
     }
 }

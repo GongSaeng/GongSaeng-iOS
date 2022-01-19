@@ -47,7 +47,7 @@ class CheckOutRequestDetailViewController: UIViewController {
     }
 
     // 화면터치 시 키보드 내리기
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
     }
 

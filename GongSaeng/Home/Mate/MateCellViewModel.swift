@@ -10,8 +10,8 @@ import UIKit
 struct MateCellViewModel {
     private let mate: Mate
     
-    var nickName: String? {
-        return mate.nickName
+    var nickname: String? {
+        return mate.nickname
     }
     
     var job: String? {

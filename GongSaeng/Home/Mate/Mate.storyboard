@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -15,11 +13,11 @@
             <objects>
                 <viewController storyboardIdentifier="MateListViewController" id="Y6W-OH-hqX" customClass="MateListViewController" customModule="GongSaeng" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="5EZ-qb-Rvc">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ayO-d3-SIw">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="oIE-zB-ZUb">
                                     <size key="itemSize" width="414" height="170"/>
@@ -29,7 +27,7 @@
                                 </collectionViewFlowLayout>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MateCell" id="9H9-Ig-6k5" customClass="MateCell" customModule="GongSaeng" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="16" width="382" height="170"/>
+                                        <rect key="frame" x="109" y="16" width="382" height="170"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="p0v-Be-ytB">
                                             <rect key="frame" x="0.0" y="0.0" width="382" height="170"/>
@@ -105,7 +103,7 @@
                                             <outlet property="emailLabel" destination="s1g-ef-nAo" id="v7b-yQ-XJu"/>
                                             <outlet property="introduceLabel" destination="x3Y-6S-4nU" id="38K-dI-cmM"/>
                                             <outlet property="jobLabel" destination="sFL-ja-Bdb" id="ln2-vo-eOY"/>
-                                            <outlet property="nickNameLabel" destination="g4a-uB-LyG" id="fMn-u4-6mQ"/>
+                                            <outlet property="nicknameLabel" destination="g4a-uB-LyG" id="fMn-u4-6mQ"/>
                                             <outlet property="profileImage" destination="VMp-Bh-euF" id="SOp-tT-203"/>
                                         </connections>
                                     </collectionViewCell>

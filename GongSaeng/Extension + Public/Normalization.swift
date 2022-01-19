@@ -21,7 +21,7 @@ class Normalization {
         case "id": regEx = "^[A-Za-z0-9]{4,14}$"
         case "password": regEx = "^[A-Za-z0-9]{8,22}$"
 //        case "password": regEx = "[A-Za-z0-9!_@$%^&+=]{8,22}"
-        case "nickName": regEx = "^[가-힣]{5,10}$"
+        case "nickname": regEx = "^[가-힣]{5,10}$"
         default:
             return false
         }

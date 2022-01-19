@@ -16,7 +16,6 @@ final class BoardListViewController: UITableViewController {
     
     private let reuseIdentifier = "BoardListCell"
     private var communityList = [Community]()
-//    private var marketList: [Market] = [Market(index: 0, salesStatus: 0, title: "안입는 옷 팝니다.", writerId: "jdc0407", uploadedTime: "2022-01-17 21:26:30", numberOfComments: 5, thumbnailImageUrl: ["40"], price: "43750"), Market(index: 1, salesStatus: 1, title: "가나다라마바사아자차카타파하가나다라마바사아자차카타파하가나다라마바사아자차카타파하", writerId: "jdc0407", uploadedTime: "2022-01-18 00:24:31", numberOfComments: 3, thumbnailImageUrl: ["61"], price: "123456789")]
     private var fetchedPageList = [Int]()
     private var currentPage = 1
     
@@ -58,6 +57,7 @@ final class BoardListViewController: UITableViewController {
         guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
         fetchedPageList.append(page)
         CommunityNetworkManager.fetchCommunitys(page: page, communityType: communityType) { [weak self] communitys in
+            print("DEBUG: communitys -> \(communitys)")
             guard let self = self else { return }
             if shouldRefresh {
                 self.communityList = communitys
@@ -103,7 +103,12 @@ final class BoardListViewController: UITableViewController {
     }
     
     private func configureTableView() {
-        tableView.register(BoardListCell.self, forCellReuseIdentifier: reuseIdentifier)
+        if communityType == .market {
+            tableView.register(MarketBoardCell.self, forCellReuseIdentifier: reuseIdentifier)
+        } else {
+            tableView.register(BoardListCell.self, forCellReuseIdentifier: reuseIdentifier)
+        }
+        
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
         tableView.prefetchDataSource = self
@@ -136,6 +141,7 @@ extension BoardListViewController {
         if communityType == .market {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? MarketBoardCell else { return MarketBoardCell() }
             cell.viewModel = MarketBoardCellViewModel(community: communityList[indexPath.row])
+            print("DEBUG: MarketBoardCell \(communityList[indexPath.row])")
             cell.selectionStyle = .none
             return cell
         } else {
