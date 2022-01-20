@@ -12,7 +12,8 @@ struct LoginViewModel {
     var password: String?
     
     var formIsValid: Bool {
-        return id?.isEmpty == false && password?.isEmpty == false
+        guard let id = id, let password = password else { return false }
+        return id.isEmpty == false && password.count >= 8 && password.count <= 22
     }
     
     var buttonBackgoundColor: UIColor {

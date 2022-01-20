@@ -29,7 +29,7 @@ class LaunchScreenViewController: UIViewController {
     private func checkOutUserData() {
         guard let sceneDelegate = UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate else { return }
         guard let id = UserDefaults.standard.string(forKey: "id"), let password = UserDefaults.standard.string(forKey: "password") else {
-            print("DEBUG: No userID key..")
+            print("DEBUG: No userID key..") // 로컬에 유저 정보 없은 경우
             sceneDelegate.switchRootViewToInitial()
             return
         }
@@ -37,18 +37,25 @@ class LaunchScreenViewController: UIViewController {
         showLoader(true)
         
         AuthService.loginUserIn(withID: id, password: password) { [weak self] isSucceded, bool, error in
-            guard let self = self else { return }
             print("DEBUG: AuthService.loginUserIn() called..")
+            // 서버 연결 에러
+            guard let self = self else { return }
+            self.showLoader(false)
+            if error?.localizedDescription == "Could not connect to the server." {
+                print("DEBUG: 서버에 연결할 수 없습니다..")
+                DispatchQueue.main.async {
+                    let alert = UIAlertController(title: "Error", message: "서버에 연결할 수 없습니다.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+            
             guard isSucceded else {
-                // 서버 연결 에러
-                self.showLoader(false)
-                if error?.localizedDescription == "Could not connect to the server." {
-                    print("DEBUG: 서버에 연결할 수 없습니다..")
-                    DispatchQueue.main.async {
-                        let alert = UIAlertController(title: "Error", message: "서버에 연결할 수 없습니다.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "취소", style: .cancel, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
-                    }
+                // 유저 정보가 있는데 정보가 틀린경우
+                UserDefaults.standard.removeObject(forKey: "id")
+                UserDefaults.standard.removeObject(forKey: "password")
+                DispatchQueue.main.async {
+                    sceneDelegate.switchRootViewToInitial()
                 }
                 return
             }

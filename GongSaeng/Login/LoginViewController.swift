@@ -16,7 +16,22 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var idTextFieldUnderlinedView: UIView!
     @IBOutlet weak var passwordTextFieldUnderlinedView: UIView!
-    @IBOutlet weak var loginButton: UIButton!
+    
+    private lazy var loginInputAccessoryView: BannerButtonInputAccessoryView = {
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 80.0)
+        let loginInputAccessoryView = BannerButtonInputAccessoryView(frame: frame, buttonTitle: "로그인", buttonColor: .green)
+        loginInputAccessoryView.isActivated = false
+        loginInputAccessoryView.delegate = self
+        return loginInputAccessoryView
+    }()
+    
+    override var inputAccessoryView: UIView? {
+        get { return loginInputAccessoryView }
+    }
+    
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
     
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -43,7 +58,54 @@ class LoginViewController: UIViewController {
         view.endEditing(true)
     }
     
-    @IBAction func loginButtonTapHandler(_ sender: Any) {
+    // MARK: Helpers
+    private func configure() {
+        idTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
+        
+        idTextField.tintColor = UIColor(named: "colorBlueGreen")
+        passwordTextField.tintColor = UIColor(named: "colorBlueGreen")
+    }
+    
+    private func updateButtonState() {
+        
+        loginInputAccessoryView.isActivated = viewModel.formIsValid
+    }
+    
+    private func updateUnderlinColor() {
+        idTextFieldUnderlinedView.backgroundColor = viewModel.idUnderlineColor
+        passwordTextFieldUnderlinedView.backgroundColor = viewModel.passwordUnderlineColor
+    }
+}
+
+// MARK: UITextFieldDelegate
+extension LoginViewController: UITextFieldDelegate {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == idTextField {
+            viewModel.isEditingId = true
+        } else if textField == passwordTextField {
+            viewModel.isEditingPassword = true
+        }
+        updateUnderlinColor()
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if textField == idTextField {
+            viewModel.isEditingId = false
+        } else if textField == passwordTextField {
+            viewModel.isEditingPassword = false
+        }
+        updateUnderlinColor()
+    }
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+}
+
+extension LoginViewController: BannerButtonInputAccessoryViewDelegate {
+    func didTapBannerButton() {
         // To Home
         showLoader(true)
         guard let id = idTextField.text, let password = passwordTextField.text else { return }
@@ -101,51 +163,5 @@ class LoginViewController: UIViewController {
             }
             
         }
-    }
-    
-    // MARK: Helpers
-    private func configure() {
-        loginButton.layer.cornerRadius = 8
-        idTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        passwordTextField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
-        
-        idTextField.tintColor = UIColor(named: "colorBlueGreen")
-        passwordTextField.tintColor = UIColor(named: "colorBlueGreen")
-    }
-    
-    private func updateButtonState() {
-        loginButton.backgroundColor = viewModel.buttonBackgoundColor
-        loginButton.isEnabled = viewModel.formIsValid
-    }
-    
-    private func updateUnderlinColor() {
-        idTextFieldUnderlinedView.backgroundColor = viewModel.idUnderlineColor
-        passwordTextFieldUnderlinedView.backgroundColor = viewModel.passwordUnderlineColor
-    }
-}
-
-// MARK: UITextFieldDelegate
-extension LoginViewController: UITextFieldDelegate {
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        if textField == idTextField {
-            viewModel.isEditingId = true
-        } else if textField == passwordTextField {
-            viewModel.isEditingPassword = true
-        }
-        updateUnderlinColor()
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        if textField == idTextField {
-            viewModel.isEditingId = false
-        } else if textField == passwordTextField {
-            viewModel.isEditingPassword = false
-        }
-        updateUnderlinColor()
-    }
-
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
     }
 }

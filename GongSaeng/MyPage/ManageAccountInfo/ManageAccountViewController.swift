@@ -58,7 +58,6 @@ class ManageAccountViewController: UIViewController {
     private let passwordChangingButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
-//        button.setTitleColor(UIColor.gray, for: .normal)
         button.setAttributedTitle(NSAttributedString(string: "비밀번호 변경", attributes: [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]), for: .normal)
         button.addTarget(self, action: #selector(didTapPasswordChangingButton), for: .touchUpInside)
         return button
