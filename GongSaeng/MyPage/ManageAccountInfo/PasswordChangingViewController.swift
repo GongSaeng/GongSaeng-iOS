@@ -199,13 +199,21 @@ extension PasswordChangingViewController: BannerButtonInputAccessoryViewDelegate
             return
         }
         
-        UserService.editPassword(password: password) { isSucceded in
-            guard isSucceded else {
+        UserService.editPassword(password: password) { [weak self] isSucceded in
+            guard let self = self, isSucceded else {
                 print("DEBUG: 비밀번호 변경 실패")
                 return
             }
-            
+            UserDefaults.standard.set(password, forKey: "password")
+            DispatchQueue.main.async {
+                let popUpTitle = "비밀번호가 변경되었어요."
+                let popUpViewController = PopUpViewController(contents: popUpTitle)
+                popUpViewController.modalPresentationStyle = .overCurrentContext
+                let rootViewController = self.navigationController?.viewControllers.first
+                self.navigationController?.popToRootViewController(animated: true)
+                rootViewController?.present(popUpViewController, animated: false, completion: nil)
+            }
         }
-        print("DEBUG: 비밀번호가 일치합니다.")
+        print("DEBUG: 비밀번호 변경 완료")
     }
 }
