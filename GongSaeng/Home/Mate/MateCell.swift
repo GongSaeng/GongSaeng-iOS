@@ -37,18 +37,8 @@ class MateCell: UICollectionViewCell {
         
         profileImage.image = UIImage(named: "profileImage_0")
         nicknameLabel.text = viewModel.nickname
-        jobLabel.text = viewModel.job
-        emailLabel.text = viewModel.email
+        jobLabel.text = viewModel.job ?? "-"
+        emailLabel.text = viewModel.email ?? "-"
         introduceLabel.text = viewModel.introduce
     }
-    
-//    func updateUI(at index: Mate) {
-//        DispatchQueue.main.async {
-//
-//            self.profileImage.image = UIImage(named: "profileImage_\(index.id).png")
-//            self.nickNameLabel.text = index.nickName
-//            self.emailLabel.text = index.email
-//            self.introduceLabel.text = index.introduce
-//        }
-//    }
 }

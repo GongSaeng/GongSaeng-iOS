@@ -18,6 +18,7 @@ struct MarketBoardCellViewModel {
     var uploadedTimeText: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
         let secondsInterval = dateFormatter.date(from: uploadedTime)
             .map { Calendar.current.dateComponents([.second], from: $0, to: Date()).second }
             .flatMap { $0 } ?? 0

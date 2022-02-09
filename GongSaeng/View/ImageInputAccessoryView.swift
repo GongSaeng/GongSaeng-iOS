@@ -44,10 +44,9 @@ class ImageInputAccessoryView: UIView {
     
     private let imageContentView = UIView()
     
-    private let imageAddingButton: UIButton = {
-        let button = UIButton()
-        let image = UIImage(named: "gallery")
-        button.setImage(UIImage(named: "gallery"), for: .normal)
+    private lazy var imageAddingButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setBackgroundImage(UIImage(named: "gallery"), for: .normal)
         button.addTarget(self, action: #selector(didTapAddingButton), for: .touchUpInside)
         return button
     }()

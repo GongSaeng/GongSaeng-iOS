@@ -38,7 +38,9 @@ struct BoardDetialHeaderViewModel {
         let beforeFormat = DateFormatter()
         let afterFormat = DateFormatter()
         beforeFormat.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        beforeFormat.locale = Locale(identifier: "ko_KR")
         afterFormat.dateFormat = "M월 dd일 HH:mm"
+        afterFormat.locale = Locale(identifier: "ko_KR")
         return beforeFormat.date(from: uploadedTime)
             .map { afterFormat.string(from: $0) } ?? ""
     }

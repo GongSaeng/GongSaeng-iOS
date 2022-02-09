@@ -101,6 +101,7 @@ final class CommunityNetworkManager {
     func postCommunity(code: Int, title: String, contents: String, images: [UIImage]?, category: String? = nil, price: String? = nil, completion: @escaping(Bool) -> Void) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
         let time = dateFormatter.string(from: Date())
         
         var urlComponents = URLComponents(string: "\(SERVER_URL)/community/write_community?")

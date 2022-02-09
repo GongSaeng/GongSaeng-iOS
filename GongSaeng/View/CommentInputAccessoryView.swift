@@ -27,7 +27,7 @@ class CommentInputAccessoryView: UIView {
         return textView
     }()
     
-    private let postButton: UIButton = {
+    private lazy var postButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "arrow.up.circle.fill"), for: .normal)
         button.tintColor = UIColor(named: "colorPaleOrange")

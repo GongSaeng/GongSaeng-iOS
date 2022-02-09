@@ -17,7 +17,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window = UIWindow(windowScene: windowScene)
         window?.backgroundColor = .white
         window?.tintColor = .black
-        let viewController = LaunchScreenViewController()
+        
+        let rootViewController = InitialViewController()
+        let viewController = UINavigationController(rootViewController: rootViewController)
+        
+//        let viewController = LaunchScreenViewController()
+        
+//        let storyboard = UIStoryboard(name: "Temp", bundle: .main)//
+//        let rootViewController = storyboard.instantiateViewController(withIdentifier: "TempViewController")//
+//        let viewController = UINavigationController(rootViewController: rootViewController)//
+//        viewController.navigationBar.isHidden = true//
+        
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
     }
