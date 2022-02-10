@@ -8,10 +8,11 @@
 import Foundation
 
 struct Register {
-    var department, name, dateOfBirth, phoneNumber, id, password, nickname: String?
+    var name, dateOfBirth, phoneNumber, id, password, nickname: String?
+    var university: University?
     
-    mutating func updateRegister(department: String? = nil, name: String? = nil, dateOfBirth: String? = nil, phoneNumber: String? = nil, id: String? = nil, password: String? = nil, nickname: String? = nil) {
-        if let department = department { self.department = department }
+    mutating func updateRegister(university: University? = nil, name: String? = nil, dateOfBirth: String? = nil, phoneNumber: String? = nil, id: String? = nil, password: String? = nil, nickname: String? = nil) {
+        if let university = university { self.university = university }
         if let name = name { self.name = name }
         if let dateOfBirth = dateOfBirth { self.dateOfBirth = dateOfBirth }
         if let phoneNumber = phoneNumber { self.phoneNumber = phoneNumber }

@@ -108,13 +108,6 @@ class MemberViewController: UIViewController {
         }
     }
     
-//    func registerMemberUserCreate(name: String?, birth: String?, phone: String?) -> User? {
-//        guard let nameString = name, let birthString = birth, let phoneString = phone else { return nil }
-//        var user = User(id: "", password: "", isDone: false, name: "", dateOfBirth: "", phoneNumber: "", department: "", nickName: "")
-//        user.registerMemberUserCreate(name: nameString, dateOfBirth: birthString, phoneNumber: phoneString, department: self.department)
-//        return user
-//    }
-    
     func resignAll() {
         if nameTextField.isFirstResponder {
             nameTextField.resignFirstResponder()

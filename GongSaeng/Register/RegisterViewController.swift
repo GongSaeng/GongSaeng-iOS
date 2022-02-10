@@ -82,8 +82,8 @@ class RegisterViewController: UIViewController {
     @IBAction func nextButtonHandler(_ sender: Any) {
         // 누르면 이동
         if allAgree.isSelected {
-            let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
-            let viewController = storyboard.instantiateViewController(withIdentifier: "DepartmentViewController") as! DepartmentViewController
+            let storyboard = UIStoryboard(name: "Register", bundle: .main)
+            let viewController = storyboard.instantiateViewController(withIdentifier: "UniversityViewController") as! UniversityViewController
             navigationController?.pushViewController(viewController, animated: true)
         }
     }
