@@ -495,7 +495,11 @@ final class ThunderWriteViewController: UIViewController {
     
     private func configureNavigationView() {
         navigationItem.title = "번개 글쓰기"
-        navigationController?.navigationBar.isHidden = false
+//        navigationController?.navigationBar.isHidden = false
+        let backBarButton = UIBarButtonItem(title: "번개목록", style: .plain, target: self, action: nil)
+        backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 16.0)], for: .normal)
+        navigationController?.navigationBar.topItem?.backBarButtonItem = backBarButton
+        
         navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 18.0, weight: .medium)]
         
@@ -633,6 +637,7 @@ final class ThunderWriteViewController: UIViewController {
 extension ThunderWriteViewController: SearchPlaceViewControllerDelegate {
     func setPlace(placeDocument: PlaceDocument) {
         self.placeDocument = placeDocument
+        print("DEBUG: placeDocument \(placeDocument)")
     }
 }
 

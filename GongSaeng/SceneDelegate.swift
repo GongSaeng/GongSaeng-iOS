@@ -18,7 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .white
         window?.tintColor = .black
         
-        let rootViewController = InitialViewController()
+//        let rootViewController = InitialViewController()
+        
+        let rootViewController = ThunderListViewController()
         let viewController = UINavigationController(rootViewController: rootViewController)
         
 //        let viewController = LaunchScreenViewController()

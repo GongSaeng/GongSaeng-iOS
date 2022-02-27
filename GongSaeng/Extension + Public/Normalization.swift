@@ -20,7 +20,7 @@ class Normalization {
         case "phone": regEx = "^010([0-9]{8})$"
         case "id": regEx = "^[A-Za-z0-9]{4,14}$"
         case "password": regEx = "^[A-Za-z0-9]{8,22}$"
-//        case "password": regEx = "[A-Za-z0-9!_@$%^&+=]{8,22}"
+        case "email": regEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         case "nickname": regEx = "^[가-힣]{5,10}$"
         default:
             return false

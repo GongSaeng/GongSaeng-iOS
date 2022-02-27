@@ -33,6 +33,7 @@ class LogOutPopUpViewController: UIViewController {
             if isSucceded {
                 UserDefaults.standard.removeObject(forKey: "id")
                 UserDefaults.standard.removeObject(forKey: "password")
+                UserDefaults.standard.removeObject(forKey: "isVerified")
                 UserDefaults.standard.removeObject(forKey: "loginUser")
                 UserDefaults.standard.removeObject(forKey: "userImage")
                 DispatchQueue.main.async {

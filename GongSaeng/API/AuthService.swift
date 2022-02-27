@@ -138,6 +138,8 @@ struct AuthService {
                   let response = response as? HTTPURLResponse,
                   let data = data else {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      guard let completion = completion else { return }
+                      completion(false)
                       return
                   }
             guard let returnValue = String(data: data, encoding: .utf8) else {

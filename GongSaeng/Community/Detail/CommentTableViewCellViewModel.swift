@@ -14,7 +14,8 @@ struct CommentTableViewCellViewModel {
     var writerImageFilename: String?
     
     var writerImageUrl: URL? {
-        writerImageFilename.flatMap { URL(string: SERVER_IMAGE_URL + $0) }
+//        writerImageFilename.flatMap { URL(string: SERVER_IMAGE_URL + $0) }
+        return writerImageFilename.flatMap { URL(string: $0) }
     }
     
     var uploadedTimeText: String {

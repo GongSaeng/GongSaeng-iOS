@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class TermsOfServicesViewController: UIViewController {
     
@@ -19,6 +20,7 @@ class TermsOfServicesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         detailTitle = viewModel.type.title
         detail = viewModel.type.detail
         isAgreeButton.layer.cornerRadius = 8

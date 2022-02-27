@@ -68,7 +68,7 @@ class UniversityViewController: UIViewController {
     
     @IBAction func didTapNextButton(_ sender: UIButton) {
         let storyboard = UIStoryboard(name: "Register", bundle: .main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+        let viewController = storyboard.instantiateViewController(withIdentifier: "AccountViewController") as! AccountViewController
         viewController.register = Register(university: viewModel.selectedUniversity)
         navigationController?.pushViewController(viewController, animated: true)
     }
@@ -76,7 +76,6 @@ class UniversityViewController: UIViewController {
     // MARK: Helpers
     @objc
     private func bindText(_ sender: UITextField) {
-        print("DEBUG: sender.text -> \(sender.text ?? "")")
         viewModel.searchBarText = sender.text ?? ""
     }
     

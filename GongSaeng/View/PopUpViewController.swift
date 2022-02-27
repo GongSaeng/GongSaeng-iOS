@@ -23,6 +23,16 @@ class PopUpViewController: UIViewController {
     // MARK: Properties
     weak var delegate: PopUpViewControllerDelegate?
     
+    var descriptionText: String? {
+        didSet {
+            guard buttonType != .none, let description = descriptionText else { return }
+            DispatchQueue.main.async { [weak self] in
+                guard let self = self else { return }
+                self.descriptionLabel.text = description
+            }
+        }
+    }
+    
     var cancelButtonTitle: String?
     var actionButtonTitle: String?
     
@@ -67,6 +77,14 @@ class PopUpViewController: UIViewController {
         return button
     }()
     
+    private lazy var descriptionLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 12.0)
+        label.textColor = UIColor(named: "colorPinkishOrange")
+        label.numberOfLines = 1
+        return label
+    }()
+    
     // MARK: Lifecycle
     init(buttonType: PopUpButtonType = .none, contents: String) {
         self.buttonType = buttonType
@@ -81,7 +99,6 @@ class PopUpViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("DEBUG: viewDidLoad")
         
         configure()
         layout()
@@ -163,11 +180,27 @@ class PopUpViewController: UIViewController {
                 $0.width.equalTo(cancelButtonWidth)
             }
         }
+        
+        if buttonType != .none {
+            contentView.addSubview(descriptionLabel)
+            descriptionLabel.snp.makeConstraints {
+                $0.centerY.equalTo(cancelButton)
+                $0.leading.equalTo(contentsLabel)
+                $0.trailing.greaterThanOrEqualTo(cancelButton.snp.leading).offset(-5.0)
+            }
+        }
     }
     
     private func configure() {
         view.backgroundColor = UIColor(white: 0, alpha: 0.3)
-        contentsLabel.text = popUpContents
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineSpacing = 3.0
+//        paragraphStyle.lineBreakMode = .byTruncatingTail
+        contentsLabel.attributedText = NSAttributedString(
+                                                string: popUpContents,
+                                                attributes: [.paragraphStyle: paragraphStyle,
+                                                             .font: UIFont.systemFont(ofSize: 14.0),
+                                                             .foregroundColor: UIColor(white: 0, alpha: 0.87).cgColor])
         
         switch buttonType {
         case .none:

@@ -7,6 +7,49 @@
 
 import Foundation
 
+extension String {
+    func toDate(format: String = "yyyy-MM-dd HH:mm:ss") -> Date? {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = format
+        dateFormatter.timeZone = TimeZone(identifier: "UTC")
+        return dateFormatter.date(from: self)
+      }
+    
+    func toAnotherDateString(form: String) -> String? {
+        let beforeDateFormatter = DateFormatter()
+        let afterDateFormatter = DateFormatter()
+        beforeDateFormatter.locale = Locale(identifier: "ko_KR")
+        beforeDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        afterDateFormatter.locale = Locale(identifier: "ko_KR")
+        afterDateFormatter.dateFormat = form
+        return beforeDateFormatter.date(from: self)
+            .flatMap { afterDateFormatter.string(from: $0) }
+    }
+    
+    func toRemainingDays() -> String {
+        let krDateFormatter = DateFormatter()
+        krDateFormatter.dateFormat = "yyyy-MM-dd 00:00:00"
+        krDateFormatter.locale = Locale(identifier: "ko_KR")
+        
+        let stdOClockDateFormatter = DateFormatter()
+        stdOClockDateFormatter.dateFormat = "yyyy-MM-dd 00:00:00"
+        stdOClockDateFormatter.timeZone = TimeZone(identifier: "UTC")
+        
+        let stdDateFormatter = DateFormatter()
+        stdDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        stdDateFormatter.timeZone = TimeZone(identifier: "UTC")
+        
+        let dateStr = krDateFormatter.string(from: Date())
+        let date = stdDateFormatter.date(from: dateStr)!
+
+        let daysInterval = stdDateFormatter.date(from: self)
+            .flatMap { stdOClockDateFormatter.string(from:$0) }
+            .flatMap { stdDateFormatter.date(from: $0) }
+            .flatMap { Calendar.current.dateComponents([.day], from: date, to: $0).day }
+            .flatMap { $0 } ?? 0
+        return daysInterval == 0 ? "Today" : "D-\(daysInterval)"
+    }
+}
 
 extension Date {
     private static var dateFormatExtension: DateFormatter {

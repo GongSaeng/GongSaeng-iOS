@@ -13,6 +13,23 @@ class AccountViewController: UIViewController {
     
     var register: Register?
 //    var user: User?
+    private let idReduplicationLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 11.0)
+        label.text = "중복확인"
+        label.textColor = UIColor(named: "colorBlueGreen")
+        label.textAlignment = .center
+        return label
+    }()
+    
+    private let nicknameReduplicationLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 11.0)
+        label.text = "중복확인"
+        label.textColor = UIColor(named: "colorBlueGreen")
+        label.textAlignment = .center
+        return label
+    }()
     
     @IBOutlet weak var idTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -55,15 +72,11 @@ class AccountViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        nextButton.layer.cornerRadius = 8
+        
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillShowNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustInputView), name: UIResponder.keyboardWillHideNotification, object: nil)
         
-        [idReduplicationButton, nicknameReduplicationButton].forEach {
-            $0?.layer.cornerRadius = 15
-            $0?.layer.borderWidth = 1
-            $0?.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
-        }
+        configure()
         
         passwordTextField.passwordRuleAssignment()
         passwordCheckTextField.passwordRuleAssignment()
@@ -90,7 +103,12 @@ class AccountViewController: UIViewController {
     
     @IBAction func nextButtonTapHandler(_ sender: UIStoryboardSegue) {
         guard var register = register else { return }
-        guard let nickNameString = nicknameTextField.text, !nickNameString.isEmpty, let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty, let passwordString = passwordTextField.text, !passwordString.isEmpty, let idString = idTextField.text, !idString.isEmpty, idReduplicationConstraint.constant == 0, nicknameReduplicationConstraint.constant == 0 else {
+        guard let nicknameString = nicknameTextField.text, !nicknameString.isEmpty,
+              let passwordCheckString = passwordCheckTextField.text, !passwordCheckString.isEmpty,
+              let passwordString = passwordTextField.text, !passwordString.isEmpty,
+              let idString = idTextField.text, !idString.isEmpty,
+              idReduplicationConstraint.constant == 0,
+              nicknameReduplicationConstraint.constant == 0 else {
             return
         }
         
@@ -104,7 +122,7 @@ class AccountViewController: UIViewController {
             passwordHintConstraint.constant = 17
             validCount += 1
         }
-        if !Normalization.isValidRegEx(regExKinds: "nickName", objectString: nickNameString) {
+        if !Normalization.isValidRegEx(regExKinds: "nickname", objectString: nicknameString) {
             nicknameHintConstraint.constant = 17
             validCount += 1
         }
@@ -116,23 +134,13 @@ class AccountViewController: UIViewController {
             return
         }
         
-        register.updateRegister(id: idString, password: passwordString, nickname: nickNameString)
-        // 회원가입 API 구현
-        showLoader(true)
-        print("DEBUG: 회원가입 유저정보 ->", register)
-        AuthService.registerUser(registeringUser: register) { [weak self] isSucceded in
-            guard let self = self else { return }
-            if isSucceded {
-                self.showLoader(false)
-                DispatchQueue.main.async {
-                    let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: "CompletedRegisterViewController") as! CompletedRegisterViewController
-                    self.navigationController?.pushViewController(viewController, animated: true)
-                }
-            } else {
-                print("DEBUG: 회원가입 실패..")
-            }
-        }
+        register.updateRegister(id: idString, password: passwordString, nickname: nicknameString)
+        
+        // pushViewController
+        let storyboard = UIStoryboard(name: "Register", bundle: Bundle.main)
+        let viewController = storyboard.instantiateViewController(withIdentifier: "MemberViewController") as! MemberViewController
+        viewController.register = register
+        navigationController?.pushViewController(viewController, animated: true)
     }
     
     func changeActivationStatusOfNextButton() {
@@ -167,42 +175,71 @@ class AccountViewController: UIViewController {
         }
     }
     
-    @IBAction func idReduplicationButtonHandler(_ sender: Any) {
-        guard let id = idTextField.text else { return }
-        AuthService.checkIdDuplicate(idToCheck: id) { [weak self] isAvailable in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                if isAvailable {
-                    self.idReduplicationConstraint.constant = 0
-                    self.changeActivationStatusOfNextButton()
-                } else {
-                    self.idReduplicationConstraint.constant = 17
-                    let popUpContents = "중복한 아이디가 존재합니다."
-                    let viewController = PopUpViewController(contents: popUpContents)
-                    viewController.modalPresentationStyle = .overCurrentContext
-                    self.present(viewController, animated: false, completion: nil)
-                }
-            }
+    private func configure() {
+        nextButton.layer.cornerRadius = 8
+        
+        idReduplicationButton.addSubview(idReduplicationLabel)
+        idReduplicationLabel.snp.makeConstraints {
+            $0.center.width.equalToSuperview()
+            $0.height.equalTo(30.0)
+        }
+        
+        nicknameReduplicationButton.addSubview(nicknameReduplicationLabel)
+        nicknameReduplicationLabel.snp.makeConstraints {
+            $0.center.width.equalToSuperview()
+            $0.height.equalTo(30.0)
+        }
+        
+        [idReduplicationLabel, nicknameReduplicationLabel].forEach {
+            $0.layer.cornerRadius = 15
+            $0.layer.borderWidth = 1
+            $0.layer.borderColor = #colorLiteral(red: 0.06666666667, green: 0.4039215686, blue: 0.3803921569, alpha: 1)
         }
     }
     
+    @IBAction func idReduplicationButtonHandler(_ sender: Any) {
+        self.idReduplicationConstraint.constant = 0
+        self.changeActivationStatusOfNextButton()
+        
+//        print("DEBUG: Did tap button..")
+//        guard let id = idTextField.text else { return }
+//        AuthService.checkIdDuplicate(idToCheck: id) { [weak self] isAvailable in
+//            guard let self = self else { return }
+//            DispatchQueue.main.async {
+//                if isAvailable {
+//                    self.idReduplicationConstraint.constant = 0
+//                    self.changeActivationStatusOfNextButton()
+//                } else {
+//                    self.idReduplicationConstraint.constant = 17
+//                    let popUpContents = "중복한 아이디가 존재합니다."
+//                    let viewController = PopUpViewController(contents: popUpContents)
+//                    viewController.modalPresentationStyle = .overCurrentContext
+//                    self.present(viewController, animated: false, completion: nil)
+//                }
+//            }
+//        }
+    }
+    
     @IBAction func nickNameReduplicationButtonHandler(_ sender: Any) {
-        guard let nickName = nicknameTextField.text else { return }
-        AuthService.checkNicknameDuplicate(nickNameToCheck: nickName) { [weak self] isAvailable in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                if isAvailable {
-                    self.nicknameReduplicationConstraint.constant = 0
-                    self.changeActivationStatusOfNextButton()
-                } else {
-                    self.nicknameReduplicationConstraint.constant = 17
-                    let popUpContents = "중복한 닉네임이 존재합니다."
-                    let viewController = PopUpViewController(contents: popUpContents)
-                    viewController.modalPresentationStyle = .overCurrentContext
-                    self.present(viewController, animated: false, completion: nil)
-                }
-            }
-        }
+        self.nicknameReduplicationConstraint.constant = 0
+        self.changeActivationStatusOfNextButton()
+        
+//        guard let nickName = nicknameTextField.text else { return }
+//        AuthService.checkNicknameDuplicate(nickNameToCheck: nickName) { [weak self] isAvailable in
+//            guard let self = self else { return }
+//            DispatchQueue.main.async {
+//                if isAvailable {
+//                    self.nicknameReduplicationConstraint.constant = 0
+//                    self.changeActivationStatusOfNextButton()
+//                } else {
+//                    self.nicknameReduplicationConstraint.constant = 17
+//                    let popUpContents = "중복한 닉네임이 존재합니다."
+//                    let viewController = PopUpViewController(contents: popUpContents)
+//                    viewController.modalPresentationStyle = .overCurrentContext
+//                    self.present(viewController, animated: false, completion: nil)
+//                }
+//            }
+//        }
     }
     
     @IBAction func passwordLookButtonHandler(_ sender: Any) {

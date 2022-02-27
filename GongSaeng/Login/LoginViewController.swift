@@ -6,6 +6,8 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
 
 class LoginViewController: UIViewController {
     
@@ -104,11 +106,14 @@ extension LoginViewController: UITextFieldDelegate {
     }
 }
 
+// MARK: BannerButtonInputAccessoryViewDelegate
 extension LoginViewController: BannerButtonInputAccessoryViewDelegate {
     func didTapBannerButton() {
         // To Home
         showLoader(true)
-        guard let id = idTextField.text, let password = passwordTextField.text else { return }
+        guard let id = idTextField.text,
+              let password = passwordTextField.text else { return }
+        let isVerified = UserDefaults.standard.bool(forKey: "isVerified")
         AuthService.loginUserIn(withID: id, password: password) { [weak self] isRight, isApproved, error in
             guard let self = self else { return }
             
@@ -135,14 +140,28 @@ extension LoginViewController: BannerButtonInputAccessoryViewDelegate {
                 return
             }
             
-            guard isApproved else {
+            // 서버에서 메일 인증 확인이 안 된 경우 (실제 인증 여부는 모르는 상태)
+            guard isVerified else {
                 print("DEBUG: Not approved User..")
-                DispatchQueue.main.async {
-                    self.showLoader(false)
-                    let popUpContents = "가입 승인 대기중이에요\n공간 관리자님께 문의해주세요."
-                    let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
-                    viewController.modalPresentationStyle = .overCurrentContext
-                    self .present(viewController, animated: false, completion: nil)
+                
+                // Firebase 인증여부 확인
+                Auth.auth().signIn(withEmail: "nupic7@pusan.ac.kr", password: password) { result, error in
+                    guard let user = Auth.auth().currentUser, error == nil else { return }
+                    guard user.isEmailVerified else {
+                        // 인증 미완료
+                        DispatchQueue.main.async {
+                            self.showLoader(false)
+                            let popUpContents = "메일 인증이 완료되지 않았습니다.\n메일이 오지 않는 경우 스팸함을 확인해주세요.\n인증메일 재요청을 원하는 경우 재전송 버튼을 눌러주세요."
+                            let viewController = PopUpViewController(buttonType: .cancelAndAction, contents: popUpContents)
+                            viewController.actionButtonTitle = "재전송"
+                            viewController.delegate = self
+                            viewController.modalPresentationStyle = .overCurrentContext
+                            self.present(viewController, animated: false, completion: nil)
+                        }
+                        return
+                    }
+                    // 인증 완료
+                    UserDefaults.standard.set(true, forKey: "isVerified")
                 }
                 return
             }
@@ -163,5 +182,12 @@ extension LoginViewController: BannerButtonInputAccessoryViewDelegate {
             }
             
         }
+    }
+}
+
+// MARK: PopUpViewControllerDelegate
+extension LoginViewController: PopUpViewControllerDelegate {
+    func didTapActionButton() {
+        //
     }
 }
