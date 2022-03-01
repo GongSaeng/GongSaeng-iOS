@@ -8,6 +8,8 @@
 import UIKit
 
 struct ThunderDetailViewModel {
+    var thunderDetail: ThunderDetail?
+    
     var isNavigationViewHidden: Bool = true
     
     var navigationViewColor: UIColor {
@@ -22,9 +24,8 @@ struct ThunderDetailViewModel {
         isNavigationViewHidden ? .white : .black
     }
     
-    var remainingDays: String
-    
-    init(thunderDetail: ThunderDetail) {
-        self.remainingDays = thunderDetail.meetingTime.toRemainingDays()
+    var remainingDays: String {
+        guard let thunderDetail = thunderDetail else { return ""}
+        return thunderDetail.meetingTime.toRemainingDays()
     }
 }

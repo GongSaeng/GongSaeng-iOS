@@ -10,7 +10,7 @@ import SnapKit
 import Kingfisher
 
 protocol ThunderDetailHeaderViewDelegate: AnyObject {
-    func showUserProfile(id: String)
+    func showUserProfile(index: Int, profiles: [Profile])
 }
 
 final class ThunderDetailHeaderView: UIView {
@@ -119,6 +119,18 @@ final class ThunderDetailHeaderView: UIView {
     
     private lazy var placeButton: UIButton = {
         let button = UIButton(type: .system)
+        button.contentHorizontalAlignment = .left
+        return button
+    }()
+    
+    private lazy var openMapButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setAttributedTitle(
+            NSAttributedString(
+                string: "지도보기",
+                attributes: [.font: UIFont.systemFont(ofSize: 12.0, weight: .semibold),
+                             .foregroundColor: UIColor(named: "colorPaleOrange")!]),
+            for: .normal)
         button.addTarget(self, action: #selector(openMapLink), for: .touchUpInside)
         return button
     }()
@@ -154,6 +166,7 @@ final class ThunderDetailHeaderView: UIView {
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.layer.masksToBounds = false
+//        collectionView.bounces = false
         collectionView.register(ParticipantImageCell.self, forCellWithReuseIdentifier: "ParticipantImageCell")
         return collectionView
     }()
@@ -184,6 +197,15 @@ final class ThunderDetailHeaderView: UIView {
         return label
     }()
     
+    private let bottomGradientLayer: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.black.withAlphaComponent(0).cgColor, UIColor.black.withAlphaComponent(0.15).cgColor]
+        gradientLayer.locations = [0, 1]
+        let frame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35.0)
+        gradientLayer.frame = frame
+        return gradientLayer
+    }()
+    
     // MARK: Lifecycle
     init(viewModel: ThunderDetailHeaderViewModel) {
         self.viewModel = viewModel
@@ -200,9 +222,18 @@ final class ThunderDetailHeaderView: UIView {
     // MARK: Actions
     @objc
     private func openMapLink() {
-        if let url = viewModel.placeURL {
-            UIApplication.shared.open(url, options: [:])
-        }
+        if let url = viewModel.placeURL { UIApplication.shared.open(url, options: [:]) }
+    }
+    
+    // MARK: Animations
+    func activateShakeAnimation(index: Int) {
+        partcipantsImageCollectionView.visibleCells.forEach { $0.layer.removeAllAnimations() }
+        guard let cell = partcipantsImageCollectionView.cellForItem(at: IndexPath(item: index, section: 0)) as? ParticipantImageCell else { return }
+        cell.addShakeAnimation()
+    }
+    
+    func removeAnimation() {
+        partcipantsImageCollectionView.visibleCells.forEach { $0.layer.removeAllAnimations() }
     }
     
     // MARK: Helpers
@@ -218,17 +249,17 @@ final class ThunderDetailHeaderView: UIView {
         writerNicknameLabel.text = viewModel.writerNickname
         uploadedTimeLabel.text = viewModel.uploadedTime
         timeLabel.text = viewModel.meetingTime
-        
+  
         placeButton.setAttributedTitle(
             NSAttributedString(
                 string: viewModel.placeName,
                 attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium),
-                            .foregroundColor: UIColor.black]), for: .normal)
+                             .foregroundColor: UIColor.black]), for: .normal)
         placeButton.setAttributedTitle(
             NSAttributedString(
                 string: viewModel.address,
                 attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium),
-                            .foregroundColor: UIColor.black]), for: .highlighted)
+                             .foregroundColor: UIColor.black]), for: .highlighted)
         totalNumOfPeopleLabel.text = viewModel.totalNumText
         
         let paragraphStyle = NSMutableParagraphStyle()
@@ -248,11 +279,13 @@ final class ThunderDetailHeaderView: UIView {
         [verticalDividingView, horizontalDividingView1, horizontalDividingView2]
             .forEach { $0.backgroundColor = UIColor(white: 0, alpha: 0.05) }
         
-        [attachedImageCollectionView, pageControl, titleLabel,
+        let bottomDarkView = UIView()
+        bottomDarkView.layer.addSublayer(bottomGradientLayer)
+        [attachedImageCollectionView, bottomDarkView, pageControl, titleLabel,
          writerImageView, writerNicknameLabel, verticalDividingView,
          uploadedTimeLabel, horizontalDividingView1, timeIconImageView,
          timeLabel, placeIconImageView, placeLabel, peopleIconImageView,
-         totalNumOfPeopleLabel, contentsLabel, placeButton,
+         totalNumOfPeopleLabel, contentsLabel, placeButton, openMapButton,
          partcipantsImageCollectionView, joinButton, horizontalDividingView2,
         commentImageView, numberOfCommentsLabel]
             .forEach { addSubview($0) }
@@ -266,6 +299,11 @@ final class ThunderDetailHeaderView: UIView {
                 .map { $0.safeAreaInsets.top } ?? 0
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(UIScreen.main.bounds.width * 9.0 / 16.0 + topPadding)
+        }
+        
+        bottomDarkView.snp.makeConstraints {
+            $0.leading.trailing.bottom.equalTo(attachedImageCollectionView)
+            $0.height.equalTo(bottomGradientLayer.frame.height)
         }
 
         pageControl.snp.makeConstraints {
@@ -328,6 +366,15 @@ final class ThunderDetailHeaderView: UIView {
             $0.leading.equalTo(timeLabel)
         }
         
+        placeButton.snp.contentCompressionResistanceHorizontalPriority = 749
+        
+        openMapButton.snp.makeConstraints {
+            $0.centerY.equalTo(placeButton)
+            $0.leading.equalTo(placeButton.snp.trailing).offset(10.0)
+            $0.trailing.equalToSuperview().inset(18.0)
+            $0.width.height.equalTo(44.0)
+        }
+        
         placeIconImageView.snp.makeConstraints {
             $0.centerX.equalTo(timeIconImageView)
             $0.centerY.equalTo(placeButton)
@@ -356,8 +403,6 @@ final class ThunderDetailHeaderView: UIView {
         partcipantsImageCollectionView.snp.makeConstraints {
             $0.top.equalTo(contentsLabel.snp.bottom).offset(40.0)
             $0.leading.trailing.equalToSuperview()
-//            $0.leading.equalToSuperview()
-//            $0.trailing.equalToSuperview().inset(24.0)
             $0.height.equalTo(60.0)
         }
         
@@ -441,11 +486,27 @@ extension ThunderDetailHeaderView: UICollectionViewDelegate {
             
         case partcipantsImageCollectionView:
             guard indexPath.item < viewModel.participantImageURLs.count else { return }
-            print("DEBUG: Did tap user\(indexPath.item + 1)..")
-            collectionView.visibleCells.forEach { $0.layer.removeAllAnimations() }
-            guard let cell = collectionView.cellForItem(at: indexPath) as? ParticipantImageCell else { return }
-            cell.addShakeAnimation()
-            delegate?.showUserProfile(id: viewModel.participantIDs[indexPath.row])
+            delegate?.showUserProfile(index: indexPath.row, profiles: [
+                Profile(profileImageURL: TEST_IMAGE4_URL,
+                        id: "jdc0407",
+                        nickname: "네잎클로버",
+                        job: "전기공학과",
+                        email: "nupic7@pusan.ac.kr",
+                        introduce: "반갑습니다~ iOS 앱개발자 입니다~~ 잘 부탁드려요!\n공생공생 개발중입니다~~"),
+                Profile(profileImageURL: TEST_IMAGE5_URL,
+                        id: "jdc1234",
+                        nickname: "코로나확진자",
+                        job: "신소재공학과",
+                        email: "oluye7@pusan.ac.kr",
+                        introduce: "신소재공학과 새내기에요~! "),
+                Profile(profileImageURL: TEST_IMAGE6_URL,
+                        id: "jdc5678",
+                        nickname: "자가격리자",
+                        job: "철학과",
+                        email: "diresty@pusan.ac.kr",
+                        introduce: "16 화석이에요~~")
+            ])
+            
         default:
             return
         }

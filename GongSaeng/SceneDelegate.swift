@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let rootViewController = InitialViewController()
         
         let rootViewController = ThunderListViewController()
-        let viewController = UINavigationController(rootViewController: rootViewController)
+        let viewController = TempNavigationViewController(rootViewController: rootViewController)
         
 //        let viewController = LaunchScreenViewController()
         

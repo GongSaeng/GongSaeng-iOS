@@ -15,12 +15,12 @@ class ThunderListViewController: UIViewController {
     private let reuseIdentifier2 = "CompletedThunderCell"
     
     private var availableThunders: [Thunder] = [
-        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-26 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
-        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-27 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
-        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-28 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
-        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-01 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
-        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-02 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
-        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-03 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6)
+        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-05 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
+        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-06 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
+        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-07 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
+        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-08 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
+        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-09 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
+        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-10 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6)
     ]
     
     private var completedThunders: [Thunder] = [
@@ -189,7 +189,7 @@ extension ThunderListViewController: UITableViewDataSource {
 extension ThunderListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        let viewController = ThunderDetailViewController()
+        let viewController = ThunderDetailViewController(index: 35)
         viewController.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(viewController, animated: true)
     }

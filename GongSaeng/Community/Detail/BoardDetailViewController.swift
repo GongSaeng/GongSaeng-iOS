@@ -131,11 +131,11 @@ class BoardDetailViewController: UITableViewController {
         print("DEBUG: keyboardWillShow")
         guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         print("DEBUG: keyboardHeight -> \(keyboardFrame.height)")
-        guard keyboardFrame.height > 150 else {
+        guard keyboardFrame.height > 120 else {
             isKeyboardShowing = false
             return
         }
-        guard keyboardFrame.height > 300, !isKeyboardShowing else { return }
+        guard keyboardFrame.height > 200, !isKeyboardShowing else { return }
         let bottomPadding = UIApplication.shared.connectedScenes
             .filter { $0.activationState == .foregroundActive }
             .map { $0 as? UIWindowScene }

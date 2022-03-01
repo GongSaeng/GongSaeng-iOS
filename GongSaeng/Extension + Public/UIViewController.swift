@@ -9,15 +9,7 @@ import UIKit
 import JGProgressHUD
 
 extension UIViewController {
-    static let hud = JGProgressHUD(style: .dark)
-    
-    func configureGradientLayer() {
-        let gradient = CAGradientLayer()
-        gradient.colors = [UIColor.systemPurple.cgColor, UIColor.systemBlue.cgColor]
-        gradient.locations = [0, 1]
-        view.layer.addSublayer(gradient)
-        gradient.frame = view.frame
-    }
+    static let hud = JGProgressHUD(style: .light)
     
     func showLoader(_ show: Bool) {
         DispatchQueue.main.async { [weak self] in

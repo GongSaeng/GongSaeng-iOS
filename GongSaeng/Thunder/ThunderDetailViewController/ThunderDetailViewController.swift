@@ -11,6 +11,8 @@ import SnapKit
 final class ThunderDetailViewController: UIViewController {
     
     // MARK: Properties
+    var thunderIndex: Int
+    
     private var isKeyboardShowing = false
     private var viewModel = ThunderDetailViewModel()
     private var commentList: [Comment] = [
@@ -47,6 +49,22 @@ final class ThunderDetailViewController: UIViewController {
                 writerNickname: "자가격리자",
                 uploadedTime: "2022-03-02 14:25:00")
     ]
+    
+    private let topGradientLayer: CAGradientLayer = {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [UIColor.black.withAlphaComponent(0.3).cgColor, UIColor.black.withAlphaComponent(0).cgColor]
+        gradientLayer.locations = [0, 1]
+        let topPadding = UIApplication.shared.connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .map { $0 as? UIWindowScene }
+            .compactMap { $0 }
+            .first?.windows
+            .filter { $0.isKeyWindow }.first
+            .map { $0.safeAreaInsets.top } ?? 0
+        let frame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: topPadding + 40.0)
+        gradientLayer.frame = frame
+        return gradientLayer
+    }()
     
     private let tableView = UITableView()
     
@@ -85,19 +103,27 @@ final class ThunderDetailViewController: UIViewController {
         return true
     }
     
-//    override var preferredStatusBarStyle: UIStatusBarStyle {
-//        return statusBarStyle
-//    }
-    
     // MARK: Lifecycle
+    init(index: Int) {
+        self.thunderIndex = index
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         addKeyboardObserver()
         configureTableView()
+        fetchThunderDetail(index: thunderIndex)
         configure()
         layout()
         navigationViewAppearanceHandler()
+        navigationView.layer.addSublayer(topGradientLayer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -120,6 +146,25 @@ final class ThunderDetailViewController: UIViewController {
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        guard let tempNavigationViewController = navigationController as? TempNavigationViewController else { return }
+        tempNavigationViewController.statusBarStyle = .darkContent
+    }
+    
+    // MARK: API
+    private func fetchThunderDetail(index: Int) {
+        ThunderNetworkManager.fetchThunderDetail(index: index) { [weak self] thunderDetail in
+            guard let self = self else { return }
+            self.viewModel.thunderDetail = thunderDetail
+            let headerView = ThunderDetailHeaderView(viewModel: ThunderDetailHeaderViewModel(thunderDetail: thunderDetail))
+            headerView.delegate = self
+            self.tableView.tableHeaderView = headerView
+            self.remainingDaysLabel.text = self.viewModel.remainingDays
+        }
+    }
+    
     // MARK: Actions
     @objc
     private func didTapBackwardButton() {
@@ -127,25 +172,29 @@ final class ThunderDetailViewController: UIViewController {
     }
     
     private func navigationViewAppearanceHandler() {
+        guard let tempNavigationViewController = navigationController as? TempNavigationViewController else { return }
         navigationView.backgroundColor = viewModel.navigationViewColor
         dividingView.backgroundColor = viewModel.dividingViewColor
         backwardButton.tintColor = viewModel.backwardButtonColor
-//        statusBarStyle = viewModel.isNavigationViewHidden ? .darkContent : .lightContent
-//        setNeedsStatusBarAppearanceUpdate()
+        remainingDaysLabel.isHidden = viewModel.isNavigationViewHidden
+        if viewModel.isNavigationViewHidden {
+            navigationView.layer.addSublayer(topGradientLayer)
+            tempNavigationViewController.statusBarStyle = .lightContent
+        } else {
+            topGradientLayer.removeFromSuperlayer()
+            tempNavigationViewController.statusBarStyle = .darkContent
+        }
     }
-    
-    // MARK: Actions
+
     @objc
     private func keyboardWillShow(_ notification: NSNotification) {
-        print("DEBUG: keyboardWillShow")
+        print("DEBUG: Before isKeyboardShowing \(isKeyboardShowing)")
         guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        print("DEBUG: keyboardHeight -> \(keyboardFrame.height)")
-//        spaceView.snp.updateConstraints { $0.height.equalTo(keyboardFrame.height) }
-        guard keyboardFrame.height > 150 else {
+        print("DEBUG: keyboardFrame \(keyboardFrame.height)")
+        if keyboardFrame.height < 200 {
             isKeyboardShowing = false
-            return
         }
-        guard keyboardFrame.height > 300, !isKeyboardShowing else { return }
+        guard keyboardFrame.height > 200, !isKeyboardShowing else { return }
         let bottomPadding = UIApplication.shared.connectedScenes
             .filter { $0.activationState == .foregroundActive }
             .map { $0 as? UIWindowScene }
@@ -156,6 +205,7 @@ final class ThunderDetailViewController: UIViewController {
         let newOffsetY = tableView.contentOffset.y + keyboardFrame.height - commentInputView.frame.height - bottomPadding
         tableView.setContentOffset(CGPoint(x: 0, y: newOffsetY), animated: true)
         isKeyboardShowing = true
+        print("DEBUG: After isKeyboardShowing \(isKeyboardShowing)")
     }
     
     // MARK: Helpers
@@ -164,25 +214,6 @@ final class ThunderDetailViewController: UIViewController {
     }
     
     private func configureTableView() {
-        let thunderDetail = ThunderDetail(postingImagesFilename: [TEST_IMAGE2_URL, TEST_IMAGE3_URL, TEST_IMAGE1_URL],
-                                          title: "같이 코노가요 가나다라마바사아자차카타파하 글자길이 테스트 2줄은 어떻게 보이나 3줄은 어떻게 보이려나",
-                                          writerImageFilename: TEST_IMAGE4_URL,
-                                          writerId: "",
-                                          writerNickname: "네잎클로버",
-                                          uploadedTime: "2022-03-02 13:35:31",
-                                          meetingTime: "2022-03-02 19:00:00",
-                                          placeName: "레드노래연습장 부산대점",
-                                          address: "부산 금정구 금강로 271",
-                                          placeURL: "http://place.map.kakao.com/12421917",
-                                          totalNum: 6,
-                                          contents: "저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~",
-                                          participantImageURLs: [TEST_IMAGE4_URL, TEST_IMAGE5_URL, TEST_IMAGE6_URL],
-                                          participantIDs: ["jdc0407", "123", "1234"],
-                                          status: 0,
-                                          numberOfComments: 15)
-        let headerView = ThunderDetailHeaderView(viewModel: ThunderDetailHeaderViewModel(thunderDetail: thunderDetail))
-        headerView.delegate = self
-        tableView.tableHeaderView = headerView
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.keyboardDismissMode = .interactive
         tableView.dataSource = self
@@ -197,12 +228,12 @@ final class ThunderDetailViewController: UIViewController {
         navigationView.backgroundColor = .clear
         dividingView.backgroundColor = UIColor(white: 0, alpha: 0.2)
         backwardButton.tintColor = .white
-        remainingDaysLabel.font = .systemFont(ofSize: (viewModel.remainingDays == "Today") ? 16.0: 18.0, weight: .heavy)
+        remainingDaysLabel.font = .systemFont(ofSize: (viewModel.remainingDays == "Today") ? 16.0: 18.0, weight: .bold)
         remainingDaysLabel.text = viewModel.remainingDays
     }
     
     private func layout() {
-        [tableView, navigationView, spaceView]
+        [tableView, navigationView, spaceView, backwardButton]
             .forEach { view.addSubview($0) }
         tableView.snp.makeConstraints {
             $0.top.leading.trailing.equalToSuperview()
@@ -219,14 +250,14 @@ final class ThunderDetailViewController: UIViewController {
             $0.bottom.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40.0)
         }
         
-        [backwardButton, dividingView, remainingDaysLabel]
-            .forEach { navigationView.addSubview($0) }
         backwardButton.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(-4.0)
             $0.leading.equalToSuperview().inset(7.0)
             $0.width.height.equalTo(44.0)
         }
         
+        [dividingView, remainingDaysLabel]
+            .forEach { navigationView.addSubview($0) }
         remainingDaysLabel.snp.makeConstraints {
             $0.centerX.equalToSuperview()
             $0.centerY.equalTo(backwardButton)
@@ -239,10 +270,30 @@ final class ThunderDetailViewController: UIViewController {
     }
 }
 
+// MARK: ParticipantProfileViewControllerDelegate
+extension ThunderDetailViewController: ParticipantProfileViewControllerDelegate {
+    func activateShakeAnimation(index: Int) {
+        guard let headerView = tableView.tableHeaderView as? ThunderDetailHeaderView else { return }
+        headerView.activateShakeAnimation(index: index)
+    }
+    
+    func removeAnimation() {
+        guard let headerView = tableView.tableHeaderView as? ThunderDetailHeaderView else { return }
+        headerView.removeAnimation()
+    }
+}
+
+// MARK: ThunderDetailHeaderViewDelegate
 extension ThunderDetailViewController: ThunderDetailHeaderViewDelegate {
-    func showUserProfile(id: String) {
-        print("DEBUG: id \(id)")
-//        commentInputView.isHidden = !commentInputView.isHidden
+    func showUserProfile(index: Int, profiles: [Profile]) {
+        let viewController = ParticipantProfileViewController(index: index, profiles: profiles)
+        viewController.statusBarStyle = navigationController?.preferredStatusBarStyle ?? .default
+        viewController.delegate = self
+        viewController.modalPresentationStyle = .overCurrentContext
+        present(viewController, animated: false) {
+            self.isKeyboardShowing = true
+            self.spaceView.snp.updateConstraints { $0.height.equalTo(0) }
+        }
     }
 }
 
