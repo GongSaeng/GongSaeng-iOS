@@ -188,9 +188,7 @@ final class ThunderDetailViewController: UIViewController {
 
     @objc
     private func keyboardWillShow(_ notification: NSNotification) {
-        print("DEBUG: Before isKeyboardShowing \(isKeyboardShowing)")
         guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        print("DEBUG: keyboardFrame \(keyboardFrame.height)")
         if keyboardFrame.height < 200 {
             isKeyboardShowing = false
         }
@@ -205,7 +203,6 @@ final class ThunderDetailViewController: UIViewController {
         let newOffsetY = tableView.contentOffset.y + keyboardFrame.height - commentInputView.frame.height - bottomPadding
         tableView.setContentOffset(CGPoint(x: 0, y: newOffsetY), animated: true)
         isKeyboardShowing = true
-        print("DEBUG: After isKeyboardShowing \(isKeyboardShowing)")
     }
     
     // MARK: Helpers

@@ -34,11 +34,12 @@ final class ThunderListTopView: UIView {
         button.setPreferredSymbolConfiguration(configuration, forImageIn: .normal)
         button.setAttributedTitle(
             NSAttributedString(
-                string: "부산 ",
+                string: "\(UserDefaults.standard.string(forKey: "region") ?? "서울") " ,
                 attributes: [.font: UIFont.systemFont(ofSize: 17.0,
                                                       weight: .semibold)]),
             for: .normal)
         button.semanticContentAttribute = .forceRightToLeft
+        button.contentHorizontalAlignment = .right
         button.addTarget(self, action: #selector(didTapLocaleSelectionButton), for: .touchUpInside)
         return button
     }()
@@ -128,6 +129,15 @@ final class ThunderListTopView: UIView {
     }
     
     // MARK: Helpers
+    func updateLocale() {
+        localeSelectionButton.setAttributedTitle(
+            NSAttributedString(
+                string: "\(UserDefaults.standard.string(forKey: "region") ?? "서울") " ,
+                attributes: [.font: UIFont.systemFont(ofSize: 17.0,
+                                                      weight: .semibold)]),
+            for: .normal)
+    }
+    
     private func updateSortingOrder() {
         closingOrderLabel.textColor = viewModel.closingTitleColor
         closingOrderLabel.backgroundColor = viewModel.closingBackgroundColor
@@ -158,6 +168,7 @@ final class ThunderListTopView: UIView {
         localeSelectionButton.snp.makeConstraints {
             $0.centerY.equalTo(thunderLabel)
             $0.trailing.equalToSuperview().inset(18.0)
+            $0.width.equalTo(86.0)
             $0.height.equalTo(44.0)
         }
         

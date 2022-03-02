@@ -190,7 +190,7 @@ final class ParticipantProfileViewController: UIViewController {
     }
     
     private func setupPanGestrue() {
-        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePangGesture))
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePanGesture))
         panGesture.delaysTouchesBegan = false
         panGesture.delaysTouchesEnded = false
         holderView.addGestureRecognizer(panGesture)
@@ -205,7 +205,7 @@ final class ParticipantProfileViewController: UIViewController {
     }
     
     @objc
-    private func handlePangGesture(gesture: UIPanGestureRecognizer) {
+    private func handlePanGesture(gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
         let newHeight = currentContainerHeight - translation.y
         

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ThunderListViewController: UIViewController {
+final class ThunderListViewController: UIViewController {
     
     // MARK: Properties
     private let reuseIdentifier1 = "AvailableThunderCell"
@@ -120,15 +120,21 @@ class ThunderListViewController: UIViewController {
     }
 }
 
+// MARK: LocalePopUpViewControllerDelegate
+extension ThunderListViewController: LocalePopUpViewControllerDelegate {
+    func updateTableView() {
+        topView.updateLocale()
+        tableView.reloadData()
+    }
+}
+
 // MARK: ThunderListTopViewDelegate
 extension ThunderListViewController: ThunderListTopViewDelegate {
     func localeSelectionHandler() {
-        let storyboard = UIStoryboard(name: "Temp", bundle: .main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "TempDetail2ViewController") as! TempDetail2ViewController
-        navigationController?.pushViewController(viewController, animated: true)
-//        let viewController = LocalePopUpViewController()
-//        viewController.modalPresentationStyle = .overCurrentContext
-//        present(viewController, animated: false, completion: nil)
+        let viewController = LocalePopUpViewController()
+        viewController.delegate = self
+        viewController.modalPresentationStyle = .overCurrentContext
+        present(viewController, animated: false, completion: nil)
     }
 }
 
