@@ -7,8 +7,8 @@
 
 import Foundation
 
-struct Profile {
-    var profileImageURL: String?
+struct Profile: Decodable {
+    var profileImageURL: String
     var id: String
     var nickname: String
     var job: String

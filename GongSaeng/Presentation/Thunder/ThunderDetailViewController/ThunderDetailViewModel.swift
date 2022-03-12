@@ -25,7 +25,7 @@ struct ThunderDetailViewModel {
     }
     
     var remainingDays: String {
-        guard let thunderDetail = thunderDetail else { return ""}
+        guard let thunderDetail = thunderDetail else { return "" }
         return thunderDetail.meetingTime.toRemainingDays()
     }
 }

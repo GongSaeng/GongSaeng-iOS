@@ -21,10 +21,6 @@ final class ParticipantImageCell: UICollectionViewCell {
     
     private let participantImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .center
-        let config = UIImage.SymbolConfiguration(pointSize: 36.0)
-        imageView.image = UIImage(systemName: "questionmark", withConfiguration: config)
-        imageView.tintColor = .systemGray
         imageView.clipsToBounds = true
         return imageView
     }()
@@ -66,6 +62,13 @@ final class ParticipantImageCell: UICollectionViewCell {
     }
     
     // MARK: Helpers
+    func configureVacancy() {
+        participantImageView.contentMode = .center
+        let config = UIImage.SymbolConfiguration(pointSize: 36.0)
+        participantImageView.image = UIImage(systemName: "questionmark", withConfiguration: config)
+        participantImageView.tintColor = .systemGray
+    }
+    
     func configureHost() {
         contentView.layer.borderColor = UIColor(displayP3Red: 1, green: 208/255, blue: 101/255, alpha: 1).cgColor
         contentView.layer.borderWidth = 2.0
@@ -95,13 +98,13 @@ final class ParticipantImageCell: UICollectionViewCell {
     
     private func layout() {
         contentView.addSubview(participantImageView)
-        participantImageView.snp.makeConstraints { $0.edges.equalToSuperview() }
+        participantImageView.snp.makeConstraints { $0.edges.equalToSuperview().inset(-3.0) }
         
         self.addSubview(crownImageView)
         crownImageView.snp.makeConstraints {
             $0.centerX.equalTo(participantImageView)
             $0.width.height.equalTo(30.0)
-            $0.bottom.equalTo(participantImageView.snp.top).offset(10.0)
+            $0.bottom.equalTo(participantImageView.snp.top).offset(13.0)
         }
     }
 }

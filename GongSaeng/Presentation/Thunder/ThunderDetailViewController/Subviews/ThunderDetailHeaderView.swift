@@ -108,15 +108,6 @@ final class ThunderDetailHeaderView: UIView {
         return imageView
     }()
     
-    private let placeLabel: UILabel = {
-        let label = UILabel()
-        label.font = .systemFont(ofSize: 14.0, weight: .medium)
-        label.lineBreakMode = .byTruncatingTail
-        label.textColor = .black
-        label.numberOfLines = 1
-        return label
-    }()
-    
     private lazy var placeButton: UIButton = {
         let button = UIButton(type: .system)
         button.contentHorizontalAlignment = .left
@@ -128,8 +119,9 @@ final class ThunderDetailHeaderView: UIView {
         button.setAttributedTitle(
             NSAttributedString(
                 string: "지도보기",
-                attributes: [.font: UIFont.systemFont(ofSize: 12.0, weight: .semibold),
-                             .foregroundColor: UIColor(named: "colorPaleOrange")!]),
+                attributes: [
+                    .font: UIFont.systemFont(ofSize: 12.0, weight: .semibold),
+                    .foregroundColor: UIColor(named: "colorPaleOrange")!]),
             for: .normal)
         button.addTarget(self, action: #selector(openMapLink), for: .touchUpInside)
         return button
@@ -166,7 +158,6 @@ final class ThunderDetailHeaderView: UIView {
         collectionView.delegate = self
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.layer.masksToBounds = false
-//        collectionView.bounces = false
         collectionView.register(ParticipantImageCell.self, forCellWithReuseIdentifier: "ParticipantImageCell")
         return collectionView
     }()
@@ -284,7 +275,7 @@ final class ThunderDetailHeaderView: UIView {
         [attachedImageCollectionView, bottomDarkView, pageControl, titleLabel,
          writerImageView, writerNicknameLabel, verticalDividingView,
          uploadedTimeLabel, horizontalDividingView1, timeIconImageView,
-         timeLabel, placeIconImageView, placeLabel, peopleIconImageView,
+         timeLabel, placeIconImageView, peopleIconImageView,
          totalNumOfPeopleLabel, contentsLabel, placeButton, openMapButton,
          partcipantsImageCollectionView, joinButton, horizontalDividingView2,
         commentImageView, numberOfCommentsLabel]
@@ -457,8 +448,11 @@ extension ThunderDetailHeaderView: UICollectionViewDataSource {
             
         case partcipantsImageCollectionView:
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ParticipantImageCell", for: indexPath) as? ParticipantImageCell else { return ParticipantImageCell() }
-            guard indexPath.item < viewModel.participantImageURLs.count else { return cell }
-            cell.imageURL = viewModel.participantImageURLs[indexPath.item]
+            if indexPath.item < viewModel.participantImageURLs.count {
+                cell.imageURL = viewModel.participantImageURLs[indexPath.item]
+            } else {
+                cell.configureVacancy()
+            }
             if indexPath.item == 0 { cell.configureHost() }
             return cell
             
@@ -486,26 +480,7 @@ extension ThunderDetailHeaderView: UICollectionViewDelegate {
             
         case partcipantsImageCollectionView:
             guard indexPath.item < viewModel.participantImageURLs.count else { return }
-            delegate?.showUserProfile(index: indexPath.row, profiles: [
-                Profile(profileImageURL: TEST_IMAGE4_URL,
-                        id: "jdc0407",
-                        nickname: "네잎클로버",
-                        job: "전기공학과",
-                        email: "nupic7@pusan.ac.kr",
-                        introduce: "반갑습니다~ iOS 앱개발자 입니다~~ 잘 부탁드려요!\n공생공생 개발중입니다~~"),
-                Profile(profileImageURL: TEST_IMAGE5_URL,
-                        id: "jdc1234",
-                        nickname: "코로나확진자",
-                        job: "신소재공학과",
-                        email: "oluye7@pusan.ac.kr",
-                        introduce: "신소재공학과 새내기에요~! "),
-                Profile(profileImageURL: TEST_IMAGE6_URL,
-                        id: "jdc5678",
-                        nickname: "자가격리자",
-                        job: "철학과",
-                        email: "diresty@pusan.ac.kr",
-                        introduce: "16 화석이에요~~")
-            ])
+            delegate?.showUserProfile(index: indexPath.row, profiles: viewModel.participantsProfile)
             
         default:
             return
@@ -535,7 +510,6 @@ extension ThunderDetailHeaderView: UICollectionViewDelegateFlowLayout {
         default:
             return CGSize.zero
         }
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {

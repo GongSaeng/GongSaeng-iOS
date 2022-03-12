@@ -22,8 +22,15 @@ struct ThunderDetailHeaderViewModel {
     var totalNumText: String
     var contents: String
     
-    var participantImageURLs: [URL?]
-    var participantIDs: [String]
+    var participantsProfile: [Profile]
+    var participantImageURLs: [URL?] {
+        return participantsProfile
+            .compactMap { $0.profileImageURL }
+            .map { URL(string: $0) }
+    }
+    var participantIDs: [String] {
+        return participantsProfile.map { $0.id }
+    }
     
     var numOfCommentsText: String
      
@@ -46,9 +53,7 @@ struct ThunderDetailHeaderViewModel {
         self.totalNumText = "\(thunderDetail.totalNum)명"
         self.contents = thunderDetail.contents
         
-        self.participantImageURLs = (thunderDetail.participantImageURLs ?? [])
-            .map { URL(string: $0) }
-        self.participantIDs = thunderDetail.participantIDs
+        self.participantsProfile = thunderDetail.participantsProfile
         self.numOfCommentsText = "댓글 \(thunderDetail.numberOfComments)"
     }
 }

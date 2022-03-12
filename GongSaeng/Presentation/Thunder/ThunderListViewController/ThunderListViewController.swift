@@ -128,12 +128,29 @@ extension ThunderListViewController: LocalePopUpViewControllerDelegate {
     }
 }
 
+// MARK: MyThunderViewControllerDelegate
+extension ThunderListViewController: MyThunderViewControllerDelegate {
+    func showDetailViewController(index: Int) {
+        let viewController = ThunderDetailViewController(index: index)
+        viewController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
 // MARK: ThunderListTopViewDelegate
 extension ThunderListViewController: ThunderListTopViewDelegate {
     func localeSelectionHandler() {
         let viewController = LocalePopUpViewController()
         viewController.delegate = self
         viewController.modalPresentationStyle = .overCurrentContext
+        present(viewController, animated: false, completion: nil)
+    }
+    
+    func lookMyThunderList() {
+        // API 코드 작성
+        let viewController = MyThunderViewController(myThunders: exampleMyThunders)
+        viewController.modalPresentationStyle = .overCurrentContext
+        viewController.delegate = self
         present(viewController, animated: false, completion: nil)
     }
 }

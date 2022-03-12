@@ -56,6 +56,9 @@
 		A719D09327CEFB45000A9388 /* District.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719D09227CEFB45000A9388 /* District.swift */; };
 		A719D09527CEFBA8000A9388 /* domains_universities_in_korea.json in Resources */ = {isa = PBXBuildFile; fileRef = A719D09427CEFBA8000A9388 /* domains_universities_in_korea.json */; };
 		A719D09727CF0210000A9388 /* LocaleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719D09627CF0210000A9388 /* LocaleViewModel.swift */; };
+		A719D09927CFA889000A9388 /* MyThunderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719D09827CFA889000A9388 /* MyThunderViewController.swift */; };
+		A719D09B27CFA895000A9388 /* MyThunderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719D09A27CFA895000A9388 /* MyThunderViewModel.swift */; };
+		A719D09F27CFC1B6000A9388 /* MyThunder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719D09E27CFC1B6000A9388 /* MyThunder.swift */; };
 		A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E07B926EE6021007DB8D0 /* UIImageView.swift */; };
 		A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A732CA47277CF0DD00A11E68 /* JGProgressHUD */; };
 		A732CA4A277CF11B00A11E68 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732CA49277CF11B00A11E68 /* UIViewController.swift */; };
@@ -90,6 +93,9 @@
 		A76B9DAD27842B2B006AF832 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76B9DAC27842B2A006AF832 /* MyPageViewController.swift */; };
 		A76B9DAF2784694B006AF832 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76B9DAE2784694B006AF832 /* EditProfileViewController.swift */; };
 		A76B9DB12784CD64006AF832 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76B9DB02784CD64006AF832 /* EditProfileViewModel.swift */; };
+		A76DB24827DC83E700C020A2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A76DB24727DC83E700C020A2 /* RxCocoa */; };
+		A76DB24A27DC83E700C020A2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A76DB24927DC83E700C020A2 /* RxRelay */; };
+		A76DB24C27DC83E700C020A2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A76DB24B27DC83E700C020A2 /* RxSwift */; };
 		A76F29CF27B10DA60077F297 /* PlaceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F29CE27B10DA60077F297 /* PlaceListCell.swift */; };
 		A76F29D127B1144E0077F297 /* SearchPlaceNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F29D027B1144E0077F297 /* SearchPlaceNetwork.swift */; };
 		A76F29D327B116BF0077F297 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F29D227B116BF0077F297 /* Place.swift */; };
@@ -235,6 +241,9 @@
 		A719D09227CEFB45000A9388 /* District.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = District.swift; sourceTree = "<group>"; };
 		A719D09427CEFBA8000A9388 /* domains_universities_in_korea.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = domains_universities_in_korea.json; sourceTree = "<group>"; };
 		A719D09627CF0210000A9388 /* LocaleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocaleViewModel.swift; sourceTree = "<group>"; };
+		A719D09827CFA889000A9388 /* MyThunderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyThunderViewController.swift; sourceTree = "<group>"; };
+		A719D09A27CFA895000A9388 /* MyThunderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyThunderViewModel.swift; sourceTree = "<group>"; };
+		A719D09E27CFC1B6000A9388 /* MyThunder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyThunder.swift; sourceTree = "<group>"; };
 		A71E07B926EE6021007DB8D0 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
 		A732CA49277CF11B00A11E68 /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
 		A736F979278BF5100075A665 /* BoardListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardListViewController.swift; sourceTree = "<group>"; };
@@ -260,7 +269,7 @@
 		A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveContainerViewController.swift; sourceTree = "<group>"; };
 		A748216A27C8E08700B51901 /* AttachedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedImageCell.swift; sourceTree = "<group>"; };
 		A753C02A277C3F1700039D5F /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
-		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = GongSaeng/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = GongSaeng/Resource/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		A760B5DF27BA7FCA00BFDFD5 /* ThunderListTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderListTopViewModel.swift; sourceTree = "<group>"; };
 		A760B5E327BA924100BFDFD5 /* LocalePopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalePopUpViewController.swift; sourceTree = "<group>"; };
 		A7674F7126EF9A5600AE60FA /* RequestCheckInOut.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = RequestCheckInOut.storyboard; sourceTree = "<group>"; };
@@ -363,10 +372,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A76DB24A27DC83E700C020A2 /* RxRelay in Frameworks */,
 				A793136F279868F1004C61CC /* Kingfisher in Frameworks */,
 				A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */,
+				A76DB24827DC83E700C020A2 /* RxCocoa in Frameworks */,
 				A7C9D10627784A8A00943207 /* SnapKit in Frameworks */,
 				A7BB11F627B5005E004AD66C /* FirebaseAuth in Frameworks */,
+				A76DB24C27DC83E700C020A2 /* RxSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,28 +430,15 @@
 		3D5D5987265247F40018FE63 /* GongSaeng */ = {
 			isa = PBXGroup;
 			children = (
-				A77B7B6D2748CFF200D0D5B1 /* splash.png */,
-				3DA98CCB26530C04005175B5 /* User */,
-				3D5D5988265247F40018FE63 /* AppDelegate.swift */,
-				3D5D598A265247F40018FE63 /* SceneDelegate.swift */,
-				A79E37E22783388C0059D5C1 /* InitialViewController.swift */,
-				A79E37DE2783140F0059D5C1 /* LaunchScreenViewController.swift */,
-				3D5D5993265247F50018FE63 /* LaunchScreen.storyboard */,
 				3D5D5996265247F50018FE63 /* Info.plist */,
-				A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */,
 				A7BB11F227B4FE99004AD66C /* GoogleService-Info.plist */,
-				3D5D59A1265295C60018FE63 /* Login */,
-				3D5D59A62652961B0018FE63 /* Register */,
-				3DB686F8268D8C2D0061BCB0 /* TabBarManager */,
-				3D5D599C2652491F0018FE63 /* Home */,
-				A78E4EDB279A95390017238D /* Thunder */,
-				3D2FBC072675FEAC00D2FF56 /* Public */,
-				A753C026277C3F1700039D5F /* Community */,
-				A7DE0105270836300098AACF /* Notification */,
-				A753FB6026ED0533001DA2C3 /* MyPage */,
-				A7A9B3D62754D42D009B22DF /* API */,
+				A7B7E0AE27D7A8B60092956C /* Resource */,
+				A76DB24D27DC84C500C020A2 /* AppDelegate */,
+				A76DB24F27DC854D00C020A2 /* Enitity */,
+				A76DB24E27DC851600C020A2 /* Presentation */,
+				A7A9B3D62754D42D009B22DF /* Network */,
 				A7C9D0FF277849E700943207 /* View */,
-				3DAFCB9E26625DDF008E9803 /* Extension + Public */,
+				3DAFCB9E26625DDF008E9803 /* Utils */,
 			);
 			path = GongSaeng;
 			sourceTree = "<group>";
@@ -470,7 +469,6 @@
 		3D5D59A62652961B0018FE63 /* Register */ = {
 			isa = PBXGroup;
 			children = (
-				A719D09427CEFBA8000A9388 /* domains_universities_in_korea.json */,
 				A709A2E6278563750038BB76 /* Register.swift */,
 				3D5D59A92652B11C0018FE63 /* RegisterViewController.swift */,
 				3D5D59AD2652B2930018FE63 /* Register.storyboard */,
@@ -497,7 +495,7 @@
 			path = User;
 			sourceTree = "<group>";
 		};
-		3DAFCB9E26625DDF008E9803 /* Extension + Public */ = {
+		3DAFCB9E26625DDF008E9803 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
 				A79E37E02783339B0059D5C1 /* Constant.swift */,
@@ -511,7 +509,7 @@
 				A7EB35682786DB42001BCD03 /* ImageCacheManager.swift */,
 				A7EE6D35278FFEC5000AC151 /* UIImage.swift */,
 			);
-			path = "Extension + Public";
+			path = Utils;
 			sourceTree = "<group>";
 		};
 		3DB686F8268D8C2D0061BCB0 /* TabBarManager */ = {
@@ -693,6 +691,8 @@
 			children = (
 				A760B5E327BA924100BFDFD5 /* LocalePopUpViewController.swift */,
 				A719D09627CF0210000A9388 /* LocaleViewModel.swift */,
+				A719D09827CFA889000A9388 /* MyThunderViewController.swift */,
+				A719D09A27CFA895000A9388 /* MyThunderViewModel.swift */,
 			);
 			path = PopUpView;
 			sourceTree = "<group>";
@@ -704,6 +704,42 @@
 				A76B9DB02784CD64006AF832 /* EditProfileViewModel.swift */,
 			);
 			path = EditProfile;
+			sourceTree = "<group>";
+		};
+		A76DB24D27DC84C500C020A2 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				3D5D5988265247F40018FE63 /* AppDelegate.swift */,
+				3D5D598A265247F40018FE63 /* SceneDelegate.swift */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		A76DB24E27DC851600C020A2 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				A79E37E22783388C0059D5C1 /* InitialViewController.swift */,
+				A79E37DE2783140F0059D5C1 /* LaunchScreenViewController.swift */,
+				3D5D5993265247F50018FE63 /* LaunchScreen.storyboard */,
+				3D5D59A1265295C60018FE63 /* Login */,
+				3D5D59A62652961B0018FE63 /* Register */,
+				3DB686F8268D8C2D0061BCB0 /* TabBarManager */,
+				3D5D599C2652491F0018FE63 /* Home */,
+				A78E4EDB279A95390017238D /* Thunder */,
+				3D2FBC072675FEAC00D2FF56 /* Public */,
+				A753C026277C3F1700039D5F /* Community */,
+				A7DE0105270836300098AACF /* Notification */,
+				A753FB6026ED0533001DA2C3 /* MyPage */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		A76DB24F27DC854D00C020A2 /* Enitity */ = {
+			isa = PBXGroup;
+			children = (
+				3DA98CCB26530C04005175B5 /* User */,
+			);
+			path = Enitity;
 			sourceTree = "<group>";
 		};
 		A76F29D427B121AE0077F297 /* SearchPlace */ = {
@@ -736,8 +772,8 @@
 			isa = PBXGroup;
 			children = (
 				A7A1639D27C521C200379A43 /* ThunderDetailHeaderView.swift */,
-				A748216A27C8E08700B51901 /* AttachedImageCell.swift */,
 				A7FAB14927C643DE00B736AB /* ThunderDetailHeaderViewModel.swift */,
+				A748216A27C8E08700B51901 /* AttachedImageCell.swift */,
 				A7008E1B27C93B2F00D82BF3 /* ParticipantImageCell.swift */,
 			);
 			path = Subviews;
@@ -771,7 +807,6 @@
 		A78E4EDB279A95390017238D /* Thunder */ = {
 			isa = PBXGroup;
 			children = (
-				A719D09027CEF91F000A9388 /* korea_administrative_district.json */,
 				A78E4ED9279A952E0017238D /* Temp.storyboard */,
 				A7E3D11A27BB92A60002240B /* Model */,
 				A760B5E127BA8ED100BFDFD5 /* ThunderListViewController */,
@@ -798,7 +833,7 @@
 			path = ThunderDetailViewController;
 			sourceTree = "<group>";
 		};
-		A7A9B3D62754D42D009B22DF /* API */ = {
+		A7A9B3D62754D42D009B22DF /* Network */ = {
 			isa = PBXGroup;
 			children = (
 				A7EE6D33278FB541000AC151 /* CommunityNetworkManager.swift */,
@@ -809,7 +844,7 @@
 				A76F29D027B1144E0077F297 /* SearchPlaceNetwork.swift */,
 				A77A742827CCB0F400295730 /* ThunderNetworkManager.swift */,
 			);
-			path = API;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		A7AE9F3726EF2C9B0082C855 /* PopUp */ = {
@@ -827,6 +862,17 @@
 				A7F4193C26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift */,
 			);
 			path = PopUp;
+			sourceTree = "<group>";
+		};
+		A7B7E0AE27D7A8B60092956C /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				A719D09427CEFBA8000A9388 /* domains_universities_in_korea.json */,
+				A719D09027CEF91F000A9388 /* korea_administrative_district.json */,
+				A77B7B6D2748CFF200D0D5B1 /* splash.png */,
+				A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */,
+			);
+			path = Resource;
 			sourceTree = "<group>";
 		};
 		A7C9D0FF277849E700943207 /* View */ = {
@@ -859,6 +905,7 @@
 				A7FAB14B27C64E8500B736AB /* ThunderDetail.swift */,
 				A77A743127CD2F2100295730 /* Profile.swift */,
 				A719D09227CEFB45000A9388 /* District.swift */,
+				A719D09E27CFC1B6000A9388 /* MyThunder.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -884,6 +931,9 @@
 				A732CA47277CF0DD00A11E68 /* JGProgressHUD */,
 				A793136E279868F1004C61CC /* Kingfisher */,
 				A7BB11F527B5005E004AD66C /* FirebaseAuth */,
+				A76DB24727DC83E700C020A2 /* RxCocoa */,
+				A76DB24927DC83E700C020A2 /* RxRelay */,
+				A76DB24B27DC83E700C020A2 /* RxSwift */,
 			);
 			productName = GongSaeng;
 			productReference = 3D5D5985265247F40018FE63 /* GongSaeng.app */;
@@ -917,6 +967,7 @@
 				A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
 				A793136D279868F1004C61CC /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				A7BB11F427B5005E004AD66C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */,
 			);
 			productRefGroup = 3D5D5986265247F40018FE63 /* Products */;
 			projectDirPath = "";
@@ -1002,6 +1053,7 @@
 				A7B35575277B18D8006F6A54 /* CommentInputAccessoryView.swift in Sources */,
 				3D5D59AA2652B11C0018FE63 /* RegisterViewController.swift in Sources */,
 				A709A2E7278563750038BB76 /* Register.swift in Sources */,
+				A719D09F27CFC1B6000A9388 /* MyThunder.swift in Sources */,
 				A7EB35692786DB42001BCD03 /* ImageCacheManager.swift in Sources */,
 				3D2FBC062675FE6B00D2FF56 /* PublicViewController.swift in Sources */,
 				3D231A68266E44BA00080E9B /* Mate.swift in Sources */,
@@ -1085,6 +1137,7 @@
 				A7FAB14C27C64E8500B736AB /* ThunderDetail.swift in Sources */,
 				A7EE6D3827910B44000AC151 /* Post.swift in Sources */,
 				A76F29D327B116BF0077F297 /* Place.swift in Sources */,
+				A719D09B27CFA895000A9388 /* MyThunderViewModel.swift in Sources */,
 				A7B35577277B73F3006F6A54 /* LoginViewModel.swift in Sources */,
 				3DD893D4266E1A6E0050B4F8 /* NoticeViewController.swift in Sources */,
 				A7DD616327B121F1001F3F63 /* PlaceListCellViewModel.swift in Sources */,
@@ -1094,6 +1147,7 @@
 				A736F980278BF98D0075A665 /* Community.swift in Sources */,
 				A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */,
 				A7A21AD827990C7D00E71761 /* MyProfileAndWritingViewController.swift in Sources */,
+				A719D09927CFA889000A9388 /* MyThunderViewController.swift in Sources */,
 				A7DB07AF2792A2A300FE7ABA /* FullImageCell.swift in Sources */,
 				A7A9B3DA2754DBB6009B22DF /* HomeNetworkManager.swift in Sources */,
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,
@@ -1317,6 +1371,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/reactivex/rxswift.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.0.0;
+			};
+		};
 		A793136D279868F1004C61CC /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
@@ -1348,6 +1410,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
 			productName = JGProgressHUD;
+		};
+		A76DB24727DC83E700C020A2 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */;
+			productName = RxCocoa;
+		};
+		A76DB24927DC83E700C020A2 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */;
+			productName = RxRelay;
+		};
+		A76DB24B27DC83E700C020A2 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */;
+			productName = RxSwift;
 		};
 		A793136E279868F1004C61CC /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;

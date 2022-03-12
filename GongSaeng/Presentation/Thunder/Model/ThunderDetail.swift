@@ -23,8 +23,7 @@ struct ThunderDetail: Decodable {
     
     var contents: String
     
-    var participantImageURLs: [String]?
-    var participantIDs: [String]
+    var participantsProfile: [Profile]
     
     var status: Int
     

@@ -10,6 +10,7 @@ import SnapKit
 
 protocol ThunderListTopViewDelegate: AnyObject {
     func localeSelectionHandler()
+    func lookMyThunderList()
 }
 
 final class ThunderListTopView: UIView {
@@ -76,9 +77,9 @@ final class ThunderListTopView: UIView {
         return button
     }()
     
-    private lazy var lookThunderListButton: UIButton = {
+    private lazy var lookMyThunderButton: UIButton = {
         let button = UIButton(type: .system)
-        button.addTarget(self, action: #selector(didTapLookThunderListButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapLookMyThunderButton), for: .touchUpInside)
         return button
     }()
     
@@ -118,8 +119,8 @@ final class ThunderListTopView: UIView {
     }
     
     @objc
-    private func didTapLookThunderListButton() {
-        print("DEBUG: Did tap button..")
+    private func didTapLookMyThunderButton() {
+        delegate?.lookMyThunderList()
     }
     
     @objc
@@ -158,7 +159,7 @@ final class ThunderListTopView: UIView {
         dividingView.backgroundColor = UIColor(white: 0, alpha: 0.2)
         [thunderLabel, localeSelectionButton,
          closingOrderButton, registeringOrderButton,
-         lookThunderListButton, dividingView]
+         lookMyThunderButton, dividingView]
             .forEach { addSubview($0) }
         thunderLabel.snp.makeConstraints {
             $0.top.equalToSuperview().inset(16.0)
@@ -200,7 +201,7 @@ final class ThunderListTopView: UIView {
             $0.height.equalTo(30.0)
         }
         
-        lookThunderListButton.snp.makeConstraints {
+        lookMyThunderButton.snp.makeConstraints {
             $0.centerY.equalTo(registeringOrderButton)
             $0.trailing.equalToSuperview().inset(14.0)
             $0.width.equalTo(78.0)
@@ -208,7 +209,7 @@ final class ThunderListTopView: UIView {
         }
         
         [lookThunderImageView, lookThunderLabel]
-            .forEach { lookThunderListButton.addSubview($0) }
+            .forEach { lookMyThunderButton.addSubview($0) }
         lookThunderImageView.snp.makeConstraints {
             $0.width.height.equalTo(14.0)
             $0.leading.centerY.equalToSuperview()

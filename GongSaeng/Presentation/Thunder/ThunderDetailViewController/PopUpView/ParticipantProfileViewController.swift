@@ -43,7 +43,6 @@ final class ParticipantProfileViewController: UIViewController {
     private lazy var dimmedView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
-        view.alpha = maxDimmedAlpha
         return view
     }()
     
@@ -56,7 +55,7 @@ final class ParticipantProfileViewController: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "ProfileImageCell")
-        collectionView.layer.cornerRadius = 50.0
+        collectionView.layer.cornerRadius = 60.0
         return collectionView
     }()
     
@@ -268,6 +267,11 @@ final class ParticipantProfileViewController: UIViewController {
             attributes: [.font: UIFont.systemFont(ofSize: 13.0),
                          .foregroundColor: UIColor.systemGray,
                          .paragraphStyle: paragraphStyle])
+        if viewModel.imageURLs.count == 1 {
+            [imageBackwardButton, imageForwardButton].forEach {
+                $0.isHidden = true
+            }
+        }
         delegate?.activateShakeAnimation(index: viewModel.index - 1)
     }
     
