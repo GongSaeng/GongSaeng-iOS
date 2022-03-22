@@ -35,7 +35,7 @@ class MyPageViewController: UITableViewController {
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "마이페이지"
-        label.font = .systemFont(ofSize: 20.0, weight: .medium)
+        label.font = .systemFont(ofSize: 20.0, weight: .bold)
         return label
     }()
 

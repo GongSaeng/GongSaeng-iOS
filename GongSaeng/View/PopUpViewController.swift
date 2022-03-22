@@ -200,7 +200,7 @@ class PopUpViewController: UIViewController {
                                                 string: popUpContents,
                                                 attributes: [.paragraphStyle: paragraphStyle,
                                                              .font: UIFont.systemFont(ofSize: 14.0),
-                                                             .foregroundColor: UIColor(white: 0, alpha: 0.87).cgColor])
+                                                             .foregroundColor: UIColor(white: 0, alpha: 0.87)])
         
         switch buttonType {
         case .none:

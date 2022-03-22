@@ -14,7 +14,8 @@ final class BoardListViewController: UITableViewController {
     private var user: User
     private let communityType: CommunityType
     
-    private let reuseIdentifier = "BoardListCell"
+    private let reuseIdentifier1 = "BoardListCell"
+    private let reuseIdentifier2 = "MarketBoardCell"
     private var communityList = [Community]()
     private var fetchedPageList = [Int]()
     private var currentPage = 1
@@ -104,9 +105,9 @@ final class BoardListViewController: UITableViewController {
     
     private func configureTableView() {
         if communityType == .market {
-            tableView.register(MarketBoardCell.self, forCellReuseIdentifier: reuseIdentifier)
+            tableView.register(MarketBoardCell.self, forCellReuseIdentifier: reuseIdentifier2)
         } else {
-            tableView.register(BoardListCell.self, forCellReuseIdentifier: reuseIdentifier)
+            tableView.register(BoardListCell.self, forCellReuseIdentifier: reuseIdentifier1)
         }
         
         tableView.separatorStyle = .none
@@ -139,13 +140,13 @@ extension BoardListViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if communityType == .market {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? MarketBoardCell else { return MarketBoardCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier2) as? MarketBoardCell else { return MarketBoardCell() }
             cell.viewModel = MarketBoardCellViewModel(community: communityList[indexPath.row])
             print("DEBUG: MarketBoardCell \(communityList[indexPath.row])")
             cell.selectionStyle = .none
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier) as? BoardListCell else { return BoardListCell() }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier1) as? BoardListCell else { return BoardListCell() }
             cell.viewModel = BoardCellListViewModel(communityType: communityType, community: communityList[indexPath.row])
             cell.selectionStyle = .none
             return cell

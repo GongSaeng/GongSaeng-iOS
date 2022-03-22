@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class InitialViewController: UIViewController {
+final class InitialViewController: UIViewController {
     
     // MARK: Properties
     private let logoImage: UIImageView = {

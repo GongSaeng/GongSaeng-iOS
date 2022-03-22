@@ -1,21 +1,17 @@
 //
-//  CompletedThunderCell.swift
+//  CompletedThunder2Cell.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2022/02/21.
+//  Created by 정동천 on 2022/03/16.
 //
 
 import UIKit
 import SnapKit
 import Kingfisher
 
-class CompletedThunderCell: UITableViewCell {
+final class CompletedThunder2Cell: UITableViewCell {
     
     // MARK: Properties
-    var viewModel: ThunderListCellViewModel? {
-        didSet { configure() }
-    }
-    
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
@@ -103,15 +99,6 @@ class CompletedThunderCell: UITableViewCell {
     }
     
     // MARK: Helpers
-    private func configure() {
-        guard let viewModel = viewModel else { return }
-        thumbnailImageView.kf.setImage(with: viewModel.thumnailImage)
-        titleLabel.text = viewModel.title
-        timeLabel.text = viewModel.meetingTime
-        placeLabel.text = viewModel.placeName
-        totalNumOfPeopleLabel.text = viewModel.totalNum
-    }
-    
     private func layout() {
         [thumbnailImageView, titleLabel, timeIconImageView, timeLabel,
          placeIconImageView, placeLabel, peopleIconImageView,
@@ -174,5 +161,15 @@ class CompletedThunderCell: UITableViewCell {
         blankView.backgroundColor = UIColor(white: 0, alpha: 0.5)
         thumbnailImageView.addSubview(blankView)
         blankView.snp.remakeConstraints { $0.edges.equalToSuperview() }
+    }
+}
+
+extension CompletedThunder2Cell {
+    func configure(data viewModel: ThunderListCellViewModel) {
+        thumbnailImageView.kf.setImage(with: viewModel.thumnailImage)
+        titleLabel.text = viewModel.title
+        timeLabel.text = viewModel.meetingTime
+        placeLabel.text = viewModel.placeName
+        totalNumOfPeopleLabel.text = viewModel.totalNum
     }
 }

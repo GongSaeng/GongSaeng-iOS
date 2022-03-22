@@ -40,6 +40,14 @@
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
 		3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CD267A19BD004F1E03 /* Public.storyboard */; };
 		A7008E1C27C93B2F00D82BF3 /* ParticipantImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7008E1B27C93B2F00D82BF3 /* ParticipantImageCell.swift */; };
+		A704C76327E06C6300061D45 /* ThunderList2TopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C76227E06C6300061D45 /* ThunderList2TopView.swift */; };
+		A704C76527E06C6A00061D45 /* ThunderList2TopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C76427E06C6A00061D45 /* ThunderList2TopViewModel.swift */; };
+		A704C76727E06C7500061D45 /* ThunderList2TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C76627E06C7500061D45 /* ThunderList2TableView.swift */; };
+		A704C76927E06C7A00061D45 /* ThunderList2TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C76827E06C7A00061D45 /* ThunderList2TableViewModel.swift */; };
+		A704C76C27E1AFD500061D45 /* AvailableThunder2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C76B27E1AFD500061D45 /* AvailableThunder2Cell.swift */; };
+		A704C76E27E1B01100061D45 /* CompletedThunder2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C76D27E1B01100061D45 /* CompletedThunder2Cell.swift */; };
+		A704C77127E2427700061D45 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = A704C77027E2427700061D45 /* RxDataSources */; };
+		A704C77327E2FD3D00061D45 /* ThunderSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C77227E2FD3D00061D45 /* ThunderSectionItem.swift */; };
 		A705F26327B37D8100D35CCE /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705F26227B37D8100D35CCE /* University.swift */; };
 		A705F26527B37E9300D35CCE /* UniversityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705F26427B37E9300D35CCE /* UniversityCell.swift */; };
 		A705F26727B37E9B00D35CCE /* UniversityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705F26627B37E9B00D35CCE /* UniversityCellViewModel.swift */; };
@@ -96,9 +104,15 @@
 		A76DB24827DC83E700C020A2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A76DB24727DC83E700C020A2 /* RxCocoa */; };
 		A76DB24A27DC83E700C020A2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A76DB24927DC83E700C020A2 /* RxRelay */; };
 		A76DB24C27DC83E700C020A2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A76DB24B27DC83E700C020A2 /* RxSwift */; };
+		A76DB25327DEE9CF00C020A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A76DB25227DEE9CF00C020A2 /* GoogleService-Info.plist */; };
+		A76DB25527DEEA6100C020A2 /* ThunderList2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76DB25427DEEA6000C020A2 /* ThunderList2ViewController.swift */; };
+		A76DB25827DEEB0200C020A2 /* ThunderList2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76DB25727DEEB0200C020A2 /* ThunderList2Model.swift */; };
+		A76DB25A27DEEB0F00C020A2 /* ThunderList2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76DB25927DEEB0F00C020A2 /* ThunderList2ViewModel.swift */; };
 		A76F29CF27B10DA60077F297 /* PlaceListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F29CE27B10DA60077F297 /* PlaceListCell.swift */; };
 		A76F29D127B1144E0077F297 /* SearchPlaceNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F29D027B1144E0077F297 /* SearchPlaceNetwork.swift */; };
 		A76F29D327B116BF0077F297 /* Place.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F29D227B116BF0077F297 /* Place.swift */; };
+		A76F601527E853C2008A5351 /* LocalePopUp2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F601427E853C1008A5351 /* LocalePopUp2ViewController.swift */; };
+		A76F601827E8557D008A5351 /* Locale2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F601727E8557D008A5351 /* Locale2ViewModel.swift */; };
 		A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */; };
 		A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */; };
 		A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777950D2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift */; };
@@ -109,9 +123,6 @@
 		A777FD532792D78800228969 /* CommentTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A777FD522792D78800228969 /* CommentTableViewCellViewModel.swift */; };
 		A77879D427BA4E8C002FD07B /* ThunderListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77879D327BA4E8C002FD07B /* ThunderListViewController.swift */; };
 		A77879D627BA4FD3002FD07B /* ThunderListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77879D527BA4FD2002FD07B /* ThunderListTopView.swift */; };
-		A77903B1279E2EDE003257B7 /* TempWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77903B0279E2EDE003257B7 /* TempWriteViewController.swift */; };
-		A77903B5279E2F7B003257B7 /* TempDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77903B4279E2F7B003257B7 /* TempDetailViewController.swift */; };
-		A77903B7279E768A003257B7 /* TempDetail2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77903B6279E7689003257B7 /* TempDetail2ViewController.swift */; };
 		A7796F9C27B109AF001E88F6 /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7796F9B27B109AF001E88F6 /* SearchPlaceViewController.swift */; };
 		A77A742927CCB0F400295730 /* ThunderNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A742827CCB0F400295730 /* ThunderNetworkManager.swift */; };
 		A77A742B27CCF15A00295730 /* TempNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A742A27CCF15A00295730 /* TempNavigationViewController.swift */; };
@@ -123,8 +134,6 @@
 		A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FD274538D4004C9D3F /* TableHeaderView.swift */; };
 		A784FAE9278EA19D00CC4BF7 /* ImageInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A784FAE8278EA19D00CC4BF7 /* ImageInputAccessoryView.swift */; };
 		A78A6B4C27869EC1006F3D60 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A6B4B27869EC1006F3D60 /* ImageService.swift */; };
-		A78E4ED8279A5E3F0017238D /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78E4ED7279A5E3F0017238D /* TempViewController.swift */; };
-		A78E4EDA279A952E0017238D /* Temp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A78E4ED9279A952E0017238D /* Temp.storyboard */; };
 		A7931347279818CB004C61CC /* BannerButtonInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7931346279818CB004C61CC /* BannerButtonInputAccessoryView.swift */; };
 		A793134927982155004C61CC /* BannerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793134827982155004C61CC /* BannerButton.swift */; };
 		A793136F279868F1004C61CC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A793136E279868F1004C61CC /* Kingfisher */; };
@@ -156,7 +165,6 @@
 		A7B35577277B73F3006F6A54 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35576277B73F3006F6A54 /* LoginViewModel.swift */; };
 		A7B4DA4A27ACFCC9000923F0 /* ThunderWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4DA4927ACFCC9000923F0 /* ThunderWriteViewController.swift */; };
 		A7B756E6277C9BCD00BFFBC0 /* PostTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */; };
-		A7BB11F327B4FE99004AD66C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A7BB11F227B4FE99004AD66C /* GoogleService-Info.plist */; };
 		A7BB11F627B5005E004AD66C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A7BB11F527B5005E004AD66C /* FirebaseAuth */; };
 		A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10227784A4E00943207 /* InputTextView.swift */; };
 		A7C9D10627784A8A00943207 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7C9D10527784A8A00943207 /* SnapKit */; };
@@ -225,6 +233,13 @@
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CD267A19BD004F1E03 /* Public.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Public.storyboard; sourceTree = "<group>"; };
 		A7008E1B27C93B2F00D82BF3 /* ParticipantImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantImageCell.swift; sourceTree = "<group>"; };
+		A704C76227E06C6300061D45 /* ThunderList2TopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderList2TopView.swift; sourceTree = "<group>"; };
+		A704C76427E06C6A00061D45 /* ThunderList2TopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderList2TopViewModel.swift; sourceTree = "<group>"; };
+		A704C76627E06C7500061D45 /* ThunderList2TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderList2TableView.swift; sourceTree = "<group>"; };
+		A704C76827E06C7A00061D45 /* ThunderList2TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderList2TableViewModel.swift; sourceTree = "<group>"; };
+		A704C76B27E1AFD500061D45 /* AvailableThunder2Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableThunder2Cell.swift; sourceTree = "<group>"; };
+		A704C76D27E1B01100061D45 /* CompletedThunder2Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedThunder2Cell.swift; sourceTree = "<group>"; };
+		A704C77227E2FD3D00061D45 /* ThunderSectionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderSectionItem.swift; sourceTree = "<group>"; };
 		A705F26227B37D8100D35CCE /* University.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = University.swift; sourceTree = "<group>"; };
 		A705F26427B37E9300D35CCE /* UniversityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityCell.swift; sourceTree = "<group>"; };
 		A705F26627B37E9B00D35CCE /* UniversityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityCellViewModel.swift; sourceTree = "<group>"; };
@@ -277,9 +292,15 @@
 		A76B9DAC27842B2A006AF832 /* MyPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageViewController.swift; sourceTree = "<group>"; };
 		A76B9DAE2784694B006AF832 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		A76B9DB02784CD64006AF832 /* EditProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewModel.swift; sourceTree = "<group>"; };
+		A76DB25227DEE9CF00C020A2 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		A76DB25427DEEA6000C020A2 /* ThunderList2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderList2ViewController.swift; sourceTree = "<group>"; };
+		A76DB25727DEEB0200C020A2 /* ThunderList2Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderList2Model.swift; sourceTree = "<group>"; };
+		A76DB25927DEEB0F00C020A2 /* ThunderList2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderList2ViewModel.swift; sourceTree = "<group>"; };
 		A76F29CE27B10DA60077F297 /* PlaceListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceListCell.swift; sourceTree = "<group>"; };
 		A76F29D027B1144E0077F297 /* SearchPlaceNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceNetwork.swift; sourceTree = "<group>"; };
 		A76F29D227B116BF0077F297 /* Place.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Place.swift; sourceTree = "<group>"; };
+		A76F601427E853C1008A5351 /* LocalePopUp2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalePopUp2ViewController.swift; sourceTree = "<group>"; };
+		A76F601727E8557D008A5351 /* Locale2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Locale2ViewModel.swift; sourceTree = "<group>"; };
 		A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeDetailViewController.swift; sourceTree = "<group>"; };
 		A777950A270761E000C1C3FD /* ReservationPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ReservationPopUp.storyboard; sourceTree = "<group>"; };
 		A777950D2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotCloseCellTappedPopUpViewController.swift; sourceTree = "<group>"; };
@@ -290,9 +311,6 @@
 		A777FD522792D78800228969 /* CommentTableViewCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentTableViewCellViewModel.swift; sourceTree = "<group>"; };
 		A77879D327BA4E8C002FD07B /* ThunderListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderListViewController.swift; sourceTree = "<group>"; };
 		A77879D527BA4FD2002FD07B /* ThunderListTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderListTopView.swift; sourceTree = "<group>"; };
-		A77903B0279E2EDE003257B7 /* TempWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempWriteViewController.swift; sourceTree = "<group>"; };
-		A77903B4279E2F7B003257B7 /* TempDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempDetailViewController.swift; sourceTree = "<group>"; };
-		A77903B6279E7689003257B7 /* TempDetail2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempDetail2ViewController.swift; sourceTree = "<group>"; };
 		A7796F9B27B109AF001E88F6 /* SearchPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewController.swift; sourceTree = "<group>"; };
 		A77A742827CCB0F400295730 /* ThunderNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderNetworkManager.swift; sourceTree = "<group>"; };
 		A77A742A27CCF15A00295730 /* TempNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempNavigationViewController.swift; sourceTree = "<group>"; };
@@ -304,8 +322,6 @@
 		A781C2FD274538D4004C9D3F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		A784FAE8278EA19D00CC4BF7 /* ImageInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInputAccessoryView.swift; sourceTree = "<group>"; };
 		A78A6B4B27869EC1006F3D60 /* ImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageService.swift; sourceTree = "<group>"; };
-		A78E4ED7279A5E3F0017238D /* TempViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
-		A78E4ED9279A952E0017238D /* Temp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Temp.storyboard; sourceTree = "<group>"; };
 		A7931346279818CB004C61CC /* BannerButtonInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerButtonInputAccessoryView.swift; sourceTree = "<group>"; };
 		A793134827982155004C61CC /* BannerButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerButton.swift; sourceTree = "<group>"; };
 		A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = UsageHistory.storyboard; sourceTree = "<group>"; };
@@ -336,7 +352,6 @@
 		A7B35576277B73F3006F6A54 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		A7B4DA4927ACFCC9000923F0 /* ThunderWriteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderWriteViewController.swift; sourceTree = "<group>"; };
 		A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTextView.swift; sourceTree = "<group>"; };
-		A7BB11F227B4FE99004AD66C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A7C9D10227784A4E00943207 /* InputTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextView.swift; sourceTree = "<group>"; };
 		A7DB07AC2792629800FE7ABA /* FullImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageViewController.swift; sourceTree = "<group>"; };
 		A7DB07AE2792A2A300FE7ABA /* FullImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullImageCell.swift; sourceTree = "<group>"; };
@@ -377,6 +392,7 @@
 				A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */,
 				A76DB24827DC83E700C020A2 /* RxCocoa in Frameworks */,
 				A7C9D10627784A8A00943207 /* SnapKit in Frameworks */,
+				A704C77127E2427700061D45 /* RxDataSources in Frameworks */,
 				A7BB11F627B5005E004AD66C /* FirebaseAuth in Frameworks */,
 				A76DB24C27DC83E700C020A2 /* RxSwift in Frameworks */,
 			);
@@ -431,12 +447,12 @@
 			isa = PBXGroup;
 			children = (
 				3D5D5996265247F50018FE63 /* Info.plist */,
-				A7BB11F227B4FE99004AD66C /* GoogleService-Info.plist */,
+				A76DB25227DEE9CF00C020A2 /* GoogleService-Info.plist */,
 				A7B7E0AE27D7A8B60092956C /* Resource */,
 				A76DB24D27DC84C500C020A2 /* AppDelegate */,
 				A76DB24F27DC854D00C020A2 /* Enitity */,
-				A76DB24E27DC851600C020A2 /* Presentation */,
 				A7A9B3D62754D42D009B22DF /* Network */,
+				A76DB24E27DC851600C020A2 /* Presentation */,
 				A7C9D0FF277849E700943207 /* View */,
 				3DAFCB9E26625DDF008E9803 /* Utils */,
 			);
@@ -518,6 +534,27 @@
 				A7F15F07278A96C70080DCE7 /* MainTabBarController.swift */,
 			);
 			path = TabBarManager;
+			sourceTree = "<group>";
+		};
+		A704C76127E06C4600061D45 /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A704C76227E06C6300061D45 /* ThunderList2TopView.swift */,
+				A704C76427E06C6A00061D45 /* ThunderList2TopViewModel.swift */,
+				A704C76627E06C7500061D45 /* ThunderList2TableView.swift */,
+				A704C76827E06C7A00061D45 /* ThunderList2TableViewModel.swift */,
+				A704C76A27E1AFB300061D45 /* SubComponents */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
+		A704C76A27E1AFB300061D45 /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A704C76B27E1AFD500061D45 /* AvailableThunder2Cell.swift */,
+				A704C76D27E1B01100061D45 /* CompletedThunder2Cell.swift */,
+			);
+			path = SubComponents;
 			sourceTree = "<group>";
 		};
 		A719D08F27CDFCB4000A9388 /* PopUpView */ = {
@@ -726,6 +763,7 @@
 				3DB686F8268D8C2D0061BCB0 /* TabBarManager */,
 				3D5D599C2652491F0018FE63 /* Home */,
 				A78E4EDB279A95390017238D /* Thunder */,
+				A79C0C2727E5AA2A003C0294 /* Thunder2 */,
 				3D2FBC072675FEAC00D2FF56 /* Public */,
 				A753C026277C3F1700039D5F /* Community */,
 				A7DE0105270836300098AACF /* Notification */,
@@ -738,8 +776,28 @@
 			isa = PBXGroup;
 			children = (
 				3DA98CCB26530C04005175B5 /* User */,
+				A704C77227E2FD3D00061D45 /* ThunderSectionItem.swift */,
 			);
 			path = Enitity;
+			sourceTree = "<group>";
+		};
+		A76DB25127DC883000C020A2 /* ThunderWriteViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A7B4DA4927ACFCC9000923F0 /* ThunderWriteViewController.swift */,
+			);
+			path = ThunderWriteViewController;
+			sourceTree = "<group>";
+		};
+		A76DB25627DEEA8F00C020A2 /* ThunderList2ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A76DB25427DEEA6000C020A2 /* ThunderList2ViewController.swift */,
+				A76DB25927DEEB0F00C020A2 /* ThunderList2ViewModel.swift */,
+				A76DB25727DEEB0200C020A2 /* ThunderList2Model.swift */,
+				A704C76127E06C4600061D45 /* SubComponents */,
+			);
+			path = ThunderList2ViewController;
 			sourceTree = "<group>";
 		};
 		A76F29D427B121AE0077F297 /* SearchPlace */ = {
@@ -751,6 +809,15 @@
 				A7DD616227B121F1001F3F63 /* PlaceListCellViewModel.swift */,
 			);
 			path = SearchPlace;
+			sourceTree = "<group>";
+		};
+		A76F601627E8553B008A5351 /* ThunderPopUp2ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A76F601427E853C1008A5351 /* LocalePopUp2ViewController.swift */,
+				A76F601727E8557D008A5351 /* Locale2ViewModel.swift */,
+			);
+			path = ThunderPopUp2ViewController;
 			sourceTree = "<group>";
 		};
 		A777950C2707620B00C1C3FD /* ReservationPopUp */ = {
@@ -807,19 +874,23 @@
 		A78E4EDB279A95390017238D /* Thunder */ = {
 			isa = PBXGroup;
 			children = (
-				A78E4ED9279A952E0017238D /* Temp.storyboard */,
+				A77A742A27CCF15A00295730 /* TempNavigationViewController.swift */,
 				A7E3D11A27BB92A60002240B /* Model */,
 				A760B5E127BA8ED100BFDFD5 /* ThunderListViewController */,
 				A7A1639C27C51F6300379A43 /* ThunderDetailViewController */,
-				A78E4ED7279A5E3F0017238D /* TempViewController.swift */,
-				A77A742A27CCF15A00295730 /* TempNavigationViewController.swift */,
-				A77903B0279E2EDE003257B7 /* TempWriteViewController.swift */,
-				A77903B4279E2F7B003257B7 /* TempDetailViewController.swift */,
-				A77903B6279E7689003257B7 /* TempDetail2ViewController.swift */,
-				A7B4DA4927ACFCC9000923F0 /* ThunderWriteViewController.swift */,
+				A76DB25127DC883000C020A2 /* ThunderWriteViewController */,
 				A76F29D427B121AE0077F297 /* SearchPlace */,
 			);
 			path = Thunder;
+			sourceTree = "<group>";
+		};
+		A79C0C2727E5AA2A003C0294 /* Thunder2 */ = {
+			isa = PBXGroup;
+			children = (
+				A76DB25627DEEA8F00C020A2 /* ThunderList2ViewController */,
+				A76F601627E8553B008A5351 /* ThunderPopUp2ViewController */,
+			);
+			path = Thunder2;
 			sourceTree = "<group>";
 		};
 		A7A1639C27C51F6300379A43 /* ThunderDetailViewController */ = {
@@ -934,6 +1005,7 @@
 				A76DB24727DC83E700C020A2 /* RxCocoa */,
 				A76DB24927DC83E700C020A2 /* RxRelay */,
 				A76DB24B27DC83E700C020A2 /* RxSwift */,
+				A704C77027E2427700061D45 /* RxDataSources */,
 			);
 			productName = GongSaeng;
 			productReference = 3D5D5985265247F40018FE63 /* GongSaeng.app */;
@@ -968,6 +1040,7 @@
 				A793136D279868F1004C61CC /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				A7BB11F427B5005E004AD66C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */,
+				A704C76F27E2427700061D45 /* XCRemoteSwiftPackageReference "RxDataSources" */,
 			);
 			productRefGroup = 3D5D5986265247F40018FE63 /* Products */;
 			projectDirPath = "";
@@ -1000,12 +1073,11 @@
 				A777950B270761E000C1C3FD /* ReservationPopUp.storyboard in Resources */,
 				A7674F7226EF9A5600AE60FA /* RequestCheckInOut.storyboard in Resources */,
 				3D5D59AE2652B2930018FE63 /* Register.storyboard in Resources */,
+				A76DB25327DEE9CF00C020A2 /* GoogleService-Info.plist in Resources */,
 				A719D09527CEFBA8000A9388 /* domains_universities_in_korea.json in Resources */,
 				A79C215326EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard in Resources */,
 				A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */,
-				A7BB11F327B4FE99004AD66C /* GoogleService-Info.plist in Resources */,
 				3DF5B4CE267A19BD004F1E03 /* Public.storyboard in Resources */,
-				A78E4EDA279A952E0017238D /* Temp.storyboard in Resources */,
 				A73AE4C726F1CA0300FA1F06 /* CheckOutCompletedPopUp.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1023,6 +1095,7 @@
 				A76F29D127B1144E0077F297 /* SearchPlaceNetwork.swift in Sources */,
 				A7DF2CEE278ACCE900BFB5B6 /* PasswordChangingViewController.swift in Sources */,
 				A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */,
+				A76DB25527DEEA6100C020A2 /* ThunderList2ViewController.swift in Sources */,
 				A70E2768278B269E00FCFF33 /* PasswordChangingViewModel.swift in Sources */,
 				A7EE6D36278FFEC5000AC151 /* UIImage.swift in Sources */,
 				A79C215D26EF5B3C000B9028 /* SetNotificationViewController.swift in Sources */,
@@ -1047,7 +1120,6 @@
 				3D5D5989265247F40018FE63 /* AppDelegate.swift in Sources */,
 				A73BC91D278D54F0003FF406 /* CommentTableViewCell.swift in Sources */,
 				A76B9DAD27842B2B006AF832 /* MyPageViewController.swift in Sources */,
-				A77903B5279E2F7B003257B7 /* TempDetailViewController.swift in Sources */,
 				A76B9DAF2784694B006AF832 /* EditProfileViewController.swift in Sources */,
 				A7DC1CA12707788A002F395C /* ConfirmReservationPopUpViewController.swift in Sources */,
 				A7B35575277B18D8006F6A54 /* CommentInputAccessoryView.swift in Sources */,
@@ -1066,15 +1138,19 @@
 				A71600A92746393700FC3C64 /* Immediation.swift in Sources */,
 				A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */,
 				A777950E2707633D00C1C3FD /* NotCloseCellTappedPopUpViewController.swift in Sources */,
+				A704C76727E06C7500061D45 /* ThunderList2TableView.swift in Sources */,
 				A76F29CF27B10DA60077F297 /* PlaceListCell.swift in Sources */,
 				A793134927982155004C61CC /* BannerButton.swift in Sources */,
 				A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */,
+				A704C76E27E1B01100061D45 /* CompletedThunder2Cell.swift in Sources */,
 				A7A1639927C3B82200379A43 /* CompletedThunderCell.swift in Sources */,
 				A777FD512792D52600228969 /* Comment.swift in Sources */,
+				A76F601527E853C2008A5351 /* LocalePopUp2ViewController.swift in Sources */,
 				A736F97E278BF8020075A665 /* BoardCellListViewModel.swift in Sources */,
 				A7E3D11C27BB9CFF0002240B /* AvailableThunderCell.swift in Sources */,
 				A77A743027CD2EC100295730 /* ParticipantProfileViewModel.swift in Sources */,
 				A705F26B27B383B000D35CCE /* UniversityViewModel.swift in Sources */,
+				A76DB25A27DEEB0F00C020A2 /* ThunderList2ViewModel.swift in Sources */,
 				3DAFCBA026625DF6008E9803 /* Normalization.swift in Sources */,
 				A78A6B4C27869EC1006F3D60 /* ImageService.swift in Sources */,
 				3DD893D6266E1A9C0050B4F8 /* MateViewController.swift in Sources */,
@@ -1105,16 +1181,18 @@
 				A7A9B3D32754CF45009B22DF /* Notice.swift in Sources */,
 				A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */,
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
-				A78E4ED8279A5E3F0017238D /* TempViewController.swift in Sources */,
 				A7008E1C27C93B2F00D82BF3 /* ParticipantImageCell.swift in Sources */,
 				3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */,
-				A77903B7279E768A003257B7 /* TempDetail2ViewController.swift in Sources */,
 				A79E37E12783339B0059D5C1 /* Constant.swift in Sources */,
 				A73AE4BB26F1B7D000FA1F06 /* RequestCheckInViewController.swift in Sources */,
 				A705F26527B37E9300D35CCE /* UniversityCell.swift in Sources */,
+				A704C77327E2FD3D00061D45 /* ThunderSectionItem.swift in Sources */,
+				A704C76927E06C7A00061D45 /* ThunderList2TableViewModel.swift in Sources */,
 				A7EE6D34278FB541000AC151 /* CommunityNetworkManager.swift in Sources */,
 				A7DB07AD2792629800FE7ABA /* FullImageViewController.swift in Sources */,
 				A736F989278C58730075A665 /* BoardDetialHeaderViewModel.swift in Sources */,
+				A76F601827E8557D008A5351 /* Locale2ViewModel.swift in Sources */,
+				A704C76C27E1AFD500061D45 /* AvailableThunder2Cell.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
 				A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */,
 				A7B4DA4A27ACFCC9000923F0 /* ThunderWriteViewController.swift in Sources */,
@@ -1128,12 +1206,12 @@
 				3D2FBC092675FEDD00D2FF56 /* Public.swift in Sources */,
 				A7AE9F3426EF20120082C855 /* LogOutPopUpViewController.swift in Sources */,
 				A705F26327B37D8100D35CCE /* University.swift in Sources */,
+				A76DB25827DEEB0200C020A2 /* ThunderList2Model.swift in Sources */,
 				3D5D598B265247F40018FE63 /* SceneDelegate.swift in Sources */,
 				A77A742E27CD209A00295730 /* ParticipantProfileViewController.swift in Sources */,
 				A73BC925278DB9F4003FF406 /* ImageCollectionView.swift in Sources */,
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,
 				3DA98CCD26530C30005175B5 /* User.swift in Sources */,
-				A77903B1279E2EDE003257B7 /* TempWriteViewController.swift in Sources */,
 				A7FAB14C27C64E8500B736AB /* ThunderDetail.swift in Sources */,
 				A7EE6D3827910B44000AC151 /* Post.swift in Sources */,
 				A76F29D327B116BF0077F297 /* Place.swift in Sources */,
@@ -1153,10 +1231,12 @@
 				3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */,
 				A777C8D82707A43B00670556 /* FinishedUsingPopUpViewController.swift in Sources */,
 				A7674F7426EF9A6500AE60FA /* RequestCheckInOutViewController.swift in Sources */,
+				A704C76527E06C6A00061D45 /* ThunderList2TopViewModel.swift in Sources */,
 				A7F15F08278A96C70080DCE7 /* MainTabBarController.swift in Sources */,
 				A777FD532792D78800228969 /* CommentTableViewCellViewModel.swift in Sources */,
 				A705F26927B37EB300D35CCE /* UniversityViewController.swift in Sources */,
 				A7A21ADA27990CC800E71761 /* MyProfileAndWritingHeaderView.swift in Sources */,
+				A704C76327E06C6300061D45 /* ThunderList2TopView.swift in Sources */,
 				A7EE4A9027860329001A8C2E /* PopUpViewController.swift in Sources */,
 				A7F15F0A278AB10C0080DCE7 /* ManageAccountViewController.swift in Sources */,
 				A7FAB14A27C643DE00B736AB /* ThunderDetailHeaderViewModel.swift in Sources */,
@@ -1363,6 +1443,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A704C76F27E2427700061D45 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
@@ -1406,6 +1494,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A704C77027E2427700061D45 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A704C76F27E2427700061D45 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
 		A732CA47277CF0DD00A11E68 /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;

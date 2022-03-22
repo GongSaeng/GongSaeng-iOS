@@ -7,16 +7,6 @@
 
 import UIKit
 
-enum SortingOrder: String {
-    case closingOrder
-    case registeringOrder
-}
-
-enum ThunderLookingStatus: String {
-    case allThunder
-    case myThunder
-}
-
 struct ThunderListTopViewModel {
     var order: SortingOrder = .closingOrder
     var isClosingOrderButtonEnabled: Bool { order != .closingOrder }
@@ -39,14 +29,5 @@ struct ThunderListTopViewModel {
         (order == .registeringOrder) ? UIColor(named: "colorBlueGreen")!.withAlphaComponent(0.1) : .clear
     }
     
-    var thunderLookingStatus: ThunderLookingStatus = .allThunder
-    
-    var lookThunderButtonTitle: String {
-        switch thunderLookingStatus {
-        case .allThunder:
-            return "참여번개보기"
-        case .myThunder:
-            return "전체번개보기"
-        }
-    }
+    var lookThunderButtonTitle: String = "참여번개보기"
 }

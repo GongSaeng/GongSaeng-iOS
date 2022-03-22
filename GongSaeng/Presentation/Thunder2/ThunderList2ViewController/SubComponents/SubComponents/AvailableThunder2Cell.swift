@@ -1,21 +1,17 @@
 //
-//  CompletedThunderCell.swift
+//  AvailableThunder2Cell.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2022/02/21.
+//  Created by 정동천 on 2022/03/16.
 //
 
 import UIKit
 import SnapKit
 import Kingfisher
 
-class CompletedThunderCell: UITableViewCell {
+final class AvailableThunder2Cell: UITableViewCell {
     
     // MARK: Properties
-    var viewModel: ThunderListCellViewModel? {
-        didSet { configure() }
-    }
-    
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
@@ -31,7 +27,7 @@ class CompletedThunderCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 14.0, weight: .semibold)
         label.lineBreakMode = .byTruncatingTail
-        label.textColor = .darkGray
+        label.textColor = .black
         return label
     }()
     
@@ -47,7 +43,7 @@ class CompletedThunderCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12.0, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
-        label.textColor = .darkGray
+        label.textColor = .black
         return label
     }()
     
@@ -63,7 +59,7 @@ class CompletedThunderCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12.0, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
-        label.textColor = .darkGray
+        label.textColor = .black
         return label
     }()
     
@@ -79,17 +75,25 @@ class CompletedThunderCell: UITableViewCell {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12.0, weight: .medium)
         label.lineBreakMode = .byTruncatingTail
-        label.textColor = .darkGray
+        label.textColor = .black
         return label
     }()
     
-    private let completedLabel: UILabel = {
+    private let remainingDaysLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 12.0, weight: .semibold)
-        label.textColor = .darkGray
-        label.text = "모집완료"
+        label.textColor = UIColor(named: "colorPinkishOrange")
         return label
     }()
+    
+    private let remainingPeopleLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 11.0, weight: .medium)
+        label.textColor = .black
+        label.text = "남은인원"
+        return label
+    }()
+    
+    private let remainingNumOfPeopleLabel = UILabel()
     
     // MARK: Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -103,76 +107,87 @@ class CompletedThunderCell: UITableViewCell {
     }
     
     // MARK: Helpers
-    private func configure() {
-        guard let viewModel = viewModel else { return }
-        thumbnailImageView.kf.setImage(with: viewModel.thumnailImage)
-        titleLabel.text = viewModel.title
-        timeLabel.text = viewModel.meetingTime
-        placeLabel.text = viewModel.placeName
-        totalNumOfPeopleLabel.text = viewModel.totalNum
-    }
-    
     private func layout() {
         [thumbnailImageView, titleLabel, timeIconImageView, timeLabel,
          placeIconImageView, placeLabel, peopleIconImageView,
-         totalNumOfPeopleLabel, completedLabel]
+         totalNumOfPeopleLabel, remainingDaysLabel,
+         remainingPeopleLabel, remainingNumOfPeopleLabel]
             .forEach { contentView.addSubview($0) }
-        thumbnailImageView.snp.remakeConstraints {
+        thumbnailImageView.snp.makeConstraints {
             $0.leading.equalToSuperview().inset(18.0)
             $0.centerY.equalToSuperview()
             $0.width.height.equalTo(80.0)
         }
         
-        titleLabel.snp.remakeConstraints {
+        titleLabel.snp.makeConstraints {
             $0.top.equalTo(thumbnailImageView)
             $0.leading.equalTo(thumbnailImageView.snp.trailing).offset(18.0)
         }
         
-        timeIconImageView.snp.remakeConstraints {
+        timeIconImageView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(10.0)
             $0.leading.equalTo(thumbnailImageView.snp.trailing).offset(20.0)
             $0.width.equalTo(12.0)
             $0.height.equalTo(13.0)
         }
-        
-        timeLabel.snp.remakeConstraints {
+
+        timeLabel.snp.makeConstraints {
             $0.leading.equalTo(timeIconImageView.snp.trailing).offset(5.0)
             $0.trailing.lessThanOrEqualToSuperview().inset(60.0)
             $0.centerY.equalTo(timeIconImageView)
         }
-        
-        placeLabel.snp.remakeConstraints {
+
+        placeLabel.snp.makeConstraints {
             $0.leading.equalTo(timeLabel)
             $0.trailing.lessThanOrEqualToSuperview().inset(60.0)
             $0.top.equalTo(timeLabel.snp.bottom).offset(6.0)
         }
-        
-        totalNumOfPeopleLabel.snp.remakeConstraints {
+
+        totalNumOfPeopleLabel.snp.makeConstraints {
             $0.leading.equalTo(placeLabel)
             $0.top.equalTo(placeLabel.snp.bottom).offset(6.0)
         }
-        
-        placeIconImageView.snp.remakeConstraints {
+
+        placeIconImageView.snp.makeConstraints {
             $0.centerX.equalTo(timeIconImageView)
             $0.centerY.equalTo(placeLabel)
             $0.width.equalTo(12.0)
             $0.height.equalTo(13.0)
         }
-        
-        peopleIconImageView.snp.remakeConstraints {
+
+        peopleIconImageView.snp.makeConstraints {
             $0.centerX.equalTo(placeIconImageView)
             $0.centerY.equalTo(totalNumOfPeopleLabel)
             $0.width.equalTo(14.0)
             $0.height.equalTo(16.0)
         }
-        completedLabel.snp.remakeConstraints {
-            $0.trailing.equalToSuperview().inset(18.0)
-            $0.centerY.equalToSuperview()
+
+        remainingDaysLabel.snp.makeConstraints {
+            $0.centerX.equalTo(remainingPeopleLabel)
+            $0.centerY.equalTo(titleLabel)
         }
-        
-        let blankView = UIView()
-        blankView.backgroundColor = UIColor(white: 0, alpha: 0.5)
-        thumbnailImageView.addSubview(blankView)
-        blankView.snp.remakeConstraints { $0.edges.equalToSuperview() }
+
+        remainingPeopleLabel.snp.makeConstraints {
+            $0.top.equalToSuperview().inset(45.0)
+            $0.trailing.equalToSuperview().inset(20.0)
+        }
+
+        remainingNumOfPeopleLabel.snp.makeConstraints {
+            $0.top.equalTo(remainingPeopleLabel.snp.bottom).offset(2.0)
+            $0.centerX.equalTo(remainingPeopleLabel)
+        }
+    }
+}
+
+extension AvailableThunder2Cell {
+    func configure(data viewModel: ThunderListCellViewModel) {
+        thumbnailImageView.kf.setImage(with: viewModel.thumnailImage)
+        titleLabel.text = viewModel.title
+        timeLabel.text = viewModel.meetingTime
+        placeLabel.text = viewModel.placeName
+        totalNumOfPeopleLabel.text = viewModel.totalNum
+        remainingDaysLabel.font = .systemFont(ofSize: (viewModel.remainingDays == "Today") ? 16.0: 18.0, weight: .heavy)
+        remainingDaysLabel.text = viewModel.remainingDays
+        remainingNumOfPeopleLabel.attributedText = viewModel.remainingNum
     }
 }

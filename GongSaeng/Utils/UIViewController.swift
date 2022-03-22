@@ -9,7 +9,7 @@ import UIKit
 import JGProgressHUD
 
 extension UIViewController {
-    static let hud = JGProgressHUD(style: .light)
+    static let hud = JGProgressHUD(style: .extraLight)
     
     func showLoader(_ show: Bool) {
         DispatchQueue.main.async { [weak self] in

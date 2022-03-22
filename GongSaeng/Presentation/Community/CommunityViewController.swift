@@ -36,8 +36,6 @@ class CommunityViewController: UIViewController {
         
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
-    
 }
 
 // MARK: UITableViewDataSource

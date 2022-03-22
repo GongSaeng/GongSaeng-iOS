@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class LaunchScreenViewController: UIViewController {
+final class LaunchScreenViewController: UIViewController {
     
     // MARK: Properties
     private let splashImageView: UIImageView = {

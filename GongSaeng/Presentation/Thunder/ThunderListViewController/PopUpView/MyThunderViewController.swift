@@ -181,12 +181,14 @@ final class MyThunderViewController: UIViewController {
         return label
     }()
     
-    private lazy var pageControl: UIPageControl = {
+    private let pageControl: UIPageControl = {
         let pageControl = UIPageControl()
         pageControl.numberOfPages = 3
         pageControl.currentPage = 0
         pageControl.isUserInteractionEnabled = false
         pageControl.hidesForSinglePage = true
+        pageControl.pageIndicatorTintColor = .systemGray5
+        pageControl.currentPageIndicatorTintColor = .systemGray2
         return pageControl
     }()
     
@@ -357,7 +359,10 @@ final class MyThunderViewController: UIViewController {
         let horizontalDividingView = UIView()
         horizontalDividingView.backgroundColor = UIColor(white: 0, alpha: 0.05)
         
-        [attachedImageCollectionView, titleLabel, horizontalDividingView, timeIconImageView, timeLabel, placeIconImageView, placeButton, openMapButton, peopleIconImageView, totalNumOfPeopleLabel, contentsLabel, partcipantsImageCollectionView, joinButton, pageControl]
+        [attachedImageCollectionView, titleLabel, horizontalDividingView,
+         timeIconImageView, timeLabel, placeIconImageView, placeButton,
+         openMapButton, peopleIconImageView, totalNumOfPeopleLabel,
+         contentsLabel, partcipantsImageCollectionView, joinButton, pageControl]
             .forEach { containerView.addSubview($0) }
         
         attachedImageCollectionView.snp.makeConstraints {
@@ -442,6 +447,10 @@ final class MyThunderViewController: UIViewController {
             $0.height.equalTo(50.0)
         }
         
+        pageControl.snp.makeConstraints {
+            $0.top.equalTo(joinButton.snp.bottom).offset(15.0)
+            $0.centerX.equalToSuperview()
+        }
     }
 }
 
@@ -524,20 +533,20 @@ extension MyThunderViewController: UICollectionViewDelegateFlowLayout {
             return CGSize(width: width, height: width)
             
         default:
-            return CGSize.zero
+            return .zero
         }
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch collectionView {
         case attachedImageCollectionView:
-            return UIEdgeInsets.zero
+            return .zero
             
         case partcipantsImageCollectionView:
             return UIEdgeInsets(top: 0, left: 24.0, bottom: 0, right: 24.0)
             
         default:
-            return UIEdgeInsets.zero
+            return .zero
         }
     }
 }

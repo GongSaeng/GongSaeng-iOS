@@ -5,7 +5,23 @@
 //  Created by 정동천 on 2022/02/28.
 //
 
-import UIKit
+import Foundation
+import RxSwift
+
+let exampleThunders: [Thunder] = [
+    Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-19 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
+    Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-20 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
+    Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-21 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
+    Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-22 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
+    Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-23 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
+    Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-24 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
+    Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-25 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
+    Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
+    Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6),
+    Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-23 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
+    Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
+    Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6)
+]
 
 let exampleThunderDetail = ThunderDetail(
     postingImagesFilename: [TEST_IMAGE2_URL, TEST_IMAGE3_URL, TEST_IMAGE1_URL],
@@ -13,8 +29,8 @@ let exampleThunderDetail = ThunderDetail(
     writerImageFilename: TEST_IMAGE4_URL,
     writerId: "jdc0407",
     writerNickname: "네잎클로버",
-    uploadedTime: "2022-03-02 13:35:31",
-    meetingTime: "2022-03-08 19:00:00",
+    uploadedTime: "2022-03-19 13:35:31",
+    meetingTime: "2022-03-22 19:00:00",
     placeName: "레드노래연습장 부산대점",
     address: "부산 금정구 금강로 271",
     placeURL: "http://place.map.kakao.com/12421917",
@@ -48,7 +64,7 @@ let exampleMyThunders: [MyThunder] = [
         postIndex: 0,
         postingImageFilename: TEST_IMAGE2_URL,
         title: "같이 코노가요!",
-        meetingTime: "2022-03-05 17:00:00",
+        meetingTime: "2022-03-21 17:00:00",
         placeName: "레드노래연습장 부산대점",
         address: "부산 금정구 금강로 271",
         placeURL: "http://place.map.kakao.com/12421917",
@@ -80,7 +96,7 @@ let exampleMyThunders: [MyThunder] = [
         postIndex: 1,
         postingImageFilename: TEST_IMAGE3_URL,
         title: "보드게임 할 사람~~",
-        meetingTime: "2022-03-06 17:30:00",
+        meetingTime: "2022-03-22 17:30:00",
         placeName: "두기 보드게임",
         address: "부산 금정구 금강로 265",
         placeURL: "http://place.map.kakao.com/19934212",
@@ -106,7 +122,7 @@ let exampleMyThunders: [MyThunder] = [
         postIndex: 2,
         postingImageFilename: TEST_IMAGE1_URL,
         title: "간단하게 맥주마셔요~",
-        meetingTime: "2022-03-07 18:00:00",
+        meetingTime: "2022-03-23 18:00:00",
         placeName: "온천천",
         address: "부산 금정구 부곡동",
         placeURL: "http://place.map.kakao.com/25728616",
@@ -124,9 +140,38 @@ let exampleMyThunders: [MyThunder] = [
         numberOfComments: 10)
 ]
 
-final class ThunderNetworkManager {
+final class ThunderNetworkManager1 {
     static func fetchThunderDetail(index: Int, completion: @escaping(ThunderDetail) -> Void) {
         // 네트워크 로직
         completion(exampleThunderDetail) // 임시 더미데이터
+    }
+}
+
+final class ThunderNetworkManager {
+    private let session: URLSession
+
+    init(session: URLSession = .shared) {
+        self.session = session
+    }
+
+    static func fetchThunders(region: String?, by order: SortingOrder, page: Int) -> Single<Result<[Thunder], Error>> {
+        print("DEBUG: Called fetchThunders().. ")
+//        let region = region ?? "서울/전체"
+        return Single<Result<[Thunder], Error>>.create { single -> Disposable in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) {
+                DispatchQueue.main.async {
+                    single(.success(.success(exampleThunders)))
+                }
+            }
+            return Disposables.create()
+        }
+    }
+
+    static func fetchMyThunder(id: String) -> Single<Result<[MyThunder], Error>> {
+        return .just(.success(exampleMyThunders))
+    }
+
+    static func fetchThunderDetail(index: Int) -> Single<Result<ThunderDetail, Error>> {
+        return .just(.success(exampleThunderDetail))
     }
 }

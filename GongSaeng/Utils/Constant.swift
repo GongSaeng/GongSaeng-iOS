@@ -7,7 +7,7 @@
 
 import Foundation
 
-public let SERVER_URL: String = "http://18.118.131.221:2222"
+public let SERVER_URL: String = "http://3.143.245.81:2222"
 public let SERVER_IMAGE_URL: String = "\(SERVER_URL)/image/get_image?image_url="
 public let TEST_IMAGE1_URL: String = "https://firebasestorage.googleapis.com/v0/b/authwebmail-d73ae.appspot.com/o/IMG_3524.JPG?alt=media&token=d020e96c-e9be-455b-97e5-70f003577abc"
 public let TEST_IMAGE2_URL: String = "https://firebasestorage.googleapis.com/v0/b/authwebmail-d73ae.appspot.com/o/images.jpeg?alt=media&token=8efdc1e3-4c0c-4c28-9424-ffb5dbbd66db"

@@ -155,7 +155,7 @@ final class ThunderDetailViewController: UIViewController {
     
     // MARK: API
     private func fetchThunderDetail(index: Int) {
-        ThunderNetworkManager.fetchThunderDetail(index: index) { [weak self] thunderDetail in
+        ThunderNetworkManager1.fetchThunderDetail(index: index) { [weak self] thunderDetail in
             guard let self = self else { return }
             self.viewModel.thunderDetail = thunderDetail
             let headerView = ThunderDetailHeaderView(viewModel: ThunderDetailHeaderViewModel(thunderDetail: thunderDetail))

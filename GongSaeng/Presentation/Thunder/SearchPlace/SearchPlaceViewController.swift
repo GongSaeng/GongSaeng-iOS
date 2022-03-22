@@ -32,7 +32,7 @@ final class SearchPlaceViewController: UIViewController {
                                attributes: [
                                 .font: UIFont.systemFont(ofSize: 16.0,
                                                          weight: .semibold),
-                                .foregroundColor: UIColor(named: "colorBlueGreen")!.cgColor
+                                .foregroundColor: UIColor(named: "colorBlueGreen")!
                                ]),
             for: .normal)
         button.addTarget(self, action: #selector(searchButtonHandler), for: .touchUpInside)

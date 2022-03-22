@@ -102,6 +102,8 @@ class BoardDetailViewController: UITableViewController {
                 self.postingImageUrls = headerView.viewModel?.postingImageUrls ?? []
                 self.tableView.tableHeaderView = headerView
                 self.tableView.reloadData()
+                self.currentPage = 1
+                self.fetchedPageList = []
                 self.fetchComments(of: self.currentPage, shouldRefresh: true)
             }
         }

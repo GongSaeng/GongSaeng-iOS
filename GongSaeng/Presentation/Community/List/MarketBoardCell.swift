@@ -64,7 +64,7 @@ class MarketBoardCell: UITableViewCell {
     
     private let dividingView = UIView()
     
-    private let completedDealView: UIView = {
+    private lazy var completedDealView: UIView = {
         let contentView = UIView()
         contentView.backgroundColor = UIColor(white: 0, alpha: 0.5)
         
@@ -97,10 +97,10 @@ class MarketBoardCell: UITableViewCell {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3.0
         paragraphStyle.lineBreakMode = .byTruncatingTail
-        titleLabel.attributedText = NSAttributedString(string: viewModel.title,
+        titleLabel.attributedText = NSMutableAttributedString(string: viewModel.title,
                                                        attributes: [.paragraphStyle: paragraphStyle,
                                                                     .font: UIFont.systemFont(ofSize: 19.0, weight: .medium),
-                                                                    .foregroundColor: textColor.cgColor])
+                                                                    .foregroundColor: textColor])
         priceLabel.textColor = textColor
         priceLabel.text = viewModel.price
         uploadedTimeLabel.text = viewModel.uploadedTimeText

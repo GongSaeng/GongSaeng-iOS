@@ -11,6 +11,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var user: User?
+    let rootViewModel = ThunderList2ViewModel()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -18,17 +19,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.backgroundColor = .white
         window?.tintColor = .black
         
-//        let rootViewController = InitialViewController()
-        
-        let rootViewController = ThunderListViewController()
-        let viewController = TempNavigationViewController(rootViewController: rootViewController)
-        
+        // Main
 //        let viewController = LaunchScreenViewController()
         
-//        let storyboard = UIStoryboard(name: "Temp", bundle: .main)//
-//        let rootViewController = storyboard.instantiateViewController(withIdentifier: "TempViewController")//
-//        let viewController = UINavigationController(rootViewController: rootViewController)//
-//        viewController.navigationBar.isHidden = true//
+        
+        // Thunder
+//        let rootViewController = ThunderListViewController()
+//        let viewController = TempNavigationViewController(rootViewController: rootViewController)
+        
+        
+        // Thunder(RxSwift)
+        let rootViewController = ThunderList2ViewController()
+        rootViewController.bind(rootViewModel)
+        let viewController = TempNavigationViewController(rootViewController: rootViewController)
         
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
