@@ -1,0 +1,148 @@
+//
+//  ThunderList2ViewController.swift
+//  GongSaeng
+//
+//  Created by 정동천 on 2022/03/14.
+//
+
+import UIKit
+import RxSwift
+import RxCocoa
+
+final class ThunderList2ViewController: UIViewController {
+    
+    // MARK: Properties
+    private let disposeBag = DisposeBag()
+    
+    private let reuseIdentifier1 = "AvailableThunderCell"
+    private let reuseIdentifier2 = "CompletedThunderCell"
+    
+    private let topView = ThunderList2TopView()
+    private let tableView = ThunderList2TableView(frame: .zero, style: .grouped)
+    
+    private let writeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "write_2"), for: .normal)
+        button.tintColor = UIColor(named: "colorPinkishOrange")
+        button.backgroundColor = .white
+        button.layer.cornerRadius = 55.0 / 2.0
+        return button
+    }()
+    
+    // MARK: Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        attribute()
+        layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    // MARK: Actions
+    @objc
+    private func DidTapWriteButton() {
+        let viewController = ThunderWriteViewController()
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    // MARK: Helpers
+    private func attribute() {
+        view.backgroundColor = .white
+        tableView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
+    }
+    
+    private func layout() {
+        [topView, tableView, writeButton]
+            .forEach { view.addSubview($0) }
+        topView.snp.makeConstraints {
+            $0.top.leading.trailing.equalTo(view.safeAreaLayoutGuide)
+            $0.height.equalTo(100.0)
+        }
+        
+        tableView.snp.makeConstraints {
+            $0.top.equalTo(topView.snp.bottom)
+            $0.leading.trailing.bottom.equalToSuperview()
+        }
+        
+        writeButton.snp.makeConstraints {
+            $0.width.height.equalTo(55.0)
+            $0.trailing.bottom.equalToSuperview().inset(35.0)
+        }
+    }
+}
+
+// MARK: Bind
+extension ThunderList2ViewController {
+    func bind(_ viewModel: ThunderList2ViewModel) {
+        // View -> ViewModel
+        topView.bind(viewModel.thunderListTopViewModel)
+        tableView.bind(viewModel.thunderListTableViewModel)
+        writeButton.rx.tap
+            .bind(to: viewModel.writeButtonTapped)
+            .disposed(by: disposeBag)
+        
+        // ViewModel -> View
+        viewModel.pushWriteView
+            .emit(onNext: { [weak self] in
+                let viewController = ThunderWriteViewController()
+                // + ViewModel 생성
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.pushLocaleView
+            .emit(onNext: { [weak self] region in
+                let region = region ?? "서울/서울"
+                let regionArr = region.split(separator: "/").map { String($0)}
+                let viewModel = Locale2ViewModel(metropolis: regionArr[0], region: regionArr[1])
+                let viewController = LocalePopUp2ViewController(viewModel: viewModel)
+                viewController.modalPresentationStyle = .overCurrentContext
+                self?.present(viewController, animated: false, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.pushThunderView
+            .drive(onNext: { [weak self] index in
+                let viewController = ThunderDetailViewController(index: index)
+                viewController.modalPresentationStyle = .fullScreen
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: UITableViewDelegate
+extension ThunderList2ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("DEBUG: indexPath -> \(indexPath)")
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8.0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
+    }
+}

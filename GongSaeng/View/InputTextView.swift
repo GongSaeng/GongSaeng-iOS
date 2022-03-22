@@ -12,14 +12,19 @@ class InputTextView: UITextView {
     
     // MARK: Properties
     var placeHolderText: String? {
-        didSet { placeholderLabel.text = placeHolderText }
+        didSet {
+            placeholderLabel.text = placeHolderText
+            layout()
+        }
     }
     
     var shouldDeleteText: Bool? {
         didSet {
-            guard let _ = shouldDeleteText else { return }
+            guard let shouldDeleteText = shouldDeleteText, shouldDeleteText else { return }
             text = ""
             placeholderLabel.isHidden = false
+            self.snp.updateConstraints { $0.height.equalTo(33.0) }
+            self.isScrollEnabled = false
             resignFirstResponder()
         }
     }
@@ -51,24 +56,23 @@ class InputTextView: UITextView {
     }
     
     // MARK: Actions
-    @objc func handleTextDidChange() {
+    @objc
+    private func handleTextDidChange() {
         placeholderLabel.isHidden = !text.isEmpty
         
         let size = CGSize(width: self.frame.width, height: .infinity)
-        let estimatedSize = self.sizeThatFits(size)
-        if estimatedSize.height <= 70 {
+        let estimatedHeight = self.sizeThatFits(size).height
+        if estimatedHeight <= 70 {
             self.isScrollEnabled = false
-            self.constraints.forEach { (constraint) in
-                if constraint.firstAttribute == .height {
-                    constraint.constant = estimatedSize.height
-                }
-            }
+            self.snp.updateConstraints { $0.height.equalTo(estimatedHeight) }
         } else {
-            print("DEBUG: estimatedSize", estimatedSize.height)
             self.isScrollEnabled = true
-            self.snp.makeConstraints {
-                $0.height.equalTo(66.5) // 66.5 -> 3줄크기
-            }
+            self.snp.updateConstraints { $0.height.equalTo(66.5) } // 66.5 -> 3줄크기
         }
+    }
+    
+    // MARK: Helpers
+    private func layout() {
+        self.snp.makeConstraints { $0.height.equalTo(33.0) }
     }
 }
