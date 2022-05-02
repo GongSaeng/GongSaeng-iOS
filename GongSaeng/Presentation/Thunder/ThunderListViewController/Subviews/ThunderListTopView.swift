@@ -31,11 +31,15 @@ final class ThunderListTopView: UIView {
         let button = UIButton(type: .system)
         let configuration = UIImage.SymbolConfiguration(pointSize: 13.0, weight: .bold)
         let image = UIImage(systemName: "chevron.down")
+        let regionData = "\(UserDefaults.standard.string(forKey: "region") ?? "서울/서울")"
+            .split(separator: "/")
+            .map { String($0) }
+        let region = (regionData[1] == regionData[0]) ? regionData[0] : regionData[1]
         button.setImage(image, for: .normal)
         button.setPreferredSymbolConfiguration(configuration, forImageIn: .normal)
         button.setAttributedTitle(
             NSAttributedString(
-                string: "\(UserDefaults.standard.string(forKey: "region") ?? "서울") " ,
+                string: region + " " ,
                 attributes: [.font: UIFont.systemFont(ofSize: 17.0,
                                                       weight: .semibold)]),
             for: .normal)

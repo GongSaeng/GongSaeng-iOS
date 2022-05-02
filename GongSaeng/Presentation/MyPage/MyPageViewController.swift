@@ -45,7 +45,7 @@ class MyPageViewController: UITableViewController {
         return label
     }()
     
-    private let profileEditButton: UIButton = {
+    private lazy var profileEditButton: UIButton = {
         let button = UIButton()
         button.setAttributedTitle(NSAttributedString(string: "프로필 수정", attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium)]), for: .normal)
         button.backgroundColor = UIColor(named: "colorBlueGreen")?.withAlphaComponent(0.1)

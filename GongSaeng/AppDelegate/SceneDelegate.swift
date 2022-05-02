@@ -11,7 +11,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var user: User?
-    let rootViewModel = ThunderList2ViewModel()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
@@ -30,7 +29,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         // Thunder(RxSwift)
         let rootViewController = ThunderList2ViewController()
-        rootViewController.bind(rootViewModel)
         let viewController = TempNavigationViewController(rootViewController: rootViewController)
         
         window?.rootViewController = viewController

@@ -280,14 +280,8 @@ final class ThunderDetailHeaderView: UIView {
          partcipantsImageCollectionView, joinButton, horizontalDividingView2,
         commentImageView, numberOfCommentsLabel]
             .forEach { addSubview($0) }
+        
         attachedImageCollectionView.snp.makeConstraints {
-            let topPadding = UIApplication.shared.connectedScenes
-                .filter { $0.activationState == .foregroundActive }
-                .map { $0 as? UIWindowScene }
-                .compactMap { $0 }
-                .first?.windows
-                .filter { $0.isKeyWindow }.first
-                .map { $0.safeAreaInsets.top } ?? 0
             $0.top.leading.trailing.equalToSuperview()
             $0.height.equalTo(UIScreen.main.bounds.width * 9.0 / 16.0 + topPadding)
         }

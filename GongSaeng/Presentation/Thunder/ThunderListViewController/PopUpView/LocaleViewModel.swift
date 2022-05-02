@@ -10,6 +10,10 @@ import UIKit
 struct LocaleViewModel {
     
     // MARK: Properties
+    private let regionData = "\(UserDefaults.standard.string(forKey: "region") ?? "서울/서울")"
+        .split(separator: "/")
+        .map { String($0) }
+    
     var regionalTableViewHeight: CGFloat {
         (numOfRegion <= 6) ?
         CGFloat(numOfRegion + 1) * 40.0 :
@@ -18,17 +22,17 @@ struct LocaleViewModel {
     var numOfRegion: Int { regionalList.count }
     var numOfMetropolis: Int { metropolisList.count }
     var selectedRegionIndex: Int {
-        let region = UserDefaults.standard.string(forKey: "region") ?? "서울"
+        let region = regionData[0]
         return regionalList.firstIndex(of: region) ?? 0
     }
     
     var selectedMetropolisIndex: Int {
-        let metropolis = UserDefaults.standard.string(forKey: "metropolis") ?? "서울"
+        let metropolis = regionData[1]
         return metropolisList.firstIndex(of: metropolis) ?? 0
     }
     
     var selectedMetropolis: String {
-        return UserDefaults.standard.string(forKey: "metropolis") ?? "서울"
+        return (regionData[0] == regionData[1]) ? regionData[0] : regionData[1]
     }
     
     var regionalList: [String] {

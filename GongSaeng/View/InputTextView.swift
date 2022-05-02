@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class InputTextView: UITextView {
+final class InputTextView: UITextView {
     
     // MARK: Properties
     var placeHolderText: String? {

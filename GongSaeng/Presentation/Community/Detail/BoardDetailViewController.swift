@@ -138,13 +138,6 @@ class BoardDetailViewController: UITableViewController {
             return
         }
         guard keyboardFrame.height > 200, !isKeyboardShowing else { return }
-        let bottomPadding = UIApplication.shared.connectedScenes
-            .filter { $0.activationState == .foregroundActive }
-            .map { $0 as? UIWindowScene }
-            .compactMap { $0 }
-            .first?.windows
-            .filter { $0.isKeyWindow }.first
-            .map { $0.safeAreaInsets.bottom } ?? 0
         let newOffsetY = tableView.contentOffset.y + keyboardFrame.height - commentInputView.frame.height - bottomPadding
         tableView.setContentOffset(CGPoint(x: 0, y: newOffsetY), animated: true)
         isKeyboardShowing = true

@@ -27,7 +27,7 @@ class EditProfileViewController: UIViewController {
         return imageView
     }()
     
-    private let imageSettingButton: UIButton = {
+    private lazy var imageSettingButton: UIButton = {
         let button = UIButton()
         button.setTitleColor(UIColor(named: "colorBlueGreen"), for: .normal)
         button.setAttributedTitle(NSAttributedString(string: "변경", attributes: [.font: UIFont.systemFont(ofSize: 16.0, weight: .bold)]), for: .normal)

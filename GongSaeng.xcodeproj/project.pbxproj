@@ -46,13 +46,13 @@
 		A704C76927E06C7A00061D45 /* ThunderList2TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C76827E06C7A00061D45 /* ThunderList2TableViewModel.swift */; };
 		A704C76C27E1AFD500061D45 /* AvailableThunder2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C76B27E1AFD500061D45 /* AvailableThunder2Cell.swift */; };
 		A704C76E27E1B01100061D45 /* CompletedThunder2Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C76D27E1B01100061D45 /* CompletedThunder2Cell.swift */; };
-		A704C77127E2427700061D45 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = A704C77027E2427700061D45 /* RxDataSources */; };
 		A704C77327E2FD3D00061D45 /* ThunderSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = A704C77227E2FD3D00061D45 /* ThunderSectionItem.swift */; };
 		A705F26327B37D8100D35CCE /* University.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705F26227B37D8100D35CCE /* University.swift */; };
 		A705F26527B37E9300D35CCE /* UniversityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705F26427B37E9300D35CCE /* UniversityCell.swift */; };
 		A705F26727B37E9B00D35CCE /* UniversityCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705F26627B37E9B00D35CCE /* UniversityCellViewModel.swift */; };
 		A705F26927B37EB300D35CCE /* UniversityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705F26827B37EB300D35CCE /* UniversityViewController.swift */; };
 		A705F26B27B383B000D35CCE /* UniversityViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A705F26A27B383B000D35CCE /* UniversityViewModel.swift */; };
+		A708B8F7281D22F7008A4939 /* CommentInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A708B8F6281D22F7008A4939 /* CommentInputView.swift */; };
 		A709A2E7278563750038BB76 /* Register.swift in Sources */ = {isa = PBXBuildFile; fileRef = A709A2E6278563750038BB76 /* Register.swift */; };
 		A70B907E27BCC30400C9887C /* ThunderListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70B907D27BCC30400C9887C /* ThunderListCellViewModel.swift */; };
 		A70D39062704BD0C00B09041 /* Reserve.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A70D39052704BD0C00B09041 /* Reserve.storyboard */; };
@@ -68,7 +68,6 @@
 		A719D09B27CFA895000A9388 /* MyThunderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719D09A27CFA895000A9388 /* MyThunderViewModel.swift */; };
 		A719D09F27CFC1B6000A9388 /* MyThunder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A719D09E27CFC1B6000A9388 /* MyThunder.swift */; };
 		A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71E07B926EE6021007DB8D0 /* UIImageView.swift */; };
-		A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A732CA47277CF0DD00A11E68 /* JGProgressHUD */; };
 		A732CA4A277CF11B00A11E68 /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A732CA49277CF11B00A11E68 /* UIViewController.swift */; };
 		A736F97A278BF5100075A665 /* BoardListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736F979278BF5100075A665 /* BoardListViewController.swift */; };
 		A736F97C278BF7890075A665 /* BoardListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A736F97B278BF7890075A665 /* BoardListCell.swift */; };
@@ -92,6 +91,17 @@
 		A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A745D04827269E7D00844189 /* NoticeListViewController.swift */; };
 		A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */; };
 		A748216B27C8E08700B51901 /* AttachedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A748216A27C8E08700B51901 /* AttachedImageCell.swift */; };
+		A74FD7F127F4155B00650355 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A74FD7F027F4155B00650355 /* SnapKit */; };
+		A74FD7F427F4156600650355 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A74FD7F327F4156600650355 /* Kingfisher */; };
+		A74FD7F727F4157900650355 /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = A74FD7F627F4157900650355 /* JGProgressHUD */; };
+		A74FD7FA27F4158F00650355 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A74FD7F927F4158F00650355 /* RxCocoa */; };
+		A74FD7FC27F4158F00650355 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A74FD7FB27F4158F00650355 /* RxRelay */; };
+		A74FD7FE27F4158F00650355 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A74FD7FD27F4158F00650355 /* RxSwift */; };
+		A74FD80127F415A000650355 /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = A74FD80027F415A000650355 /* RxDataSources */; };
+		A74FD80427F415C000650355 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A74FD80327F415C000650355 /* FirebaseAuth */; };
+		A74FD80727F41BC000650355 /* ThunderDetail2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74FD80627F41BC000650355 /* ThunderDetail2ViewController.swift */; };
+		A74FD80927F41BCA00650355 /* ThunderDetail2ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74FD80827F41BCA00650355 /* ThunderDetail2ViewModel.swift */; };
+		A74FD80B27F41BD300650355 /* ThunderDetail2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74FD80A27F41BD300650355 /* ThunderDetail2Model.swift */; };
 		A753C038277C3F1700039D5F /* CommunityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A753C02A277C3F1700039D5F /* CommunityViewController.swift */; };
 		A753FB5D26ECEAC9001DA2C3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */; };
 		A760B5E027BA7FCA00BFDFD5 /* ThunderListTopViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A760B5DF27BA7FCA00BFDFD5 /* ThunderListTopViewModel.swift */; };
@@ -101,9 +111,6 @@
 		A76B9DAD27842B2B006AF832 /* MyPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76B9DAC27842B2A006AF832 /* MyPageViewController.swift */; };
 		A76B9DAF2784694B006AF832 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76B9DAE2784694B006AF832 /* EditProfileViewController.swift */; };
 		A76B9DB12784CD64006AF832 /* EditProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76B9DB02784CD64006AF832 /* EditProfileViewModel.swift */; };
-		A76DB24827DC83E700C020A2 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = A76DB24727DC83E700C020A2 /* RxCocoa */; };
-		A76DB24A27DC83E700C020A2 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = A76DB24927DC83E700C020A2 /* RxRelay */; };
-		A76DB24C27DC83E700C020A2 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = A76DB24B27DC83E700C020A2 /* RxSwift */; };
 		A76DB25327DEE9CF00C020A2 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A76DB25227DEE9CF00C020A2 /* GoogleService-Info.plist */; };
 		A76DB25527DEEA6100C020A2 /* ThunderList2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76DB25427DEEA6000C020A2 /* ThunderList2ViewController.swift */; };
 		A76DB25827DEEB0200C020A2 /* ThunderList2Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76DB25727DEEB0200C020A2 /* ThunderList2Model.swift */; };
@@ -130,13 +137,18 @@
 		A77A743027CD2EC100295730 /* ParticipantProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A742F27CD2EC100295730 /* ParticipantProfileViewModel.swift */; };
 		A77A743227CD2F2100295730 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A743127CD2F2100295730 /* Profile.swift */; };
 		A77B7B6E2748CFF200D0D5B1 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A77B7B6D2748CFF200D0D5B1 /* splash.png */; };
+		A77FE49B27F42564000716C1 /* ThunderDetail2HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE49A27F42564000716C1 /* ThunderDetail2HeaderView.swift */; };
+		A77FE49D27F42588000716C1 /* ThunderDetail2HeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE49C27F42588000716C1 /* ThunderDetail2HeaderViewModel.swift */; };
+		A77FE4A027F4273D000716C1 /* AttachedImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE49F27F4273D000716C1 /* AttachedImageCollectionView.swift */; };
+		A77FE4A227F42749000716C1 /* AttachedImageCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE4A127F42749000716C1 /* AttachedImageCollectionViewModel.swift */; };
+		A77FE4A427F4275F000716C1 /* ParticipantsImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE4A327F4275F000716C1 /* ParticipantsImageCollectionView.swift */; };
+		A77FE4A627F42766000716C1 /* ParticipantsImageCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE4A527F42766000716C1 /* ParticipantsImageCollectionViewModel.swift */; };
 		A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */; };
 		A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FD274538D4004C9D3F /* TableHeaderView.swift */; };
 		A784FAE9278EA19D00CC4BF7 /* ImageInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A784FAE8278EA19D00CC4BF7 /* ImageInputAccessoryView.swift */; };
 		A78A6B4C27869EC1006F3D60 /* ImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78A6B4B27869EC1006F3D60 /* ImageService.swift */; };
 		A7931347279818CB004C61CC /* BannerButtonInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7931346279818CB004C61CC /* BannerButtonInputAccessoryView.swift */; };
 		A793134927982155004C61CC /* BannerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = A793134827982155004C61CC /* BannerButton.swift */; };
-		A793136F279868F1004C61CC /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = A793136E279868F1004C61CC /* Kingfisher */; };
 		A79A288D2708121C000EB8C2 /* UsageHistory.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79A288C2708121C000EB8C2 /* UsageHistory.storyboard */; };
 		A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79A288E2708122C000EB8C2 /* UsageHistoryViewController.swift */; };
 		A79C215326EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A79C215226EF3D11000B9028 /* MembershipWithdrawlPopUp.storyboard */; };
@@ -148,6 +160,9 @@
 		A79E37DF2783140F0059D5C1 /* LaunchScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E37DE2783140F0059D5C1 /* LaunchScreenViewController.swift */; };
 		A79E37E12783339B0059D5C1 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E37E02783339B0059D5C1 /* Constant.swift */; };
 		A79E37E32783388C0059D5C1 /* InitialViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A79E37E22783388C0059D5C1 /* InitialViewController.swift */; };
+		A7A0B4F527F58CD7005982A3 /* ThunderDetail2NavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0B4F427F58CD7005982A3 /* ThunderDetail2NavigationView.swift */; };
+		A7A0B4F727F58CE6005982A3 /* ThunderDetail2NavigationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0B4F627F58CE6005982A3 /* ThunderDetail2NavigationViewModel.swift */; };
+		A7A0B50227F695CB005982A3 /* RxKeyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A0B50127F695CB005982A3 /* RxKeyboard.swift */; };
 		A7A1639927C3B82200379A43 /* CompletedThunderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1639827C3B82100379A43 /* CompletedThunderCell.swift */; };
 		A7A1639B27C51F5B00379A43 /* ThunderDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1639A27C51F5B00379A43 /* ThunderDetailViewController.swift */; };
 		A7A1639E27C521C200379A43 /* ThunderDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1639D27C521C200379A43 /* ThunderDetailHeaderView.swift */; };
@@ -165,9 +180,7 @@
 		A7B35577277B73F3006F6A54 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B35576277B73F3006F6A54 /* LoginViewModel.swift */; };
 		A7B4DA4A27ACFCC9000923F0 /* ThunderWriteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B4DA4927ACFCC9000923F0 /* ThunderWriteViewController.swift */; };
 		A7B756E6277C9BCD00BFFBC0 /* PostTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B756E5277C9BCD00BFFBC0 /* PostTextView.swift */; };
-		A7BB11F627B5005E004AD66C /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = A7BB11F527B5005E004AD66C /* FirebaseAuth */; };
 		A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7C9D10227784A4E00943207 /* InputTextView.swift */; };
-		A7C9D10627784A8A00943207 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A7C9D10527784A8A00943207 /* SnapKit */; };
 		A7DB07AD2792629800FE7ABA /* FullImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB07AC2792629800FE7ABA /* FullImageViewController.swift */; };
 		A7DB07AF2792A2A300FE7ABA /* FullImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DB07AE2792A2A300FE7ABA /* FullImageCell.swift */; };
 		A7DC1CA12707788A002F395C /* ConfirmReservationPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7DC1CA02707788A002F395C /* ConfirmReservationPopUpViewController.swift */; };
@@ -245,6 +258,7 @@
 		A705F26627B37E9B00D35CCE /* UniversityCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityCellViewModel.swift; sourceTree = "<group>"; };
 		A705F26827B37EB300D35CCE /* UniversityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewController.swift; sourceTree = "<group>"; };
 		A705F26A27B383B000D35CCE /* UniversityViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UniversityViewModel.swift; sourceTree = "<group>"; };
+		A708B8F6281D22F7008A4939 /* CommentInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputView.swift; sourceTree = "<group>"; };
 		A709A2E6278563750038BB76 /* Register.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Register.swift; sourceTree = "<group>"; };
 		A70B907D27BCC30400C9887C /* ThunderListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderListCellViewModel.swift; sourceTree = "<group>"; };
 		A70D39052704BD0C00B09041 /* Reserve.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Reserve.storyboard; sourceTree = "<group>"; };
@@ -283,6 +297,9 @@
 		A745D04827269E7D00844189 /* NoticeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeListViewController.swift; sourceTree = "<group>"; };
 		A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveContainerViewController.swift; sourceTree = "<group>"; };
 		A748216A27C8E08700B51901 /* AttachedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedImageCell.swift; sourceTree = "<group>"; };
+		A74FD80627F41BC000650355 /* ThunderDetail2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2ViewController.swift; sourceTree = "<group>"; };
+		A74FD80827F41BCA00650355 /* ThunderDetail2ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2ViewModel.swift; sourceTree = "<group>"; };
+		A74FD80A27F41BD300650355 /* ThunderDetail2Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2Model.swift; sourceTree = "<group>"; };
 		A753C02A277C3F1700039D5F /* CommunityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommunityViewController.swift; sourceTree = "<group>"; };
 		A753FB5C26ECEAC9001DA2C3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = GongSaeng/Resource/Assets.xcassets; sourceTree = SOURCE_ROOT; };
 		A760B5DF27BA7FCA00BFDFD5 /* ThunderListTopViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderListTopViewModel.swift; sourceTree = "<group>"; };
@@ -318,6 +335,12 @@
 		A77A742F27CD2EC100295730 /* ParticipantProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantProfileViewModel.swift; sourceTree = "<group>"; };
 		A77A743127CD2F2100295730 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A77B7B6D2748CFF200D0D5B1 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		A77FE49A27F42564000716C1 /* ThunderDetail2HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2HeaderView.swift; sourceTree = "<group>"; };
+		A77FE49C27F42588000716C1 /* ThunderDetail2HeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2HeaderViewModel.swift; sourceTree = "<group>"; };
+		A77FE49F27F4273D000716C1 /* AttachedImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedImageCollectionView.swift; sourceTree = "<group>"; };
+		A77FE4A127F42749000716C1 /* AttachedImageCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedImageCollectionViewModel.swift; sourceTree = "<group>"; };
+		A77FE4A327F4275F000716C1 /* ParticipantsImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsImageCollectionView.swift; sourceTree = "<group>"; };
+		A77FE4A527F42766000716C1 /* ParticipantsImageCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsImageCollectionViewModel.swift; sourceTree = "<group>"; };
 		A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmedationTableViewController.swift; sourceTree = "<group>"; };
 		A781C2FD274538D4004C9D3F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		A784FAE8278EA19D00CC4BF7 /* ImageInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInputAccessoryView.swift; sourceTree = "<group>"; };
@@ -335,6 +358,10 @@
 		A79E37DE2783140F0059D5C1 /* LaunchScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchScreenViewController.swift; sourceTree = "<group>"; };
 		A79E37E02783339B0059D5C1 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		A79E37E22783388C0059D5C1 /* InitialViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialViewController.swift; sourceTree = "<group>"; };
+		A7A0B4F427F58CD7005982A3 /* ThunderDetail2NavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2NavigationView.swift; sourceTree = "<group>"; };
+		A7A0B4F627F58CE6005982A3 /* ThunderDetail2NavigationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2NavigationViewModel.swift; sourceTree = "<group>"; };
+		A7A0B4FD27F691CF005982A3 /* RxTest.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = RxTest.xcframework; path = Carthage/Build/RxTest.xcframework; sourceTree = "<group>"; };
+		A7A0B50127F695CB005982A3 /* RxKeyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxKeyboard.swift; sourceTree = "<group>"; };
 		A7A1639827C3B82100379A43 /* CompletedThunderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedThunderCell.swift; sourceTree = "<group>"; };
 		A7A1639A27C51F5B00379A43 /* ThunderDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetailViewController.swift; sourceTree = "<group>"; };
 		A7A1639D27C521C200379A43 /* ThunderDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetailHeaderView.swift; sourceTree = "<group>"; };
@@ -387,14 +414,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A76DB24A27DC83E700C020A2 /* RxRelay in Frameworks */,
-				A793136F279868F1004C61CC /* Kingfisher in Frameworks */,
-				A732CA48277CF0DD00A11E68 /* JGProgressHUD in Frameworks */,
-				A76DB24827DC83E700C020A2 /* RxCocoa in Frameworks */,
-				A7C9D10627784A8A00943207 /* SnapKit in Frameworks */,
-				A704C77127E2427700061D45 /* RxDataSources in Frameworks */,
-				A7BB11F627B5005E004AD66C /* FirebaseAuth in Frameworks */,
-				A76DB24C27DC83E700C020A2 /* RxSwift in Frameworks */,
+				A74FD7FE27F4158F00650355 /* RxSwift in Frameworks */,
+				A74FD7FC27F4158F00650355 /* RxRelay in Frameworks */,
+				A74FD7F427F4156600650355 /* Kingfisher in Frameworks */,
+				A74FD7F727F4157900650355 /* JGProgressHUD in Frameworks */,
+				A74FD80127F415A000650355 /* RxDataSources in Frameworks */,
+				A74FD7FA27F4158F00650355 /* RxCocoa in Frameworks */,
+				A74FD7F127F4155B00650355 /* SnapKit in Frameworks */,
+				A74FD80427F415C000650355 /* FirebaseAuth in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,6 +459,7 @@
 			children = (
 				3D5D5987265247F40018FE63 /* GongSaeng */,
 				3D5D5986265247F40018FE63 /* Products */,
+				A7A0B4FC27F691CF005982A3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -524,6 +552,7 @@
 				A732CA49277CF11B00A11E68 /* UIViewController.swift */,
 				A7EB35682786DB42001BCD03 /* ImageCacheManager.swift */,
 				A7EE6D35278FFEC5000AC151 /* UIImage.swift */,
+				A7A0B50127F695CB005982A3 /* RxKeyboard.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -539,10 +568,8 @@
 		A704C76127E06C4600061D45 /* SubComponents */ = {
 			isa = PBXGroup;
 			children = (
-				A704C76227E06C6300061D45 /* ThunderList2TopView.swift */,
-				A704C76427E06C6A00061D45 /* ThunderList2TopViewModel.swift */,
-				A704C76627E06C7500061D45 /* ThunderList2TableView.swift */,
-				A704C76827E06C7A00061D45 /* ThunderList2TableViewModel.swift */,
+				A7A0B4F827F5A829005982A3 /* TopView */,
+				A7A0B4F927F5A834005982A3 /* ListView */,
 				A704C76A27E1AFB300061D45 /* SubComponents */,
 			);
 			path = SubComponents;
@@ -673,6 +700,17 @@
 				A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */,
 			);
 			path = Notice;
+			sourceTree = "<group>";
+		};
+		A74FD80527F41B9E00650355 /* ThunderDetail2ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				A74FD80627F41BC000650355 /* ThunderDetail2ViewController.swift */,
+				A74FD80827F41BCA00650355 /* ThunderDetail2ViewModel.swift */,
+				A74FD80A27F41BD300650355 /* ThunderDetail2Model.swift */,
+				A77FE49927F4254E000716C1 /* SubComponents */,
+			);
+			path = ThunderDetail2ViewController;
 			sourceTree = "<group>";
 		};
 		A753C026277C3F1700039D5F /* Community */ = {
@@ -846,6 +884,27 @@
 			path = Subviews;
 			sourceTree = "<group>";
 		};
+		A77FE49927F4254E000716C1 /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A7A0B4FA27F5A840005982A3 /* NavigationView */,
+				A7A0B4FB27F5A848005982A3 /* HeaderView */,
+				A77FE49E27F42718000716C1 /* SubComponents */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
+		A77FE49E27F42718000716C1 /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A77FE49F27F4273D000716C1 /* AttachedImageCollectionView.swift */,
+				A77FE4A127F42749000716C1 /* AttachedImageCollectionViewModel.swift */,
+				A77FE4A327F4275F000716C1 /* ParticipantsImageCollectionView.swift */,
+				A77FE4A527F42766000716C1 /* ParticipantsImageCollectionViewModel.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
 		A781C2F92745233B004C9D3F /* Immediation */ = {
 			isa = PBXGroup;
 			children = (
@@ -888,9 +947,54 @@
 			isa = PBXGroup;
 			children = (
 				A76DB25627DEEA8F00C020A2 /* ThunderList2ViewController */,
+				A74FD80527F41B9E00650355 /* ThunderDetail2ViewController */,
 				A76F601627E8553B008A5351 /* ThunderPopUp2ViewController */,
 			);
 			path = Thunder2;
+			sourceTree = "<group>";
+		};
+		A7A0B4F827F5A829005982A3 /* TopView */ = {
+			isa = PBXGroup;
+			children = (
+				A704C76227E06C6300061D45 /* ThunderList2TopView.swift */,
+				A704C76427E06C6A00061D45 /* ThunderList2TopViewModel.swift */,
+			);
+			path = TopView;
+			sourceTree = "<group>";
+		};
+		A7A0B4F927F5A834005982A3 /* ListView */ = {
+			isa = PBXGroup;
+			children = (
+				A704C76627E06C7500061D45 /* ThunderList2TableView.swift */,
+				A704C76827E06C7A00061D45 /* ThunderList2TableViewModel.swift */,
+			);
+			path = ListView;
+			sourceTree = "<group>";
+		};
+		A7A0B4FA27F5A840005982A3 /* NavigationView */ = {
+			isa = PBXGroup;
+			children = (
+				A7A0B4F427F58CD7005982A3 /* ThunderDetail2NavigationView.swift */,
+				A7A0B4F627F58CE6005982A3 /* ThunderDetail2NavigationViewModel.swift */,
+			);
+			path = NavigationView;
+			sourceTree = "<group>";
+		};
+		A7A0B4FB27F5A848005982A3 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				A77FE49A27F42564000716C1 /* ThunderDetail2HeaderView.swift */,
+				A77FE49C27F42588000716C1 /* ThunderDetail2HeaderViewModel.swift */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		A7A0B4FC27F691CF005982A3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A7A0B4FD27F691CF005982A3 /* RxTest.xcframework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		A7A1639C27C51F6300379A43 /* ThunderDetailViewController */ = {
@@ -957,6 +1061,7 @@
 				A7EE4A8F27860329001A8C2E /* PopUpViewController.swift */,
 				A73BC924278DB9F4003FF406 /* ImageCollectionView.swift */,
 				A793134827982155004C61CC /* BannerButton.swift */,
+				A708B8F6281D22F7008A4939 /* CommentInputView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -998,14 +1103,14 @@
 			);
 			name = GongSaeng;
 			packageProductDependencies = (
-				A7C9D10527784A8A00943207 /* SnapKit */,
-				A732CA47277CF0DD00A11E68 /* JGProgressHUD */,
-				A793136E279868F1004C61CC /* Kingfisher */,
-				A7BB11F527B5005E004AD66C /* FirebaseAuth */,
-				A76DB24727DC83E700C020A2 /* RxCocoa */,
-				A76DB24927DC83E700C020A2 /* RxRelay */,
-				A76DB24B27DC83E700C020A2 /* RxSwift */,
-				A704C77027E2427700061D45 /* RxDataSources */,
+				A74FD7F027F4155B00650355 /* SnapKit */,
+				A74FD7F327F4156600650355 /* Kingfisher */,
+				A74FD7F627F4157900650355 /* JGProgressHUD */,
+				A74FD7F927F4158F00650355 /* RxCocoa */,
+				A74FD7FB27F4158F00650355 /* RxRelay */,
+				A74FD7FD27F4158F00650355 /* RxSwift */,
+				A74FD80027F415A000650355 /* RxDataSources */,
+				A74FD80327F415C000650355 /* FirebaseAuth */,
 			);
 			productName = GongSaeng;
 			productReference = 3D5D5985265247F40018FE63 /* GongSaeng.app */;
@@ -1035,12 +1140,12 @@
 			);
 			mainGroup = 3D5D597C265247F40018FE63;
 			packageReferences = (
-				A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
-				A793136D279868F1004C61CC /* XCRemoteSwiftPackageReference "Kingfisher" */,
-				A7BB11F427B5005E004AD66C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
-				A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */,
-				A704C76F27E2427700061D45 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				A74FD7EF27F4155B00650355 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				A74FD7F227F4156600650355 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				A74FD7F527F4157900650355 /* XCRemoteSwiftPackageReference "JGProgressHUD" */,
+				A74FD7F827F4158F00650355 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				A74FD7FF27F415A000650355 /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				A74FD80227F415C000650355 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			productRefGroup = 3D5D5986265247F40018FE63 /* Products */;
 			projectDirPath = "";
@@ -1104,6 +1209,7 @@
 				A748216B27C8E08700B51901 /* AttachedImageCell.swift in Sources */,
 				3D85550D2660084A00147EE7 /* AccountViewController.swift in Sources */,
 				A77A742927CCB0F400295730 /* ThunderNetworkManager.swift in Sources */,
+				A77FE4A027F4273D000716C1 /* AttachedImageCollectionView.swift in Sources */,
 				3DAFCBA4266261E6008E9803 /* UITextField.swift in Sources */,
 				3D5D59AC2652B12A0018FE63 /* LoginViewController.swift in Sources */,
 				A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */,
@@ -1143,6 +1249,7 @@
 				A793134927982155004C61CC /* BannerButton.swift in Sources */,
 				A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */,
 				A704C76E27E1B01100061D45 /* CompletedThunder2Cell.swift in Sources */,
+				A77FE49D27F42588000716C1 /* ThunderDetail2HeaderViewModel.swift in Sources */,
 				A7A1639927C3B82200379A43 /* CompletedThunderCell.swift in Sources */,
 				A777FD512792D52600228969 /* Comment.swift in Sources */,
 				A76F601527E853C2008A5351 /* LocalePopUp2ViewController.swift in Sources */,
@@ -1150,6 +1257,7 @@
 				A7E3D11C27BB9CFF0002240B /* AvailableThunderCell.swift in Sources */,
 				A77A743027CD2EC100295730 /* ParticipantProfileViewModel.swift in Sources */,
 				A705F26B27B383B000D35CCE /* UniversityViewModel.swift in Sources */,
+				A7A0B4F527F58CD7005982A3 /* ThunderDetail2NavigationView.swift in Sources */,
 				A76DB25A27DEEB0F00C020A2 /* ThunderList2ViewModel.swift in Sources */,
 				3DAFCBA026625DF6008E9803 /* Normalization.swift in Sources */,
 				A78A6B4C27869EC1006F3D60 /* ImageService.swift in Sources */,
@@ -1170,6 +1278,7 @@
 				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
 				A7A9B3D52754D200009B22DF /* NoticeListCellViewModel.swift in Sources */,
 				A73BC91F278DA671003FF406 /* WriteViewController.swift in Sources */,
+				A77FE49B27F42564000716C1 /* ThunderDetail2HeaderView.swift in Sources */,
 				A7F9DCEF27759E0C005E9113 /* MateCellViewModel.swift in Sources */,
 				A784FAE9278EA19D00CC4BF7 /* ImageInputAccessoryView.swift in Sources */,
 				A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */,
@@ -1189,17 +1298,20 @@
 				A704C77327E2FD3D00061D45 /* ThunderSectionItem.swift in Sources */,
 				A704C76927E06C7A00061D45 /* ThunderList2TableViewModel.swift in Sources */,
 				A7EE6D34278FB541000AC151 /* CommunityNetworkManager.swift in Sources */,
+				A74FD80B27F41BD300650355 /* ThunderDetail2Model.swift in Sources */,
 				A7DB07AD2792629800FE7ABA /* FullImageViewController.swift in Sources */,
 				A736F989278C58730075A665 /* BoardDetialHeaderViewModel.swift in Sources */,
 				A76F601827E8557D008A5351 /* Locale2ViewModel.swift in Sources */,
 				A704C76C27E1AFD500061D45 /* AvailableThunder2Cell.swift in Sources */,
 				A71E07BA26EE6021007DB8D0 /* UIImageView.swift in Sources */,
 				A73AE4BF26F1B8A300FA1F06 /* CheckOutRequestDetailViewController.swift in Sources */,
+				A74FD80927F41BCA00650355 /* ThunderDetail2ViewModel.swift in Sources */,
 				A7B4DA4A27ACFCC9000923F0 /* ThunderWriteViewController.swift in Sources */,
 				A777C8D42707A2EB00670556 /* ConfirmedReservationPopUpViewController.swift in Sources */,
 				A7DC1CA527077918002F395C /* FinishUsingPopUpViewController.swift in Sources */,
 				A7931347279818CB004C61CC /* BannerButtonInputAccessoryView.swift in Sources */,
 				A79E37E32783388C0059D5C1 /* InitialViewController.swift in Sources */,
+				A77FE4A227F42749000716C1 /* AttachedImageCollectionViewModel.swift in Sources */,
 				A70B907E27BCC30400C9887C /* ThunderListCellViewModel.swift in Sources */,
 				A7FAB14E27C75E2F00B736AB /* ThunderDetailViewModel.swift in Sources */,
 				A7A1639B27C51F5B00379A43 /* ThunderDetailViewController.swift in Sources */,
@@ -1207,7 +1319,9 @@
 				A7AE9F3426EF20120082C855 /* LogOutPopUpViewController.swift in Sources */,
 				A705F26327B37D8100D35CCE /* University.swift in Sources */,
 				A76DB25827DEEB0200C020A2 /* ThunderList2Model.swift in Sources */,
+				A7A0B4F727F58CE6005982A3 /* ThunderDetail2NavigationViewModel.swift in Sources */,
 				3D5D598B265247F40018FE63 /* SceneDelegate.swift in Sources */,
+				A708B8F7281D22F7008A4939 /* CommentInputView.swift in Sources */,
 				A77A742E27CD209A00295730 /* ParticipantProfileViewController.swift in Sources */,
 				A73BC925278DB9F4003FF406 /* ImageCollectionView.swift in Sources */,
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,
@@ -1221,6 +1335,7 @@
 				A7DD616327B121F1001F3F63 /* PlaceListCellViewModel.swift in Sources */,
 				A73E81EF2795639800A4C46D /* MarketBoardCell.swift in Sources */,
 				A77879D627BA4FD3002FD07B /* ThunderListTopView.swift in Sources */,
+				A77FE4A427F4275F000716C1 /* ParticipantsImageCollectionView.swift in Sources */,
 				A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */,
 				A736F980278BF98D0075A665 /* Community.swift in Sources */,
 				A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */,
@@ -1234,14 +1349,17 @@
 				A704C76527E06C6A00061D45 /* ThunderList2TopViewModel.swift in Sources */,
 				A7F15F08278A96C70080DCE7 /* MainTabBarController.swift in Sources */,
 				A777FD532792D78800228969 /* CommentTableViewCellViewModel.swift in Sources */,
+				A77FE4A627F42766000716C1 /* ParticipantsImageCollectionViewModel.swift in Sources */,
 				A705F26927B37EB300D35CCE /* UniversityViewController.swift in Sources */,
 				A7A21ADA27990CC800E71761 /* MyProfileAndWritingHeaderView.swift in Sources */,
 				A704C76327E06C6300061D45 /* ThunderList2TopView.swift in Sources */,
 				A7EE4A9027860329001A8C2E /* PopUpViewController.swift in Sources */,
 				A7F15F0A278AB10C0080DCE7 /* ManageAccountViewController.swift in Sources */,
+				A7A0B50227F695CB005982A3 /* RxKeyboard.swift in Sources */,
 				A7FAB14A27C643DE00B736AB /* ThunderDetailHeaderViewModel.swift in Sources */,
 				A736F97C278BF7890075A665 /* BoardListCell.swift in Sources */,
 				A760B5E427BA924100BFDFD5 /* LocalePopUpViewController.swift in Sources */,
+				A74FD80727F41BC000650355 /* ThunderDetail2ViewController.swift in Sources */,
 				A719D09327CEFB45000A9388 /* District.swift in Sources */,
 				A7E3D11927BB928F0002240B /* Thunder.swift in Sources */,
 				A76B9DB12784CD64006AF832 /* EditProfileViewModel.swift in Sources */,
@@ -1443,47 +1561,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		A704C76F27E2427700061D45 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 5.0.0;
-			};
-		};
-		A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
-		A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/reactivex/rxswift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.0.0;
-			};
-		};
-		A793136D279868F1004C61CC /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.0.0;
-			};
-		};
-		A7BB11F427B5005E004AD66C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
-			requirement = {
-				branch = master;
-				kind = branch;
-			};
-		};
-		A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+		A74FD7EF27F4155B00650355 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
 			requirement = {
@@ -1491,48 +1569,88 @@
 				kind = branch;
 			};
 		};
+		A74FD7F227F4156600650355 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		A74FD7F527F4157900650355 /* XCRemoteSwiftPackageReference "JGProgressHUD" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JonasGessner/JGProgressHUD.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		A74FD7F827F4158F00650355 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		A74FD7FF27F415A000650355 /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		A74FD80227F415C000650355 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		A704C77027E2427700061D45 /* RxDataSources */ = {
+		A74FD7F027F4155B00650355 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A704C76F27E2427700061D45 /* XCRemoteSwiftPackageReference "RxDataSources" */;
-			productName = RxDataSources;
+			package = A74FD7EF27F4155B00650355 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
-		A732CA47277CF0DD00A11E68 /* JGProgressHUD */ = {
+		A74FD7F327F4156600650355 /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A732CA46277CF0DD00A11E68 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
-			productName = JGProgressHUD;
-		};
-		A76DB24727DC83E700C020A2 /* RxCocoa */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */;
-			productName = RxCocoa;
-		};
-		A76DB24927DC83E700C020A2 /* RxRelay */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */;
-			productName = RxRelay;
-		};
-		A76DB24B27DC83E700C020A2 /* RxSwift */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A76DB24627DC83E700C020A2 /* XCRemoteSwiftPackageReference "rxswift" */;
-			productName = RxSwift;
-		};
-		A793136E279868F1004C61CC /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = A793136D279868F1004C61CC /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			package = A74FD7F227F4156600650355 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
 		};
-		A7BB11F527B5005E004AD66C /* FirebaseAuth */ = {
+		A74FD7F627F4157900650355 /* JGProgressHUD */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A7BB11F427B5005E004AD66C /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
-			productName = FirebaseAuth;
+			package = A74FD7F527F4157900650355 /* XCRemoteSwiftPackageReference "JGProgressHUD" */;
+			productName = JGProgressHUD;
 		};
-		A7C9D10527784A8A00943207 /* SnapKit */ = {
+		A74FD7F927F4158F00650355 /* RxCocoa */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A7C9D10427784A8A00943207 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
+			package = A74FD7F827F4158F00650355 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		A74FD7FB27F4158F00650355 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74FD7F827F4158F00650355 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		A74FD7FD27F4158F00650355 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74FD7F827F4158F00650355 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		A74FD80027F415A000650355 /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74FD7FF27F415A000650355 /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
+		A74FD80327F415C000650355 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A74FD80227F415C000650355 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

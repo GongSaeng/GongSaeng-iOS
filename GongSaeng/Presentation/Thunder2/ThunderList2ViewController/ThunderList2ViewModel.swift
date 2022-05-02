@@ -31,7 +31,7 @@ final class ThunderList2ViewModel {
     let pushLocaleView: Signal<String?>
 //    let pushMyThunderView: Signal<String>
     let pushWriteView: Signal<Void>
-    let pushThunderView: Driver<Int>
+    let pushThunderView: Driver<ThunderDetail2ViewModel>
     
 //    let shouldFetchThunders: Observable<String>
     
@@ -39,9 +39,7 @@ final class ThunderList2ViewModel {
         let thundersResult = Observable
             .combineLatest(currentPage, sortingOrder, selectedRegion)
             .distinctUntilChanged { $0 == $1 }
-            .map { page, order, region in
-                model.fetchThunders(region: region, by: order, page: page)
-            }
+            .map(model.fetchThunders)
             .flatMap { $0 }
             .share()
         
@@ -92,24 +90,6 @@ final class ThunderList2ViewModel {
             .asSignal()
         
         self.pushThunderView = thunderListTableViewModel.selectedIndex
+            .map { ThunderDetail2ViewModel(index: $0) }
     }
-    
-    private func bind(_ model: ThunderList2Model) {
-        
-    }
-        // ThunderTopViewModel
-//        self.shouldFetchThunders = UserDefaults.standard.rx
-//            .observe(String.self, "region")
-//            .map { $0 ?? "서울/전체" }
-//            .distinctUntilChanged()
-        
-        // ThunderListViewModel
-//        let b = model.fetchThunders(metropolis: "", region: "", by: .closingOrder, page: 1)
-    
-    /*
-     - ThunderListViewController -> ThunderListViewModel -> ThunderListModel
-        ㄴ ThunderListTopView -> UserDefaults 지역
-        ㄴ ThuderListTopView
-     
-     */
 }

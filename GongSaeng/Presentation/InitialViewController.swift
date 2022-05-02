@@ -17,13 +17,13 @@ final class InitialViewController: UIViewController {
         return imageView
     }()
     
-    private let loginButton: BannerButton = {
+    private lazy var loginButton: BannerButton = {
         let button = BannerButton(title: "로그인", backgroundColor: .white)
         button.addTarget(self, action: #selector(didTapLoginButton), for: .touchUpInside)
         return button
     }()
     
-    private let registerButton: BannerButton = {
+    private lazy var registerButton: BannerButton = {
         let button = BannerButton(title: "회원가입", backgroundColor: .green)
         button.addTarget(self, action: #selector(didTapRegisterButton), for: .touchUpInside)
         return button

@@ -35,7 +35,7 @@ let exampleThunderDetail = ThunderDetail(
     address: "부산 금정구 금강로 271",
     placeURL: "http://place.map.kakao.com/12421917",
     totalNum: 6,
-    contents: "저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~",
+    contents: "저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~ 저녁에 코인 노래방 같이 가실분들 구합니다! 장르, 실력 상관없이 같이 재밌게 노실분들 ~~",
     participantsProfile: [
         Profile(profileImageURL: TEST_IMAGE4_URL,
                 id: "jdc0407",
@@ -154,9 +154,8 @@ final class ThunderNetworkManager {
         self.session = session
     }
 
-    static func fetchThunders(region: String?, by order: SortingOrder, page: Int) -> Single<Result<[Thunder], Error>> {
+    static func fetchThunders(page: Int, by order: SortingOrder, region: String?) -> Single<Result<[Thunder], Error>> {
         print("DEBUG: Called fetchThunders().. ")
-//        let region = region ?? "서울/전체"
         return Single<Result<[Thunder], Error>>.create { single -> Disposable in
             DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) {
                 DispatchQueue.main.async {
@@ -165,13 +164,132 @@ final class ThunderNetworkManager {
             }
             return Disposables.create()
         }
+        
     }
 
     static func fetchMyThunder(id: String) -> Single<Result<[MyThunder], Error>> {
         return .just(.success(exampleMyThunders))
+//        print("DEBUG: Called fetchMyThunder()..")
+//        return Single<Result<
     }
 
     static func fetchThunderDetail(index: Int) -> Single<Result<ThunderDetail, Error>> {
-        return .just(.success(exampleThunderDetail))
+        print("DEBUG: Called fetchThunderDetail()..")
+        return Single<Result<ThunderDetail, Error>>.create { single -> Disposable in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) {
+                DispatchQueue.main.async {
+                    single(.success(.success(exampleThunderDetail)))
+                }
+            }
+            return Disposables.create()
+        }
     }
+    
+//    func postThunder(nickname: String, meetingTime: String, place: String, placeURL: String, address: String, totalNum: Int, title: String, contents: String, region: String, completion: @escaping(Bool) -> Void) {
+//
+//        let regionData = region.split(separator: "/").map { String($0) }
+//        let region = regionData[0]
+//        let metapolis = regionData[1]
+//
+//        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/write_community?")
+//        urlComponents?.queryItems = [
+//            URLQueryItem(name: "writer_nickname", value: nickname),
+//            URLQueryItem(name: "metapolis", value: metapolis),
+//            URLQueryItem(name: "title", value: title),
+//            URLQueryItem(name: "contents", value: contents),
+//            URLQueryItem(name: "contents_image", value: ""), // ???
+//            URLQueryItem(name: "meet_time", value: meetingTime),
+//            URLQueryItem(name: "location", value: place),
+//            URLQueryItem(name: "detail_location", value: address),
+//            URLQueryItem(name: "total_num", value: "\(totalNum)"),
+//            URLQueryItem(name: "writer_image", value: ""), // ???
+//            URLQueryItem(name: "location_url", value: placeURL),
+//            URLQueryItem(name: "region", value: region)
+//        ]
+//
+//        guard let url = urlComponents?.url else { return }
+//
+//        var request = URLRequest(url: url)
+//        request.httpMethod = "POST"
+//        if let images = images, let thumbnailImage = images.first {
+//            let boundary = "Boundary-\(UUID().uuidString)"
+//            request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+//
+//            let httpBody = NSMutableData() // let var //
+//            guard let imageData = thumbnailImage.downSize(newWidth: 100)
+//                    .jpegData(compressionQuality: 0.5) else { return }
+//            httpBody.append(convertFileData(fileData: imageData, using: boundary))
+//            for image in images {
+//                guard let imageData = image.jpegData(compressionQuality: 1) else { return }
+//                httpBody.append(convertFileData(fileData: imageData, using: boundary))
+//            }
+//            httpBody.appendString("--\(boundary)--")
+//            let data = httpBody as Data
+//            let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
+//                guard error == nil,
+//                      let response = response as? HTTPURLResponse,
+//                      let data = data,
+//                      let returnValue = String(data: data, encoding: .utf8)  else {
+//                          print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+//                          return
+//                      }
+//                switch response.statusCode {
+//                case (200...299):
+//                    print("DEBUG: postCommunity response is succeded..", returnValue)
+//                    let isSucceded = (returnValue == "true") ? true : false
+//                    completion(isSucceded)
+//                case (400...499):
+//                    print("""
+//                        ERROR: Client ERROR \(response.statusCode)
+//                        Response: \(response)
+//                    """)
+//                case (500...599):
+//                    print("""
+//                        ERROR: Server ERROR \(response.statusCode)
+//                        Response: \(response)
+//                    """)
+//                default:
+//                    print("""
+//                        ERROR: \(response.statusCode)
+//                        Response: \(response)
+//                    """)
+//                }
+//            }
+//            dataTask.resume()
+//
+//        } else {
+//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//
+//            let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+//                guard error == nil,
+//                      let response = response as? HTTPURLResponse,
+//                      let data = data,
+//                      let returnValue = String(data: data, encoding: .utf8)  else {
+//                          print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+//                          return
+//                      }
+//
+//                switch response.statusCode {
+//                case (200...299):
+//                    let isSucceded = (returnValue == "true") ? true : false
+//                    completion(isSucceded)
+//                case (400...499):
+//                    print("""
+//                        ERROR: Client ERROR \(response.statusCode)
+//                        Response: \(response)
+//                    """)
+//                case (500...599):
+//                    print("""
+//                        ERROR: Server ERROR \(response.statusCode)
+//                        Response: \(response)
+//                    """)
+//                default:
+//                    print("""
+//                        ERROR: \(response.statusCode)
+//                        Response: \(response)
+//                    """)
+//                }
+//            }
+//            dataTask.resume()
+//        }
 }

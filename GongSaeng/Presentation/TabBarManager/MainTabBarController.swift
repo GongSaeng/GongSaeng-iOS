@@ -36,7 +36,11 @@ class MainTabBarController: UITabBarController {
         homeRootViewController.user = user
         let homeViewController = templateNavigationController(tabTitle: "홈", unselectedImage: UIImage(named: "homeIcon"), selectedIamge: UIImage(named: "homeIconOn"), rootViewController: homeRootViewController)
         
-        let publicViewController = templateNavigationController(tabTitle: "공용", unselectedImage: UIImage(named: "public"), selectedIamge: UIImage(named: "publicOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "PublicViewController"))
+//        let thunderViewModel = ThunderList2ViewModel()
+        let thunderRootViewController = ThunderList2ViewController()
+//        thunderRootViewController.bind(thunderViewModel)
+//        let thunderRootViewController = ThunderListViewController()
+        let publicViewController = templateNavigationController(tabTitle: "번개", unselectedImage: UIImage(named: "public"), selectedIamge: UIImage(named: "publicOn"), rootViewController: thunderRootViewController)
         
         let communityRootViewController = storyboard.instantiateViewController(withIdentifier: "CommunityViewController") as! CommunityViewController
         communityRootViewController.user = user

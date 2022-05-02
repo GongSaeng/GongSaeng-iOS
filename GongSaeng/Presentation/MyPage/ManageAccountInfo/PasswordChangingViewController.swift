@@ -51,7 +51,7 @@ final class PasswordChangingViewController: UIViewController {
         return textField
     }()
     
-    private let passwordLookingButton: UIButton = {
+    private lazy var passwordLookingButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "noLookIcon"), for: .normal)
         button.setImage(UIImage(named: "lookIcon"), for: .selected)
@@ -59,7 +59,7 @@ final class PasswordChangingViewController: UIViewController {
         return button
     }()
     
-    private let passwordCheckLookingButton: UIButton = {
+    private lazy var passwordCheckLookingButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "noLookIcon"), for: .normal)
         button.setImage(UIImage(named: "lookIcon"), for: .selected)

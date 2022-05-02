@@ -9,9 +9,8 @@ import Foundation
 import RxSwift
 
 final class ThunderList2Model {
-    
-    func fetchThunders(region: String?, by order: SortingOrder, page: Int) -> Single<Result<[Thunder], Error>> {
-        ThunderNetworkManager.fetchThunders(region: region, by: order, page: page)
+    func fetchThunders(page: Int, by order: SortingOrder, region: String?) -> Single<Result<[Thunder], Error>> {
+        return ThunderNetworkManager.fetchThunders(page: page, by: order, region: region)
     }
     
     func getThundersValue(_ result: Result<[Thunder], Error>) -> [Thunder]? {

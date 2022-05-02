@@ -14,6 +14,8 @@ final class ThunderList2ViewController: UIViewController {
     // MARK: Properties
     private let disposeBag = DisposeBag()
     
+    private let viewModel: ThunderList2ViewModel
+    
     private let reuseIdentifier1 = "AvailableThunderCell"
     private let reuseIdentifier2 = "CompletedThunderCell"
     
@@ -30,11 +32,25 @@ final class ThunderList2ViewController: UIViewController {
     }()
     
     // MARK: Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init(viewModel: ThunderList2ViewModel = ThunderList2ViewModel()) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
         
         attribute()
         layout()
+        bind(viewModel)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//        attribute()
+//        layout()
+//        bind(viewModel)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -74,12 +90,14 @@ final class ThunderList2ViewController: UIViewController {
         
         tableView.snp.makeConstraints {
             $0.top.equalTo(topView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         writeButton.snp.makeConstraints {
             $0.width.height.equalTo(55.0)
-            $0.trailing.bottom.equalToSuperview().inset(35.0)
+            $0.trailing.equalToSuperview().inset(15.0)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15.0)
         }
     }
 }
@@ -115,8 +133,9 @@ extension ThunderList2ViewController {
             .disposed(by: disposeBag)
         
         viewModel.pushThunderView
-            .drive(onNext: { [weak self] index in
-                let viewController = ThunderDetailViewController(index: index)
+            .drive(onNext: { [weak self] viewModel in
+                let viewController = ThunderDetail2ViewController()
+                viewController.bind(viewModel)
                 viewController.modalPresentationStyle = .fullScreen
                 self?.navigationController?.pushViewController(viewController, animated: true)
             })
@@ -126,10 +145,6 @@ extension ThunderList2ViewController {
 
 // MARK: UITableViewDelegate
 extension ThunderList2ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("DEBUG: indexPath -> \(indexPath)")
-    }
-
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return nil
     }

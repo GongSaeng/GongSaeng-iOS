@@ -54,13 +54,6 @@ final class ThunderDetailViewController: UIViewController {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [UIColor.black.withAlphaComponent(0.3).cgColor, UIColor.black.withAlphaComponent(0).cgColor]
         gradientLayer.locations = [0, 1]
-        let topPadding = UIApplication.shared.connectedScenes
-            .filter { $0.activationState == .foregroundActive }
-            .map { $0 as? UIWindowScene }
-            .compactMap { $0 }
-            .first?.windows
-            .filter { $0.isKeyWindow }.first
-            .map { $0.safeAreaInsets.top } ?? 0
         let frame: CGRect = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: topPadding + 40.0)
         gradientLayer.frame = frame
         return gradientLayer
@@ -193,13 +186,6 @@ final class ThunderDetailViewController: UIViewController {
             isKeyboardShowing = false
         }
         guard keyboardFrame.height > 200, !isKeyboardShowing else { return }
-        let bottomPadding = UIApplication.shared.connectedScenes
-            .filter { $0.activationState == .foregroundActive }
-            .map { $0 as? UIWindowScene }
-            .compactMap { $0 }
-            .first?.windows
-            .filter { $0.isKeyWindow }.first
-            .map { $0.safeAreaInsets.bottom } ?? 0
         let newOffsetY = tableView.contentOffset.y + keyboardFrame.height - commentInputView.frame.height - bottomPadding
         tableView.setContentOffset(CGPoint(x: 0, y: newOffsetY), animated: true)
         isKeyboardShowing = true
@@ -327,13 +313,6 @@ extension ThunderDetailViewController: UITableViewDelegate {
             }
         } else {
             spaceView.snp.updateConstraints {
-                let bottomPadding = UIApplication.shared.connectedScenes
-                    .filter { $0.activationState == .foregroundActive }
-                    .map { $0 as? UIWindowScene }
-                    .compactMap { $0 }
-                    .first?.windows
-                    .filter { $0.isKeyWindow }.first
-                    .map { $0.safeAreaInsets.bottom } ?? 0
                 $0.height.equalTo(bottomPadding + 55.0)
             }
         }

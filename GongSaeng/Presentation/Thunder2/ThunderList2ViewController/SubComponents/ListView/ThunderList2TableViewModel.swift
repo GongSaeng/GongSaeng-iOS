@@ -19,7 +19,7 @@ final class ThunderList2TableViewModel {
     
     let selectedIndex: Driver<Int>
     
-    // MARK: Lifecycle
+    // MARK: Bind
     init() {
         self.tableViewItems = thunderCellData
             .map { viewMoels -> [ThunderSectionItem] in
@@ -39,9 +39,3 @@ final class ThunderList2TableViewModel {
             .asDriver(onErrorJustReturn: 0)
     }
 }
-//        let availableSection = ThunderSectionItem(sectionType: .available, items: [])
-//        let completedSection = ThunderSectionItem(sectionType: .completed, items: [])
-        
-//            .asDriver(onErrorJustReturn: [])
-        
-//        self.tableViewItems = thunderC

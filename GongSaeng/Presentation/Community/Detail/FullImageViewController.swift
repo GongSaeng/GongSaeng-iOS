@@ -31,7 +31,7 @@ final class FullImageViewController: UIViewController {
         button.tintColor = .white
         let configuration = UIImage.SymbolConfiguration(pointSize: 24.0, weight: .regular)
         button.setPreferredSymbolConfiguration(configuration, forImageIn: .normal)
-        button.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
+        button.addTarget(FullImageViewController.self, action: #selector(didTapCancelButton), for: .touchUpInside)
         return button
     }()
     

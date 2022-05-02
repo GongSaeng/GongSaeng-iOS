@@ -110,12 +110,14 @@ final class ThunderListViewController: UIViewController {
         
         tableView.snp.makeConstraints {
             $0.top.equalTo(topView.snp.bottom)
-            $0.leading.trailing.bottom.equalToSuperview()
+            $0.leading.trailing.equalToSuperview()
+            $0.bottom.equalTo(view.safeAreaLayoutGuide)
         }
         
         writeButton.snp.makeConstraints {
             $0.width.height.equalTo(55.0)
-            $0.trailing.bottom.equalToSuperview().inset(35.0)
+            $0.trailing.equalToSuperview().inset(20.0)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20.0)
         }
     }
 }

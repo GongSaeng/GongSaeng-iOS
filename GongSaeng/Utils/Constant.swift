@@ -5,7 +5,23 @@
 //  Created by 정동천 on 2022/01/03.
 //
 
-import Foundation
+import UIKit
+
+public let topPadding = UIApplication.shared.connectedScenes
+    .filter { $0.activationState == .foregroundActive }
+    .map { $0 as? UIWindowScene }
+    .compactMap { $0 }
+    .first?.windows
+    .filter { $0.isKeyWindow }.first
+    .map { $0.safeAreaInsets.top } ?? 0
+
+public let bottomPadding = UIApplication.shared.connectedScenes
+    .filter { $0.activationState == .foregroundActive }
+    .map { $0 as? UIWindowScene }
+    .compactMap { $0 }
+    .first?.windows
+    .filter { $0.isKeyWindow }.first
+    .map { $0.safeAreaInsets.bottom } ?? 0
 
 public let SERVER_URL: String = "http://3.143.245.81:2222"
 public let SERVER_IMAGE_URL: String = "\(SERVER_URL)/image/get_image?image_url="
