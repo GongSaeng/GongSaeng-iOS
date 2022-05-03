@@ -30,7 +30,7 @@ class MyPageViewController: UITableViewController {
         }
     }
     
-    private let cellTitleList = ["내 프로필/작성글/댓글", "입/퇴실 신청", "계정 정보 관리", "알림 설정", "로그아웃", "회원탈퇴"]
+    private let cellTitleList = ["내 프로필/작성글/댓글", "계정 정보 관리", "로그아웃", "회원탈퇴"]
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -209,30 +209,18 @@ extension MyPageViewController {
 //            let viewController = storyboard.instantiateViewController(withIdentifier: "MyProfileAndWritingViewController") as! MyProfileAndWritingViewController
 //            navigationController?.pushViewController(viewController, animated: true)
             print("DEBUG: Did tap 내 프로필/작성글/댓글..")
-        case 1: // 입/퇴실 신청
-//            let storyboard = UIStoryboard(name: "RequestCheckInOut", bundle: Bundle.main)
-//            let viewController = storyboard.instantiateViewController(withIdentifier: "RequestCheckInOutViewController") as! RequestCheckInOutViewController
-//            viewController.modalPresentationStyle = .fullScreen
-//            present(viewController, animated: true, completion: nil)
-            print("DEBUG: Did tap 입/퇴실 신청..")
-        case 2: // 계정 정보 관리
+        case 1: // 계정 정보 관리
             guard let user = user else { return }
             let viewController = ManageAccountViewController()
             viewController.viewModel = ManageAccountViewModel(user: user)
             viewController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(viewController, animated: true)
-        case 3: // 알림 설정
-//            let storyboard = UIStoryboard(name: "SetNotification", bundle: Bundle.main)
-//            let viewController = storyboard.instantiateViewController(withIdentifier: "SetNotificationViewController") as! SetNotificationViewController
-//            viewController.modalPresentationStyle = .fullScreen
-//            present(viewController, animated: true, completion: nil)
-            print("DEBUG: Did tap 알림 설정..")
-        case 4: // 로그아웃
+        case 2: // 로그아웃
             let storyBoard = UIStoryboard.init(name: "LogOutPopUp", bundle: Bundle.main)
             let popUpViewController = storyBoard.instantiateViewController(identifier: "LogOutPopUpViewController") as! LogOutPopUpViewController
             popUpViewController.modalPresentationStyle = .overCurrentContext
             self.present(popUpViewController, animated: false, completion: nil)
-        case 5: // 회원탈퇴
+        case 3: // 회원탈퇴
 //            let storyBoard = UIStoryboard.init(name: "MembershipWithdrawlPopUp", bundle: Bundle.main)
 //            let popUpViewController = storyBoard.instantiateViewController(identifier: "MembershipWithdrawlPopUpViewController") as! MembershipWithdrawlPopUpViewController
 //            popUpViewController.modalPresentationStyle = .overCurrentContext

@@ -9,7 +9,7 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class LoginViewController: UIViewController {
+final class LoginViewController: UIViewController {
     
     // MARK: Properties
     private var viewModel = LoginViewModel()
@@ -70,7 +70,6 @@ class LoginViewController: UIViewController {
     }
     
     private func updateButtonState() {
-        
         loginInputAccessoryView.isActivated = viewModel.formIsValid
     }
     

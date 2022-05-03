@@ -230,7 +230,6 @@ final class ParticipantProfileViewController: UIViewController {
     // MARK: Actions
     @objc
     private func DidTapImageBackwardButton() {
-        
         if (viewModel.index - 1) == 0 {
             viewModel.index =  viewModel.profileList.count - 2
             collectionView.scrollToItem(at: IndexPath(item: viewModel.index + 1, section: 0), at: .centeredHorizontally, animated: false)
@@ -243,7 +242,6 @@ final class ParticipantProfileViewController: UIViewController {
     
     @objc
     private func DidTapImageForwardButton() {
-        
         if (viewModel.index + 1) == viewModel.profileList.count - 1 {
             viewModel.index =  1
             collectionView.scrollToItem(at: IndexPath(item: viewModel.index - 1, section: 0), at: .centeredHorizontally, animated: false)

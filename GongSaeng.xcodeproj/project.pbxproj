@@ -132,7 +132,7 @@
 		A77879D627BA4FD3002FD07B /* ThunderListTopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77879D527BA4FD2002FD07B /* ThunderListTopView.swift */; };
 		A7796F9C27B109AF001E88F6 /* SearchPlaceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7796F9B27B109AF001E88F6 /* SearchPlaceViewController.swift */; };
 		A77A742927CCB0F400295730 /* ThunderNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A742827CCB0F400295730 /* ThunderNetworkManager.swift */; };
-		A77A742B27CCF15A00295730 /* TempNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A742A27CCF15A00295730 /* TempNavigationViewController.swift */; };
+		A77A742B27CCF15A00295730 /* ThunderNavigationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A742A27CCF15A00295730 /* ThunderNavigationViewController.swift */; };
 		A77A742E27CD209A00295730 /* ParticipantProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A742D27CD209A00295730 /* ParticipantProfileViewController.swift */; };
 		A77A743027CD2EC100295730 /* ParticipantProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A742F27CD2EC100295730 /* ParticipantProfileViewModel.swift */; };
 		A77A743227CD2F2100295730 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A743127CD2F2100295730 /* Profile.swift */; };
@@ -330,7 +330,7 @@
 		A77879D527BA4FD2002FD07B /* ThunderListTopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderListTopView.swift; sourceTree = "<group>"; };
 		A7796F9B27B109AF001E88F6 /* SearchPlaceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPlaceViewController.swift; sourceTree = "<group>"; };
 		A77A742827CCB0F400295730 /* ThunderNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderNetworkManager.swift; sourceTree = "<group>"; };
-		A77A742A27CCF15A00295730 /* TempNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TempNavigationViewController.swift; sourceTree = "<group>"; };
+		A77A742A27CCF15A00295730 /* ThunderNavigationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderNavigationViewController.swift; sourceTree = "<group>"; };
 		A77A742D27CD209A00295730 /* ParticipantProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantProfileViewController.swift; sourceTree = "<group>"; };
 		A77A742F27CD2EC100295730 /* ParticipantProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantProfileViewModel.swift; sourceTree = "<group>"; };
 		A77A743127CD2F2100295730 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
@@ -933,7 +933,7 @@
 		A78E4EDB279A95390017238D /* Thunder */ = {
 			isa = PBXGroup;
 			children = (
-				A77A742A27CCF15A00295730 /* TempNavigationViewController.swift */,
+				A77A742A27CCF15A00295730 /* ThunderNavigationViewController.swift */,
 				A7E3D11A27BB92A60002240B /* Model */,
 				A760B5E127BA8ED100BFDFD5 /* ThunderListViewController */,
 				A7A1639C27C51F6300379A43 /* ThunderDetailViewController */,
@@ -1268,7 +1268,7 @@
 				A705F26727B37E9B00D35CCE /* UniversityCellViewModel.swift in Sources */,
 				A719D09727CF0210000A9388 /* LocaleViewModel.swift in Sources */,
 				A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */,
-				A77A742B27CCF15A00295730 /* TempNavigationViewController.swift in Sources */,
+				A77A742B27CCF15A00295730 /* ThunderNavigationViewController.swift in Sources */,
 				A760B5E027BA7FCA00BFDFD5 /* ThunderListTopViewModel.swift in Sources */,
 				A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */,
 				A7A1639E27C521C200379A43 /* ThunderDetailHeaderView.swift in Sources */,

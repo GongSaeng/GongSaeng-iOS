@@ -44,6 +44,10 @@ struct MyThunderViewModel {
     
     var numberOfComments: Int { myThunders[index].numberOfComments }
     
+    var shouldShowButtons: Bool { numOfMyThunder > 1 }
+    var isPreviousButtonEnabled: Bool { shouldShowButtons && index > 0 }
+    var isNextButtonEnabled: Bool { shouldShowButtons && index < numOfMyThunder - 1 }
+    
     init(myThunders: [MyThunder]) {
         self.myThunders = myThunders
     }

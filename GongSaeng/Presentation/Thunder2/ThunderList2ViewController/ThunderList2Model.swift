@@ -26,4 +26,18 @@ final class ThunderList2Model {
     func getThunderListCellData(_ value: [Thunder]) -> [ThunderListCellViewModel] {
         return value.map { ThunderListCellViewModel(thunder: $0) }
     }
+    
+    func fetchMyThunders() -> Single<Result<[MyThunder], Error>> {
+        return ThunderNetworkManager.fetchMyThunders()
+    }
+    
+    func getMyThundersValue(_ result: Result<[MyThunder], Error>) -> [MyThunder]? {
+        guard case .success(let value) = result else { return nil }
+        return value
+    }
+    
+    func getMyThundersError(_ result: Result<[Thunder], Error>) -> String? {
+        guard case .failure(let error) = result else { return nil }
+        return error.localizedDescription
+    }
 }

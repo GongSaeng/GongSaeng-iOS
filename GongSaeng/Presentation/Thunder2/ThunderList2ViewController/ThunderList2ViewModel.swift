@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import simd
 
 enum SortingOrder: String {
     case closingOrder
@@ -16,6 +17,8 @@ enum SortingOrder: String {
 
 final class ThunderList2ViewModel {
     private let disposeBag = DisposeBag()
+    
+    let myThunders = BehaviorSubject<[MyThunder]?>(value: nil)
     
     // Subview's ViewModel
     let thunderListTopViewModel = ThunderList2TopViewModel()
@@ -26,14 +29,13 @@ final class ThunderList2ViewModel {
     let sortingOrder = BehaviorRelay<SortingOrder>(value: .closingOrder)
     let selectedRegion = BehaviorRelay<String?>(value: UserDefaults.standard.string(forKey: "region"))
     let writeButtonTapped = PublishRelay<Void>()
+    let myThunderButtonTapped = PublishRelay<Void>()
     
     // Related Output
     let pushLocaleView: Signal<String?>
-//    let pushMyThunderView: Signal<String>
+    let pushMyThunderView: Signal<[MyThunder]>
     let pushWriteView: Signal<Void>
-    let pushThunderView: Driver<ThunderDetail2ViewModel>
-    
-//    let shouldFetchThunders: Observable<String>
+    let pushThunderView: Driver<Int>
     
     init(_ model: ThunderList2Model = ThunderList2Model()) {
         let thundersResult = Observable
@@ -54,6 +56,16 @@ final class ThunderList2ViewModel {
             .map(model.getThunderListCellData)
             .bind(to: thunderListTableViewModel.thunderCellData)
             .disposed(by: disposeBag)
+
+        let myThundersResult = model.fetchMyThunders()
+        let myThundersValue = myThundersResult
+            .map(model.getMyThundersValue)
+            .asObservable()
+        
+        myThundersValue
+            .bind(to: myThunders)
+            .disposed(by: disposeBag)
+            
         
         // UserDefaults(Singletone) -> ViewModel
         UserDefaults.standard.rx
@@ -79,7 +91,9 @@ final class ThunderList2ViewModel {
             .bind(to: self.sortingOrder)
             .disposed(by: disposeBag)
         
-//        thunderListTopViewModel
+        thunderListTopViewModel.lookMyThundersButtonTapped
+            .bind(to: self.myThunderButtonTapped)
+            .disposed(by: disposeBag)
         
         self.pushLocaleView = thunderListTopViewModel.localeButtonTapped
             .withLatestFrom(selectedRegion)
@@ -90,6 +104,17 @@ final class ThunderList2ViewModel {
             .asSignal()
         
         self.pushThunderView = thunderListTableViewModel.selectedIndex
-            .map { ThunderDetail2ViewModel(index: $0) }
+        
+        self.pushMyThunderView = myThunderButtonTapped
+            .withLatestFrom(myThunders)
+            .compactMap { $0 }
+            .asSignal(onErrorJustReturn: [])
+        
+        myThunderButtonTapped
+            .withLatestFrom(myThunders)
+            .bind(onNext: { myThunders in
+                print("DEBUG: myThunders -> \(myThunders)")
+            })
+            .disposed(by: disposeBag)
     }
 }

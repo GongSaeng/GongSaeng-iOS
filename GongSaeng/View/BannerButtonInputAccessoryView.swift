@@ -17,7 +17,7 @@ protocol BannerButtonInputAccessoryViewDelegate: AnyObject {
     func didTapBannerButton()
 }
 
-class BannerButtonInputAccessoryView: UIView {
+final class BannerButtonInputAccessoryView: UIView {
     
     // MARK: Properties
     weak var delegate: BannerButtonInputAccessoryViewDelegate?

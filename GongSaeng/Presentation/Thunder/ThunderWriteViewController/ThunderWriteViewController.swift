@@ -429,13 +429,14 @@ final class ThunderWriteViewController: UIViewController {
     @objc
     private func keyboardWillShow(_ notification: NSNotification) {
         guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        scrollView.snp.updateConstraints { $0.bottom.equalToSuperview().inset(keyboardFrame.height) }
+        scrollView.contentInset.bottom = keyboardFrame.height
     }
     
     @objc
     private func keyboardWillHide(_ notification: NSNotification) {
         guard let keyboardFrame = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        scrollView.snp.updateConstraints { $0.bottom.equalToSuperview().inset(keyboardFrame.height) }
+        scrollView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+        scrollView.contentInset.bottom = keyboardFrame.height
     }
     
     // MARK: Helpers

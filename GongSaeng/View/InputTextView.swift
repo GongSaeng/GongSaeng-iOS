@@ -40,6 +40,7 @@ final class InputTextView: UITextView {
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
         
+        self.isScrollEnabled = false
         addSubview(placeholderLabel)
         
         placeholderLabel.snp.makeConstraints {

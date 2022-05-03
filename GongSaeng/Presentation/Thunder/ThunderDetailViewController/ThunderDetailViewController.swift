@@ -15,40 +15,7 @@ final class ThunderDetailViewController: UIViewController {
     
     private var isKeyboardShowing = false
     private var viewModel = ThunderDetailViewModel()
-    private var commentList: [Comment] = [
-        Comment(contents: "안녕하세요~ 저 코로나 확진인데 같이 놀아도 될까요??",
-                writerImageFilename: TEST_IMAGE5_URL,
-                writerNickname: "코로나확진자",
-                uploadedTime: "2022-03-02 14:20:00"),
-        Comment(contents: "저두 같이 놀고 싶어서 참여했어요 ~~",
-                writerImageFilename: TEST_IMAGE6_URL,
-                writerNickname: "자가격리자",
-                uploadedTime: "2022-03-02 14:25:00"),
-        Comment(contents: "안녕하세요~ 저 코로나 확진인데 같이 놀아도 될까요??",
-                writerImageFilename: TEST_IMAGE5_URL,
-                writerNickname: "코로나확진자",
-                uploadedTime: "2022-03-02 14:20:00"),
-        Comment(contents: "저두 같이 놀고 싶어서 참여했어요 ~~",
-                writerImageFilename: TEST_IMAGE6_URL,
-                writerNickname: "자가격리자",
-                uploadedTime: "2022-03-02 14:25:00"),
-        Comment(contents: "안녕하세요~ 저 코로나 확진인데 같이 놀아도 될까요??",
-                writerImageFilename: TEST_IMAGE5_URL,
-                writerNickname: "코로나확진자",
-                uploadedTime: "2022-03-02 14:20:00"),
-        Comment(contents: "저두 같이 놀고 싶어서 참여했어요 ~~",
-                writerImageFilename: TEST_IMAGE6_URL,
-                writerNickname: "자가격리자",
-                uploadedTime: "2022-03-02 14:25:00"),
-        Comment(contents: "안녕하세요~ 저 코로나 확진인데 같이 놀아도 될까요??",
-                writerImageFilename: TEST_IMAGE5_URL,
-                writerNickname: "코로나확진자",
-                uploadedTime: "2022-03-02 14:20:00"),
-        Comment(contents: "저두 같이 놀고 싶어서 참여했어요 ~~",
-                writerImageFilename: TEST_IMAGE6_URL,
-                writerNickname: "자가격리자",
-                uploadedTime: "2022-03-02 14:25:00")
-    ]
+    private var commentList = [Comment]() 
     
     private let topGradientLayer: CAGradientLayer = {
         let gradientLayer = CAGradientLayer()
@@ -62,7 +29,7 @@ final class ThunderDetailViewController: UIViewController {
     private let tableView = UITableView()
     
     private lazy var commentInputView: CommentInputAccessoryView = {
-        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50.0)
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 55.0)
         let commentInputAccesoryView = CommentInputAccessoryView(frame: frame)
         commentInputAccesoryView.delegate = self
         return commentInputAccesoryView
@@ -91,7 +58,7 @@ final class ThunderDetailViewController: UIViewController {
     override var inputAccessoryView: UIView? {
         get { return commentInputView }
     }
-    
+
     override var canBecomeFirstResponder: Bool {
         return true
     }
@@ -101,6 +68,7 @@ final class ThunderDetailViewController: UIViewController {
         self.thunderIndex = index
         
         super.init(nibName: nil, bundle: nil)
+        let _ = commentInputView.snapshotView(afterScreenUpdates: true)
     }
     
     required init?(coder: NSCoder) {
@@ -110,17 +78,19 @@ final class ThunderDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        layout()
         addKeyboardObserver()
         configureTableView()
         fetchThunderDetail(index: thunderIndex)
         configure()
-        layout()
-        navigationViewAppearanceHandler()
         navigationView.layer.addSublayer(topGradientLayer)
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         navigationController?.navigationBar.isHidden = true
+        navigationViewAppearanceHandler()
     }
     
     override func viewWillLayoutSubviews() {
@@ -142,7 +112,7 @@ final class ThunderDetailViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        guard let tempNavigationViewController = navigationController as? TempNavigationViewController else { return }
+        guard let tempNavigationViewController = navigationController as? ThunderNavigationViewController else { return }
         tempNavigationViewController.statusBarStyle = .darkContent
     }
     
@@ -156,6 +126,13 @@ final class ThunderDetailViewController: UIViewController {
             self.tableView.tableHeaderView = headerView
             self.remainingDaysLabel.text = self.viewModel.remainingDays
         }
+        
+        ThunderNetworkManager1.fetchComments(index: 0) { [weak self] comments in
+            self?.commentList = comments
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
     }
     
     // MARK: Actions
@@ -165,7 +142,9 @@ final class ThunderDetailViewController: UIViewController {
     }
     
     private func navigationViewAppearanceHandler() {
-        guard let tempNavigationViewController = navigationController as? TempNavigationViewController else { return }
+        guard let tempNavigationViewController = navigationController as? ThunderNavigationViewController else {
+            print("DEBUG: else")
+            return }
         navigationView.backgroundColor = viewModel.navigationViewColor
         dividingView.backgroundColor = viewModel.dividingViewColor
         backwardButton.tintColor = viewModel.backwardButtonColor
@@ -186,8 +165,12 @@ final class ThunderDetailViewController: UIViewController {
             isKeyboardShowing = false
         }
         guard keyboardFrame.height > 200, !isKeyboardShowing else { return }
-        let newOffsetY = tableView.contentOffset.y + keyboardFrame.height - commentInputView.frame.height - bottomPadding
-        tableView.setContentOffset(CGPoint(x: 0, y: newOffsetY), animated: true)
+        let offset = keyboardFrame.height - self.commentInputView.frame.height - bottomPadding
+        UIView.animate(withDuration: 0.25) { [weak self] in
+            guard let self = self else { return }
+            self.tableView.contentOffset.y += offset
+            self.view.layoutIfNeeded()
+        }
         isKeyboardShowing = true
     }
     
@@ -203,7 +186,7 @@ final class ThunderDetailViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-        tableView.showsVerticalScrollIndicator = false
+//        tableView.showsVerticalScrollIndicator = false
         tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "CommentTableViewCell")
     }
     

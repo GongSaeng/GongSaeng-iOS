@@ -11,6 +11,7 @@ import Kingfisher
 
 protocol MyThunderViewControllerDelegate: AnyObject {
     func showDetailViewController(index: Int)
+    func showTabBar()
 }
 
 final class MyThunderViewController: UIViewController {
@@ -29,6 +30,7 @@ final class MyThunderViewController: UIViewController {
         .first?.windows
         .filter { $0.isKeyWindow }.first
         .map { $0.safeAreaInsets.bottom / 2 } ?? 0) + UIScreen.main.bounds.width * 9 / 16 + 375
+    
     private let dismissibleHeight: CGFloat = (UIApplication.shared.connectedScenes
         .filter { $0.activationState == .foregroundActive }
         .map { $0 as? UIWindowScene }
@@ -36,6 +38,7 @@ final class MyThunderViewController: UIViewController {
         .first?.windows
         .filter { $0.isKeyWindow }.first
         .map { $0.safeAreaInsets.bottom / 2 } ?? 0) + UIScreen.main.bounds.width * 9 / 16 + 245
+    
     private var currentContainerHeight: CGFloat = (UIApplication.shared.connectedScenes
         .filter { $0.activationState == .foregroundActive }
         .map { $0 as? UIWindowScene }
@@ -145,10 +148,13 @@ final class MyThunderViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var placeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.contentHorizontalAlignment = .left
-        return button
+    private let placeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14.0, weight: .medium)
+        label.lineBreakMode = .byTruncatingTail
+        label.textColor = .black
+        label.numberOfLines = 1
+        return label
     }()
     
     private lazy var openMapButton: UIButton = {
@@ -192,6 +198,33 @@ final class MyThunderViewController: UIViewController {
         return pageControl
     }()
     
+    private let pageButtonStackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        return stackView
+    }()
+    
+    private lazy var previousPageButton: UIButton = {
+        let button = UIButton()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 22.0, weight: .bold)
+        let image = UIImage(systemName: "chevron.left", withConfiguration: configuration)
+        button.setImage(image, for: .normal)
+        button.tintColor = UIColor(named: "colorPaleOrange")
+        button.addTarget(self, action: #selector(didTapPreviousPageButton), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var nextPageButton: UIButton = {
+        let button = UIButton()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 22.0, weight: .bold)
+        let image = UIImage(systemName: "chevron.right", withConfiguration: configuration)
+        button.setImage(image, for: .normal)
+        button.tintColor = UIColor(named: "colorPaleOrange")
+        button.addTarget(self, action: #selector(didTapNextPageButton), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: Lifecycle
     init(myThunders: [MyThunder]) {
         self.myThunders = myThunders
@@ -210,6 +243,7 @@ final class MyThunderViewController: UIViewController {
         configure()
         layout()
         setupPanGestrue()
+        updateButtonState()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -223,6 +257,20 @@ final class MyThunderViewController: UIViewController {
     @objc
     private func openMapLink() {
         if let url = viewModel.placeURL { UIApplication.shared.open(url, options: [:]) }
+    }
+    
+    @objc
+    private func didTapPreviousPageButton() {
+        viewModel.index -= 1
+        pageButtonHandler()
+        updateMyThunder()
+    }
+    
+    @objc
+    private func didTapNextPageButton() {
+        viewModel.index += 1
+        pageButtonHandler()
+        updateMyThunder()
     }
     
     // MARK: Animations
@@ -249,6 +297,7 @@ final class MyThunderViewController: UIViewController {
             }
             self.view.layoutIfNeeded()
         }
+        self.delegate?.showTabBar()
         
         dimmedView.alpha = maxDimmedAlpha
         UIView.animate(withDuration: 0.4) {
@@ -302,20 +351,23 @@ final class MyThunderViewController: UIViewController {
     }
     
     // MARK: Helpers
+    private func pageButtonHandler() {
+        updateButtonState()
+        let indexPath = IndexPath(item: viewModel.index, section: 0)
+        print("DEBUG: index -> \(viewModel.index) \(indexPath)")
+        attachedImageCollectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        pageControl.currentPage = viewModel.index
+    }
+    
+    private func updateButtonState() {
+        previousPageButton.isEnabled = viewModel.isPreviousButtonEnabled
+        nextPageButton.isEnabled = viewModel.isNextButtonEnabled
+    }
+    
     private func updateMyThunder() {
         titleLabel.text = viewModel.title
         timeLabel.text = viewModel.meetingTime
-        
-        placeButton.setAttributedTitle(
-            NSAttributedString(
-                string: viewModel.placeName,
-                attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium),
-                             .foregroundColor: UIColor.black]), for: .normal)
-        placeButton.setAttributedTitle(
-            NSAttributedString(
-                string: viewModel.address,
-                attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium),
-                             .foregroundColor: UIColor.black]), for: .highlighted)
+        placeLabel.text = viewModel.placeName
         totalNumOfPeopleLabel.text = viewModel.totalNumText
         contentsLabel.text = viewModel.contents
         partcipantsImageCollectionView.reloadData()
@@ -324,6 +376,8 @@ final class MyThunderViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .clear
         updateMyThunder()
+        pageButtonStackView.isHidden = !viewModel.shouldShowButtons
+        attachedImageCollectionView.isScrollEnabled = false
     }
     
     private func layout() {
@@ -359,10 +413,13 @@ final class MyThunderViewController: UIViewController {
         let horizontalDividingView = UIView()
         horizontalDividingView.backgroundColor = UIColor(white: 0, alpha: 0.05)
         
+        [previousPageButton, nextPageButton].forEach { pageButtonStackView.addArrangedSubview($0) }
+        
         [attachedImageCollectionView, titleLabel, horizontalDividingView,
-         timeIconImageView, timeLabel, placeIconImageView, placeButton,
+         timeIconImageView, timeLabel, placeIconImageView, placeLabel,
          openMapButton, peopleIconImageView, totalNumOfPeopleLabel,
-         contentsLabel, partcipantsImageCollectionView, joinButton, pageControl]
+         contentsLabel, partcipantsImageCollectionView, joinButton,
+         pageControl]
             .forEach { containerView.addSubview($0) }
         
         attachedImageCollectionView.snp.makeConstraints {
@@ -371,11 +428,25 @@ final class MyThunderViewController: UIViewController {
             $0.height.equalTo(screenWidth * 9.0 / 16.0)
         }
         
+        if viewModel.shouldShowButtons {
+            containerView.addSubview(pageButtonStackView)
+            pageButtonStackView.snp.makeConstraints {
+                $0.centerY.equalTo(titleLabel)
+                $0.trailing.equalToSuperview()
+                $0.width.equalTo(88.0)
+                $0.height.equalTo(44.0)
+            }
+        }
+        
         titleLabel.snp.makeConstraints {
             $0.top.equalTo(attachedImageCollectionView.snp.bottom).offset(15.0)
             $0.leading.equalToSuperview().inset(18.0)
-            $0.trailing.lessThanOrEqualToSuperview().inset(18.0)
-        }
+            if viewModel.shouldShowButtons {
+                $0.trailing.lessThanOrEqualTo(pageButtonStackView.snp.leading)
+            } else {
+                $0.trailing.lessThanOrEqualToSuperview().inset(18.0)
+            }
+        }        
         
         horizontalDividingView.snp.makeConstraints {
             $0.top.equalTo(titleLabel.snp.bottom).offset(13.0)
@@ -396,30 +467,30 @@ final class MyThunderViewController: UIViewController {
             $0.trailing.lessThanOrEqualToSuperview().inset(18.0)
         }
         
-        placeButton.snp.makeConstraints {
+        placeLabel.snp.makeConstraints {
             $0.top.equalTo(timeLabel.snp.bottom).offset(7.0)
             $0.leading.equalTo(timeLabel)
         }
         
-        placeButton.snp.contentCompressionResistanceHorizontalPriority = 749
+        placeLabel.snp.contentCompressionResistanceHorizontalPriority = 749
         
         openMapButton.snp.makeConstraints {
-            $0.centerY.equalTo(placeButton)
-            $0.leading.equalTo(placeButton.snp.trailing).offset(10.0)
+            $0.centerY.equalTo(placeLabel)
+            $0.leading.equalTo(placeLabel.snp.trailing).offset(10.0)
             $0.trailing.equalToSuperview().inset(18.0)
             $0.width.height.equalTo(44.0)
         }
         
         placeIconImageView.snp.makeConstraints {
             $0.centerX.equalTo(timeIconImageView)
-            $0.centerY.equalTo(placeButton)
+            $0.centerY.equalTo(placeLabel)
             $0.width.equalTo(14.0)
             $0.height.equalTo(15.0)
         }
         
         totalNumOfPeopleLabel.snp.makeConstraints {
-            $0.top.equalTo(placeButton.snp.bottom).offset(7.0)
-            $0.leading.equalTo(placeButton)
+            $0.top.equalTo(placeLabel.snp.bottom).offset(7.0)
+            $0.leading.equalTo(placeLabel)
         }
         
         peopleIconImageView.snp.makeConstraints {
@@ -502,7 +573,9 @@ extension MyThunderViewController: UICollectionViewDelegate {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        animateDismissView(showDetail: true)
+        if collectionView == attachedImageCollectionView {
+            animateDismissView(showDetail: true)
+        }
     }
 }
 

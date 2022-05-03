@@ -8,6 +8,41 @@
 import Foundation
 import RxSwift
 
+let exampleComments: [Comment] = [
+    Comment(contents: "안녕하세요~ 저 코로나 확진인데 같이 놀아도 될까요??",
+            writerImageFilename: TEST_IMAGE5_URL,
+            writerNickname: "코로나확진자",
+            uploadedTime: "2022-03-02 14:20:00"),
+    Comment(contents: "저두 같이 놀고 싶어서 참여했어요 ~~",
+            writerImageFilename: TEST_IMAGE6_URL,
+            writerNickname: "자가격리자",
+            uploadedTime: "2022-03-02 14:25:00"),
+    Comment(contents: "안녕하세요~ 저 코로나 확진인데 같이 놀아도 될까요??",
+            writerImageFilename: TEST_IMAGE5_URL,
+            writerNickname: "코로나확진자",
+            uploadedTime: "2022-03-02 14:20:00"),
+    Comment(contents: "저두 같이 놀고 싶어서 참여했어요 ~~",
+            writerImageFilename: TEST_IMAGE6_URL,
+            writerNickname: "자가격리자",
+            uploadedTime: "2022-03-02 14:25:00"),
+    Comment(contents: "안녕하세요~ 저 코로나 확진인데 같이 놀아도 될까요??",
+            writerImageFilename: TEST_IMAGE5_URL,
+            writerNickname: "코로나확진자",
+            uploadedTime: "2022-03-02 14:20:00"),
+    Comment(contents: "저두 같이 놀고 싶어서 참여했어요 ~~",
+            writerImageFilename: TEST_IMAGE6_URL,
+            writerNickname: "자가격리자",
+            uploadedTime: "2022-03-02 14:25:00"),
+    Comment(contents: "안녕하세요~ 저 코로나 확진인데 같이 놀아도 될까요??",
+            writerImageFilename: TEST_IMAGE5_URL,
+            writerNickname: "코로나확진자",
+            uploadedTime: "2022-03-02 14:20:00"),
+    Comment(contents: "저두 같이 놀고 싶어서 참여했어요 ~~",
+            writerImageFilename: TEST_IMAGE6_URL,
+            writerNickname: "자가격리자",
+            uploadedTime: "2022-03-02 14:25:00")
+]
+
 let exampleThunders: [Thunder] = [
     Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-19 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
     Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-20 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
@@ -121,7 +156,7 @@ let exampleMyThunders: [MyThunder] = [
     MyThunder(
         postIndex: 2,
         postingImageFilename: TEST_IMAGE1_URL,
-        title: "간단하게 맥주마셔요~",
+        title: "간단하게 맥주마셔요~ 가나다라마바사아자차카타파하",
         meetingTime: "2022-03-23 18:00:00",
         placeName: "온천천",
         address: "부산 금정구 부곡동",
@@ -143,7 +178,20 @@ let exampleMyThunders: [MyThunder] = [
 final class ThunderNetworkManager1 {
     static func fetchThunderDetail(index: Int, completion: @escaping(ThunderDetail) -> Void) {
         // 네트워크 로직
-        completion(exampleThunderDetail) // 임시 더미데이터
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) { // 임시 더미데이터
+            DispatchQueue.main.async {
+                completion(exampleThunderDetail)
+            }
+        }
+    }
+    
+    static func fetchComments(index: Int, completion: @escaping([Comment]) -> Void) {
+        // 네트워크 로직
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) { // 임시 더미데이터
+            DispatchQueue.main.async {
+                completion(exampleComments)
+            }
+        }
     }
 }
 
@@ -164,13 +212,18 @@ final class ThunderNetworkManager {
             }
             return Disposables.create()
         }
-        
     }
 
-    static func fetchMyThunder(id: String) -> Single<Result<[MyThunder], Error>> {
-        return .just(.success(exampleMyThunders))
-//        print("DEBUG: Called fetchMyThunder()..")
-//        return Single<Result<
+    static func fetchMyThunders() -> Single<Result<[MyThunder], Error>> {
+        print("DEBUG: Called fetchMyThunders().. ")
+        return Single<Result<[MyThunder], Error>>.create { single -> Disposable in
+            DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) {
+                DispatchQueue.main.async {
+                    single(.success(.success(exampleMyThunders)))
+                }
+            }
+            return Disposables.create()
+        }
     }
 
     static func fetchThunderDetail(index: Int) -> Single<Result<ThunderDetail, Error>> {

@@ -19,15 +19,7 @@ class MateViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("DEBUG: MateViewController viewDidLoad..")
         fetchMates()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        print("DEBUG: MateViewController ViewWillApper..")
-//        navigationController?.navigationBar.isHidden = true
     }
     
     // MARK: API

@@ -108,10 +108,13 @@ final class ThunderDetailHeaderView: UIView {
         return imageView
     }()
     
-    private lazy var placeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.contentHorizontalAlignment = .left
-        return button
+    private let placeLabel: UILabel = {
+        let label = UILabel()
+        label.font = .systemFont(ofSize: 14.0, weight: .medium)
+        label.lineBreakMode = .byTruncatingTail
+        label.textColor = .black
+        label.numberOfLines = 1
+        return label
     }()
     
     private lazy var openMapButton: UIButton = {
@@ -240,17 +243,7 @@ final class ThunderDetailHeaderView: UIView {
         writerNicknameLabel.text = viewModel.writerNickname
         uploadedTimeLabel.text = viewModel.uploadedTime
         timeLabel.text = viewModel.meetingTime
-  
-        placeButton.setAttributedTitle(
-            NSAttributedString(
-                string: viewModel.placeName,
-                attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium),
-                             .foregroundColor: UIColor.black]), for: .normal)
-        placeButton.setAttributedTitle(
-            NSAttributedString(
-                string: viewModel.address,
-                attributes: [.font: UIFont.systemFont(ofSize: 14.0, weight: .medium),
-                             .foregroundColor: UIColor.black]), for: .highlighted)
+        placeLabel.text = viewModel.placeName
         totalNumOfPeopleLabel.text = viewModel.totalNumText
         
         let paragraphStyle = NSMutableParagraphStyle()
@@ -276,7 +269,7 @@ final class ThunderDetailHeaderView: UIView {
          writerImageView, writerNicknameLabel, verticalDividingView,
          uploadedTimeLabel, horizontalDividingView1, timeIconImageView,
          timeLabel, placeIconImageView, peopleIconImageView,
-         totalNumOfPeopleLabel, contentsLabel, placeButton, openMapButton,
+         totalNumOfPeopleLabel, contentsLabel, placeLabel, openMapButton,
          partcipantsImageCollectionView, joinButton, horizontalDividingView2,
         commentImageView, numberOfCommentsLabel]
             .forEach { addSubview($0) }
@@ -346,30 +339,30 @@ final class ThunderDetailHeaderView: UIView {
             $0.trailing.lessThanOrEqualToSuperview().inset(18.0)
         }
         
-        placeButton.snp.makeConstraints {
+        placeLabel.snp.makeConstraints {
             $0.top.equalTo(timeLabel.snp.bottom).offset(7.0)
             $0.leading.equalTo(timeLabel)
         }
         
-        placeButton.snp.contentCompressionResistanceHorizontalPriority = 749
+        placeLabel.snp.contentCompressionResistanceHorizontalPriority = 749
         
         openMapButton.snp.makeConstraints {
-            $0.centerY.equalTo(placeButton)
-            $0.leading.equalTo(placeButton.snp.trailing).offset(10.0)
+            $0.centerY.equalTo(placeLabel)
+            $0.leading.equalTo(placeLabel.snp.trailing).offset(10.0)
             $0.trailing.equalToSuperview().inset(18.0)
             $0.width.height.equalTo(44.0)
         }
         
         placeIconImageView.snp.makeConstraints {
             $0.centerX.equalTo(timeIconImageView)
-            $0.centerY.equalTo(placeButton)
+            $0.centerY.equalTo(placeLabel)
             $0.width.equalTo(14.0)
             $0.height.equalTo(15.0)
         }
         
         totalNumOfPeopleLabel.snp.makeConstraints {
-            $0.top.equalTo(placeButton.snp.bottom).offset(7.0)
-            $0.leading.equalTo(placeButton)
+            $0.top.equalTo(placeLabel.snp.bottom).offset(7.0)
+            $0.leading.equalTo(placeLabel)
         }
         
         peopleIconImageView.snp.makeConstraints {

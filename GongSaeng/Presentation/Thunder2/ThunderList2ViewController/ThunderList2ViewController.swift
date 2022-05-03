@@ -45,14 +45,6 @@ final class ThunderList2ViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-//        attribute()
-//        layout()
-//        bind(viewModel)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -112,11 +104,13 @@ extension ThunderList2ViewController {
             .bind(to: viewModel.writeButtonTapped)
             .disposed(by: disposeBag)
         
+        
         // ViewModel -> View
         viewModel.pushWriteView
             .emit(onNext: { [weak self] in
                 let viewController = ThunderWriteViewController()
                 // + ViewModel 생성
+                viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: disposeBag)
@@ -133,11 +127,23 @@ extension ThunderList2ViewController {
             .disposed(by: disposeBag)
         
         viewModel.pushThunderView
-            .drive(onNext: { [weak self] viewModel in
-                let viewController = ThunderDetail2ViewController()
-                viewController.bind(viewModel)
+            .drive(onNext: { [weak self] index in
+                self?.tableView.deselectRow(at: IndexPath(index: index), animated: false)
+                let viewController = ThunderDetailViewController(index: index)
                 viewController.modalPresentationStyle = .fullScreen
+                viewController.hidesBottomBarWhenPushed = true
                 self?.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.pushMyThunderView
+            .emit(onNext: { [weak self] myThunders in
+                print("DEUBG: myThunders -> \(myThunders)")
+                let viewController = MyThunderViewController(myThunders: myThunders)
+                viewController.modalPresentationStyle = .overCurrentContext
+                viewController.delegate = self
+                self?.tabBarController?.tabBar.isHidden = true
+                self?.present(viewController, animated: false, completion: nil)
             })
             .disposed(by: disposeBag)
     }
@@ -159,5 +165,18 @@ extension ThunderList2ViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
+    }
+}
+
+// MARK: MyThunderViewControllerDelegate
+extension ThunderList2ViewController: MyThunderViewControllerDelegate {
+    func showDetailViewController(index: Int) {
+        let viewController = ThunderDetailViewController(index: index)
+        viewController.modalPresentationStyle = .fullScreen
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+    
+    func showTabBar() {
+        self.tabBarController?.tabBar.isHidden = false
     }
 }

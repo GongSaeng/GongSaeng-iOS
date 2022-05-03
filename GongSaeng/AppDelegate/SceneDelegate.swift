@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.tintColor = .black
         
         // Main
-//        let viewController = LaunchScreenViewController()
+        let viewController = LaunchScreenViewController()
         
         
         // Thunder
@@ -28,8 +28,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         
         // Thunder(RxSwift)
-        let rootViewController = ThunderList2ViewController()
-        let viewController = TempNavigationViewController(rootViewController: rootViewController)
+//        let rootViewController = ThunderList2ViewController()
+//        let viewController = TempNavigationViewController(rootViewController: rootViewController)
         
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()

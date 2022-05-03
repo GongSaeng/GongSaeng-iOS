@@ -48,20 +48,20 @@ class MainTabBarController: UITabBarController {
         communityViewController.navigationBar.tintColor = UIColor(named: "colorPaleOrange")
         communityViewController.navigationBar.topItem?.backButtonDisplayMode = .default
         
-        let notificationViewController = templateNavigationController(tabTitle: "알림", unselectedImage: UIImage(named: "alert"), selectedIamge: UIImage(named: "alertOn"), rootViewController: storyboard.instantiateViewController(withIdentifier: "NotificationViewController"))
-        
         let myPageRootViewController = MyPageViewController()
         myPageRootViewController.user = user
         let myPageViewController = templateNavigationController(tabTitle: "마이페이지", unselectedImage: UIImage(named: "mypage"), selectedIamge: UIImage(named: "mypageOn"), rootViewController: myPageRootViewController)
         myPageViewController.navigationBar.tintColor = UIColor(named: "colorBlueGreen")
         
-        viewControllers = [homeViewController, publicViewController, communityViewController, notificationViewController, myPageViewController]
+        viewControllers = [homeViewController, publicViewController, communityViewController, myPageViewController]
         
         tabBar.tintColor = .black
     }
     
     private func templateNavigationController(tabTitle: String, unselectedImage: UIImage?, selectedIamge: UIImage?, rootViewController: UIViewController) -> UINavigationController {
-        let navigationController = UINavigationController(rootViewController: rootViewController)
+        let navigationController = (tabTitle == "번개") ?
+        ThunderNavigationViewController(rootViewController: rootViewController) :
+        UINavigationController(rootViewController: rootViewController)
         navigationController.tabBarItem.title = tabTitle
         navigationController.tabBarItem.image = unselectedImage
         navigationController.tabBarItem.selectedImage = selectedIamge

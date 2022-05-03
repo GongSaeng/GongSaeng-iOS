@@ -23,7 +23,6 @@ class HomeViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        print("DEBUG: HomeViewController viewWillAppear")
         
         navigationController?.setNavigationBarHidden(true, animated: animated)
     }

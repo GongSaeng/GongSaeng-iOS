@@ -137,6 +137,10 @@ extension ThunderListViewController: MyThunderViewControllerDelegate {
         viewController.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(viewController, animated: true)
     }
+    
+    func showTabBar() {
+        self.tabBarController?.tabBar.isHidden = false
+    }
 }
 
 // MARK: ThunderListTopViewDelegate
