@@ -5,7 +5,7 @@
 //  Created by 정동천 on 2022/02/28.
 //
 
-import Foundation
+import UIKit
 import RxSwift
 
 let exampleComments: [Comment] = [
@@ -43,20 +43,21 @@ let exampleComments: [Comment] = [
             uploadedTime: "2022-03-02 14:25:00")
 ]
 
-let exampleThunders: [Thunder] = [
-    Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-19 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
-    Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-20 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
-    Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-21 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
-    Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-22 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
-    Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-23 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
-    Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-24 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
-    Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-25 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
-    Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
-    Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6),
-    Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-23 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
-    Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
-    Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6)
-]
+//let exampleThunders: [Thunder] = [
+//    Thunder(index: <#T##Int#>, validStatus: <#T##Int#>, title: <#T##String#>, thumbnailImageName: <#T##String#>, meetingTime: <#T##String#>, placeName: <#T##String#>, totalNum: <#T##Int#>, participatnsNum: <#T##Int#>)
+//    Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-19 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
+//    Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-20 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
+//    Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-21 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
+//    Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-22 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
+//    Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-23 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
+//    Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-24 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
+//    Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-25 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
+//    Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
+//    Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6),
+//    Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-23 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
+//    Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
+//    Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6)
+//]
 
 let exampleThunderDetail = ThunderDetail(
     postingImagesFilename: [TEST_IMAGE2_URL, TEST_IMAGE3_URL, TEST_IMAGE1_URL],
@@ -202,16 +203,45 @@ final class ThunderNetworkManager {
         self.session = session
     }
 
-    static func fetchThunders(page: Int, by order: SortingOrder, region: String?) -> Single<Result<[Thunder], Error>> {
+    func fetchThunders(page: Int, by order: SortingOrder, region: String) -> Single<Result<[Thunder], NetworkError>> {
         print("DEBUG: Called fetchThunders().. ")
-        return Single<Result<[Thunder], Error>>.create { single -> Disposable in
-            DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) {
-                DispatchQueue.main.async {
-                    single(.success(.success(exampleThunders)))
+//        return Single<Result<[Thunder], Error>>.create { single -> Disposable in
+//            DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) {
+//                DispatchQueue.main.async {
+//                    single(.success(.success(exampleThunders)))
+//                }
+//            }
+//            return Disposables.create()
+//        }
+        
+        let regionData = region.split(separator: "/").map { String($0) }
+        let metapolis = regionData[0]
+        let region = regionData[1]
+//        let order = (order == .registeringOrder) ? "meet" : "??"
+        
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/thunder/list/\(page)?")
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "order", value: "meet"),
+            URLQueryItem(name: "region", value: region),
+            URLQueryItem(name: "metapolis", value: metapolis),
+        ]
+        guard let url = urlComponents?.url else { return .just(.failure(.invalidURL)) }
+        let request = NSMutableURLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        return session.rx.data(request: request as URLRequest)
+            .map { data -> Result<[Thunder], NetworkError> in
+                do {
+                    let thunders = try JSONDecoder().decode([Thunder].self, from: data)
+                    return .success(thunders)
+                } catch {
+                    return .failure(.invalidJSON)
                 }
             }
-            return Disposables.create()
-        }
+            .catch { _ in
+                    .just(.failure(.networkError))
+            }
+            .asSingle()
     }
 
     static func fetchMyThunders() -> Single<Result<[MyThunder], Error>> {
@@ -238,111 +268,95 @@ final class ThunderNetworkManager {
         }
     }
     
-//    func postThunder(nickname: String, meetingTime: String, place: String, placeURL: String, address: String, totalNum: Int, title: String, contents: String, region: String, completion: @escaping(Bool) -> Void) {
-//
-//        let regionData = region.split(separator: "/").map { String($0) }
-//        let region = regionData[0]
-//        let metapolis = regionData[1]
-//
-//        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/write_community?")
-//        urlComponents?.queryItems = [
-//            URLQueryItem(name: "writer_nickname", value: nickname),
-//            URLQueryItem(name: "metapolis", value: metapolis),
-//            URLQueryItem(name: "title", value: title),
-//            URLQueryItem(name: "contents", value: contents),
-//            URLQueryItem(name: "contents_image", value: ""), // ???
-//            URLQueryItem(name: "meet_time", value: meetingTime),
-//            URLQueryItem(name: "location", value: place),
-//            URLQueryItem(name: "detail_location", value: address),
-//            URLQueryItem(name: "total_num", value: "\(totalNum)"),
-//            URLQueryItem(name: "writer_image", value: ""), // ???
-//            URLQueryItem(name: "location_url", value: placeURL),
-//            URLQueryItem(name: "region", value: region)
-//        ]
-//
-//        guard let url = urlComponents?.url else { return }
-//
-//        var request = URLRequest(url: url)
-//        request.httpMethod = "POST"
-//        if let images = images, let thumbnailImage = images.first {
-//            let boundary = "Boundary-\(UUID().uuidString)"
-//            request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-//
-//            let httpBody = NSMutableData() // let var //
-//            guard let imageData = thumbnailImage.downSize(newWidth: 100)
-//                    .jpegData(compressionQuality: 0.5) else { return }
-//            httpBody.append(convertFileData(fileData: imageData, using: boundary))
-//            for image in images {
-//                guard let imageData = image.jpegData(compressionQuality: 1) else { return }
-//                httpBody.append(convertFileData(fileData: imageData, using: boundary))
-//            }
-//            httpBody.appendString("--\(boundary)--")
-//            let data = httpBody as Data
-//            let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
-//                guard error == nil,
-//                      let response = response as? HTTPURLResponse,
-//                      let data = data,
-//                      let returnValue = String(data: data, encoding: .utf8)  else {
-//                          print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-//                          return
-//                      }
-//                switch response.statusCode {
-//                case (200...299):
-//                    print("DEBUG: postCommunity response is succeded..", returnValue)
-//                    let isSucceded = (returnValue == "true") ? true : false
-//                    completion(isSucceded)
-//                case (400...499):
-//                    print("""
-//                        ERROR: Client ERROR \(response.statusCode)
-//                        Response: \(response)
-//                    """)
-//                case (500...599):
-//                    print("""
-//                        ERROR: Server ERROR \(response.statusCode)
-//                        Response: \(response)
-//                    """)
-//                default:
-//                    print("""
-//                        ERROR: \(response.statusCode)
-//                        Response: \(response)
-//                    """)
-//                }
-//            }
-//            dataTask.resume()
-//
-//        } else {
-//            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//
-//            let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-//                guard error == nil,
-//                      let response = response as? HTTPURLResponse,
-//                      let data = data,
-//                      let returnValue = String(data: data, encoding: .utf8)  else {
-//                          print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-//                          return
-//                      }
-//
-//                switch response.statusCode {
-//                case (200...299):
-//                    let isSucceded = (returnValue == "true") ? true : false
-//                    completion(isSucceded)
-//                case (400...499):
-//                    print("""
-//                        ERROR: Client ERROR \(response.statusCode)
-//                        Response: \(response)
-//                    """)
-//                case (500...599):
-//                    print("""
-//                        ERROR: Server ERROR \(response.statusCode)
-//                        Response: \(response)
-//                    """)
-//                default:
-//                    print("""
-//                        ERROR: \(response.statusCode)
-//                        Response: \(response)
-//                    """)
-//                }
-//            }
-//            dataTask.resume()
-//        }
+    func postThunder(meetingTime: String, place: String, placeURL: String, address: String, totalNum: String, title: String, contents: String, images: [UIImage], completion: @escaping(Bool) -> Void) {
+        let regionData = address.split(separator: " ").map { String($0) }
+        let metapolis = regionData[0]
+        let region = regionData[1]
+        
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/thunder?")
+        urlComponents?.queryItems = [
+            URLQueryItem(name: "metapolis", value: metapolis),
+            URLQueryItem(name: "title", value: title),
+            URLQueryItem(name: "contents", value: contents),
+            URLQueryItem(name: "meet_time", value: meetingTime),
+            URLQueryItem(name: "location", value: place),
+            URLQueryItem(name: "detail_location", value: address),
+            URLQueryItem(name: "total_num", value: totalNum),
+            URLQueryItem(name: "location_url", value: placeURL),
+            URLQueryItem(name: "region", value: region)
+        ]
+
+        guard let url = urlComponents?.url else { return }
+
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        let thumbnailImage = images.first!
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+
+        let httpBody = NSMutableData() // let var //
+        guard let imageData = thumbnailImage.downSize(newWidth: 100)
+                .jpegData(compressionQuality: 0.5) else { return }
+        httpBody.append(convertFileData(fileData: imageData, using: boundary))
+        for image in images {
+            guard let imageData = image.jpegData(compressionQuality: 1) else { return }
+            httpBody.append(convertFileData(fileData: imageData, using: boundary))
+        }
+        httpBody.appendString("--\(boundary)--")
+        let data = httpBody as Data
+        let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data,
+                  let returnValue = String(data: data, encoding: .utf8)  else {
+                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      return
+                  }
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: postCommunity response is succeded..", returnValue)
+                let isSucceded = (returnValue == "200") ? true : false
+                completion(isSucceded)
+            case (400...499):
+                print("""
+                    ERROR: Client ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            case (500...599):
+                print("""
+                    ERROR: Server ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            default:
+                print("""
+                    ERROR: \(response.statusCode)
+                    Response: \(response)
+                """)
+            }
+        }
+        dataTask.resume()
+    }
+}
+
+private extension ThunderNetworkManager {
+    func convertFormField(named name: String, value: String, using boundary: String) -> String {
+        var fieldString = "--\(boundary)\r\n"
+        fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n"
+        fieldString += "\r\n"
+        fieldString += "\(value)\r\n"
+        return fieldString
+    }
+    
+    func convertFileData(fileData: Data, using boundary: String) -> Data {
+        let fileName = "\(UUID().uuidString).jpg"
+        let fieldName = "image"
+        let mimeType = "image/jpeg"
+        let data = NSMutableData()
+        data.appendString("--\(boundary)\r\n")
+        data.appendString("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n")
+        data.appendString("Content-Type: \(mimeType)\r\n\r\n")
+        data.append(fileData)
+        data.appendString("\r\n")
+        return data as Data
+    }
 }

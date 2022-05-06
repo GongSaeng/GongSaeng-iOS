@@ -21,6 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Main
         let viewController = LaunchScreenViewController()
         
+        // MyProfileAndWriting
+//        let rootViewController = MyPageViewController()
+//        let viewController = UINavigationController(rootViewController: rootViewController)
+        
         
         // Thunder
 //        let rootViewController = ThunderListViewController()

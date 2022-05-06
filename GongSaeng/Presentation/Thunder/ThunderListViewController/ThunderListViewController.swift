@@ -14,23 +14,23 @@ final class ThunderListViewController: UIViewController {
     private let reuseIdentifier1 = "AvailableThunderCell"
     private let reuseIdentifier2 = "CompletedThunderCell"
     
-    private var availableThunders: [Thunder] = [
-        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-19 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
-        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-20 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
-        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-21 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
-        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-22 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
-        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-23 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
-        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-24 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6)
-    ]
+    private var availableThunders: [Thunder] = []
+//        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-19 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
+//        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-20 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
+//        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-21 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
+//        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-22 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
+//        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-23 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
+//        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-24 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6)
+//    ]
     
-    private var completedThunders: [Thunder] = [
-        Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-25 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
-        Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
-        Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6),
-        Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-23 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
-        Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
-        Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6)
-    ]
+    private var completedThunders: [Thunder] = []
+//        Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-25 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
+//        Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
+//        Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6),
+//        Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-23 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
+//        Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
+//        Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6)
+//    ]
     
     private lazy var topView: ThunderListTopView = {
         let topView = ThunderListTopView()

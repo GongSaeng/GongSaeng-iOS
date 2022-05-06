@@ -186,7 +186,6 @@ final class ThunderDetailViewController: UIViewController {
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
-//        tableView.showsVerticalScrollIndicator = false
         tableView.register(CommentTableViewCell.self, forCellReuseIdentifier: "CommentTableViewCell")
     }
     
@@ -202,7 +201,7 @@ final class ThunderDetailViewController: UIViewController {
         [tableView, navigationView, spaceView, backwardButton]
             .forEach { view.addSubview($0) }
         tableView.snp.makeConstraints {
-            $0.top.leading.trailing.equalToSuperview()
+            $0.edges.equalToSuperview()
         }
         
         spaceView.snp.makeConstraints {
@@ -256,9 +255,9 @@ extension ThunderDetailViewController: ThunderDetailHeaderViewDelegate {
         viewController.statusBarStyle = navigationController?.preferredStatusBarStyle ?? .default
         viewController.delegate = self
         viewController.modalPresentationStyle = .overCurrentContext
-        present(viewController, animated: false) {
-            self.isKeyboardShowing = true
-            self.spaceView.snp.updateConstraints { $0.height.equalTo(0) }
+        present(viewController, animated: false) { [weak self] in
+            self?.isKeyboardShowing = true
+            self?.spaceView.snp.updateConstraints { $0.height.equalTo(0) }
         }
     }
 }
@@ -289,15 +288,9 @@ extension ThunderDetailViewController: UITableViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let screenHeight = UIScreen.main.bounds.height
         let scrolledOffset = scrollView.contentOffset.y
-        if let commentHeight = commentInputView.superview?.frame.minY,
-           scrolledOffset > (screenHeight - commentHeight) {
-            spaceView.snp.updateConstraints {
-                $0.height.equalTo(screenHeight - commentHeight)
-            }
-        } else {
-            spaceView.snp.updateConstraints {
-                $0.height.equalTo(bottomPadding + 55.0)
-            }
+        if let commentHeight = commentInputView.superview?.frame.minY {
+            tableView.contentInset.bottom = screenHeight - commentHeight
+            tableView.verticalScrollIndicatorInsets.bottom = screenHeight - commentHeight - bottomPadding
         }
         
         guard let tableView = scrollView as? UITableView,

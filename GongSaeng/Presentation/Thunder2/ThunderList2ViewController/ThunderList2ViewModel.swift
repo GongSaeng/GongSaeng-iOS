@@ -109,12 +109,5 @@ final class ThunderList2ViewModel {
             .withLatestFrom(myThunders)
             .compactMap { $0 }
             .asSignal(onErrorJustReturn: [])
-        
-        myThunderButtonTapped
-            .withLatestFrom(myThunders)
-            .bind(onNext: { myThunders in
-                print("DEBUG: myThunders -> \(myThunders)")
-            })
-            .disposed(by: disposeBag)
     }
 }

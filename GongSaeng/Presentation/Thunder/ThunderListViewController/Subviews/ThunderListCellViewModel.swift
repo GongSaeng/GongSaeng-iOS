@@ -23,8 +23,7 @@ struct ThunderListCellViewModel {
         self.index = thunder.index
         self.validStatus = (thunder.validStatus == 1)
         self.title = thunder.title
-//        self.thumnailImage = URL(string: SERVER_IMAGE_URL + thunder.thumbnailImageName)
-        self.thumnailImage = URL(string: thunder.thumbnailImageName)
+        self.thumnailImage = URL(string: SERVER_IMAGE_URL + thunder.thumbnailImageName)
         self.meetingTime = thunder.meetingTime
             .toAnotherDateString(form: "M월 d일 (E) a h:mm") ?? ""
         self.placeName = thunder.placeName

@@ -38,6 +38,7 @@ final class BoardListViewController: UITableViewController {
         configureTableView()
         configureNavigationBar()
         configureRefreshControl()
+        showLoader(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +58,9 @@ final class BoardListViewController: UITableViewController {
     private func fetchCommunitys(of page: Int, shouldRefresh: Bool = false) {
         guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
         fetchedPageList.append(page)
+//        showLoader(true)
         CommunityNetworkManager.fetchCommunitys(page: page, communityType: communityType) { [weak self] communitys in
+//            self?.showLoader(false)
             print("DEBUG: communitys -> \(communitys)")
             guard let self = self else { return }
             if shouldRefresh {

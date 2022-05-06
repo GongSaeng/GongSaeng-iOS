@@ -9,16 +9,19 @@ import Foundation
 import RxSwift
 
 final class ThunderList2Model {
-    func fetchThunders(page: Int, by order: SortingOrder, region: String?) -> Single<Result<[Thunder], Error>> {
-        return ThunderNetworkManager.fetchThunders(page: page, by: order, region: region)
+    let network = ThunderNetworkManager()
+    
+    func fetchThunders(page: Int, by order: SortingOrder, region: String?) -> Single<Result<[Thunder], NetworkError>> {
+        let region = region ?? "서울/서울"
+        return network.fetchThunders(page: page, by: order, region: region)
     }
     
-    func getThundersValue(_ result: Result<[Thunder], Error>) -> [Thunder]? {
+    func getThundersValue(_ result: Result<[Thunder], NetworkError>) -> [Thunder]? {
         guard case .success(let value) = result else { return nil }
         return value
     }
     
-    func getThundersError(_ result: Result<[Thunder], Error>) -> String? {
+    func getThundersError(_ result: Result<[Thunder], NetworkError>) -> String? {
         guard case .failure(let error) = result else { return nil }
         return error.localizedDescription
     }

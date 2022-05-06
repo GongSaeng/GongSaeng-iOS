@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MyPageViewController: UITableViewController {
+final class MyPageViewController: UITableViewController {
     
     // MARK: Properties
     var user: User? {
@@ -20,6 +20,7 @@ class MyPageViewController: UITableViewController {
             }
         }
     }
+    
     var profileImage: UIImage? {
         didSet {
             print("DEBUG: MypageViewController profileImage didSet..")
@@ -107,6 +108,7 @@ class MyPageViewController: UITableViewController {
     
     private func configure() {
         tableView.separatorStyle = .none
+        tableView.backgroundColor = .white
     }
     
     private func configureUser() {
@@ -182,7 +184,6 @@ extension MyPageViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell()
-        cell.selectionStyle = .none
         let titleLabel = UILabel()
         titleLabel.text = cellTitleList[indexPath.row]
         titleLabel.font = .systemFont(ofSize: 14.0, weight: .medium)
@@ -203,11 +204,12 @@ extension MyPageViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("DEBUG: did Tap \(cellTitleList[indexPath.row])..")
+        tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0: // 내 프로필/작성글/댓글
-//            let storyboard = UIStoryboard(name: "MyProfileAndWriting", bundle: Bundle.main)
-//            let viewController = storyboard.instantiateViewController(withIdentifier: "MyProfileAndWritingViewController") as! MyProfileAndWritingViewController
-//            navigationController?.pushViewController(viewController, animated: true)
+            let viewController = MyProfileAndWritingViewController()
+            viewController.hidesBottomBarWhenPushed = true
+            navigationController?.pushViewController(viewController, animated: true)
             print("DEBUG: Did tap 내 프로필/작성글/댓글..")
         case 1: // 계정 정보 관리
             guard let user = user else { return }

@@ -407,12 +407,25 @@ final class ThunderWriteViewController: UIViewController {
         afterDateFormatter.locale = Locale(identifier: "ko_kr")
         beforeDateFormatter.dateFormat = "yyyy년 M월 d일 (E) a h:mm"
         afterDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:00"
-        guard let date = beforeDateFormatter.date(from: timeText), let roadAddressName = placeDocument?.roadAddressName, let addressName = placeDocument?.addressName else { return }
+        guard let date = beforeDateFormatter.date(from: timeText), let roadAddressName = placeDocument?.roadAddressName, let addressName = placeDocument?.addressName, let placeURL = placeDocument?.placeURL else { return }
         let addressText = roadAddressName.isEmpty ? addressName : roadAddressName
         timeText = afterDateFormatter.string(from: date)
         numOfPeopleText = numOfPeopleText.filter { $0.isNumber }
         
         // API 코드 작성
+        showLoader(true)
+        ThunderNetworkManager().postThunder(meetingTime: timeText, place: placeText, placeURL: placeURL, address: addressName, totalNum: numOfPeopleText, title: titleText, contents: contentsText, images: selectedImages) { [weak self] isSucceded in
+            print("DEBUG: isSucceded \(isSucceded)")
+            self?.showLoader(false)
+            if isSucceded {
+                DispatchQueue.main.async {
+                    self?.navigationController?.popViewController(animated: true)
+                }
+            } else {
+                
+            }
+        }
+        
         print("DEBUG: timeText -> \(timeText)")
         print("DEBUG: placeText -> \(placeText)")
         print("DEBUG: addressText -> \(addressText)")

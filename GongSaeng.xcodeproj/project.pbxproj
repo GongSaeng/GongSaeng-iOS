@@ -137,12 +137,9 @@
 		A77A743027CD2EC100295730 /* ParticipantProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A742F27CD2EC100295730 /* ParticipantProfileViewModel.swift */; };
 		A77A743227CD2F2100295730 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A743127CD2F2100295730 /* Profile.swift */; };
 		A77B7B6E2748CFF200D0D5B1 /* splash.png in Resources */ = {isa = PBXBuildFile; fileRef = A77B7B6D2748CFF200D0D5B1 /* splash.png */; };
+		A77D45F72822B55B00D4EB01 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77D45F62822B55B00D4EB01 /* NetworkError.swift */; };
 		A77FE49B27F42564000716C1 /* ThunderDetail2HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE49A27F42564000716C1 /* ThunderDetail2HeaderView.swift */; };
 		A77FE49D27F42588000716C1 /* ThunderDetail2HeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE49C27F42588000716C1 /* ThunderDetail2HeaderViewModel.swift */; };
-		A77FE4A027F4273D000716C1 /* AttachedImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE49F27F4273D000716C1 /* AttachedImageCollectionView.swift */; };
-		A77FE4A227F42749000716C1 /* AttachedImageCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE4A127F42749000716C1 /* AttachedImageCollectionViewModel.swift */; };
-		A77FE4A427F4275F000716C1 /* ParticipantsImageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE4A327F4275F000716C1 /* ParticipantsImageCollectionView.swift */; };
-		A77FE4A627F42766000716C1 /* ParticipantsImageCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77FE4A527F42766000716C1 /* ParticipantsImageCollectionViewModel.swift */; };
 		A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */; };
 		A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A781C2FD274538D4004C9D3F /* TableHeaderView.swift */; };
 		A784FAE9278EA19D00CC4BF7 /* ImageInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A784FAE8278EA19D00CC4BF7 /* ImageInputAccessoryView.swift */; };
@@ -193,6 +190,8 @@
 		A7E3D11927BB928F0002240B /* Thunder.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3D11827BB928F0002240B /* Thunder.swift */; };
 		A7E3D11C27BB9CFF0002240B /* AvailableThunderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7E3D11B27BB9CFF0002240B /* AvailableThunderCell.swift */; };
 		A7EB35692786DB42001BCD03 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB35682786DB42001BCD03 /* ImageCacheManager.swift */; };
+		A7EB872B2824A11C008A5AB7 /* MyWrittenPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB872A2824A11C008A5AB7 /* MyWrittenPostCell.swift */; };
+		A7EB872E2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB872D2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift */; };
 		A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */; };
 		A7EE4A9027860329001A8C2E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE4A8F27860329001A8C2E /* PopUpViewController.swift */; };
 		A7EE6D34278FB541000AC151 /* CommunityNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE6D33278FB541000AC151 /* CommunityNetworkManager.swift */; };
@@ -335,12 +334,9 @@
 		A77A742F27CD2EC100295730 /* ParticipantProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantProfileViewModel.swift; sourceTree = "<group>"; };
 		A77A743127CD2F2100295730 /* Profile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
 		A77B7B6D2748CFF200D0D5B1 /* splash.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splash.png; sourceTree = "<group>"; };
+		A77D45F62822B55B00D4EB01 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		A77FE49A27F42564000716C1 /* ThunderDetail2HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2HeaderView.swift; sourceTree = "<group>"; };
 		A77FE49C27F42588000716C1 /* ThunderDetail2HeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2HeaderViewModel.swift; sourceTree = "<group>"; };
-		A77FE49F27F4273D000716C1 /* AttachedImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedImageCollectionView.swift; sourceTree = "<group>"; };
-		A77FE4A127F42749000716C1 /* AttachedImageCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedImageCollectionViewModel.swift; sourceTree = "<group>"; };
-		A77FE4A327F4275F000716C1 /* ParticipantsImageCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsImageCollectionView.swift; sourceTree = "<group>"; };
-		A77FE4A527F42766000716C1 /* ParticipantsImageCollectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParticipantsImageCollectionViewModel.swift; sourceTree = "<group>"; };
 		A781C2FB2745238C004C9D3F /* ImmedationTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmedationTableViewController.swift; sourceTree = "<group>"; };
 		A781C2FD274538D4004C9D3F /* TableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableHeaderView.swift; sourceTree = "<group>"; };
 		A784FAE8278EA19D00CC4BF7 /* ImageInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageInputAccessoryView.swift; sourceTree = "<group>"; };
@@ -392,6 +388,8 @@
 		A7E3D11827BB928F0002240B /* Thunder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Thunder.swift; sourceTree = "<group>"; };
 		A7E3D11B27BB9CFF0002240B /* AvailableThunderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableThunderCell.swift; sourceTree = "<group>"; };
 		A7EB35682786DB42001BCD03 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
+		A7EB872A2824A11C008A5AB7 /* MyWrittenPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWrittenPostCell.swift; sourceTree = "<group>"; };
+		A7EB872D2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWrittenPostCellViewModel.swift; sourceTree = "<group>"; };
 		A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInContainerViewController.swift; sourceTree = "<group>"; };
 		A7EE4A8F27860329001A8C2E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		A7EE6D33278FB541000AC151 /* CommunityNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityNetworkManager.swift; sourceTree = "<group>"; };
@@ -632,7 +630,8 @@
 			isa = PBXGroup;
 			children = (
 				A7A21AD727990C7D00E71761 /* MyProfileAndWritingViewController.swift */,
-				A7A21AD927990CC800E71761 /* MyProfileAndWritingHeaderView.swift */,
+				A7EB87292824A0F6008A5AB7 /* HeaderView */,
+				A7EB872C2824A127008A5AB7 /* SubComponents */,
 			);
 			path = MyProfileAndWriting;
 			sourceTree = "<group>";
@@ -815,6 +814,7 @@
 			children = (
 				3DA98CCB26530C04005175B5 /* User */,
 				A704C77227E2FD3D00061D45 /* ThunderSectionItem.swift */,
+				A77D45F62822B55B00D4EB01 /* NetworkError.swift */,
 			);
 			path = Enitity;
 			sourceTree = "<group>";
@@ -889,18 +889,6 @@
 			children = (
 				A7A0B4FA27F5A840005982A3 /* NavigationView */,
 				A7A0B4FB27F5A848005982A3 /* HeaderView */,
-				A77FE49E27F42718000716C1 /* SubComponents */,
-			);
-			path = SubComponents;
-			sourceTree = "<group>";
-		};
-		A77FE49E27F42718000716C1 /* SubComponents */ = {
-			isa = PBXGroup;
-			children = (
-				A77FE49F27F4273D000716C1 /* AttachedImageCollectionView.swift */,
-				A77FE4A127F42749000716C1 /* AttachedImageCollectionViewModel.swift */,
-				A77FE4A327F4275F000716C1 /* ParticipantsImageCollectionView.swift */,
-				A77FE4A527F42766000716C1 /* ParticipantsImageCollectionViewModel.swift */,
 			);
 			path = SubComponents;
 			sourceTree = "<group>";
@@ -1086,6 +1074,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A7EB87292824A0F6008A5AB7 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				A7A21AD927990CC800E71761 /* MyProfileAndWritingHeaderView.swift */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		A7EB872C2824A127008A5AB7 /* SubComponents */ = {
+			isa = PBXGroup;
+			children = (
+				A7EB872A2824A11C008A5AB7 /* MyWrittenPostCell.swift */,
+				A7EB872D2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift */,
+			);
+			path = SubComponents;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1197,6 +1202,7 @@
 				A79C215726EF4452000B9028 /* MembershipWithdrawlCompletedPopUpViewController.swift in Sources */,
 				3D85550B2660083D00147EE7 /* MemberViewController.swift in Sources */,
 				A7DF2CEC278AC2E900BFB5B6 /* ManageAccountViewModel.swift in Sources */,
+				A7EB872B2824A11C008A5AB7 /* MyWrittenPostCell.swift in Sources */,
 				A76F29D127B1144E0077F297 /* SearchPlaceNetwork.swift in Sources */,
 				A7DF2CEE278ACCE900BFB5B6 /* PasswordChangingViewController.swift in Sources */,
 				A7C9D10327784A4E00943207 /* InputTextView.swift in Sources */,
@@ -1209,7 +1215,6 @@
 				A748216B27C8E08700B51901 /* AttachedImageCell.swift in Sources */,
 				3D85550D2660084A00147EE7 /* AccountViewController.swift in Sources */,
 				A77A742927CCB0F400295730 /* ThunderNetworkManager.swift in Sources */,
-				A77FE4A027F4273D000716C1 /* AttachedImageCollectionView.swift in Sources */,
 				3DAFCBA4266261E6008E9803 /* UITextField.swift in Sources */,
 				3D5D59AC2652B12A0018FE63 /* LoginViewController.swift in Sources */,
 				A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */,
@@ -1262,6 +1267,7 @@
 				3DAFCBA026625DF6008E9803 /* Normalization.swift in Sources */,
 				A78A6B4C27869EC1006F3D60 /* ImageService.swift in Sources */,
 				3DD893D6266E1A9C0050B4F8 /* MateViewController.swift in Sources */,
+				A7EB872E2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift in Sources */,
 				3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */,
 				A7DC1CA3270778CE002F395C /* CancelReservationPopUpViewController.swift in Sources */,
 				A777C8D62707A32600670556 /* CanceledReservationPopUpViewController.swift in Sources */,
@@ -1311,7 +1317,6 @@
 				A7DC1CA527077918002F395C /* FinishUsingPopUpViewController.swift in Sources */,
 				A7931347279818CB004C61CC /* BannerButtonInputAccessoryView.swift in Sources */,
 				A79E37E32783388C0059D5C1 /* InitialViewController.swift in Sources */,
-				A77FE4A227F42749000716C1 /* AttachedImageCollectionViewModel.swift in Sources */,
 				A70B907E27BCC30400C9887C /* ThunderListCellViewModel.swift in Sources */,
 				A7FAB14E27C75E2F00B736AB /* ThunderDetailViewModel.swift in Sources */,
 				A7A1639B27C51F5B00379A43 /* ThunderDetailViewController.swift in Sources */,
@@ -1326,6 +1331,7 @@
 				A73BC925278DB9F4003FF406 /* ImageCollectionView.swift in Sources */,
 				3D2FBC0B26760BFA00D2FF56 /* Date.swift in Sources */,
 				3DA98CCD26530C30005175B5 /* User.swift in Sources */,
+				A77D45F72822B55B00D4EB01 /* NetworkError.swift in Sources */,
 				A7FAB14C27C64E8500B736AB /* ThunderDetail.swift in Sources */,
 				A7EE6D3827910B44000AC151 /* Post.swift in Sources */,
 				A76F29D327B116BF0077F297 /* Place.swift in Sources */,
@@ -1335,7 +1341,6 @@
 				A7DD616327B121F1001F3F63 /* PlaceListCellViewModel.swift in Sources */,
 				A73E81EF2795639800A4C46D /* MarketBoardCell.swift in Sources */,
 				A77879D627BA4FD3002FD07B /* ThunderListTopView.swift in Sources */,
-				A77FE4A427F4275F000716C1 /* ParticipantsImageCollectionView.swift in Sources */,
 				A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */,
 				A736F980278BF98D0075A665 /* Community.swift in Sources */,
 				A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */,
@@ -1349,7 +1354,6 @@
 				A704C76527E06C6A00061D45 /* ThunderList2TopViewModel.swift in Sources */,
 				A7F15F08278A96C70080DCE7 /* MainTabBarController.swift in Sources */,
 				A777FD532792D78800228969 /* CommentTableViewCellViewModel.swift in Sources */,
-				A77FE4A627F42766000716C1 /* ParticipantsImageCollectionViewModel.swift in Sources */,
 				A705F26927B37EB300D35CCE /* UniversityViewController.swift in Sources */,
 				A7A21ADA27990CC800E71761 /* MyProfileAndWritingHeaderView.swift in Sources */,
 				A704C76327E06C6300061D45 /* ThunderList2TopView.swift in Sources */,
