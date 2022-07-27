@@ -51,7 +51,7 @@ final class EditProfileViewController: UIViewController {
     
     private let jobLabel: UILabel = {
         let label = UILabel()
-        label.text = "소속"
+        label.text = "학과"
         label.font = .systemFont(ofSize: 14.0, weight: .bold)
         label.textColor = .black
         return label

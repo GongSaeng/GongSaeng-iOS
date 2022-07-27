@@ -6,8 +6,9 @@
 //
 
 import UIKit
+import Kingfisher
 
-class MateCell: UICollectionViewCell {
+final class MateCell: UICollectionViewCell {
     
     // MARK: Properties
     var viewModel: MateCellViewModel? {
@@ -35,7 +36,8 @@ class MateCell: UICollectionViewCell {
     func fetchMate() {
         guard let viewModel = viewModel else { return }
         
-        profileImage.image = UIImage(named: "profileImage_0")
+//        profileImage.image = UIImage(named: "profileImage_0")
+        profileImage.kf.setImage(with: viewModel.profileImageURL, placeholder: UIImage(named: "profileImage_0"))
         nicknameLabel.text = viewModel.nickname
         jobLabel.text = viewModel.job ?? "-"
         emailLabel.text = viewModel.email ?? "-"

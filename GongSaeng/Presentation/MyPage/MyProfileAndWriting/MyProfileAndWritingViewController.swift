@@ -8,14 +8,40 @@
 import UIKit
 import SnapKit
 
+enum MyPostType {
+    case post
+    case comment
+}
+
+protocol MyProfileAndWritingViewControllerDelegate: AnyObject {
+    func presentThunderView(index: Int)
+}
+
 final class MyProfileAndWritingViewController: UIViewController {
     
     // MARK: Properties
+    weak var delegate: MyProfileAndWritingViewControllerDelegate?
+    
+    let user: User
+    let headerViewModel: MyProfileAndWritingHeaderViewModel
+    let headerView: MyProfileAndWritingHeaderView
+    
+    var myPostList = [MyPost]()
     let tableView = UITableView()
     
-    let headerView = MyProfileAndWritingHeaderView()
-    
     // MARK: Lifecycle
+    init(user: User) {
+        self.user = user
+        self.headerViewModel = MyProfileAndWritingHeaderViewModel(user: user)
+        self.headerView = MyProfileAndWritingHeaderView(viewModel: headerViewModel)
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,7 +49,14 @@ final class MyProfileAndWritingViewController: UIViewController {
         configureTableView()
         configureTableHeaderView()
         configureNavigationView()
+        fetchMyPosts(myPostType: .post)
     }
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        
+//        
+//    }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
@@ -37,7 +70,19 @@ final class MyProfileAndWritingViewController: UIViewController {
                 headerFrame.size.height = height
                 headerView.frame = headerFrame
                 tableView.tableHeaderView = headerView
-//                print("DEBUG: height \(height)")
+            }
+        }
+    }
+    
+    // MARK: API
+    private func fetchMyPosts(myPostType: MyPostType) {
+        showLoader(true)
+        CommunityNetworkManager.fetchMyPosts(myPostType: myPostType) { [weak self] myPosts in
+            self?.showLoader(false)
+            print("DEBUG: myPosts -> \(myPosts)")
+            self?.myPostList = myPosts
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
             }
         }
     }
@@ -56,6 +101,7 @@ final class MyProfileAndWritingViewController: UIViewController {
     
     private func configureTableHeaderView() {
         tableView.tableHeaderView = headerView
+        headerView.delegate = self
     }
     
     private func configureNavigationView() {
@@ -85,20 +131,50 @@ final class MyProfileAndWritingViewController: UIViewController {
 // MARK: UITableViewDataSource
 extension MyProfileAndWritingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return myPostList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyWrittenPostCell", for: indexPath) as? MyWrittenPostCell else { return MyWrittenPostCell() }
-//        cell.backgroundColor = .systemGray5
-        cell.viewModel = MyWrittenPostCellViewModel()
-        if indexPath.row % 2 == 1 {
-            cell.numOfCommentLabel.text = "99+"
-        }
+        cell.viewModel = MyWrittenPostCellViewModel(myPost: myPostList[indexPath.row])
         return cell
     }
 }
 
 // MARK: UITableViewDelegate
 extension MyProfileAndWritingViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let myPost = myPostList[indexPath.row]
+        let index = myPost.postIndex
+        var communityType: CommunityType = .free
+        switch myPost.boardName {
+        case "자유게시판": communityType = .free
+        case "고민게시판": communityType = .emergency
+        case "맛집게시판": communityType = .suggestion
+        case "챌린지게시판": communityType = .gathering
+        case "장터게시판": communityType = .market
+        case "번개게시판":
+            navigationController?.popViewController(animated: false)
+            delegate?.presentThunderView(index: index)
+            return
+            
+        default:
+            return
+        }
+        
+        let viewController = BoardDetailViewController(withUser: user, postIndex: index, communityType: communityType)
+        viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+        backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
+        navigationItem.backBarButtonItem = backBarButton
+        navigationController?.pushViewController(viewController, animated: true)
+    }
+}
+
+// MARK: MyProfileAndWritingHeaderViewDelegate
+extension MyProfileAndWritingViewController: MyProfileAndWritingHeaderViewDelegate {
+    func didTapPostButton(myPostType: MyPostType) {
+        fetchMyPosts(myPostType: myPostType)
+    }
 }

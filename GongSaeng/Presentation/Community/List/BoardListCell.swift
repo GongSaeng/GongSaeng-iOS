@@ -117,10 +117,17 @@ class BoardListCell: UITableViewCell {
         paragraphStyle.lineBreakMode = .byTruncatingTail
         contentsLabel.attributedText = NSAttributedString(string: viewModel.contents, attributes: [.paragraphStyle: paragraphStyle, .font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor(white: 0, alpha: 0.7)])
         titleLabel.text = viewModel.title
-        writerNicknameLabel.text = viewModel.writerNickname
+        if viewModel.communityType == .emergency {
+            writerNicknameLabel.text = "익명"
+            writerImageView.image = UIImage(named: "no_image")
+        } else {
+            writerNicknameLabel.text = viewModel.writerNickname
+            writerImageView.kf.setImage(with: viewModel.writerImageUrl, placeholder: UIImage(named: "3"))
+        }
+        
         uploadedTimeLabel.text = viewModel.uploadedTimeText
         numberOfCommentsLabel.text = viewModel.numberOfComments
-        writerImageView.kf.setImage(with: viewModel.writerImageUrl, placeholder: UIImage(named: "3"))
+        
         
         switch viewModel.communityType {
         case .gathering:

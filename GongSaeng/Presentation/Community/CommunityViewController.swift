@@ -18,10 +18,10 @@ class CommunityViewController: UIViewController {
     
     var postDictionary: [[String: String]] = [
         ["title": "자유게시판", "introduction": "자유롭게 소통해요", "imageName": "free_community"],
-        ["title": "긴급게시판", "introduction": "바로 해결해야하는 건의사항이 있나요?", "imageName": "emergency_community"],
-        ["title": "건의게시판", "introduction": "불편한 일이 생겼다면 건의해보세요!", "imageName": "suggest_community"],
-        ["title": "함께게시판", "introduction": "나눔,대여,거래하고 싶은 것이 있나요?", "imageName": "with_community"],
-        ["title": "장터게시판", "introduction": "중고거래,공생메이트님들과 해보세요!", "imageName": "buy_community"]
+        ["title": "고민게시판", "introduction": "혼자 고민하지 말아요", "imageName": "emergency_community"],
+        ["title": "맛집게시판", "introduction": "우리나라 맛집을 알아 보아요", "imageName": "suggest_community"],
+        ["title": "챌린지게시판", "introduction": "함께할 챌린지 팀원을 모집해보세요", "imageName": "with_community"],
+        ["title": "장터게시판", "introduction": "중고거래,공생메이트님들과 해보세요", "imageName": "buy_community"]
     ]
     
     // MARK: Lifecycle

@@ -9,9 +9,16 @@ import UIKit
 import SnapKit
 import Kingfisher
 
+protocol MyProfileAndWritingHeaderViewDelegate: AnyObject {
+    func didTapPostButton(myPostType: MyPostType)
+}
+
 final class MyProfileAndWritingHeaderView: UIView {
     
     // MARK: Properties
+    weak var delegate: MyProfileAndWritingHeaderViewDelegate?
+    var viewModel: MyProfileAndWritingHeaderViewModel
+    
     private let profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 50.0
@@ -72,17 +79,20 @@ final class MyProfileAndWritingHeaderView: UIView {
     
     private lazy var writtenPostsButton: UIButton = {
         let button = UIButton()
+        button.addTarget(self, action: #selector(didPostButtonTap), for: .touchUpInside)
         return button
     }()
     
     private lazy var writtenCommentsButton: UIButton = {
         let button = UIButton()
+        button.addTarget(self, action: #selector(didCommentButtonTap), for: .touchUpInside)
         return button
     }()
     
     // MARK: Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(viewModel: MyProfileAndWritingHeaderViewModel) {
+        self.viewModel = viewModel
+        super.init(frame: .zero)
         
         configure()
         layout()
@@ -93,51 +103,70 @@ final class MyProfileAndWritingHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: Actions
+    @objc
+    private func didPostButtonTap() {
+        viewModel.selectedButtonType = .post
+        updateButtonState()
+        delegate?.didTapPostButton(myPostType: .post)
+    }
+    
+    @objc
+    private func didCommentButtonTap() {
+        viewModel.selectedButtonType = .comment
+        updateButtonState()
+        delegate?.didTapPostButton(myPostType: .comment)
+    }
+    
     // MARK: Helpers
     private func updateButtonState() {
         let postsButtonTitle = NSAttributedString(
             string: "작성한 글",
             attributes: [
                 .font: UIFont.systemFont(ofSize: 14.0, weight: .medium),
-                .foregroundColor: UIColor.black
+                .foregroundColor: viewModel.postButtonTextColor
             ])
         let commentsButtonTitle = NSAttributedString(
             string: "작성한 댓글",
             attributes: [
                 .font: UIFont.systemFont(ofSize: 14.0, weight: .medium),
-                .foregroundColor: UIColor.black.withAlphaComponent(0.2)
+                .foregroundColor: viewModel.commentButtonTextColor
             ])
 
         writtenPostsButton.setAttributedTitle(postsButtonTitle, for: .normal)
         writtenCommentsButton.setAttributedTitle(commentsButtonTitle, for: .normal)
         
-        writtenPostsButton.backgroundColor = .white
-        writtenCommentsButton.backgroundColor = .black.withAlphaComponent(0.05)
-//        writtenPostsButton.isEnabled = !bool
+        writtenPostsButton.backgroundColor = viewModel.postButtonBackgroundColor
+        writtenCommentsButton.backgroundColor = viewModel.commentButtonBackgroundColor
         
+        writtenPostsButton.isEnabled = viewModel.isPostButtonEnabled
+        writtenCommentsButton.isEnabled = viewModel.isCommentButtonEnabled
     }
     
     private func configure() {
-        profileImageView.image = UIImage(named: "3")
-        nicknameLabel.text = "공생공생메이트"
+        profileImageView.kf.setImage(with: viewModel.profileImageURL, placeholder: UIImage(named: "3"))
+        nicknameLabel.text = viewModel.nickname
+        jobLabel.text = viewModel.job
+        emailLabel.text = viewModel.email
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 3.0
         paragraphStyle.alignment = .center
         paragraphStyle.lineBreakMode = .byTruncatingTail
         introduceLabel.attributedText = NSAttributedString(
-            string: "301호에 새로 들어왔어요~ 잘부탁드립니다. 현재 앱을 개발하는 일을 하고 있어요. 301호에 새로 들어왔어요~ 잘부탁드립니다. 현재 앱을 개발하는 일을 하고 있어요. 301호에 새로 들어왔어요~ 잘부탁드립니다. 현재 앱을 개발하는 일을 하고 있어요. 301호에 새로 들어왔어요~ 잘부탁드립니다. 현재 앱을 개발하는 일을 하고 있어요.",
+            string: viewModel.introduce,
             attributes: [.font: UIFont.systemFont(ofSize: 13.0),
                          .foregroundColor: UIColor.systemGray,
                          .paragraphStyle: paragraphStyle])
     }
     
     private func layout() {
+        self.snp.makeConstraints { $0.width.equalTo(UIScreen.main.bounds.width) }
         let stackView1 = UIStackView(arrangedSubviews: [jobImageView, jobLabel])
         let stackView2 = UIStackView(arrangedSubviews: [emailImageView, emailLabel])
         let stackView3 = UIStackView(arrangedSubviews: [writtenPostsButton, writtenCommentsButton])
         [stackView1, stackView2].forEach {
             $0.axis = .horizontal
-            $0.spacing = 7.0
+            $0.spacing = 3.0
             $0.distribution = .equalCentering
         }
         stackView3.axis = .horizontal
@@ -177,7 +206,7 @@ final class MyProfileAndWritingHeaderView: UIView {
         }
         
         dividingView.snp.makeConstraints {
-            $0.top.equalTo(introduceLabel.snp.top).offset(100)
+            $0.top.equalTo(introduceLabel.snp.bottom).offset(40.0)
             $0.leading.trailing.equalToSuperview()
             $0.height.equalTo(1.0)
         }

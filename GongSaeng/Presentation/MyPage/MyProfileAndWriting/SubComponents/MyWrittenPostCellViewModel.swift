@@ -8,8 +8,18 @@
 import Foundation
 
 struct MyWrittenPostCellViewModel {
-    var title: String = "온천천 러닝 같이 뛰실분 구합니다."
-    var category: String = "자유게시판"
-    var postingTime: String = "04/24 13:05"
-    var numOfComment: String = "0"
+    var title: String
+    var boardName: String
+    var postingTime: String
+    var numOfComment: String
+    var postIndex: Int
+    
+    init(myPost: MyPost) {
+        self.title = myPost.title
+        self.boardName = myPost.boardName
+        self.postingTime = myPost.postingTime
+            .toAnotherDateString(form: "MM/dd HH:mm")!
+        self.numOfComment = myPost.numOfComment > 99 ? "99+" : "\(myPost.numOfComment)"
+        self.postIndex = myPost.postIndex
+    }
 }

@@ -9,8 +9,9 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class MemberViewController: UIViewController {
+final class MemberViewController: UIViewController {
     
+    // MARK: Properties
     private let domainLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 12.0)
@@ -57,6 +58,7 @@ class MemberViewController: UIViewController {
     let grayColorLiteral = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.05)
     let orangeColorLiteral = #colorLiteral(red: 1, green: 0.4431372549, blue: 0.2745098039, alpha: 1)
     
+    // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -71,6 +73,7 @@ class MemberViewController: UIViewController {
         
         hideHint()
     }
+    // MARK: Actions
     @objc
     private func textFieldEditingHandler() {
         // 확률적으로 밑에가 비었을 확률이 크다. 아래부터 check하면 불필요한 연산을 하지 않는다.
@@ -198,6 +201,7 @@ class MemberViewController: UIViewController {
         }
     }
     
+    // MARK: Helpers
     private func configure() {
         guard let register = register, let university = register.university else { return }
         domainLabel.text = "@\(university.domain)"
@@ -244,6 +248,7 @@ class MemberViewController: UIViewController {
     }
 }
 
+// MARK: UITextFieldDelegate
 extension MemberViewController: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         changeUnderlineColor(textField: textField, color: orangeColorLiteral)
@@ -276,7 +281,8 @@ extension MemberViewController: UITextFieldDelegate {
 }
 
 extension MemberViewController {
-    @objc private func adjustInputView(noti: Notification) {
+    @objc
+    private func adjustInputView(noti: Notification) {
         guard let userInfo = noti.userInfo else { return }
         // 키보드 높이에 따른 인풋뷰 위치 변경
         guard let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }

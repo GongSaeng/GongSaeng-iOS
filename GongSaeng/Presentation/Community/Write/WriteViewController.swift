@@ -26,7 +26,7 @@ final class WriteViewController: UIViewController {
     
     private var numberOfImages = 0
     
-    private let categoryList: [String] = ["소음", "예약", "냉장고", "세탁실", "수질", "와이파이", "전기", "기타"]
+    private let categoryList: [String]
     
     private let reuseIdentifier = "WriteImageCell"
     
@@ -221,6 +221,9 @@ final class WriteViewController: UIViewController {
     // MARK: Lifecycle
     init(commuityType: CommunityType) {
         self.communityType = commuityType
+        self.categoryList = (communityType == .emergency) ?
+        ["사랑", "인간관계", "진로", "학업"] :
+        ["한식", "일식", "중식", "양식", "분식", "아시안", "패스트푸드", "카페/디저트", "기타"]
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -433,15 +436,15 @@ final class WriteViewController: UIViewController {
     private func configureNavigationView() {
         switch communityType {
         case .gathering:
-            navigationItem.title = "함께글쓰기"
+            navigationItem.title = "챌린지글쓰기"
         case .market:
             navigationItem.title = "장터글쓰기"
         case .free:
             navigationItem.title = "자유글쓰기"
         case .emergency:
-            navigationItem.title = "긴급글쓰기"
+            navigationItem.title = "고민글쓰기"
         case .suggestion:
-            navigationItem.title = "건의글쓰기"
+            navigationItem.title = "맛집글쓰기"
         }
         navigationController?.navigationBar.isHidden = false
         navigationController?.navigationBar.tintColor = UIColor(named: "colorPaleOrange")

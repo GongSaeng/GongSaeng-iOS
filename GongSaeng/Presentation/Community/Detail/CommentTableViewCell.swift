@@ -17,6 +17,8 @@ class CommentTableViewCell: UITableViewCell {
         didSet { configure() }
     }
     
+    var shouldBeAnonymous: Bool = false
+    
     private let writerImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.borderWidth = 1.0
@@ -48,13 +50,13 @@ class CommentTableViewCell: UITableViewCell {
     }()
     
     // MARK: Lifecycle
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
         configure()
         layout()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -62,13 +64,19 @@ class CommentTableViewCell: UITableViewCell {
     // MARK: Helpers
     private func configure() {
         guard let viewModel = viewModel else { return }
-        writerNicknameLabel.text = viewModel.writerNicknameText
+        if viewModel.shouldBeAnonymous {
+            writerNicknameLabel.text = "익명"
+            writerImageView.image = UIImage(named: "no_image")
+        } else {
+            writerNicknameLabel.text = viewModel.writerNicknameText
+            writerImageView.kf.setImage(with: viewModel.writerImageUrl, placeholder: UIImage(named: "3"))
+        }
+        
         uploadedTimeLabel.text = viewModel.uploadedTimeText
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = 5.0
         paragraphStyle.lineBreakMode = .byTruncatingTail
         contentsLabel.attributedText = NSAttributedString(string: viewModel.contentsText, attributes: [.paragraphStyle: paragraphStyle, .font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor(white: 0, alpha: 0.7)])
-        writerImageView.kf.setImage(with: viewModel.writerImageUrl, placeholder: UIImage(named: "3"))
     }
     
     private func layout() {

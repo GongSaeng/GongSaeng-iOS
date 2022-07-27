@@ -54,7 +54,7 @@ final class CommunityNetworkManager {
     }
     
     static func fetchPost(index: Int, completion: @escaping(Post) -> Void) {
-        
+        print("DEBUG: index -> \(index)")
         var urlComponents = URLComponents(string: "\(SERVER_URL)/community/find_post_by_index?")
         let paramQuery = URLQueryItem(name: "post_index", value: "\(index)")
         urlComponents?.queryItems?.append(paramQuery)
@@ -207,6 +207,47 @@ final class CommunityNetworkManager {
             }
             dataTask.resume()
         }
+    }
+    
+    static func fetchMyPosts(myPostType: MyPostType, completion: @escaping([MyPost]) -> Void) {
+        let scheme = (myPostType == .post) ? "mypost" : "mycomment"
+        let urlComponents = URLComponents(string: "\(SERVER_URL)/profile/\(scheme)")
+        guard let url = urlComponents?.url else { return }
+     
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data,
+                  let myPosts = try? JSONDecoder().decode([MyPost].self, from: data) else {
+                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      return
+                  }
+            
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: Network succeded")
+                completion(myPosts)
+            case (400...499):
+                print("""
+                    ERROR: Client ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            case (500...599):
+                print("""
+                    ERROR: Server ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            default:
+                print("""
+                    ERROR: \(response.statusCode)
+                    Response: \(response)
+                """)
+            }
+        }
+        
+        dataTask.resume()
     }
     
     static func fetchComments(page: Int, index: Int, completion: @escaping([Comment]) -> Void) {

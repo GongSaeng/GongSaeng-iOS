@@ -192,7 +192,9 @@
 		A7EB35692786DB42001BCD03 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB35682786DB42001BCD03 /* ImageCacheManager.swift */; };
 		A7EB872B2824A11C008A5AB7 /* MyWrittenPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB872A2824A11C008A5AB7 /* MyWrittenPostCell.swift */; };
 		A7EB872E2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB872D2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift */; };
+		A7EB87302824B95B008A5AB7 /* MyProfileAndWritingHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB872F2824B95B008A5AB7 /* MyProfileAndWritingHeaderViewModel.swift */; };
 		A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */; };
+		A7EBD5D1282901B500B822ED /* MyPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EBD5D0282901B500B822ED /* MyPost.swift */; };
 		A7EE4A9027860329001A8C2E /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE4A8F27860329001A8C2E /* PopUpViewController.swift */; };
 		A7EE6D34278FB541000AC151 /* CommunityNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE6D33278FB541000AC151 /* CommunityNetworkManager.swift */; };
 		A7EE6D36278FFEC5000AC151 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7EE6D35278FFEC5000AC151 /* UIImage.swift */; };
@@ -390,7 +392,9 @@
 		A7EB35682786DB42001BCD03 /* ImageCacheManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		A7EB872A2824A11C008A5AB7 /* MyWrittenPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWrittenPostCell.swift; sourceTree = "<group>"; };
 		A7EB872D2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWrittenPostCellViewModel.swift; sourceTree = "<group>"; };
+		A7EB872F2824B95B008A5AB7 /* MyProfileAndWritingHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileAndWritingHeaderViewModel.swift; sourceTree = "<group>"; };
 		A7EB99E72710094E005B43AB /* RequestCheckInContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCheckInContainerViewController.swift; sourceTree = "<group>"; };
+		A7EBD5D0282901B500B822ED /* MyPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPost.swift; sourceTree = "<group>"; };
 		A7EE4A8F27860329001A8C2E /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		A7EE6D33278FB541000AC151 /* CommunityNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityNetworkManager.swift; sourceTree = "<group>"; };
 		A7EE6D35278FFEC5000AC151 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
@@ -1078,6 +1082,7 @@
 			isa = PBXGroup;
 			children = (
 				A7A21AD927990CC800E71761 /* MyProfileAndWritingHeaderView.swift */,
+				A7EB872F2824B95B008A5AB7 /* MyProfileAndWritingHeaderViewModel.swift */,
 			);
 			path = HeaderView;
 			sourceTree = "<group>";
@@ -1085,6 +1090,7 @@
 		A7EB872C2824A127008A5AB7 /* SubComponents */ = {
 			isa = PBXGroup;
 			children = (
+				A7EBD5D0282901B500B822ED /* MyPost.swift */,
 				A7EB872A2824A11C008A5AB7 /* MyWrittenPostCell.swift */,
 				A7EB872D2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift */,
 			);
@@ -1245,6 +1251,7 @@
 				A732CA4A277CF11B00A11E68 /* UIViewController.swift in Sources */,
 				A7F4193D26F25FE400D6C6EA /* CheckInRequestPopUpViewController.swift in Sources */,
 				3D00C8B5266E3999006236A0 /* MateListViewController.swift in Sources */,
+				A7EB87302824B95B008A5AB7 /* MyProfileAndWritingHeaderViewModel.swift in Sources */,
 				A7796F9C27B109AF001E88F6 /* SearchPlaceViewController.swift in Sources */,
 				A71600A92746393700FC3C64 /* Immediation.swift in Sources */,
 				A7B35573277AE2F8006F6A54 /* UserService.swift in Sources */,
@@ -1258,6 +1265,7 @@
 				A7A1639927C3B82200379A43 /* CompletedThunderCell.swift in Sources */,
 				A777FD512792D52600228969 /* Comment.swift in Sources */,
 				A76F601527E853C2008A5351 /* LocalePopUp2ViewController.swift in Sources */,
+				A7EBD5D1282901B500B822ED /* MyPost.swift in Sources */,
 				A736F97E278BF8020075A665 /* BoardCellListViewModel.swift in Sources */,
 				A7E3D11C27BB9CFF0002240B /* AvailableThunderCell.swift in Sources */,
 				A77A743027CD2EC100295730 /* ParticipantProfileViewModel.swift in Sources */,

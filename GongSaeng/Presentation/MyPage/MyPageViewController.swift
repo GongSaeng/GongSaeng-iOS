@@ -8,9 +8,15 @@
 import UIKit
 import SnapKit
 
+protocol MyPageViewControllerDelegate: AnyObject {
+    func presentThunderView(index: Int)
+}
+
 final class MyPageViewController: UITableViewController {
     
     // MARK: Properties
+    weak var delegate: MyPageViewControllerDelegate?
+    
     var user: User? {
         didSet {
             print("DEBUG: MypageViewController user didSet..")
@@ -31,7 +37,7 @@ final class MyPageViewController: UITableViewController {
         }
     }
     
-    private let cellTitleList = ["내 프로필/작성글/댓글", "계정 정보 관리", "로그아웃", "회원탈퇴"]
+    private let cellTitleList = ["내 프로필/작성글/댓글", "계정 정보 관리", "로그아웃", "회원탈퇴", "고객센터"]
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -207,7 +213,9 @@ extension MyPageViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
         case 0: // 내 프로필/작성글/댓글
-            let viewController = MyProfileAndWritingViewController()
+            guard let user = user else { return }
+            let viewController = MyProfileAndWritingViewController(user: user)
+            viewController.delegate = self
             viewController.hidesBottomBarWhenPushed = true
             navigationController?.pushViewController(viewController, animated: true)
             print("DEBUG: Did tap 내 프로필/작성글/댓글..")
@@ -228,8 +236,21 @@ extension MyPageViewController {
 //            popUpViewController.modalPresentationStyle = .overCurrentContext
 //            self.present(popUpViewController, animated: false, completion: nil)
             print("DEBUG: Did tap 회원탈퇴..")
+        case 4: // 고개센터
+            let popUpContents = "'newrience@gmail.com'으로 문의주세요"
+            let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
+            viewController.modalPresentationStyle = .overCurrentContext
+            self.present(viewController, animated: false, completion: nil)
         default:
             return
         }
+    }
+}
+
+// MARK: MyProfileAndWritingViewControllerDelegate
+extension MyPageViewController: MyProfileAndWritingViewControllerDelegate {
+    func presentThunderView(index: Int) {
+        print("DEBUG: dfd")
+        delegate?.presentThunderView(index: index)
     }
 }

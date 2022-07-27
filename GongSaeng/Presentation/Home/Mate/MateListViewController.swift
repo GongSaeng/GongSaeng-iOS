@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MateListViewController: UIViewController {
+final class MateListViewController: UIViewController {
     
 //    let viewModel: MateViewModel = MateViewModel()
     // MARK: Properties

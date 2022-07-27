@@ -7,7 +7,7 @@
 
 import UIKit
 
-class NoticeViewController: UIViewController {
+final class NoticeViewController: UIViewController {
     
     // MARK: Properties
     private var notices = [Notice]()
@@ -15,17 +15,14 @@ class NoticeViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        fetchNotices()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        if notices == [] {
+
+        if notices.isEmpty {
             fetchNotices()
+        } else {
+            notices = notices.shuffled()
+            tableView.reloadData()
         }
     }
     
@@ -42,7 +39,7 @@ class NoticeViewController: UIViewController {
     private func fetchNotices() {
         HomeNetworkManager.fetchNotice { [weak self] notices in
             guard let self = self else { return }
-            self.notices = notices
+            self.notices = notices.shuffled()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -50,9 +47,10 @@ class NoticeViewController: UIViewController {
     }
 }
 
+// MARK: UITableViewDataSource
 extension NoticeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notices.count
+        return notices.count > 2 ? 3 : notices.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -63,18 +61,8 @@ extension NoticeViewController: UITableViewDataSource {
     }
 }
 
-extension NoticeViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Notice", bundle: Bundle.main)
-        let viewController = storyboard.instantiateViewController(withIdentifier: "NoticeDetailViewController") as! NoticeDetailViewController
-        viewController.notice = notices[indexPath.row]
-        viewController.modalPresentationStyle = .fullScreen
-        viewController.hidesBottomBarWhenPushed = true
-        self.navigationController?.pushViewController(viewController, animated: true)
-    }
-}
-
-class NoticeCell: UITableViewCell {
+// MARK: UITableViewCell
+final class NoticeCell: UITableViewCell {
     
     // MARK: Properties
     var viewModel: NoticeListCellViewModel? {
@@ -97,9 +85,6 @@ class NoticeCell: UITableViewCell {
         guard let viewModel = viewModel else { return }
         
         titleLabel.text = viewModel.title
-        dateLabel.text = viewModel.time
-//        guard let timeString = viewModel.time else { return }
-//        let dateString = String(timeString[timeString.index(timeString.startIndex, offsetBy: 4)...])
-//        dateLabel.text = dateString
+        dateLabel.text = viewModel.category
     }
 }

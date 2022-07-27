@@ -38,7 +38,6 @@ final class BoardListViewController: UITableViewController {
         configureTableView()
         configureNavigationBar()
         configureRefreshControl()
-        showLoader(true)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -58,9 +57,9 @@ final class BoardListViewController: UITableViewController {
     private func fetchCommunitys(of page: Int, shouldRefresh: Bool = false) {
         guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
         fetchedPageList.append(page)
-//        showLoader(true)
+        showLoader(true)
         CommunityNetworkManager.fetchCommunitys(page: page, communityType: communityType) { [weak self] communitys in
-//            self?.showLoader(false)
+            self?.showLoader(false)
             print("DEBUG: communitys -> \(communitys)")
             guard let self = self else { return }
             if shouldRefresh {
@@ -124,11 +123,11 @@ final class BoardListViewController: UITableViewController {
         case .free:
             navigationItem.title = "자유게시판"
         case .emergency:
-            navigationItem.title = "긴급게시판"
+            navigationItem.title = "고민게시판"
         case .suggestion:
-            navigationItem.title = "건의게시판"
+            navigationItem.title = "맛집게시판"
         case .gathering:
-            navigationItem.title = "함께게시판"
+            navigationItem.title = "챌린지게시판"
         case .market:
             navigationItem.title = "장터게시판"
         }

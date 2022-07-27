@@ -29,7 +29,7 @@ class ManageAccountViewController: UIViewController {
     
     private let emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "이메일 주소"
+        label.text = "SNS"
         label.font = .systemFont(ofSize: 14.0, weight: .bold)
         label.textColor = .black
         return label
@@ -170,8 +170,13 @@ class ManageAccountViewController: UIViewController {
         navigationController?.navigationBar.tintColor = UIColor(white: 0, alpha: 0.8)
         navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
         
-        navigationController?.navigationBar.backIndicatorImage = UIImage(systemName: "arrow.left")
-        navigationController?.navigationBar.backIndicatorTransitionMaskImage = UIImage(systemName: "arrow.left")
+        let configuration = UIImage.SymbolConfiguration(pointSize: 20.0, weight: .medium)
+        var backImage = UIImage(systemName: "arrow.left", withConfiguration: configuration)
+        backImage = backImage?.withInsets(.init(top: 0, left: 5.0, bottom: 0, right: 0))
+        
+        navigationController?.navigationBar.tintColor = .black.withAlphaComponent(0.6)
+        navigationController?.navigationBar.backIndicatorImage = backImage
+        navigationController?.navigationBar.backIndicatorTransitionMaskImage = backImage
         navigationController?.navigationBar.topItem?.title = ""
 
         let rightBarButton = UIBarButtonItem(title: "완료", style: .plain, target: self, action: #selector(didTapCompleteButton))

@@ -69,7 +69,7 @@ final class MyWrittenPostCell: UITableViewCell {
     private func configure() {
         guard let viewModel = viewModel else { return }
         titleLabel.text = viewModel.title
-        categoryLabel.text = viewModel.category
+        categoryLabel.text = viewModel.boardName
         postingTimeLabel.text = viewModel.postingTime
         numOfCommentLabel.text = viewModel.numOfComment
     }

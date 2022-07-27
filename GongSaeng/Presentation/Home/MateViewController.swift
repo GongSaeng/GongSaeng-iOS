@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MateViewController: UIViewController {
+final class MateViewController: UIViewController {
     
 //    let viewModel: MateViewModel = MateViewModel()
     private var mates = [Mate]()
@@ -48,9 +48,10 @@ class MateViewController: UIViewController {
     }
 }
 
+// MARK: UICollectionViewDataSource
 extension MateViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return mates.count
+        return mates.count > 3 ? 4 : mates.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -63,6 +64,7 @@ extension MateViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: UICollectionViewDelegateFlowLayout
 extension MateViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 224, height: 252)

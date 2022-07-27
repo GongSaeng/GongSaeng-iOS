@@ -20,14 +20,13 @@ struct ParticipantProfileViewModel {
     var imageURLs: [URL?] {
         return profileList.map { $0.profileImageURL }
             .compactMap { $0 }
-            .map { URL(string: $0) }
+            .map { URL(string: SERVER_IMAGE_URL + $0) }
     }
     
     private var profile: Profile {
         profileList[index]
     }
     
-    var id: String { profile.id }
     var nickname: String { profile.nickname }
     var job: String { profile.job }
     var email: String { profile.email }

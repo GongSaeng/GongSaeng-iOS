@@ -12,10 +12,10 @@ struct CommentTableViewCellViewModel {
     var writerNicknameText: String
     var uploadedTime: String
     var writerImageFilename: String?
+    var shouldBeAnonymous: Bool
     
     var writerImageUrl: URL? {
-//        writerImageFilename.flatMap { URL(string: SERVER_IMAGE_URL + $0) }
-        return writerImageFilename.flatMap { URL(string: $0) }
+        return writerImageFilename.flatMap { URL(string: SERVER_IMAGE_URL + $0) }
     }
     
     var uploadedTimeText: String {
@@ -41,10 +41,11 @@ struct CommentTableViewCellViewModel {
         }
     }
     
-    init(comment: Comment) {
+    init(comment: Comment, shouldBeAnonymous: Bool = false) {
         self.contentsText = comment.contents
         self.writerNicknameText = comment.writerNickname
         self.uploadedTime = comment.uploadedTime
         self.writerImageFilename = comment.writerImageFilename
+        self.shouldBeAnonymous = shouldBeAnonymous
     }
 }

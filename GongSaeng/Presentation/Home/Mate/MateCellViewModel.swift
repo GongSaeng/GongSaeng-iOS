@@ -8,25 +8,25 @@
 import UIKit
 
 struct MateCellViewModel {
-    private let mate: Mate
+//    private let mate: Mate
     
-    var nickname: String? {
-        return mate.nickname
-    }
+    var nickname: String?
     
-    var job: String? {
-        return mate.job
-    }
+    var job: String?
     
-    var email: String? {
-        return mate.email
-    }
+    var email: String?
     
-    var introduce: String? {
-        return mate.introduce
-    }
+    var introduce: String?
+    
+    var profileImageURL: URL?
     
     init(mate: Mate) {
-        self.mate = mate
+//        self.mate = mate
+        self.nickname = mate.nickname
+        self.job = mate.job
+        self.email = mate.email
+        self.introduce = mate.introduce
+        self.profileImageURL = mate.profileImageFilename
+            .flatMap { URL(string: SERVER_IMAGE_URL + $0) }
     }
 }

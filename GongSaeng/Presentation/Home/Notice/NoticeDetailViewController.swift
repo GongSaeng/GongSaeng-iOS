@@ -59,8 +59,8 @@ class NoticeDetailViewController: UITableViewController {
         if let notice = notice {
             categoryLabel.text = notice.category
             titleLabel.text = notice.title
-            timeLabel.text = notice.time
-            contentsLabel.text = notice.contents
+//            timeLabel.text = notice.time
+//            contentsLabel.text = notice.contents
         }
     }
     

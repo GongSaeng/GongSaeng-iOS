@@ -165,10 +165,16 @@ class BoardDetailHeaderView: UIView {
         paragraphStyle.lineSpacing = 5.0
         contentsLabel.attributedText = NSAttributedString(string: viewModel.contents, attributes: [.paragraphStyle: paragraphStyle, .font: UIFont.systemFont(ofSize: 14.0), .foregroundColor: UIColor(white: 0, alpha: 0.8)])
         titleLabel.text = viewModel.title
-        writerNicknameLabel.text = viewModel.writerNickname
+        if communityType == .emergency {
+            writerNicknameLabel.text = "익명"
+            writerImageView.image = UIImage(named: "no_image")
+        } else {
+            writerNicknameLabel.text = viewModel.writerNickname
+            writerImageView.kf.setImage(with: viewModel.writerImageUrl, placeholder: UIImage(named: "3"))
+        }
         uploadedTimeLabel.text = viewModel.uploadedTimeText
         numberOfCommentsLabel.text = viewModel.numberOfCommentsText
-        writerImageView.kf.setImage(with: viewModel.writerImageUrl, placeholder: UIImage(named: "3"))
+        
         switch communityType {
         case .gathering:
             if canCompletePost {

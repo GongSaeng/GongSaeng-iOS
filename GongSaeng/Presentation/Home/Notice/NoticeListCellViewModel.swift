@@ -8,38 +8,11 @@
 import UIKit
 
 struct NoticeListCellViewModel {
-    private let notice: Notice
-    
-    var title: String? {
-        return notice.title
-    }
-    
-    var contents: String? {
-        return notice.contents
-    }
-    
-    var category: String? {
-        return notice.category
-    }
-    
-    var time: String? {
-        var time = notice.time
-        var date = ""
-        for i in 0...8 {
-            if i == 6 {
-                date.append("/")
-            } else if i < 4 {
-                time.removeFirst()
-            } else {
-                let char = time.removeFirst()
-                date.append(char)
-            }
-        }
-        // 시간 포맷 수정!!
-        return date
-    }
+    var title: String
+    var category: String
     
     init(notice: Notice) {
-        self.notice = notice
+        self.title = notice.title
+        self.category = notice.category
     }
 }

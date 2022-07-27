@@ -128,7 +128,8 @@ extension ThunderList2ViewController {
         
         viewModel.pushThunderView
             .drive(onNext: { [weak self] index in
-                self?.tableView.deselectRow(at: IndexPath(index: index), animated: false)
+                print("DEBUG: Thunder index -> \(index)")
+                self?.tableView.deselectRow(at: IndexPath(index: index), animated: true)
                 let viewController = ThunderDetailViewController(index: index)
                 viewController.modalPresentationStyle = .fullScreen
                 viewController.hidesBottomBarWhenPushed = true

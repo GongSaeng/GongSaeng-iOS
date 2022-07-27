@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainTabBarController: UITabBarController {
+final class MainTabBarController: UITabBarController {
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -36,10 +36,7 @@ class MainTabBarController: UITabBarController {
         homeRootViewController.user = user
         let homeViewController = templateNavigationController(tabTitle: "홈", unselectedImage: UIImage(named: "homeIcon"), selectedIamge: UIImage(named: "homeIconOn"), rootViewController: homeRootViewController)
         
-//        let thunderViewModel = ThunderList2ViewModel()
         let thunderRootViewController = ThunderList2ViewController()
-//        thunderRootViewController.bind(thunderViewModel)
-//        let thunderRootViewController = ThunderListViewController()
         let publicViewController = templateNavigationController(tabTitle: "번개", unselectedImage: UIImage(named: "public"), selectedIamge: UIImage(named: "publicOn"), rootViewController: thunderRootViewController)
         
         let communityRootViewController = storyboard.instantiateViewController(withIdentifier: "CommunityViewController") as! CommunityViewController
@@ -49,6 +46,7 @@ class MainTabBarController: UITabBarController {
         communityViewController.navigationBar.topItem?.backButtonDisplayMode = .default
         
         let myPageRootViewController = MyPageViewController()
+        myPageRootViewController.delegate = self
         myPageRootViewController.user = user
         let myPageViewController = templateNavigationController(tabTitle: "마이페이지", unselectedImage: UIImage(named: "mypage"), selectedIamge: UIImage(named: "mypageOn"), rootViewController: myPageRootViewController)
         myPageViewController.navigationBar.tintColor = UIColor(named: "colorBlueGreen")
@@ -67,5 +65,16 @@ class MainTabBarController: UITabBarController {
         navigationController.tabBarItem.selectedImage = selectedIamge
         navigationController.navigationBar.topItem?.backButtonDisplayMode = .minimal
         return navigationController
+    }
+}
+
+// MARK: MyPageViewControllerDelegate
+extension MainTabBarController: MyPageViewControllerDelegate {
+    func presentThunderView(index: Int) {
+        self.selectedIndex = 1 // 번개
+        guard let navigationViewController = self.selectedViewController as? ThunderNavigationViewController else { return }
+        let viewController = ThunderDetailViewController(index: index)
+        viewController.modalPresentationStyle = .fullScreen
+        navigationViewController.pushViewController(viewController, animated: true)
     }
 }

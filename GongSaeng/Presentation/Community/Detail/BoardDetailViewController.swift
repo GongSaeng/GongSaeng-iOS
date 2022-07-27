@@ -167,11 +167,11 @@ class BoardDetailViewController: UITableViewController {
         case .free:
             navigationItem.title = "자유게시판"
         case .emergency:
-            navigationItem.title = "긴급게시판"
+            navigationItem.title = "고민게시판"
         case .suggestion:
-            navigationItem.title = "건의게시판"
+            navigationItem.title = "맛집게시판"
         case .gathering:
-            navigationItem.title = "함께게시판"
+            navigationItem.title = "챌린지게시판"
         case .market:
             navigationItem.title = "장터게시판"
         }
@@ -194,26 +194,6 @@ extension BoardDetailViewController: BoardDetailHeaderViewDelegate {
 
 // MARK: CommentInputAccessoryViewDelegate
 extension BoardDetailViewController: CommentInputAccessoryViewDelegate {
-//    func transferComment(_ contents: String) {
-//        print("DEBUG: Comment contents -> \(contents)")
-//        CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] numOfComments in
-//            guard let self = self, let numOfComments = numOfComments else {
-//                print("DEBUG: Posting comment is failed..")
-//                return
-//            }
-//            DispatchQueue.main.async {
-//                guard let headerView = self.tableView.tableHeaderView as? BoardDetailHeaderView else { return }
-//                self.commentInputView.clearComment()
-//                self.post?.updateNumberOfComments(numberOfComments: numOfComments)
-//                guard let post = self.post else { return }
-//                headerView.viewModel = BoardDetialHeaderViewModel(post: post, userID: self.userID)
-//                self.tableView.tableHeaderView = headerView
-//                self.tableView.reloadData()
-//            }
-//            self.fetchComments(of: self.currentPage, shouldRefresh: true)
-//        }
-//    }
-    
     func transferComment(_ contents: String) {
         print("DEBUG: Comment contents -> \(contents)")
         CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] numOfComments in
@@ -223,15 +203,8 @@ extension BoardDetailViewController: CommentInputAccessoryViewDelegate {
             }
             self.fetchPost(postIndex: self.postIndex)
             DispatchQueue.main.async {
-//                guard let headerView = self.tableView.tableHeaderView as? BoardDetailHeaderView else { return }
                 self.commentInputView.clearComment()
-//                self.post?.updateNumberOfComments(numberOfComments: numOfComments)
-//                guard let post = self.post else { return }
-//                headerView.viewModel = BoardDetialHeaderViewModel(post: post, userID: self.userID)
-//                self.tableView.tableHeaderView = headerView
-//                self.tableView.reloadData()
             }
-//            self.fetchComments(of: self.currentPage, shouldRefresh: true)
         }
     }
 }
@@ -244,7 +217,7 @@ extension BoardDetailViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: tableReuserIdetifier) as? CommentTableViewCell else { return CommentTableViewCell() }
-        cell.viewModel = CommentTableViewCellViewModel(comment: commentList[indexPath.row])
+        cell.viewModel = CommentTableViewCellViewModel(comment: commentList[indexPath.row], shouldBeAnonymous: communityType == .emergency)
         cell.selectionStyle = .none
         return cell
     }

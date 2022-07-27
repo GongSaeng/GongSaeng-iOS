@@ -15,6 +15,9 @@ final class ThunderDetailViewController: UIViewController {
     
     private var isKeyboardShowing = false
     private var viewModel = ThunderDetailViewModel()
+    
+    private var currentPage = 1
+    private var fetchedPageList = [Int]()
     private var commentList = [Comment]() 
     
     private let topGradientLayer: CAGradientLayer = {
@@ -125,12 +128,33 @@ final class ThunderDetailViewController: UIViewController {
             headerView.delegate = self
             self.tableView.tableHeaderView = headerView
             self.remainingDaysLabel.text = self.viewModel.remainingDays
+            self.currentPage = 1
+            self.fetchedPageList = []
+            self.fetchComments(of: self.currentPage, shouldRefresh:  true)
         }
         
-        ThunderNetworkManager1.fetchComments(index: 0) { [weak self] comments in
-            self?.commentList = comments
+//        ThunderNetworkManager1.fetchComments(index: 0) { [weak self] comments in
+//            self?.commentList = comments
+//            DispatchQueue.main.async {
+//                self?.tableView.reloadData()
+//            }
+//        }
+    }
+    
+    private func fetchComments(of page: Int, shouldRefresh: Bool = false) {
+        guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
+        fetchedPageList.append(page)
+        CommunityNetworkManager.fetchComments(page: page, index: thunderIndex) { [weak self] comments in
+            guard let self = self else { return }
+            if shouldRefresh {
+                self.commentList = comments
+            } else {
+                self.commentList += comments
+            }
+            self.currentPage += 1
+            
             DispatchQueue.main.async {
-                self?.tableView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }
@@ -183,6 +207,7 @@ final class ThunderDetailViewController: UIViewController {
         tableView.contentInsetAdjustmentBehavior = .never
         tableView.keyboardDismissMode = .interactive
         tableView.dataSource = self
+        tableView.prefetchDataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .none
@@ -265,7 +290,18 @@ extension ThunderDetailViewController: ThunderDetailHeaderViewDelegate {
 // MARK: CommentInputAccessoryViewDelegate
 extension ThunderDetailViewController: CommentInputAccessoryViewDelegate {
     func transferComment(_ contents: String) {
-        print("DEBUG: \(contents)")
+        print("DEBUG: Comment contents -> \(contents)")
+        CommunityNetworkManager.postComment(index: thunderIndex, contents: contents) { [weak self] numOfComments in
+            print("DEBUG: numOfComments -> \(numOfComments)")
+            guard let self = self, let _ = numOfComments else {
+                print("DEBUG: Posting comment is failed..")
+                return
+            }
+            self.fetchThunderDetail(index: self.thunderIndex)
+            DispatchQueue.main.async {
+                self.commentInputView.clearComment()
+            }
+        }
     }
 }
 
@@ -307,5 +343,19 @@ extension ThunderDetailViewController: UITableViewDelegate {
         
         guard scrolledOffset <= 0 else { return }
         headerView.updateImageHeight(cellHeight - scrolledOffset)
+    }
+}
+
+// MARK: UITableViewDataSourcePrefetching
+extension ThunderDetailViewController: UITableViewDataSourcePrefetching {
+    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+        print("DEBUG: prefetchRow \(indexPaths.map { $0.row })")
+        guard currentPage != 1 else { return }
+        
+        indexPaths.forEach {
+            if ($0.row + 1) / 10 + 1 == currentPage { // 10개씩 불러올 때 숫자 값
+                self.fetchComments(of: currentPage)
+            }
+        }
     }
 }

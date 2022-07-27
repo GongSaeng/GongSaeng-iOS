@@ -26,17 +26,17 @@ struct ThunderDetailHeaderViewModel {
     var participantImageURLs: [URL?] {
         return participantsProfile
             .compactMap { $0.profileImageURL }
-            .map { URL(string: $0) }
+            .map { URL(string: SERVER_IMAGE_URL + $0) }
     }
-    var participantIDs: [String] {
-        return participantsProfile.map { $0.id }
-    }
+//    var participantIDs: [String] {
+//        return participantsProfile.map { $0.id }
+//    }
     
     var numOfCommentsText: String
      
     init(thunderDetail: ThunderDetail) {
-        self.attachedImageURLs = (thunderDetail.postingImagesFilename ?? [])
-            .map { URL(string: $0) }
+        self.attachedImageURLs = (thunderDetail.postingImagesFilename)
+            .map { URL(string: SERVER_IMAGE_URL + $0) }
         self.title = thunderDetail.title
         self.writerImageURL = thunderDetail.writerImageFilename
             .flatMap { URL(string: $0) }
