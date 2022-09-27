@@ -9,23 +9,22 @@ import UIKit
 
 final class CommunityNetworkManager {
     static func fetchCommunitys(page: Int, communityType: CommunityType, completion: @escaping([Community]) -> Void) {
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/read_community?")
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/read_community")
         let paramQuery1 = URLQueryItem(name: "code", value: "\(communityType.rawValue)")
-        let paramQuery2 = URLQueryItem(name: "page", value: "\(page)")
         urlComponents?.queryItems?.append(paramQuery1)
-        urlComponents?.queryItems?.append(paramQuery2)
         guard let url = urlComponents?.url else { return }
      
         var request = URLRequest(url: url)
+        
         request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
                   let data = data,
                   let communitys = try? JSONDecoder().decode([Community].self, from: data) else {
-                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                      return
-                  }
+                print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                return
+            }
             print("DEBUG: communitys index ->", communitys.map { $0.index })
             
             switch response.statusCode {
