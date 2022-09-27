@@ -10,7 +10,7 @@ import UIKit
 class NoticeDetailViewController: UITableViewController {
     
     // MARK: Properties
-    var notice: Notice?
+    var notice: GongSaengTalk?
     
     private lazy var commentInputView: CommentInputAccessoryView = {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50.0)

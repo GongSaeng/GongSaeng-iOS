@@ -34,7 +34,7 @@
 		3DAFCBA4266261E6008E9803 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFCBA3266261E6008E9803 /* UITextField.swift */; };
 		3DAFCBA626627256008E9803 /* CompletedRegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DAFCBA526627256008E9803 /* CompletedRegisterViewController.swift */; };
 		3DC069AA2697D5A600A4A6CB /* EnterUsageTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DC069A92697D5A600A4A6CB /* EnterUsageTimeViewController.swift */; };
-		3DD893D4266E1A6E0050B4F8 /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD893D3266E1A6E0050B4F8 /* NoticeViewController.swift */; };
+		3DD893D4266E1A6E0050B4F8 /* GongSaengTalkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD893D3266E1A6E0050B4F8 /* GongSaengTalkViewController.swift */; };
 		3DD893D6266E1A9C0050B4F8 /* MateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD893D5266E1A9C0050B4F8 /* MateViewController.swift */; };
 		3DF5B4CA267A1396004F1E03 /* ReservationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */; };
 		3DF5B4CC267A13C8004F1E03 /* ImmediationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */; };
@@ -88,7 +88,7 @@
 		A73E81EF2795639800A4C46D /* MarketBoardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E81EE2795639700A4C46D /* MarketBoardCell.swift */; };
 		A73E81F1279563D600A4C46D /* MarketBoardCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A73E81F0279563D600A4C46D /* MarketBoardCellViewModel.swift */; };
 		A745D04727269D3900844189 /* Notice.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A745D04627269D3900844189 /* Notice.storyboard */; };
-		A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A745D04827269E7D00844189 /* NoticeListViewController.swift */; };
+		A745D04927269E7D00844189 /* GongSaengTalkListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A745D04827269E7D00844189 /* GongSaengTalkListViewController.swift */; };
 		A746F0002705519800B0C099 /* ReserveContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */; };
 		A748216B27C8E08700B51901 /* AttachedImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A748216A27C8E08700B51901 /* AttachedImageCell.swift */; };
 		A74FD7F127F4155B00650355 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A74FD7F027F4155B00650355 /* SnapKit */; };
@@ -165,8 +165,8 @@
 		A7A1639E27C521C200379A43 /* ThunderDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A1639D27C521C200379A43 /* ThunderDetailHeaderView.swift */; };
 		A7A21AD827990C7D00E71761 /* MyProfileAndWritingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A21AD727990C7D00E71761 /* MyProfileAndWritingViewController.swift */; };
 		A7A21ADA27990CC800E71761 /* MyProfileAndWritingHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A21AD927990CC800E71761 /* MyProfileAndWritingHeaderView.swift */; };
-		A7A9B3D32754CF45009B22DF /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A9B3D22754CF45009B22DF /* Notice.swift */; };
-		A7A9B3D52754D200009B22DF /* NoticeListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A9B3D42754D200009B22DF /* NoticeListCellViewModel.swift */; };
+		A7A9B3D32754CF45009B22DF /* GongSaengTalk.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A9B3D22754CF45009B22DF /* GongSaengTalk.swift */; };
+		A7A9B3D52754D200009B22DF /* GongSaengTalkListCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A9B3D42754D200009B22DF /* GongSaengTalkListCellViewModel.swift */; };
 		A7A9B3DA2754DBB6009B22DF /* HomeNetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7A9B3D92754DBB6009B22DF /* HomeNetworkManager.swift */; };
 		A7AE9F3426EF20120082C855 /* LogOutPopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7AE9F3326EF20120082C855 /* LogOutPopUpViewController.swift */; };
 		A7AE9F3626EF201C0082C855 /* LogOutPopUp.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */; };
@@ -241,7 +241,7 @@
 		3DAFCBA3266261E6008E9803 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
 		3DAFCBA526627256008E9803 /* CompletedRegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompletedRegisterViewController.swift; sourceTree = "<group>"; };
 		3DC069A92697D5A600A4A6CB /* EnterUsageTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterUsageTimeViewController.swift; sourceTree = "<group>"; };
-		3DD893D3266E1A6E0050B4F8 /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		3DD893D3266E1A6E0050B4F8 /* GongSaengTalkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GongSaengTalkViewController.swift; sourceTree = "<group>"; };
 		3DD893D5266E1A9C0050B4F8 /* MateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MateViewController.swift; sourceTree = "<group>"; };
 		3DF5B4C9267A1396004F1E03 /* ReservationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservationViewController.swift; sourceTree = "<group>"; };
 		3DF5B4CB267A13C8004F1E03 /* ImmediationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImmediationViewController.swift; sourceTree = "<group>"; };
@@ -295,7 +295,7 @@
 		A73E81EE2795639700A4C46D /* MarketBoardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketBoardCell.swift; sourceTree = "<group>"; };
 		A73E81F0279563D600A4C46D /* MarketBoardCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketBoardCellViewModel.swift; sourceTree = "<group>"; };
 		A745D04627269D3900844189 /* Notice.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Notice.storyboard; sourceTree = "<group>"; };
-		A745D04827269E7D00844189 /* NoticeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeListViewController.swift; sourceTree = "<group>"; };
+		A745D04827269E7D00844189 /* GongSaengTalkListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GongSaengTalkListViewController.swift; sourceTree = "<group>"; };
 		A746EFFF2705519800B0C099 /* ReserveContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReserveContainerViewController.swift; sourceTree = "<group>"; };
 		A748216A27C8E08700B51901 /* AttachedImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttachedImageCell.swift; sourceTree = "<group>"; };
 		A74FD80627F41BC000650355 /* ThunderDetail2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail2ViewController.swift; sourceTree = "<group>"; };
@@ -365,8 +365,8 @@
 		A7A1639D27C521C200379A43 /* ThunderDetailHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetailHeaderView.swift; sourceTree = "<group>"; };
 		A7A21AD727990C7D00E71761 /* MyProfileAndWritingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileAndWritingViewController.swift; sourceTree = "<group>"; };
 		A7A21AD927990CC800E71761 /* MyProfileAndWritingHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileAndWritingHeaderView.swift; sourceTree = "<group>"; };
-		A7A9B3D22754CF45009B22DF /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
-		A7A9B3D42754D200009B22DF /* NoticeListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeListCellViewModel.swift; sourceTree = "<group>"; };
+		A7A9B3D22754CF45009B22DF /* GongSaengTalk.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GongSaengTalk.swift; sourceTree = "<group>"; };
+		A7A9B3D42754D200009B22DF /* GongSaengTalkListCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GongSaengTalkListCellViewModel.swift; sourceTree = "<group>"; };
 		A7A9B3D92754DBB6009B22DF /* HomeNetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNetworkManager.swift; sourceTree = "<group>"; };
 		A7AE9F3326EF20120082C855 /* LogOutPopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutPopUpViewController.swift; sourceTree = "<group>"; };
 		A7AE9F3526EF201C0082C855 /* LogOutPopUp.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LogOutPopUp.storyboard; sourceTree = "<group>"; };
@@ -494,7 +494,7 @@
 			children = (
 				3D520BAA265340E40090B6E8 /* Home.storyboard */,
 				3D5D599D265249310018FE63 /* HomeViewController.swift */,
-				3DD893D3266E1A6E0050B4F8 /* NoticeViewController.swift */,
+				3DD893D3266E1A6E0050B4F8 /* GongSaengTalkViewController.swift */,
 				3DD893D5266E1A9C0050B4F8 /* MateViewController.swift */,
 				A745D04527269D2200844189 /* Notice */,
 				3D00C8B8266E39CD006236A0 /* Mate */,
@@ -697,9 +697,9 @@
 			isa = PBXGroup;
 			children = (
 				A745D04627269D3900844189 /* Notice.storyboard */,
-				A7A9B3D22754CF45009B22DF /* Notice.swift */,
-				A7A9B3D42754D200009B22DF /* NoticeListCellViewModel.swift */,
-				A745D04827269E7D00844189 /* NoticeListViewController.swift */,
+				A7A9B3D22754CF45009B22DF /* GongSaengTalk.swift */,
+				A7A9B3D42754D200009B22DF /* GongSaengTalkListCellViewModel.swift */,
+				A745D04827269E7D00844189 /* GongSaengTalkListViewController.swift */,
 				A76F914D27278648001AC4F3 /* NoticeDetailViewController.swift */,
 			);
 			path = Notice;
@@ -1290,7 +1290,7 @@
 				A7B756E6277C9BCD00BFFBC0 /* PostTextView.swift in Sources */,
 				A736F987278C569E0075A665 /* BoardDetailHeaderView.swift in Sources */,
 				A70D39082704BD1A00B09041 /* ReserveViewController.swift in Sources */,
-				A7A9B3D52754D200009B22DF /* NoticeListCellViewModel.swift in Sources */,
+				A7A9B3D52754D200009B22DF /* GongSaengTalkListCellViewModel.swift in Sources */,
 				A73BC91F278DA671003FF406 /* WriteViewController.swift in Sources */,
 				A77FE49B27F42564000716C1 /* ThunderDetail2HeaderView.swift in Sources */,
 				A7F9DCEF27759E0C005E9113 /* MateCellViewModel.swift in Sources */,
@@ -1301,7 +1301,7 @@
 				A753C038277C3F1700039D5F /* CommunityViewController.swift in Sources */,
 				A781C2FE274538D4004C9D3F /* TableHeaderView.swift in Sources */,
 				A736F97A278BF5100075A665 /* BoardListViewController.swift in Sources */,
-				A7A9B3D32754CF45009B22DF /* Notice.swift in Sources */,
+				A7A9B3D32754CF45009B22DF /* GongSaengTalk.swift in Sources */,
 				A76F914E27278648001AC4F3 /* NoticeDetailViewController.swift in Sources */,
 				A79C215526EF3D1B000B9028 /* MembershipWithdrawlPopUpViewController.swift in Sources */,
 				A7008E1C27C93B2F00D82BF3 /* ParticipantImageCell.swift in Sources */,
@@ -1345,11 +1345,11 @@
 				A76F29D327B116BF0077F297 /* Place.swift in Sources */,
 				A719D09B27CFA895000A9388 /* MyThunderViewModel.swift in Sources */,
 				A7B35577277B73F3006F6A54 /* LoginViewModel.swift in Sources */,
-				3DD893D4266E1A6E0050B4F8 /* NoticeViewController.swift in Sources */,
+				3DD893D4266E1A6E0050B4F8 /* GongSaengTalkViewController.swift in Sources */,
 				A7DD616327B121F1001F3F63 /* PlaceListCellViewModel.swift in Sources */,
 				A73E81EF2795639800A4C46D /* MarketBoardCell.swift in Sources */,
 				A77879D627BA4FD3002FD07B /* ThunderListTopView.swift in Sources */,
-				A745D04927269E7D00844189 /* NoticeListViewController.swift in Sources */,
+				A745D04927269E7D00844189 /* GongSaengTalkListViewController.swift in Sources */,
 				A736F980278BF98D0075A665 /* Community.swift in Sources */,
 				A7EB99E82710094E005B43AB /* RequestCheckInContainerViewController.swift in Sources */,
 				A7A21AD827990C7D00E71761 /* MyProfileAndWritingViewController.swift in Sources */,
