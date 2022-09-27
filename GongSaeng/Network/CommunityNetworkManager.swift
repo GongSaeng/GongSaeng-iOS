@@ -103,50 +103,47 @@ final class CommunityNetworkManager {
         dateFormatter.locale = Locale(identifier: "ko_KR")
         let time = dateFormatter.string(from: Date())
         
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/write_community?")
-        let paramQuery1 = URLQueryItem(name: "code", value: "\(code)")
-        let paramQuery2 = URLQueryItem(name: "title", value: title)
-        let paramQuery3 = URLQueryItem(name: "contents", value: contents)
-        let paramQuery4 = URLQueryItem(name: "time", value: time)
-        urlComponents?.queryItems?.append(paramQuery1)
-        urlComponents?.queryItems?.append(paramQuery2)
-        urlComponents?.queryItems?.append(paramQuery3)
-        urlComponents?.queryItems?.append(paramQuery4)
-        if let category = category {
-            let paramQuery = URLQueryItem(name: "category", value: category)
-            urlComponents?.queryItems?.append(paramQuery)
-        }
-        if let price = price {
-            let paramQuery = URLQueryItem(name: "price", value: price)
-            urlComponents?.queryItems?.append(paramQuery)
-        }
-
-        guard let url = urlComponents?.url else { return }
+        guard let url = URLComponents(string: "\(SERVER_URL)/community/write_community")?.url else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         if let images = images, let thumbnailImage = images.first {
             let boundary = "Boundary-\(UUID().uuidString)"
-            request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
             
-            let httpBody = NSMutableData() // let var //
-            guard let imageData = thumbnailImage.downSize(newWidth: 100)
-                    .jpegData(compressionQuality: 0.5) else { return }
-            httpBody.append(convertFileData(fileData: imageData, using: boundary))
-            for image in images {
-                guard let imageData = image.jpegData(compressionQuality: 1) else { return }
-                httpBody.append(convertFileData(fileData: imageData, using: boundary))
+            var data = Data()
+            
+            let boundaryPrefix = "--\(boundary)\r\n"
+            let boundarySuffix = "--\(boundary)--\r\n"
+            ["code": code, "title": title, "contents": contents, "time": time].forEach { (key, value) in
+                data.append(boundaryPrefix.data(using: .utf8)!)
+                data.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
+                data.append("\(value)\r\n".data(using: .utf8)!)
             }
-            httpBody.appendString("--\(boundary)--")
-            let data = httpBody as Data
+            
+            for image in images {
+                guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
+
+                let fileName = "\(UUID().uuidString).jpg"
+                let fieldName = "image"
+                let mimeType = "image/jpeg"
+                data.append(boundaryPrefix.data(using: .utf8)!)
+                data.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+                data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+                data.append(imageData)
+                data.append("\r\n".data(using: .utf8)!)
+            }
+
+            data.append(boundarySuffix.data(using: .utf8)!)
+            
             let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
                 guard error == nil,
                       let response = response as? HTTPURLResponse,
                       let data = data,
                       let returnValue = String(data: data, encoding: .utf8)  else {
-                          print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                          return
-                      }
+                    print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                    return
+                }
                 switch response.statusCode {
                 case (200...299):
                     print("DEBUG: postCommunity response is succeded..", returnValue)
@@ -408,13 +405,13 @@ private extension CommunityNetworkManager {
         let fileName = "\(UUID().uuidString).jpg"
         let fieldName = "image"
         let mimeType = "image/jpeg"
-        let data = NSMutableData()
-        data.appendString("--\(boundary)\r\n")
-        data.appendString("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n")
-        data.appendString("Content-Type: \(mimeType)\r\n\r\n")
+        var data = Data()
+        data.append("--\(boundary)--\r\n".data(using: .utf8)!)
+        data.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+        data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
         data.append(fileData)
-        data.appendString("\r\n")
-        return data as Data
+        data.append("\r\n".data(using: .utf8)!)
+        return data
     }
 }
 
