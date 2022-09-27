@@ -1,5 +1,5 @@
 //
-//  Notice.swift
+//  GongSaengTalk.swift
 //  GongSaeng
 //
 //  Created by 정동천 on 2021/11/29.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Notice: Decodable, Equatable {
+struct GongSaengTalk: Decodable, Equatable {
     let title: String
 //    let contents: String
     let category: String

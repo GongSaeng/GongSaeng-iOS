@@ -1,5 +1,5 @@
 //
-//  NoticeListViewController.swift
+//  GongSaengTalkListViewController.swift
 //  GongSaeng
 //
 //  Created by 정동천 on 2021/10/25.
@@ -7,12 +7,11 @@
 
 import UIKit
 
-final class NoticeListViewController: UIViewController {
+final class GongSaengTalkListViewController: UIViewController {
     
     // MARK: Properties
     let colorBlack20: UIColor = UIColor(white: 0, alpha: 0.2)
-    private var notices = [Notice]()
-    private var filteredNotices = [Notice]()
+    private var talks = [GongSaengTalk]()
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -20,7 +19,7 @@ final class NoticeListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
    
-        fetchNotices()
+        fetchTalks()
         configureRefreshControl()
         tableView.rowHeight = UITableView.automaticDimension
     }
@@ -32,10 +31,10 @@ final class NoticeListViewController: UIViewController {
     }
     
     // MARK: API
-    private func fetchNotices() {
-        HomeNetworkManager.fetchNotice { [weak self] notices in
+    private func fetchTalks() {
+        HomeNetworkManager.fetchGongSaengTalk { [weak self] talks in
             guard let self = self else { return }
-            self.notices = notices.shuffled()
+            self.talks = talks.shuffled()
             DispatchQueue.main.async {
                 self.tableView.reloadData()
                 self.tableView.refreshControl?.endRefreshing()
@@ -47,7 +46,7 @@ final class NoticeListViewController: UIViewController {
     @objc func refresh() {
         DispatchQueue.global(qos: .background).async { [weak self] in
             guard let self = self else { return }
-            self.fetchNotices()
+            self.fetchTalks()
         }
     }
     
@@ -73,30 +72,30 @@ final class NoticeListViewController: UIViewController {
 }
 
 // MARK: TableView DataSource
-extension NoticeListViewController: UITableViewDataSource {
+extension GongSaengTalkListViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return notices.count
+        return talks.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeTableViewCell", for: indexPath) as? NoticeTableViewCell else { return NoticeTableViewCell() }
-        let notice = notices[indexPath.row]
-        cell.viewModel = NoticeListCellViewModel(notice: notice)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "NoticeTableViewCell", for: indexPath) as? GongSaengTalkTableViewCell else { return GongSaengTalkTableViewCell() }
+        let talk = talks[indexPath.row]
+        cell.viewModel = GongSaengTalkListCellViewModel(talk: talk)
         return cell
     }
 }
 
 // MARK: TableView Delegate
-extension NoticeListViewController: UITableViewDelegate {
+extension GongSaengTalkListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80.0
     }
 }
 
 // MARK: TableViewCell
-final class NoticeTableViewCell: UITableViewCell {
+final class GongSaengTalkTableViewCell: UITableViewCell {
     // MARK: Properties
-    var viewModel: NoticeListCellViewModel? {
+    var viewModel: GongSaengTalkListCellViewModel? {
         didSet { configure() }
     }
     

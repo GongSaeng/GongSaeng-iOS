@@ -1,5 +1,5 @@
 //
-//  NoticeNetwork.swift
+//  HomeNetworkManager.swift
 //  GongSaeng
 //
 //  Created by 정동천 on 2021/11/29.
@@ -8,7 +8,7 @@
 import UIKit
 
 struct HomeNetworkManager {
-    static func fetchNotice(completion: @escaping([Notice]) -> Void) {
+    static func fetchGongSaengTalk(completion: @escaping([GongSaengTalk]) -> Void) {
         guard let url = URL(string: "\(SERVER_URL)/notify/read_notify") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
@@ -16,13 +16,13 @@ struct HomeNetworkManager {
             guard error == nil,
                   let response = response as? HTTPURLResponse,
                   let data = data,
-                  let notices = try? JSONDecoder().decode([Notice].self, from: data) else {
-                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                      return
-                  }
+                  let talks = try? JSONDecoder().decode([GongSaengTalk].self, from: data) else {
+                print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                return
+            }
             switch response.statusCode {
             case (200...299):
-                completion(notices)
+                completion(talks)
             case (400...499):
                 print("""
                     ERROR: Client ERROR \(response.statusCode)
