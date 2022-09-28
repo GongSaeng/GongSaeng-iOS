@@ -24,19 +24,9 @@ final class CommunityNetworkManager {
                 return
             }
             
-            var communitys: [Community] = []
-            if let decodedData = try? JSONDecoder().decode([Community].self, from: data) {
-                communitys = decodedData
-            } else if let decodedData = try? JSONDecoder().decode([Community2].self, from: data) {
-                communitys = decodedData.map({ community2 in
-                    Community(index: community2.index,
-                              title: community2.title,
-                              contents: community2.contents,
-                              writerId: community2.writerId,
-                              writerNickname: community2.writerNickname,
-                              uploadedTime: community2.uploadedTime,
-                              numberOfComments: community2.numberOfComments)
-                })
+            guard let communitys = try? JSONDecoder().decode([Community].self, from: data) else {
+                print("ERROR: Community 변환 실패")
+                return
             }
             
             print("DEBUG: communitys index ->", communitys.map { $0.index })
