@@ -9,22 +9,36 @@ import UIKit
 
 final class CommunityNetworkManager {
     static func fetchCommunitys(page: Int, communityType: CommunityType, completion: @escaping([Community]) -> Void) {
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/read_community")
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/read_community?")
         let paramQuery1 = URLQueryItem(name: "code", value: "\(communityType.rawValue)")
         urlComponents?.queryItems?.append(paramQuery1)
         guard let url = urlComponents?.url else { return }
-     
         var request = URLRequest(url: url)
         
         request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
-                  let data = data,
-                  let communitys = try? JSONDecoder().decode([Community].self, from: data) else {
+                  let data = data else {
                 print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                 return
             }
+            
+            var communitys: [Community] = []
+            if let decodedData = try? JSONDecoder().decode([Community].self, from: data) {
+                communitys = decodedData
+            } else if let decodedData = try? JSONDecoder().decode([Community2].self, from: data) {
+                communitys = decodedData.map({ community2 in
+                    Community(index: community2.index,
+                              title: community2.title,
+                              contents: community2.contents,
+                              writerId: community2.writerId,
+                              writerNickname: community2.writerNickname,
+                              uploadedTime: community2.uploadedTime,
+                              numberOfComments: community2.numberOfComments)
+                })
+            }
+            
             print("DEBUG: communitys index ->", communitys.map { $0.index })
             
             switch response.statusCode {
