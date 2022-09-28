@@ -33,3 +33,31 @@ struct Community: Decodable {
         case writerImageFilename = "writer_profile_image"
     }
 }
+
+struct Community2: Decodable {
+    var index: Int
+    var code: String
+    var validStatus: Int?
+    var title: String
+    var contents: String
+    //var writerImageFilename: String?
+    var writerId: String
+    var writerNickname: String
+    var uploadedTime: String
+    var numberOfComments: Int
+    var thumbnailImageFilename: String?
+    //var category: String?
+    //var price: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case index = "idx"
+        case code, title, contents//, category, price
+        case writerId = "id"
+        case writerNickname = "name"
+        case numberOfComments = "comment_cnt"
+        case uploadedTime = "time"
+        //case validStatus = "status"
+        case thumbnailImageFilename = "image_url"
+        //case writerImageFilename = "writer_profile_image"
+    }
+}
