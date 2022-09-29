@@ -9,6 +9,7 @@ import Foundation
 
 struct Community: Decodable {
     var index: Int
+    var code: String
     var validStatus: Int?
     var title: String
     var contents: String
@@ -23,12 +24,13 @@ struct Community: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case index = "idx"
-        case title, contents, category, price
+        case code, title, contents, category, price
         case writerId = "id"
-        case writerNickname = "name"
+        case writerNickname = "nickname"
         case numberOfComments = "comment_cnt"
         case uploadedTime = "time"
         case validStatus = "status"
+        case gather_status
         case thumbnailImageFilename = "image_url"
         case writerImageFilename = "writer_profile_image"
     }
@@ -36,7 +38,14 @@ struct Community: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.index = try container.decode(Int.self, forKey: .index)
-        self.validStatus = try container.decodeIfPresent(Int.self, forKey: .validStatus)
+        self.code = try container.decode(String.self, forKey: .code)
+        
+        if let decodedStatus = try container.decodeIfPresent(Int.self, forKey: .validStatus) {
+            self.validStatus = decodedStatus
+        } else if let decodedStatus = try container.decodeIfPresent(Int.self, forKey: .gather_status) {
+            self.validStatus = decodedStatus
+        }
+        
         self.title = try container.decode(String.self, forKey: .title)
         self.contents = try container.decode(String.self, forKey: .contents)
         self.writerImageFilename = try container.decodeIfPresent(String.self, forKey: .writerImageFilename)
@@ -44,8 +53,17 @@ struct Community: Decodable {
         self.writerNickname = try container.decode(String.self, forKey: .writerNickname)
         self.uploadedTime = try container.decode(String.self, forKey: .uploadedTime)
         self.numberOfComments = try container.decode(Int.self, forKey: .numberOfComments)
-        self.thumbnailImageFilename = try container.decodeIfPresent(String.self, forKey: .thumbnailImageFilename)
+        
+        do {
+            self.thumbnailImageFilename = try container.decodeIfPresent(String.self, forKey: .thumbnailImageFilename)
+        } catch {
+            self.thumbnailImageFilename = try container.decodeIfPresent([String].self, forKey: .thumbnailImageFilename)?.first
+        }
+        
         self.category = try container.decodeIfPresent(String.self, forKey: .category)
-        self.price = try container.decodeIfPresent(String.self, forKey: .price)
+        
+        if let decodedPrice = try container.decodeIfPresent(Int.self, forKey: .price) {
+            self.price = String(decodedPrice)
+        }
     }
 }
