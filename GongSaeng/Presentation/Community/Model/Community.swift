@@ -26,7 +26,7 @@ struct Community: Decodable {
         case index = "idx"
         case code, title, contents, category, price
         case writerId = "id"
-        case writerNickname = "name"
+        case writerNickname = "nickname"
         case numberOfComments = "comment_cnt"
         case uploadedTime = "time"
         case validStatus = "status"
