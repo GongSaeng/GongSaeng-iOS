@@ -61,6 +61,9 @@ struct Community: Decodable {
         }
         
         self.category = try container.decodeIfPresent(String.self, forKey: .category)
-        self.price = try container.decodeIfPresent(String.self, forKey: .price)
+        
+        if let decodedPrice = try container.decodeIfPresent(Int.self, forKey: .price) {
+            self.price = String(decodedPrice)
+        }
     }
 }
