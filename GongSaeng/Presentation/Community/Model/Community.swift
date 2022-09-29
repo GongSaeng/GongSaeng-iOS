@@ -9,6 +9,7 @@ import Foundation
 
 struct Community: Decodable {
     var index: Int
+    var code: String
     var validStatus: Int?
     var title: String
     var contents: String
@@ -23,7 +24,7 @@ struct Community: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case index = "idx"
-        case title, contents, category, price
+        case code, title, contents, category, price
         case writerId = "id"
         case writerNickname = "name"
         case numberOfComments = "comment_cnt"
@@ -36,6 +37,7 @@ struct Community: Decodable {
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.index = try container.decode(Int.self, forKey: .index)
+        self.code = try container.decode(String.self, forKey: .code)
         self.validStatus = try container.decodeIfPresent(Int.self, forKey: .validStatus)
         self.title = try container.decode(String.self, forKey: .title)
         self.contents = try container.decode(String.self, forKey: .contents)
