@@ -8,7 +8,7 @@
 import UIKit
 
 enum CommunityType: Int {
-    case free = 0, emergency, suggestion, gathering, market
+    case free = 2, emergency = 3, suggestion = 4, gathering = 0, market = 1
 }
 
 class CommunityViewController: UIViewController {
@@ -17,11 +17,11 @@ class CommunityViewController: UIViewController {
     var user: User?
     
     var postDictionary: [[String: String]] = [
-        ["title": "자유게시판", "introduction": "자유롭게 소통해요", "imageName": "free_community"],
-        ["title": "고민게시판", "introduction": "혼자 고민하지 말아요", "imageName": "emergency_community"],
-        ["title": "맛집게시판", "introduction": "우리나라 맛집을 알아 보아요", "imageName": "suggest_community"],
-        ["title": "챌린지게시판", "introduction": "함께할 챌린지 팀원을 모집해보세요", "imageName": "with_community"],
-        ["title": "장터게시판", "introduction": "중고거래,공생메이트님들과 해보세요", "imageName": "buy_community"]
+        ["title": "자유게시판", "introduction": "자유롭게 소통해요", "imageName": "free_community", "code": "2"],
+        ["title": "고민게시판", "introduction": "혼자 고민하지 말아요", "imageName": "emergency_community", "code": "3"],
+        ["title": "맛집게시판", "introduction": "우리나라 맛집을 알아 보아요", "imageName": "suggest_community", "code": "4"],
+        ["title": "챌린지게시판", "introduction": "함께할 챌린지 팀원을 모집해보세요", "imageName": "with_community", "code": "0"],
+        ["title": "장터게시판", "introduction": "중고거래,공생메이트님들과 해보세요", "imageName": "buy_community", "code": "1"]
     ]
     
     // MARK: Lifecycle
@@ -63,7 +63,7 @@ extension CommunityViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let user = user, let communityType = CommunityType(rawValue: indexPath.row) else { return }
+        guard let user = user, let communityType = CommunityType(rawValue: Int(postDictionary[indexPath.row]["code"]!)!) else { return }
         let viewController = BoardListViewController(withUser: user, communityType: communityType)
         viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
         let backBarButton = UIBarButtonItem(title: "게시판목록", style: .plain, target: self, action: nil)
