@@ -53,7 +53,13 @@ struct Community: Decodable {
         self.writerNickname = try container.decode(String.self, forKey: .writerNickname)
         self.uploadedTime = try container.decode(String.self, forKey: .uploadedTime)
         self.numberOfComments = try container.decode(Int.self, forKey: .numberOfComments)
-        self.thumbnailImageFilename = try container.decodeIfPresent(String.self, forKey: .thumbnailImageFilename)
+        
+        do {
+            self.thumbnailImageFilename = try container.decodeIfPresent(String.self, forKey: .thumbnailImageFilename)
+        } catch {
+            self.thumbnailImageFilename = try container.decodeIfPresent([String].self, forKey: .thumbnailImageFilename)?.first
+        }
+        
         self.category = try container.decodeIfPresent(String.self, forKey: .category)
         self.price = try container.decodeIfPresent(String.self, forKey: .price)
     }
