@@ -55,7 +55,9 @@ struct Community: Decodable {
         self.numberOfComments = try container.decode(Int.self, forKey: .numberOfComments)
         
         do {
-            self.thumbnailImageFilename = try container.decodeIfPresent(String.self, forKey: .thumbnailImageFilename)
+            if let decodedFileName = try container.decodeIfPresent(String.self, forKey: .thumbnailImageFilename) {
+                self.thumbnailImageFilename = decodedFileName.components(separatedBy: ",").first
+            }
         } catch {
             self.thumbnailImageFilename = try container.decodeIfPresent([String].self, forKey: .thumbnailImageFilename)?.first
         }
