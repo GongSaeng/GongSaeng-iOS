@@ -30,6 +30,7 @@ struct Community: Decodable {
         case numberOfComments = "comment_cnt"
         case uploadedTime = "time"
         case validStatus = "status"
+        case gather_status
         case thumbnailImageFilename = "image_url"
         case writerImageFilename = "writer_profile_image"
     }
@@ -38,7 +39,13 @@ struct Community: Decodable {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.index = try container.decode(Int.self, forKey: .index)
         self.code = try container.decode(String.self, forKey: .code)
-        self.validStatus = try container.decodeIfPresent(Int.self, forKey: .validStatus)
+        
+        if let decodedStatus = try container.decodeIfPresent(Int.self, forKey: .validStatus) {
+            self.validStatus = decodedStatus
+        } else if let decodedStatus = try container.decodeIfPresent(Int.self, forKey: .gather_status) {
+            self.validStatus = decodedStatus
+        }
+        
         self.title = try container.decode(String.self, forKey: .title)
         self.contents = try container.decode(String.self, forKey: .contents)
         self.writerImageFilename = try container.decodeIfPresent(String.self, forKey: .writerImageFilename)
