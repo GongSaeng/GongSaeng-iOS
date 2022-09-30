@@ -114,20 +114,32 @@ final class CommunityNetworkManager {
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
+        
+        let boundary = "Boundary-\(UUID().uuidString)"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        var data = Data()
+        
+        let boundaryPrefix = "--\(boundary)\r\n"
+        let boundarySuffix = "--\(boundary)--\r\n"
+        
+        var params: [(String, Any)] = [("code", code), ("title", title), ("contents", contents), ("time", time)]
+        
+        if let category = category {
+            params.append(("category", category))
+            print("catette", category)
+        }
+        if let price = price {
+            params.append(("price", price))
+        }
+        
+        params.forEach { (key, value) in
+            data.append(boundaryPrefix.data(using: .utf8)!)
+            data.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
+            data.append("\(value)\r\n".data(using: .utf8)!)
+        }
+        
         if let images = images, let thumbnailImage = images.first {
-            let boundary = "Boundary-\(UUID().uuidString)"
-            request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            
-            var data = Data()
-            
-            let boundaryPrefix = "--\(boundary)\r\n"
-            let boundarySuffix = "--\(boundary)--\r\n"
-            ["code": code, "title": title, "contents": contents, "time": time].forEach { (key, value) in
-                data.append(boundaryPrefix.data(using: .utf8)!)
-                data.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
-                data.append("\(value)\r\n".data(using: .utf8)!)
-            }
-            
             for image in images {
                 guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
 
@@ -140,76 +152,41 @@ final class CommunityNetworkManager {
                 data.append(imageData)
                 data.append("\r\n".data(using: .utf8)!)
             }
-
-            data.append(boundarySuffix.data(using: .utf8)!)
-            
-            let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
-                guard error == nil,
-                      let response = response as? HTTPURLResponse,
-                      let data = data,
-                      let returnValue = String(data: data, encoding: .utf8)  else {
-                    print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                    return
-                }
-                switch response.statusCode {
-                case (200...299):
-                    print("DEBUG: postCommunity response is succeded..", returnValue)
-                    let isSucceded = (returnValue == "true") ? true : false
-                    completion(isSucceded)
-                case (400...499):
-                    print("""
-                        ERROR: Client ERROR \(response.statusCode)
-                        Response: \(response)
-                    """)
-                case (500...599):
-                    print("""
-                        ERROR: Server ERROR \(response.statusCode)
-                        Response: \(response)
-                    """)
-                default:
-                    print("""
-                        ERROR: \(response.statusCode)
-                        Response: \(response)
-                    """)
-                }
-            }
-            dataTask.resume()
-             
-        } else {
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard error == nil,
-                      let response = response as? HTTPURLResponse,
-                      let data = data,
-                      let returnValue = String(data: data, encoding: .utf8)  else {
-                          print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                          return
-                      }
-
-                switch response.statusCode {
-                case (200...299):
-                    let isSucceded = (returnValue == "true") ? true : false
-                    completion(isSucceded)
-                case (400...499):
-                    print("""
-                        ERROR: Client ERROR \(response.statusCode)
-                        Response: \(response)
-                    """)
-                case (500...599):
-                    print("""
-                        ERROR: Server ERROR \(response.statusCode)
-                        Response: \(response)
-                    """)
-                default:
-                    print("""
-                        ERROR: \(response.statusCode)
-                        Response: \(response)
-                    """)
-                }
-            }
-            dataTask.resume()
         }
+        
+        data.append(boundarySuffix.data(using: .utf8)!)
+        
+        let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data,
+                  let returnValue = String(data: data, encoding: .utf8)  else {
+                print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                return
+            }
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: postCommunity response is succeded..", returnValue)
+                let isSucceded = (returnValue == "true") ? true : false
+                completion(isSucceded)
+            case (400...499):
+                print("""
+                    ERROR: Client ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            case (500...599):
+                print("""
+                    ERROR: Server ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            default:
+                print("""
+                    ERROR: \(response.statusCode)
+                    Response: \(response)
+                """)
+            }
+        }
+        dataTask.resume()
     }
     
     static func fetchMyPosts(myPostType: MyPostType, completion: @escaping([MyPost]) -> Void) {
