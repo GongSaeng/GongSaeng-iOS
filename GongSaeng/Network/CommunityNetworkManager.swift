@@ -299,33 +299,26 @@ final class CommunityNetworkManager {
     }
     
     static func postComment(index: Int, contents: String, completion: @escaping(Int?) -> Void) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let time = dateFormatter.string(from: Date())
-        
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/comment/write_comment?")
-        
-        let paramQuery1 = URLQueryItem(name: "parent_num", value: "\(index)")
-        let paramQuery2 = URLQueryItem(name: "contents", value: contents)
-        let paramQuery3 = URLQueryItem(name: "time", value: time)
-        urlComponents?.queryItems?.append(paramQuery1)
-        urlComponents?.queryItems?.append(paramQuery2)
-        urlComponents?.queryItems?.append(paramQuery3)
-        
+        var urlComponents = URLComponents(string: "\(SERVER_URL)/comment/write_comment")
         guard let url = urlComponents?.url else { return }
         
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
+        let dicData = ["parent_num": index, "contents": contents] as Dictionary<String, Any>?
+        let jsonData = try! JSONSerialization.data(withJSONObject: dicData!, options: [])
+        request.httpBody = jsonData
+        
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
                   let data = data,
                   let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Int] else {
-                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                      return
-                  }
+                print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                print(String(data: data!, encoding: .utf8))
+                return
+            }
     
             switch response.statusCode {
             case (200...299):
