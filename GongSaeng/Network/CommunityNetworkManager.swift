@@ -25,7 +25,7 @@ final class CommunityNetworkManager {
             }
             
             guard let communitys = try? JSONDecoder().decode([Community].self, from: data) else {
-                print("ERROR: Community 변환 실패")
+                print("ERROR: Community 변환 실패:", String(data: data, encoding: .utf8) ?? "")
                 return
             }
             
@@ -74,7 +74,7 @@ final class CommunityNetworkManager {
             }
             
             guard let post = try? JSONDecoder().decode([Post].self, from: data).first else {
-                print("Error: Decoding post")
+                print("Error: Decoding post ->", String(data: data, encoding: .utf8) ?? "")
                 return
             }
             
@@ -266,11 +266,16 @@ final class CommunityNetworkManager {
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
-                  let data = data,
-                  let comments = try? JSONDecoder().decode([Comment].self, from: data) else {
-                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                      return
-                  }
+                  let data = data else {
+                print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                return
+            }
+            
+            guard let comments = try? JSONDecoder().decode([Comment].self, from: data) else {
+                print("ERROR: comments decoding failed ->", String(data: data, encoding: .utf8) ?? "")
+                return
+            }
+            
             print("DEBUG: comments index ->", comments)
             
             switch response.statusCode {
