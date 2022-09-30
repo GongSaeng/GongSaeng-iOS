@@ -196,8 +196,8 @@ extension BoardDetailViewController: BoardDetailHeaderViewDelegate {
 extension BoardDetailViewController: CommentInputAccessoryViewDelegate {
     func transferComment(_ contents: String) {
         print("DEBUG: Comment contents -> \(contents)")
-        CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] numOfComments in
-            guard let self = self, let _ = numOfComments else {
+        CommunityNetworkManager.postComment(index: postIndex, contents: contents) { [weak self] result in
+            guard let self = self, let result = result, result else {
                 print("DEBUG: Posting comment is failed..")
                 return
             }
