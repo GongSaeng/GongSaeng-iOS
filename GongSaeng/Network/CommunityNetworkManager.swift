@@ -298,7 +298,7 @@ final class CommunityNetworkManager {
         dataTask.resume()
     }
     
-    static func postComment(index: Int, contents: String, completion: @escaping(Int?) -> Void) {
+    static func postComment(index: Int, contents: String, completion: @escaping(Bool?) -> Void) {
         var urlComponents = URLComponents(string: "\(SERVER_URL)/comment/write_comment")
         guard let url = urlComponents?.url else { return }
         
@@ -313,17 +313,20 @@ final class CommunityNetworkManager {
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
-                  let data = data,
-                  let jsonData = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Int] else {
+                  let data = data else {
                 print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                print(String(data: data!, encoding: .utf8))
+                return
+            }
+            
+            guard let result = String(data: data, encoding: .utf8) else {
+                print("ERROR: post comment result decoding failed ->", String(data: data, encoding: .utf8) ?? "")
                 return
             }
     
             switch response.statusCode {
             case (200...299):
-                print("DEBUG: Updated number of comments -> \(jsonData["count"]!)")
-                completion(jsonData["count"])
+                print("DEBUG: Comment updated -> \(result == "true")")
+                completion(result == "true")
             case (400...499):
                 print("""
                     ERROR: Client ERROR \(response.statusCode)
