@@ -68,12 +68,15 @@ final class CommunityNetworkManager {
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
-                  let data = data,
-                  let posts = try? JSONDecoder().decode([Post].self, from: data),
-                  let post = posts.first else {
-                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                      return
-                  }
+                  let data = data else {
+                print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                return
+            }
+            
+            guard let post = try? JSONDecoder().decode([Post].self, from: data).first else {
+                print("Error: Decoding post")
+                return
+            }
             
             switch response.statusCode {
             case (200...299):
