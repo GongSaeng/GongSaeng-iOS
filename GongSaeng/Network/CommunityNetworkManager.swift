@@ -210,15 +210,9 @@ final class CommunityNetworkManager {
     }
     
     static func fetchComments(page: Int, index: Int, completion: @escaping([Comment]) -> Void) {
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/comment/read_comment?")
-        let paramQuery1 = URLQueryItem(name: "parent_num", value: "\(index)")
-        let paramQuery2 = URLQueryItem(name: "page", value: "\(page)")
-        urlComponents?.queryItems?.append(paramQuery1)
-        urlComponents?.queryItems?.append(paramQuery2)
-        guard let url = urlComponents?.url else { return }
-     
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        guard let request = URLRequest.getGETRequest(url: "\(SERVER_URL)/comment/read_comment?",
+                                                     data: ["parent_num": index, "page": page]) else { return }
+        
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
