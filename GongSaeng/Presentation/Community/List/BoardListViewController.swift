@@ -114,7 +114,7 @@ final class BoardListViewController: UITableViewController {
         
         tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.prefetchDataSource = self
+        // tableView.prefetchDataSource = self
     }
     
     private func configureNavigationBar() {
@@ -156,19 +156,20 @@ extension BoardListViewController {
     }
 }
 
+// pagination 삭제
 // MARK: UITableViewDataSourcePrefetching
-extension BoardListViewController: UITableViewDataSourcePrefetching {
-    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
-        print("DEBUG: prefetchRow \(indexPaths.map { $0.row })")
-        guard currentPage != 1 else { return }
-        
-        indexPaths.forEach {
-            if ($0.row + 1) / 10 + 1 == currentPage { // 10개씩 불러올 때 숫자 값
-                self.fetchCommunitys(of: currentPage)
-            }
-        }
-    }
-}
+//extension BoardListViewController: UITableViewDataSourcePrefetching {
+//    func tableView(_ tableView: UITableView, prefetchRowsAt indexPaths: [IndexPath]) {
+//        print("DEBUG: prefetchRow \(indexPaths.map { $0.row })")
+//        guard currentPage != 1 else { return }
+//
+//        indexPaths.forEach {
+//            if ($0.row + 1) / 10 + 1 == currentPage { // 10개씩 불러올 때 숫자 값
+//                self.fetchCommunitys(of: currentPage)
+//            }
+//        }
+//    }
+//}
 
 // MARK: UITableViewDelegate
 extension BoardListViewController {
