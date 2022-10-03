@@ -25,13 +25,13 @@ final class FullImageViewController: UIViewController {
         return topView
     }()
     
-    private let cancelButton: UIButton = {
+    private lazy var cancelButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(systemName: "xmark"), for: .normal)
         button.tintColor = .white
         let configuration = UIImage.SymbolConfiguration(pointSize: 24.0, weight: .regular)
         button.setPreferredSymbolConfiguration(configuration, forImageIn: .normal)
-        button.addTarget(FullImageViewController.self, action: #selector(didTapCancelButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
         return button
     }()
     
