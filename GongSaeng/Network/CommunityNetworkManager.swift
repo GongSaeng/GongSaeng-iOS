@@ -105,11 +105,6 @@ final class CommunityNetworkManager {
     }
     
     func postCommunity(code: Int, title: String, contents: String, images: [UIImage]?, category: String? = nil, price: String? = nil, completion: @escaping(Bool) -> Void) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        let time = dateFormatter.string(from: Date())
-        
         guard let url = URLComponents(string: "\(SERVER_URL)/community/write_community")?.url else { return }
         
         var request = URLRequest(url: url)
@@ -123,11 +118,10 @@ final class CommunityNetworkManager {
         let boundaryPrefix = "--\(boundary)\r\n"
         let boundarySuffix = "--\(boundary)--\r\n"
         
-        var params: [(String, Any)] = [("code", code), ("title", title), ("contents", contents), ("time", time)]
+        var params: [(String, Any)] = [("code", code), ("title", title), ("contents", contents), ("time", getNowDateTime())]
         
         if let category = category {
             params.append(("category", category))
-            print("catette", category)
         }
         if let price = price {
             params.append(("price", price))
@@ -389,6 +383,12 @@ private extension CommunityNetworkManager {
         return data
     }
     
+    private func getNowDateTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        return dateFormatter.string(from: Date())
+    }
 }
 
 extension NSMutableData {
