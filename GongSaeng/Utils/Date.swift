@@ -52,6 +52,10 @@ extension String {
 }
 
 extension Date {
+    static func getNowDateTime() -> String {
+        return dateFormatExtension.string(from: Date())
+    }
+    
     private static var dateFormatExtension: DateFormatter {
         let dateFormat = DateFormatter()
         dateFormat.locale = Locale(identifier: "ko_kr")
