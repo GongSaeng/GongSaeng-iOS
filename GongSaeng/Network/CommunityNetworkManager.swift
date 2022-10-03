@@ -133,25 +133,10 @@ final class CommunityNetworkManager {
             params.append(("price", price))
         }
         
-        params.forEach { (key, value) in
-            data.append(boundaryPrefix.data(using: .utf8)!)
-            data.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
-            data.append("\(value)\r\n".data(using: .utf8)!)
-        }
+        data.append(convertParams(params, boundaryPrefix))
         
-        if let images = images, let thumbnailImage = images.first {
-            for image in images {
-                guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
-
-                let fileName = "\(UUID().uuidString).jpg"
-                let fieldName = "image"
-                let mimeType = "image/jpeg"
-                data.append(boundaryPrefix.data(using: .utf8)!)
-                data.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
-                data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
-                data.append(imageData)
-                data.append("\r\n".data(using: .utf8)!)
-            }
+        if let images = images {
+            data.append(convertImagesData(images, boundaryPrefix))
         }
         
         data.append(boundarySuffix.data(using: .utf8)!)
@@ -377,27 +362,33 @@ final class CommunityNetworkManager {
 }
 
 private extension CommunityNetworkManager {
-    func convertFormField(named name: String, value: String, using boundary: String) -> String {
-        
-        var fieldString = "--\(boundary)\r\n"
-        fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n"
-        fieldString += "\r\n"
-        fieldString += "\(value)\r\n"
-        return fieldString
-    }
-    
-    func convertFileData(fileData: Data, using boundary: String) -> Data {
-        let fileName = "\(UUID().uuidString).jpg"
-        let fieldName = "image"
-        let mimeType = "image/jpeg"
+    func convertParams(_ params: [(String, Any)], _ boundaryPrefix: String) -> Data {
         var data = Data()
-        data.append("--\(boundary)--\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
-        data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
-        data.append(fileData)
-        data.append("\r\n".data(using: .utf8)!)
+        params.forEach { (key, value) in
+            data.append(boundaryPrefix.data(using: .utf8)!)
+            data.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
+            data.append("\(value)\r\n".data(using: .utf8)!)
+        }
         return data
     }
+    
+    func convertImagesData(_ images: [UIImage], _ boundaryPrefix: String) -> Data {
+        var data = Data()
+        for image in images {
+            guard let imageData = image.jpegData(compressionQuality: 0.5) else { return data }
+            
+            let fileName = "\(UUID().uuidString).jpg"
+            let fieldName = "image"
+            let mimeType = "image/jpeg"
+            data.append(boundaryPrefix.data(using: .utf8)!)
+            data.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+            data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+            data.append(imageData)
+            data.append("\r\n".data(using: .utf8)!)
+        }
+        return data
+    }
+    
 }
 
 extension NSMutableData {
