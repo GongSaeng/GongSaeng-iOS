@@ -230,13 +230,7 @@ extension MyPageViewController {
             let popUpViewController = storyBoard.instantiateViewController(identifier: "LogOutPopUpViewController") as! LogOutPopUpViewController
             popUpViewController.modalPresentationStyle = .overCurrentContext
             self.present(popUpViewController, animated: false, completion: nil)
-        case 3: // 회원탈퇴
-//            let storyBoard = UIStoryboard.init(name: "MembershipWithdrawlPopUp", bundle: Bundle.main)
-//            let popUpViewController = storyBoard.instantiateViewController(identifier: "MembershipWithdrawlPopUpViewController") as! MembershipWithdrawlPopUpViewController
-//            popUpViewController.modalPresentationStyle = .overCurrentContext
-//            self.present(popUpViewController, animated: false, completion: nil)
-            print("DEBUG: Did tap 회원탈퇴..")
-        case 4: // 고개센터
+        case 3, 4: // 고개센터
             let popUpContents = "'newrience@gmail.com'으로 문의주세요"
             let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
             viewController.modalPresentationStyle = .overCurrentContext
