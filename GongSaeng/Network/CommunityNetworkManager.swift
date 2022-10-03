@@ -101,7 +101,7 @@ final class CommunityNetworkManager {
         guard let request = URLRequest.getMultipartFormDataRequest(url: "\(SERVER_URL)/community/write_community",
                                                                    boundary: boundary) else { return }
         
-        var params: [String: Any] = ["code": code, "title": title, "contents": contents, "time": getNowDateTime()]
+        var params: [String: Any] = ["code": code, "title": title, "contents": contents, "time": Date.getNowDateTime()]
         params["category"] = category
         params["price"] = price
         let data = URLRequest.getMultipartFormData(boundary: boundary,
@@ -302,15 +302,6 @@ final class CommunityNetworkManager {
             }
         }
         dataTask.resume()
-    }
-}
-
-private extension CommunityNetworkManager {
-    private func getNowDateTime() -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        return dateFormatter.string(from: Date())
     }
 }
 
