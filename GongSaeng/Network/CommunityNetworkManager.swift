@@ -105,11 +105,6 @@ final class CommunityNetworkManager {
     }
     
     func postCommunity(code: Int, title: String, contents: String, images: [UIImage]?, category: String? = nil, price: String? = nil, completion: @escaping(Bool) -> Void) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        dateFormatter.locale = Locale(identifier: "ko_KR")
-        let time = dateFormatter.string(from: Date())
-        
         guard let url = URLComponents(string: "\(SERVER_URL)/community/write_community")?.url else { return }
         
         var request = URLRequest(url: url)
@@ -123,35 +118,19 @@ final class CommunityNetworkManager {
         let boundaryPrefix = "--\(boundary)\r\n"
         let boundarySuffix = "--\(boundary)--\r\n"
         
-        var params: [(String, Any)] = [("code", code), ("title", title), ("contents", contents), ("time", time)]
+        var params: [(String, Any)] = [("code", code), ("title", title), ("contents", contents), ("time", getNowDateTime())]
         
         if let category = category {
             params.append(("category", category))
-            print("catette", category)
         }
         if let price = price {
             params.append(("price", price))
         }
         
-        params.forEach { (key, value) in
-            data.append(boundaryPrefix.data(using: .utf8)!)
-            data.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
-            data.append("\(value)\r\n".data(using: .utf8)!)
-        }
+        data.append(convertParams(params, boundaryPrefix))
         
-        if let images = images, let thumbnailImage = images.first {
-            for image in images {
-                guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
-
-                let fileName = "\(UUID().uuidString).jpg"
-                let fieldName = "image"
-                let mimeType = "image/jpeg"
-                data.append(boundaryPrefix.data(using: .utf8)!)
-                data.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
-                data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
-                data.append(imageData)
-                data.append("\r\n".data(using: .utf8)!)
-            }
+        if let images = images {
+            data.append(convertImagesData(images, boundaryPrefix))
         }
         
         data.append(boundarySuffix.data(using: .utf8)!)
@@ -377,26 +356,38 @@ final class CommunityNetworkManager {
 }
 
 private extension CommunityNetworkManager {
-    func convertFormField(named name: String, value: String, using boundary: String) -> String {
-        
-        var fieldString = "--\(boundary)\r\n"
-        fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n"
-        fieldString += "\r\n"
-        fieldString += "\(value)\r\n"
-        return fieldString
+    func convertParams(_ params: [(String, Any)], _ boundaryPrefix: String) -> Data {
+        var data = Data()
+        params.forEach { (key, value) in
+            data.append(boundaryPrefix.data(using: .utf8)!)
+            data.append("Content-Disposition: form-data; name=\"\(key)\"\r\n\r\n".data(using: .utf8)!)
+            data.append("\(value)\r\n".data(using: .utf8)!)
+        }
+        return data
     }
     
-    func convertFileData(fileData: Data, using boundary: String) -> Data {
-        let fileName = "\(UUID().uuidString).jpg"
-        let fieldName = "image"
-        let mimeType = "image/jpeg"
+    func convertImagesData(_ images: [UIImage], _ boundaryPrefix: String) -> Data {
         var data = Data()
-        data.append("--\(boundary)--\r\n".data(using: .utf8)!)
-        data.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
-        data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
-        data.append(fileData)
-        data.append("\r\n".data(using: .utf8)!)
+        for image in images {
+            guard let imageData = image.jpegData(compressionQuality: 0.5) else { return data }
+            
+            let fileName = "\(UUID().uuidString).jpg"
+            let fieldName = "image"
+            let mimeType = "image/jpeg"
+            data.append(boundaryPrefix.data(using: .utf8)!)
+            data.append("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
+            data.append("Content-Type: \(mimeType)\r\n\r\n".data(using: .utf8)!)
+            data.append(imageData)
+            data.append("\r\n".data(using: .utf8)!)
+        }
         return data
+    }
+    
+    private func getNowDateTime() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        dateFormatter.locale = Locale(identifier: "ko_KR")
+        return dateFormatter.string(from: Date())
     }
 }
 
