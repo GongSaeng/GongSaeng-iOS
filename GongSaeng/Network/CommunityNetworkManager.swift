@@ -254,16 +254,9 @@ final class CommunityNetworkManager {
     }
     
     static func postComment(index: Int, contents: String, completion: @escaping(Bool?) -> Void) {
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/comment/write_comment")
-        guard let url = urlComponents?.url else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
-        let dicData = ["parent_num": index, "contents": contents] as Dictionary<String, Any>?
-        let jsonData = try! JSONSerialization.data(withJSONObject: dicData!, options: [])
-        request.httpBody = jsonData
+        guard let request = URLRequest.getPOSTRequest(url: "\(SERVER_URL)/comment/write_comment",
+                                                      data: ["parent_num": index,
+                                                             "contents": contents] as Dictionary<String, Any>) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
