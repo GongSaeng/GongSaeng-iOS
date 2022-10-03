@@ -12,14 +12,18 @@ class HomeViewController: UIViewController {
     var user: User? {
         didSet {
             print("DEBUG: HomeViewController get user property")
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self, let user = self.user else { return }
-                self.affiliationLabel.text = user.department
+            DispatchQueue.main.async { [unowned self] in
+                self.setAffiliationLabel()
             }
         }
     }
     
-    @IBOutlet weak var affiliationLabel: UILabel!
+    @IBOutlet weak var affiliationLabel: UILabel?
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setAffiliationLabel()
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -31,5 +35,13 @@ class HomeViewController: UIViewController {
         super.viewWillDisappear(animated)
         
         navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+}
+
+extension HomeViewController {
+    func setAffiliationLabel() {
+        if let user = self.user, let affiliationLabel = self.affiliationLabel {
+            affiliationLabel.text = user.department
+        }
     }
 }
