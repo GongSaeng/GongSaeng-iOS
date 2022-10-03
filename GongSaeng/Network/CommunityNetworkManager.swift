@@ -9,13 +9,9 @@ import UIKit
 
 final class CommunityNetworkManager {
     static func fetchCommunitys(page: Int, communityType: CommunityType, completion: @escaping([Community]) -> Void) {
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/read_community?")
-        let paramQuery1 = URLQueryItem(name: "code", value: "\(communityType.rawValue)")
-        urlComponents?.queryItems?.append(paramQuery1)
-        guard let url = urlComponents?.url else { return }
-        var request = URLRequest(url: url)
+        guard let request = URLRequest.getGETRequest(url: "\(SERVER_URL)/community/read_community?",
+                                                     data: ["code": communityType.rawValue]) else { return }
         
-        request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -57,14 +53,9 @@ final class CommunityNetworkManager {
     }
     
     static func fetchPost(index: Int, completion: @escaping(Post) -> Void) {
-        print("DEBUG: index -> \(index)")
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/find_post_by_index?")
-        let paramQuery = URLQueryItem(name: "post_index", value: "\(index)")
-        urlComponents?.queryItems?.append(paramQuery)
-        guard let url = urlComponents?.url else { return }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        guard let request = URLRequest.getGETRequest(url: "\(SERVER_URL)/community/find_post_by_index?",
+                                                     data: ["post_index": index]) else { return }
+        
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -170,11 +161,9 @@ final class CommunityNetworkManager {
     
     static func fetchMyPosts(myPostType: MyPostType, completion: @escaping([MyPost]) -> Void) {
         let scheme = (myPostType == .post) ? "mypost" : "mycomment"
-        let urlComponents = URLComponents(string: "\(SERVER_URL)/profile/\(scheme)")
-        guard let url = urlComponents?.url else { return }
-     
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        guard let request = URLRequest.getGETRequest(url: "\(SERVER_URL)/profile/\(scheme)",
+                                                     data: [:]) else { return }
+        
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -296,17 +285,9 @@ final class CommunityNetworkManager {
     }
     
     static func completeValidStatus(index: Int, communityType: CommunityType , completion: @escaping(Bool) -> Void) {
-        
         let communityStr = communityType == .gathering ? "together_complete?" : "market_complete?"
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/community/\(communityStr)")
-        
-        let paramQuery = URLQueryItem(name: "idx", value: "\(index)")
-        urlComponents?.queryItems?.append(paramQuery)
-        
-        guard let url = urlComponents?.url else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        guard let request = URLRequest.getPOSTRequest(url: "\(SERVER_URL)/community/\(communityStr)",
+                                                      data: ["idx": index] as Dictionary<String, Any>) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
