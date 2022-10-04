@@ -7,10 +7,10 @@
 
 import UIKit
 
-final class CommunityNetworkManager {
+final class CommunityNetworkManager: NetworkManager {
     static func fetchCommunitys(page: Int, communityType: CommunityType, completion: @escaping([Community]) -> Void) {
-        guard let request = URLRequest.getGETRequest(url: "\(SERVER_URL)/community/read_community?",
-                                                     data: ["code": communityType.rawValue]) else { return }
+        guard let request = getGETRequest(url: "\(SERVER_URL)/community/read_community?",
+                                          data: ["code": communityType.rawValue]) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
@@ -31,21 +31,8 @@ final class CommunityNetworkManager {
             case (200...299):
                 print("DEBUG: Network succeded")
                 completion(communitys)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
@@ -53,8 +40,8 @@ final class CommunityNetworkManager {
     }
     
     static func fetchPost(index: Int, completion: @escaping(Post) -> Void) {
-        guard let request = URLRequest.getGETRequest(url: "\(SERVER_URL)/community/find_post_by_index?",
-                                                     data: ["post_index": index]) else { return }
+        guard let request = getGETRequest(url: "\(SERVER_URL)/community/find_post_by_index?",
+                                          data: ["post_index": index]) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
@@ -74,39 +61,26 @@ final class CommunityNetworkManager {
                 print("DEBUG: Network succeded")
                 
                 completion(post)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
         dataTask.resume()
     }
     
-    func postCommunity(code: Int, title: String, contents: String, images: [UIImage]?, category: String? = nil, price: String? = nil, completion: @escaping(Bool) -> Void) {
+    static func postCommunity(code: Int, title: String, contents: String, images: [UIImage]?, category: String? = nil, price: String? = nil, completion: @escaping(Bool) -> Void) {
         let boundary = "Boundary-\(UUID().uuidString)"
         
-        guard let request = URLRequest.getMultipartFormDataRequest(url: "\(SERVER_URL)/community/write_community",
-                                                                   boundary: boundary) else { return }
+        guard let request = getMultipartFormDataRequest(url: "\(SERVER_URL)/community/write_community",
+                                                        boundary: boundary) else { return }
         
         var params: [String: Any] = ["code": code, "title": title, "contents": contents, "time": Date.getNowDateTime()]
         params["category"] = category
         params["price"] = price
-        let data = URLRequest.getMultipartFormData(boundary: boundary,
-                                                   params: params,
-                                                   images: images == nil ? [] : images!)
+        let data = getMultipartFormData(boundary: boundary,
+                                        params: params,
+                                        images: images == nil ? [] : images!)
         
         let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
             guard error == nil,
@@ -121,21 +95,8 @@ final class CommunityNetworkManager {
                 print("DEBUG: postCommunity response is succeded..", returnValue)
                 let isSucceded = (returnValue == "true") ? true : false
                 completion(isSucceded)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         dataTask.resume()
@@ -143,8 +104,8 @@ final class CommunityNetworkManager {
     
     static func fetchMyPosts(myPostType: MyPostType, completion: @escaping([MyPost]) -> Void) {
         let scheme = (myPostType == .post) ? "mypost" : "mycomment"
-        guard let request = URLRequest.getGETRequest(url: "\(SERVER_URL)/profile/\(scheme)",
-                                                     data: [:]) else { return }
+        guard let request = getGETRequest(url: "\(SERVER_URL)/profile/\(scheme)",
+                                          data: [:]) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
@@ -159,21 +120,8 @@ final class CommunityNetworkManager {
             case (200...299):
                 print("DEBUG: Network succeded")
                 completion(myPosts)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
@@ -181,8 +129,8 @@ final class CommunityNetworkManager {
     }
     
     static func fetchComments(page: Int, index: Int, completion: @escaping([Comment]) -> Void) {
-        guard let request = URLRequest.getGETRequest(url: "\(SERVER_URL)/comment/read_comment?",
-                                                     data: ["parent_num": index, "page": page]) else { return }
+        guard let request = getGETRequest(url: "\(SERVER_URL)/comment/read_comment?",
+                                          data: ["parent_num": index, "page": page]) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
@@ -203,21 +151,8 @@ final class CommunityNetworkManager {
             case (200...299):
                 print("DEBUG: Network succeded")
                 completion(comments)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
@@ -225,9 +160,9 @@ final class CommunityNetworkManager {
     }
     
     static func postComment(index: Int, contents: String, completion: @escaping(Bool?) -> Void) {
-        guard let request = URLRequest.getPOSTRequest(url: "\(SERVER_URL)/comment/write_comment",
-                                                      data: ["parent_num": index,
-                                                             "contents": contents] as Dictionary<String, Any>) else { return }
+        guard let request = getPOSTRequest(url: "\(SERVER_URL)/comment/write_comment",
+                                           data: ["parent_num": index,
+                                                  "contents": contents] as Dictionary<String, Any>) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
@@ -246,21 +181,8 @@ final class CommunityNetworkManager {
             case (200...299):
                 print("DEBUG: Comment updated -> \(result == "true")")
                 completion(result == "true")
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         dataTask.resume()
@@ -268,8 +190,8 @@ final class CommunityNetworkManager {
     
     static func completeValidStatus(index: Int, communityType: CommunityType , completion: @escaping(Bool) -> Void) {
         let communityStr = communityType == .gathering ? "together_complete?" : "market_complete?"
-        guard let request = URLRequest.getPOSTRequest(url: "\(SERVER_URL)/community/\(communityStr)",
-                                                      data: ["idx": index] as Dictionary<String, Any>) else { return }
+        guard let request = getPOSTRequest(url: "\(SERVER_URL)/community/\(communityStr)",
+                                           data: ["idx": index] as Dictionary<String, Any>) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
@@ -284,21 +206,8 @@ final class CommunityNetworkManager {
                 print("DEBUG: postComment() data -> \(String(data: data, encoding: .utf8)!)")
                 let isSucceded = String(data: data, encoding: .utf8) == "true" ? true : false
                 completion(isSucceded)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         dataTask.resume()
