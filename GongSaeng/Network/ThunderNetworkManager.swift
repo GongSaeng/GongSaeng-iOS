@@ -118,7 +118,7 @@ let exampleMyThunders: [MyThunder] = [
         numberOfComments: 10)
 ]
 
-final class ThunderNetworkManager {
+final class ThunderNetworkManager: NetworkManager {
     private let session: URLSession
 
     init(session: URLSession = .shared) {
@@ -170,42 +170,30 @@ final class ThunderNetworkManager {
         }
     }
     
-    func postThunder(meetingTime: String, place: String, placeURL: String, address: String, totalNum: String, title: String, contents: String, images: [UIImage], completion: @escaping(Bool) -> Void) {
+    static func postThunder(meetingTime: String, place: String, placeURL: String, address: String, totalNum: String, title: String, contents: String, images: [UIImage], completion: @escaping(Bool) -> Void) {
+        let boundary = "Boundary-\(UUID().uuidString)"
+        
+        guard let request = getMultipartFormDataRequest(url: "\(SERVER_URL)/community/write_community",
+                                                        boundary: boundary) else { return }
+        
+        
         let regionData = address.split(separator: " ").map { String($0) }
         let metapolis = regionData[0]
         let region = regionData[1]
+        var params: [String: Any] = ["metapolis": metapolis,
+                                     "title": title,
+                                     "contents": contents,
+                                     "meet_time": meetingTime,
+                                     "location": place,
+                                     "detail_location": address,
+                                     "total_num": totalNum,
+                                     "location_url": placeURL,
+                                     "region": region]
         
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/thunder?")
-        urlComponents?.queryItems = [
-            URLQueryItem(name: "metapolis", value: metapolis),
-            URLQueryItem(name: "title", value: title),
-            URLQueryItem(name: "contents", value: contents),
-            URLQueryItem(name: "meet_time", value: meetingTime),
-            URLQueryItem(name: "location", value: place),
-            URLQueryItem(name: "detail_location", value: address),
-            URLQueryItem(name: "total_num", value: totalNum),
-            URLQueryItem(name: "location_url", value: placeURL),
-            URLQueryItem(name: "region", value: region)
-        ]
-
-        guard let url = urlComponents?.url else { return }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        let thumbnailImage = images.first!
-        let boundary = "Boundary-\(UUID().uuidString)"
-        request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-
-        let httpBody = NSMutableData() // let var //
-        guard let imageData = thumbnailImage.downSize(newWidth: 100)
-                .jpegData(compressionQuality: 0.5) else { return }
-        httpBody.append(convertFileData(fileData: imageData, using: boundary))
-        for image in images {
-            guard let imageData = image.jpegData(compressionQuality: 1) else { return }
-            httpBody.append(convertFileData(fileData: imageData, using: boundary))
-        }
-        httpBody.appendString("--\(boundary)--")
-        let data = httpBody as Data
+        let data = getMultipartFormData(boundary: boundary,
+                                        params: params,
+                                        images: images)
+        
         let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -219,21 +207,8 @@ final class ThunderNetworkManager {
                 print("DEBUG: postCommunity response is succeded..", returnValue)
                 let isSucceded = (returnValue == "200") ? true : false
                 completion(isSucceded)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         dataTask.resume()
@@ -261,21 +236,8 @@ final class ThunderNetworkManager {
                 DispatchQueue.main.async {
                     completion(thunderDetail)
                 }
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
@@ -293,8 +255,8 @@ final class ThunderNetworkManager {
     
     // TODO: Should replace to real
     static func joinThunder(index: Int, completion: @escaping(Bool) -> Void) {
-        guard let request = URLRequest.getPOSTRequest(url: "\(SERVER_URL)/thunder/join",
-                                                      data: ["idx": index] as Dictionary<String, Any>) else { return }
+        guard let request = getPOSTRequest(url: "\(SERVER_URL)/thunder/join",
+                                           data: ["idx": index] as Dictionary<String, Any>) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
@@ -309,46 +271,10 @@ final class ThunderNetworkManager {
                 print("DEBUG: joinThunder() data -> \(String(data: data, encoding: .utf8)!)")
                 let isSucceded = String(data: data, encoding: .utf8) == "true" ? true : false
                 completion(isSucceded)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         dataTask.resume()
-    }
-}
-
-private extension ThunderNetworkManager {
-    func convertFormField(named name: String, value: String, using boundary: String) -> String {
-        var fieldString = "--\(boundary)\r\n"
-        fieldString += "Content-Disposition: form-data; name=\"\(name)\"\r\n"
-        fieldString += "\r\n"
-        fieldString += "\(value)\r\n"
-        return fieldString
-    }
-    
-    func convertFileData(fileData: Data, using boundary: String) -> Data {
-        let fileName = "\(UUID().uuidString).jpg"
-        let fieldName = "image"
-        let mimeType = "image/jpeg"
-        let data = NSMutableData()
-        data.appendString("--\(boundary)\r\n")
-        data.appendString("Content-Disposition: form-data; name=\"\(fieldName)\"; filename=\"\(fileName)\"\r\n")
-        data.appendString("Content-Type: \(mimeType)\r\n\r\n")
-        data.append(fileData)
-        data.appendString("\r\n")
-        return data as Data
     }
 }

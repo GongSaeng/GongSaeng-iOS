@@ -1,5 +1,5 @@
 //
-//  URLRequest.swift
+//  NetworkManager.swift
 //  GongSaeng
 //
 //  Created by Yujin Cha on 2022/10/04.
@@ -7,7 +7,33 @@
 
 import UIKit
 
-extension URLRequest {
+protocol NetworkManager {
+    static func handleError(response: HTTPURLResponse)
+}
+
+extension NetworkManager {
+    static func handleError(response: HTTPURLResponse) {
+        switch response.statusCode {
+        case (400...499):
+            print("""
+                ERROR: Client ERROR \(response.statusCode)
+                Response: \(response)
+            """)
+        case (500...599):
+            print("""
+                ERROR: Server ERROR \(response.statusCode)
+                Response: \(response)
+            """)
+        default:
+            print("""
+                ERROR: \(response.statusCode)
+                Response: \(response)
+            """)
+        }
+    }
+}
+
+extension NetworkManager {
     static func getGETRequest(url: String, data: Dictionary<String, Any>) -> URLRequest? {
         var urlComponents = URLComponents(string: url)
         data.forEach { (key: String, value: Any) in
@@ -32,7 +58,7 @@ extension URLRequest {
     }
 }
 
-extension URLRequest {
+extension NetworkManager {
     static func getMultipartFormDataRequest(url: String, boundary: String) -> URLRequest? {
         guard let url = URL(string: url) else { return nil }
         var request = URLRequest(url: url)

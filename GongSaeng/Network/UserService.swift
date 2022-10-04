@@ -7,7 +7,7 @@
 
 import UIKit
 
-struct UserService {
+struct UserService: NetworkManager {
     static func fetchCurrentUser(completion: @escaping(User?) -> Void) {
         print("DEBUG: Call fetchCurrentUser function.. ")
         guard let url = URL(string: "\(SERVER_URL)/") else { return }
@@ -30,21 +30,8 @@ struct UserService {
             switch response.statusCode {
             case (200...299):
                 completion(user)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
@@ -82,6 +69,7 @@ struct UserService {
             }()
             
             let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
+                print("얍", String(data: data!, encoding: .utf8))
                 guard error == nil,
                       let response = response as? HTTPURLResponse,
                       let data = data,
@@ -96,21 +84,8 @@ struct UserService {
                     let isSucceded = (returnValue == "false") ? false : true
                     let imageUrl = (isSucceded && (returnValue != "true")) ? returnValue : nil
                     completion(isSucceded, imageUrl)
-                case (400...499):
-                    print("""
-                        ERROR: Client ERROR \(response.statusCode)
-                        Response: \(response)
-                    """)
-                case (500...599):
-                    print("""
-                        ERROR: Server ERROR \(response.statusCode)
-                        Response: \(response)
-                    """)
                 default:
-                    print("""
-                        ERROR: \(response.statusCode)
-                        Response: \(response)
-                    """)
+                    handleError(response: response)
                 }
             }
             dataTask.resume()
@@ -119,6 +94,7 @@ struct UserService {
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
 
             let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+                print("얍",String(data: data!, encoding: .utf8))
                 guard error == nil,
                       let response = response as? HTTPURLResponse,
                       let data = data,
@@ -131,21 +107,8 @@ struct UserService {
                 case (200...299):
                     let isSucceded = (returnValue == "true") ? true : false
                     completion(isSucceded, nil)
-                case (400...499):
-                    print("""
-                        ERROR: Client ERROR \(response.statusCode)
-                        Response: \(response)
-                    """)
-                case (500...599):
-                    print("""
-                        ERROR: Server ERROR \(response.statusCode)
-                        Response: \(response)
-                    """)
                 default:
-                    print("""
-                        ERROR: \(response.statusCode)
-                        Response: \(response)
-                    """)
+                    handleError(response: response)
                 }
             }
             dataTask.resume()
@@ -181,21 +144,8 @@ struct UserService {
             case (200...299):
                 let isSucceded: Bool = String(data: data, encoding: .utf8) == "true"
                 completion(isSucceded)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         dataTask.resume()
@@ -226,21 +176,8 @@ struct UserService {
             case (200...299):
                 let isSucceded: Bool = String(data: data, encoding: .utf8) == "true"
                 completion(isSucceded)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         dataTask.resume()

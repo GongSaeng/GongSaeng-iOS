@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct AuthService {
+struct AuthService: NetworkManager {
     static func loginUserIn(withID id: String, password: String, completion: ((Bool, Bool, Error?) -> Void)? = nil) {
         var urlComponents = URLComponents(string: "\(SERVER_URL)/login?")
         
@@ -38,21 +38,8 @@ struct AuthService {
                 let isRight: Bool = (jsonArr["login"] == "true") ? true : false
                 let isApproved: Bool = (jsonArr["approve"] == "true") ? true : false
                 completion(isRight, isApproved, nil)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         dataTask.resume()
@@ -60,9 +47,9 @@ struct AuthService {
     
     static func logUserOut(completion: @escaping(Bool) -> Void) {
         print("DEBUG: Call logUserOut function.. ")
-        guard let url = URL(string: "\(SERVER_URL)/logout") else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
+        guard let request = getGETRequest(url: "\(SERVER_URL)/logout",
+                                          data: [:]) else { return }
+        
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -83,21 +70,8 @@ struct AuthService {
                     print("DEBUG: logout succeded")
                     completion(true)
                 }
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
@@ -155,35 +129,17 @@ struct AuthService {
                 } else {
                     completion(false)
                 }
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         dataTask.resume()
     }
     
     static func checkIdDuplicate(idToCheck id: String, completion: @escaping(Bool) -> Void) {
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/register/idCheck?")
-        let paramQuery = URLQueryItem(name: "id", value: id)
-        urlComponents?.queryItems?.append(paramQuery)
+        guard let request = getGETRequest(url: "\(SERVER_URL)/register/idCheck?",
+                                          data: ["id": id]) else { return }
         
-        guard let url = urlComponents?.url else { return }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -202,21 +158,8 @@ struct AuthService {
                 } else if returnValue == "false" {
                     completion(false)
                 }
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
@@ -224,14 +167,9 @@ struct AuthService {
     }
     
     static func checkNicknameDuplicate(nickNameToCheck nickName: String, completion: @escaping(Bool) -> Void) {
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/register/idCheck?")
-        let paramQuery = URLQueryItem(name: "nickname", value: nickName)
-        urlComponents?.queryItems?.append(paramQuery)
+        guard let request = getGETRequest(url: "\(SERVER_URL)/register/idCheck?",
+                                          data: ["nickname": nickName]) else { return }
         
-        guard let url = urlComponents?.url else { return }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -250,21 +188,8 @@ struct AuthService {
                 } else if returnValue == "false" {
                     completion(false)
                 }
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
