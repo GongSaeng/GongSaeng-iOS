@@ -236,6 +236,10 @@ final class ThunderDetailHeaderView: UIView {
         cell.updateImageHeight(height)
     }
     
+    func updateNumberOfComments(_ num: Int) {
+        numberOfCommentsLabel.text = "댓글 \(num)"
+    }
+    
     private func configure() {
         self.backgroundColor = .white
         titleLabel.text = viewModel.title

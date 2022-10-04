@@ -155,6 +155,9 @@ final class ThunderDetailViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.tableView.reloadData()
+                if let headerView = self.tableView.tableHeaderView as? ThunderDetailHeaderView {
+                    headerView.updateNumberOfComments(comments.count)
+                }
             }
         }
     }
