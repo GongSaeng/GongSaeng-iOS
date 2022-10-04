@@ -10,6 +10,7 @@ import SnapKit
 import Kingfisher
 
 protocol ThunderDetailHeaderViewDelegate: AnyObject {
+    func showFullImages(imageUrlList: [URL], page: Int)
     func showUserProfile(index: Int, profiles: [Profile])
 }
 
