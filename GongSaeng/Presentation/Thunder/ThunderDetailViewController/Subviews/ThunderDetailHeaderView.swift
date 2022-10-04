@@ -173,7 +173,7 @@ final class ThunderDetailHeaderView: UIView {
             attributes: [.font: UIFont.systemFont(ofSize: 17.0, weight: .heavy),
                          .foregroundColor: UIColor.white]), for: .normal)
         button.layer.cornerRadius = 8.0
-//        button.addTarget(self, action: #selector(<#T##@objc method#>), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapJoinButton), for: .touchUpInside)
         return button
     }()
     
@@ -214,6 +214,17 @@ final class ThunderDetailHeaderView: UIView {
     }
     
     // MARK: Actions
+    @objc
+    private func didTapJoinButton() {
+        ThunderNetworkManager.joinThunder(index: viewModel.idx) { isSuccess in
+            if isSuccess {
+                
+            } else {
+                
+            }
+        }
+    }
+    
     @objc
     private func openMapLink() {
         if let url = viewModel.placeURL { UIApplication.shared.open(url, options: [:]) }

@@ -290,6 +290,44 @@ final class ThunderNetworkManager {
             }
         }
     }
+    
+    // TODO: Should replace to real
+    static func joinThunder(index: Int, completion: @escaping(Bool) -> Void) {
+        guard let request = URLRequest.getPOSTRequest(url: "\(SERVER_URL)/thunder/join",
+                                                      data: ["idx": index] as Dictionary<String, Any>) else { return }
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data else {
+                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      return
+                  }
+            print(String(data: data, encoding: .utf8))
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: joinThunder() data -> \(String(data: data, encoding: .utf8)!)")
+                let isSucceded = String(data: data, encoding: .utf8) == "true" ? true : false
+                completion(isSucceded)
+            case (400...499):
+                print("""
+                    ERROR: Client ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            case (500...599):
+                print("""
+                    ERROR: Server ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            default:
+                print("""
+                    ERROR: \(response.statusCode)
+                    Response: \(response)
+                """)
+            }
+        }
+        dataTask.resume()
+    }
 }
 
 private extension ThunderNetworkManager {
