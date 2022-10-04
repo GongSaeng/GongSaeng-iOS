@@ -8,6 +8,7 @@
 import Foundation
 
 struct ThunderDetail: Decodable {
+    var idx: Int
     var postingImagesFilename: [String]
     var title: String
     var writerImageFilename: String?
@@ -44,6 +45,7 @@ struct ThunderDetail: Decodable {
     private var participantsIntroduce: [String]
     
     enum CodingKeys: String, CodingKey {
+        case idx
         case postingImagesFilename = "contents_image"
         case title, contents, status
         case writerImageFilename = "writer_image"
