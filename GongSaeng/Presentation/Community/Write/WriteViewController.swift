@@ -341,7 +341,7 @@ final class WriteViewController: UIViewController {
         
         showLoader(true)
         
-        CommunityNetworkManager().postCommunity(code: communityType.rawValue, title: titleText, contents: contentsText, images: selectedImages, category: categoryText, price: priceText) { [weak self] isSucceded in
+        CommunityNetworkManager.postCommunity(code: communityType.rawValue, title: titleText, contents: contentsText, images: selectedImages, category: categoryText, price: priceText) { [weak self] isSucceded in
             guard let self = self else { return }
             guard isSucceded else {
                 print("DEBUG: failed..")

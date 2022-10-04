@@ -414,7 +414,7 @@ final class ThunderWriteViewController: UIViewController {
         
         // API 코드 작성
         showLoader(true)
-        ThunderNetworkManager().postThunder(meetingTime: timeText, place: placeText, placeURL: placeURL, address: addressName, totalNum: numOfPeopleText, title: titleText, contents: contentsText, images: selectedImages) { [weak self] isSucceded in
+        ThunderNetworkManager.postThunder(meetingTime: timeText, place: placeText, placeURL: placeURL, address: addressName, totalNum: numOfPeopleText, title: titleText, contents: contentsText, images: selectedImages) { [weak self] isSucceded in
             print("DEBUG: isSucceded \(isSucceded)")
             self?.showLoader(false)
             if isSucceded {
