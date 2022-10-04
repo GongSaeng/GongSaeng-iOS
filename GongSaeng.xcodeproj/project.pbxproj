@@ -210,6 +210,7 @@
 		A7FAB14C27C64E8500B736AB /* ThunderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FAB14B27C64E8500B736AB /* ThunderDetail.swift */; };
 		A7FAB14E27C75E2F00B736AB /* ThunderDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FAB14D27C75E2F00B736AB /* ThunderDetailViewModel.swift */; };
 		AFAB0AE928EB381100DAA69C /* URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFAB0AE828EB381100DAA69C /* URLRequest.swift */; };
+		AFADB94B28EC54E500368369 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFADB94A28EC54E500368369 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -411,6 +412,7 @@
 		A7FAB14B27C64E8500B736AB /* ThunderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail.swift; sourceTree = "<group>"; };
 		A7FAB14D27C75E2F00B736AB /* ThunderDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetailViewModel.swift; sourceTree = "<group>"; };
 		AFAB0AE828EB381100DAA69C /* URLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequest.swift; sourceTree = "<group>"; };
+		AFADB94A28EC54E500368369 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1013,6 +1015,7 @@
 				A78A6B4B27869EC1006F3D60 /* ImageService.swift */,
 				A76F29D027B1144E0077F297 /* SearchPlaceNetwork.swift */,
 				A77A742827CCB0F400295730 /* ThunderNetworkManager.swift */,
+				AFADB94A28EC54E500368369 /* NetworkManager.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1286,6 +1289,7 @@
 				A705F26727B37E9B00D35CCE /* UniversityCellViewModel.swift in Sources */,
 				A719D09727CF0210000A9388 /* LocaleViewModel.swift in Sources */,
 				A79C215926EF58B4000B9028 /* LogOutCompletedPopUpViewController.swift in Sources */,
+				AFADB94B28EC54E500368369 /* NetworkManager.swift in Sources */,
 				A77A742B27CCF15A00295730 /* ThunderNavigationViewController.swift in Sources */,
 				A760B5E027BA7FCA00BFDFD5 /* ThunderListTopViewModel.swift in Sources */,
 				A71600A7274638E300FC3C64 /* ImmediationViewModel.swift in Sources */,
