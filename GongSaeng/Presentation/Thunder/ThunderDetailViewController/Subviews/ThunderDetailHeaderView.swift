@@ -10,6 +10,7 @@ import SnapKit
 import Kingfisher
 
 protocol ThunderDetailHeaderViewDelegate: AnyObject {
+    func showFullImages(imageUrlList: [URL], page: Int)
     func showUserProfile(index: Int, profiles: [Profile])
 }
 
@@ -479,6 +480,10 @@ extension ThunderDetailHeaderView: UICollectionViewDelegate {
         switch collectionView {
         case attachedImageCollectionView:
             print("DEBUG: Did tap image..")
+            delegate?.showFullImages(imageUrlList: viewModel.attachedImageURLs
+                                                        .filter { $0 != nil }
+                                                        .map { $0! },
+                                     page: indexPath.item + 1)
             
         case partcipantsImageCollectionView:
             guard indexPath.item < viewModel.participantImageURLs.count else { return }

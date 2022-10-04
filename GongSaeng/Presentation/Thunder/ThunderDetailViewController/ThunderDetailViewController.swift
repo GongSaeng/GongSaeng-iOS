@@ -271,6 +271,12 @@ extension ThunderDetailViewController: ParticipantProfileViewControllerDelegate 
 
 // MARK: ThunderDetailHeaderViewDelegate
 extension ThunderDetailViewController: ThunderDetailHeaderViewDelegate {
+    func showFullImages(imageUrlList: [URL], page: Int) {
+        let viewController = FullImageViewController(imageUrlList: imageUrlList, page: page)
+        viewController.modalPresentationStyle = .fullScreen
+        present(viewController, animated: true)
+    }
+    
     func showUserProfile(index: Int, profiles: [Profile]) {
         let viewController = ParticipantProfileViewController(index: index, profiles: profiles)
         viewController.statusBarStyle = navigationController?.preferredStatusBarStyle ?? .default
