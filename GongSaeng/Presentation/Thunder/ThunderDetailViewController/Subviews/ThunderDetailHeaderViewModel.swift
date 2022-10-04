@@ -8,6 +8,7 @@
 import Foundation
 
 struct ThunderDetailHeaderViewModel {
+    var idx: Int
     var attachedImageURLs: [URL?]
     var title: String
     var writerImageURL: URL?
@@ -35,6 +36,7 @@ struct ThunderDetailHeaderViewModel {
     var numOfCommentsText: String
      
     init(thunderDetail: ThunderDetail) {
+        self.idx = thunderDetail.idx
         self.attachedImageURLs = (thunderDetail.postingImagesFilename)
             .map { URL(string: SERVER_IMAGE_URL + $0) }
         self.title = thunderDetail.title
