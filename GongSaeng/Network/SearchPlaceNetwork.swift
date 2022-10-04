@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct SearchPlaceNetwork {
+struct SearchPlaceNetwork: NetworkManager {
     static let scheme = "https"
     static let host = "dapi.kakao.com"
     static let path = "/v2/local/search/keyword.json"
@@ -36,21 +36,8 @@ struct SearchPlaceNetwork {
             switch response.statusCode {
             case (200...299):
                 completion(place)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
 

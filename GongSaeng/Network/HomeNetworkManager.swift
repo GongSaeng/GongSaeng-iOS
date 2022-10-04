@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension HomeNetworkManager {
+extension HomeNetworkManager: NetworkManager {
     static let sampleData = [
         GongSaengTalk(dictionary: ["title": "내 절친 소개하기", "category": "가볍"]),
         GongSaengTalk(dictionary: ["title": "내가 생각하는 내 MBTI의 특징", "category": "가볍"]),
@@ -53,21 +53,8 @@ struct HomeNetworkManager {
             case (200...299):
                 // completion(talks)
                 completion(HomeNetworkManager.sampleData)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
@@ -90,21 +77,8 @@ struct HomeNetworkManager {
             switch response.statusCode {
             case (200...299):
                 completion(mates)
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
             default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
+                handleError(response: response)
             }
         }
         
