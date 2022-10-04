@@ -118,66 +118,6 @@ let exampleMyThunders: [MyThunder] = [
         numberOfComments: 10)
 ]
 
-final class ThunderNetworkManager1 {
-    static func fetchThunderDetail(index: Int, completion: @escaping(ThunderDetail) -> Void) {
-        // 네트워크 로직
-        let urlComponents = URLComponents(string: "\(SERVER_URL)/thunder/\(index)")
-        guard let url = urlComponents?.url else { return }
-     
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
-            guard error == nil,
-                  let response = response as? HTTPURLResponse,
-                  let data = data,
-                  let thunderDetail = try? JSONDecoder().decode(ThunderDetail.self, from: data) else {
-                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                      return
-                  }
-            
-            switch response.statusCode {
-            case (200...299):
-                print("DEBUG: Network succeded")
-                DispatchQueue.main.async {
-                    completion(thunderDetail)
-                }
-            case (400...499):
-                print("""
-                    ERROR: Client ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            case (500...599):
-                print("""
-                    ERROR: Server ERROR \(response.statusCode)
-                    Response: \(response)
-                """)
-            default:
-                print("""
-                    ERROR: \(response.statusCode)
-                    Response: \(response)
-                """)
-            }
-        }
-        
-        dataTask.resume()
-        
-//        DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) { // 임시 더미데이터
-//            DispatchQueue.main.async {
-//                completion(exampleThunderDetail)
-//            }
-//        }
-    }
-    
-    static func fetchComments(index: Int, completion: @escaping([Comment]) -> Void) {
-        // 네트워크 로직
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) { // 임시 더미데이터
-            DispatchQueue.main.async {
-                completion(exampleComments)
-            }
-        }
-    }
-}
-
 final class ThunderNetworkManager {
     private let session: URLSession
 
@@ -187,14 +127,6 @@ final class ThunderNetworkManager {
 
     func fetchThunders(page: Int, by order: SortingOrder, region: String) -> Single<Result<[Thunder], NetworkError>> {
         print("DEBUG: Called fetchThunders().. ")
-//        return Single<Result<[Thunder], Error>>.create { single -> Disposable in
-//            DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) {
-//                DispatchQueue.main.async {
-//                    single(.success(.success(exampleThunders)))
-//                }
-//            }
-//            return Disposables.create()
-//        }
         
         let regionData = region.split(separator: "/").map { String($0) }
         let metapolis = regionData[0]
@@ -237,18 +169,6 @@ final class ThunderNetworkManager {
             return Disposables.create()
         }
     }
-
-//    static func fetchThunderDetail(index: Int) -> Single<Result<ThunderDetail, Error>> {
-//        print("DEBUG: Called fetchThunderDetail()..")
-//        return Single<Result<ThunderDetail, Error>>.create { single -> Disposable in
-//            DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) {
-//                DispatchQueue.main.async {
-//                    single(.success(.success(exampleThunderDetail)))
-//                }
-//            }
-//            return Disposables.create()
-//        }
-//    }
     
     func postThunder(meetingTime: String, place: String, placeURL: String, address: String, totalNum: String, title: String, contents: String, images: [UIImage], completion: @escaping(Bool) -> Void) {
         let regionData = address.split(separator: " ").map { String($0) }
@@ -317,6 +237,58 @@ final class ThunderNetworkManager {
             }
         }
         dataTask.resume()
+    }
+    
+    static func fetchThunderDetail(index: Int, completion: @escaping(ThunderDetail) -> Void) {
+        // 네트워크 로직
+        let urlComponents = URLComponents(string: "\(SERVER_URL)/thunder/\(index)")
+        guard let url = urlComponents?.url else { return }
+     
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data,
+                  let thunderDetail = try? JSONDecoder().decode(ThunderDetail.self, from: data) else {
+                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      return
+                  }
+            
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: Network succeded")
+                DispatchQueue.main.async {
+                    completion(thunderDetail)
+                }
+            case (400...499):
+                print("""
+                    ERROR: Client ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            case (500...599):
+                print("""
+                    ERROR: Server ERROR \(response.statusCode)
+                    Response: \(response)
+                """)
+            default:
+                print("""
+                    ERROR: \(response.statusCode)
+                    Response: \(response)
+                """)
+            }
+        }
+        
+        dataTask.resume()
+    }
+    
+    static func fetchComments(index: Int, completion: @escaping([Comment]) -> Void) {
+        // 네트워크 로직
+        DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) { // 임시 더미데이터
+            DispatchQueue.main.async {
+                completion(exampleComments)
+            }
+        }
     }
 }
 

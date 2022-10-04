@@ -121,7 +121,7 @@ final class ThunderDetailViewController: UIViewController {
     
     // MARK: API
     private func fetchThunderDetail(index: Int) {
-        ThunderNetworkManager1.fetchThunderDetail(index: index) { [weak self] thunderDetail in
+        ThunderNetworkManager.fetchThunderDetail(index: index) { [weak self] thunderDetail in
             guard let self = self else { return }
             self.viewModel.thunderDetail = thunderDetail
             let headerView = ThunderDetailHeaderView(viewModel: ThunderDetailHeaderViewModel(thunderDetail: thunderDetail))
@@ -132,13 +132,6 @@ final class ThunderDetailViewController: UIViewController {
             self.fetchedPageList = []
             self.fetchComments(of: self.currentPage, shouldRefresh:  true)
         }
-        
-//        ThunderNetworkManager1.fetchComments(index: 0) { [weak self] comments in
-//            self?.commentList = comments
-//            DispatchQueue.main.async {
-//                self?.tableView.reloadData()
-//            }
-//        }
     }
     
     private func fetchComments(of page: Int, shouldRefresh: Bool = false) {
