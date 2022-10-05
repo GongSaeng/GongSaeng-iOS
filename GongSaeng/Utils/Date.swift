@@ -15,6 +15,16 @@ extension String {
         return dateFormatter.date(from: self)
       }
     
+    func convertEnToKo() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
+        if let date = dateFormatter.date(from: self + "+9") {
+            return Date.getFormattedString(from: date)
+        }
+        return self
+    }
+    
     func toAnotherDateString(form: String) -> String? {
         let beforeDateFormatter = DateFormatter()
         let afterDateFormatter = DateFormatter()
@@ -22,7 +32,7 @@ extension String {
         beforeDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         afterDateFormatter.locale = Locale(identifier: "ko_KR")
         afterDateFormatter.dateFormat = form
-        return beforeDateFormatter.date(from: self)
+        return beforeDateFormatter.date(from: self.convertEnToKo())
             .flatMap { afterDateFormatter.string(from: $0) }
     }
     
@@ -42,18 +52,23 @@ extension String {
         let dateStr = krDateFormatter.string(from: Date())
         let date = stdDateFormatter.date(from: dateStr)!
 
-        let daysInterval = stdDateFormatter.date(from: self)
+        let daysInterval = stdDateFormatter.date(from: self.convertEnToKo())
             .flatMap { stdOClockDateFormatter.string(from:$0) }
             .flatMap { stdDateFormatter.date(from: $0) }
             .flatMap { Calendar.current.dateComponents([.day], from: date, to: $0).day }
             .flatMap { $0 } ?? 0
-        return daysInterval == 0 ? "Today" : "D-\(daysInterval)"
+        if daysInterval == 0 {
+            return "Today"
+        } else if daysInterval < 0 {
+            return "D+\(-daysInterval)"
+        }
+        return "D-\(daysInterval)"
     }
 }
 
 extension Date {
-    static func getNowDateTime() -> String {
-        return dateFormatExtension.string(from: Date())
+    static func getFormattedString(from date: Date) -> String {
+        return dateFormatExtension.string(from: date)
     }
     
     private static var dateFormatExtension: DateFormatter {
