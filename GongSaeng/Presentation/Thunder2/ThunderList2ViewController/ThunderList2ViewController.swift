@@ -31,8 +31,11 @@ final class ThunderList2ViewController: UIViewController {
         return button
     }()
     
+    var user: User
+    
     // MARK: Lifecycle
-    init(viewModel: ThunderList2ViewModel = ThunderList2ViewModel()) {
+    init(user: User, viewModel: ThunderList2ViewModel = ThunderList2ViewModel()) {
+        self.user = user
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         
@@ -127,13 +130,13 @@ extension ThunderList2ViewController {
             .disposed(by: disposeBag)
         
         viewModel.pushThunderView
-            .drive(onNext: { [weak self] index in
+            .drive(onNext: { [unowned self] index in
                 print("DEBUG: Thunder index -> \(index)")
-                self?.tableView.deselectRow(at: IndexPath(index: index), animated: true)
-                let viewController = ThunderDetailViewController(index: index)
+                self.tableView.deselectRow(at: IndexPath(index: index), animated: true)
+                let viewController = ThunderDetailViewController(user: self.user, index: index)
                 viewController.modalPresentationStyle = .fullScreen
                 viewController.hidesBottomBarWhenPushed = true
-                self?.navigationController?.pushViewController(viewController, animated: true)
+                self.navigationController?.pushViewController(viewController, animated: true)
             })
             .disposed(by: disposeBag)
         
@@ -172,7 +175,7 @@ extension ThunderList2ViewController: UITableViewDelegate {
 // MARK: MyThunderViewControllerDelegate
 extension ThunderList2ViewController: MyThunderViewControllerDelegate {
     func showDetailViewController(index: Int) {
-        let viewController = ThunderDetailViewController(index: index)
+        let viewController = ThunderDetailViewController(user: user, index: index)
         viewController.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(viewController, animated: true)
     }
