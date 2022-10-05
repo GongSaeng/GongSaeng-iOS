@@ -213,7 +213,7 @@ final class ThunderNetworkManager: NetworkManager {
         dataTask.resume()
     }
     
-    static func fetchThunderDetail(index: Int, completion: @escaping(ThunderDetail) -> Void) {
+    static func fetchThunderDetail(index: Int, completion: @escaping(ThunderDetailInfo) -> Void) {
         // 네트워크 로직
         let urlComponents = URLComponents(string: "\(SERVER_URL)/thunder/\(index)")
         guard let url = urlComponents?.url else { return }
@@ -224,16 +224,16 @@ final class ThunderNetworkManager: NetworkManager {
             guard error == nil,
                   let response = response as? HTTPURLResponse,
                   let data = data,
-                  let thunderDetail = try? JSONDecoder().decode(ThunderDetail.self, from: data) else {
+                  let thunderDetail = try? JSONDecoder().decode(ThunderDetailData.self, from: data) else {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                       return
                   }
-            
+            print("번개디테일", thunderDetail.data)
             switch response.statusCode {
             case (200...299):
                 print("DEBUG: Network succeded")
                 DispatchQueue.main.async {
-                    completion(thunderDetail)
+                    completion(thunderDetail.data)
                 }
             default:
                 handleError(response: response)
