@@ -7,12 +7,38 @@
 
 import Foundation
 
+struct ThunderDetailData: Decodable {
+    var data: ThunderDetailInfo
+}
+
+struct ThunderDetailInfo: Decodable {
+    var participants: [ParticipantProfile]
+    var thunder: ThunderDetail
+}
+
+struct ParticipantProfile: Decodable {
+    var profileImageURL: String
+    var nickname: String
+    var department: String
+    var email: String?
+    var introduce: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case profileImageURL = "profile_image_url"
+        case nickname = "m_nickname"
+        case department = "m_department"
+        case email = "m_mail"
+        case introduce = "m_profile"
+    }
+}
+
+
 struct ThunderDetail: Decodable {
     var idx: Int
-    var postingImagesFilename: [String]
+    var postingImagesFilename: [String] = []
     var title: String
     var writerImageFilename: String?
-//    var writerId: String
+    var writerId: String
     var writerNickname: String
     var uploadedTime: String
     
@@ -22,35 +48,15 @@ struct ThunderDetail: Decodable {
     var placeURL: String
     var totalNum: Int
     var contents: String
-    var participantsProfile: [Profile] {
-        let numOfParticipants = participantsImageFilename.count
-        var profiles: [Profile] = []
-        for index in 0..<numOfParticipants {
-            profiles.append(Profile(
-                profileImageURL: participantsImageFilename[index],
-                nickname: participantsNickname[index],
-                job: participantsDepartment[index],
-                email: participantsEmail[index],
-                introduce: participantsIntroduce[index]))
-        }
-        return profiles
-    }
-    var status: Bool
     var numberOfComments: Int = 3
     
-    private var participantsImageFilename: [String] = ["3"]
-    private var participantsNickname: [String]
-    private var participantsDepartment: [String]
-    private var participantsEmail: [String]
-    private var participantsIntroduce: [String]
-    
     enum CodingKeys: String, CodingKey {
-        case idx
+        case idx = "thunder_idx"
         case postingImagesFilename = "contents_image"
-        case title, contents, status
-        case writerImageFilename = "writer_image"
-//        case writerId: String
-        case writerNickname = "writer_nickname"
+        case title, contents
+        case writerImageFilename = "profile_image_url"
+        case writerId = "m_id"
+        case writerNickname = "m_nickname"
         case uploadedTime = "register_time"
         
         case meetingTime = "meet_time"
@@ -58,12 +64,36 @@ struct ThunderDetail: Decodable {
         case address = "detail_location"
         case placeURL = "location_url"
         case totalNum = "total_num"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         
-//        case participantsImageFilename = "participants_image"
-        case participantsNickname = "participants_nickname"
-        case participantsDepartment = "participants_department"
-        case participantsEmail = "participants_mail"
-        case participantsIntroduce = "participants_profile"
-//        case numberOfComments: Int
+        self.idx = try container.decode(Int.self, forKey: .idx)
+        
+        self.title = try container.decode(String.self, forKey: .title)
+        self.contents = try container.decode(String.self, forKey: .contents)
+        self.writerImageFilename = try container.decodeIfPresent(String.self, forKey: .writerImageFilename)
+        self.writerId = try container.decode(String.self, forKey: .writerId)
+        self.writerNickname = try container.decode(String.self, forKey: .writerNickname)
+        self.uploadedTime = try container.decode(String.self, forKey: .uploadedTime)
+        self.meetingTime = try container.decode(String.self, forKey: .meetingTime)
+        // self.numberOfComments = try container.decode(Int.self, forKey: .numberOfComments)
+        
+        self.placeName = try container.decode(String.self, forKey: .placeName)
+        self.address = try container.decode(String.self, forKey: .address)
+        self.placeURL = try container.decode(String.self, forKey: .placeURL)
+        self.totalNum = try container.decode(Int.self, forKey: .totalNum)
+        do {
+            if let decodedFileName = try container.decodeIfPresent(String.self, forKey: .postingImagesFilename) {
+                self.postingImagesFilename = decodedFileName.components(separatedBy: ",")
+            }
+        } catch {
+            if let decodedFileName = try container.decodeIfPresent([String].self, forKey: .postingImagesFilename) {
+                self.postingImagesFilename = decodedFileName
+            } else {
+                self.postingImagesFilename = []
+            }
+        }
     }
 }

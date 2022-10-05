@@ -8,7 +8,7 @@
 import UIKit
 
 struct ThunderDetailViewModel {
-    var thunderDetail: ThunderDetail?
+    var thunderDetailInfo: ThunderDetailInfo?
     
     var isNavigationViewHidden: Bool = true
     
@@ -25,7 +25,7 @@ struct ThunderDetailViewModel {
     }
     
     var remainingDays: String {
-        guard let thunderDetail = thunderDetail else { return "" }
-        return thunderDetail.meetingTime.toRemainingDays()
+        guard let thunderDetailInfo = thunderDetailInfo else { return "" }
+        return thunderDetailInfo.thunder.meetingTime.toRemainingDays()
     }
 }
