@@ -52,8 +52,8 @@ extension String {
 }
 
 extension Date {
-    static func getNowDateTime() -> String {
-        return dateFormatExtension.string(from: Date())
+    static func getFormattedString(from date: Date) -> String {
+        return dateFormatExtension.string(from: date)
     }
     
     private static var dateFormatExtension: DateFormatter {

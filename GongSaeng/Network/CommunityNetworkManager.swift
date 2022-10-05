@@ -75,7 +75,7 @@ final class CommunityNetworkManager: NetworkManager {
         guard let request = getMultipartFormDataRequest(url: "\(SERVER_URL)/community/write_community",
                                                         boundary: boundary) else { return }
         
-        var params: [String: Any] = ["code": code, "title": title, "contents": contents, "time": Date.getNowDateTime()]
+        var params: [String: Any] = ["code": code, "title": title, "contents": contents, "time": Date.currentTime]
         params["category"] = category
         params["price"] = price
         let data = getMultipartFormData(boundary: boundary,
