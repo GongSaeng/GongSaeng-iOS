@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 import SwiftUI
 
-final class ThunderList2TableViewModel {
+final class ThunderListTableViewModel {
     
     // MARK: Properties
     private let disposeBag = DisposeBag()

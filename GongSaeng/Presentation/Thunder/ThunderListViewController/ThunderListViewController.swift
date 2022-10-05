@@ -9,18 +9,18 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ThunderList2ViewController: UIViewController {
+final class ThunderListViewController: UIViewController {
     
     // MARK: Properties
     private let disposeBag = DisposeBag()
     
-    private let viewModel: ThunderList2ViewModel
+    private let viewModel: ThunderListViewModel
     
     private let reuseIdentifier1 = "AvailableThunderCell"
     private let reuseIdentifier2 = "CompletedThunderCell"
     
-    private let topView = ThunderList2TopView()
-    private let tableView = ThunderList2TableView(frame: .zero, style: .grouped)
+    private let topView = ThunderListTopView()
+    private let tableView = ThunderListTableView(frame: .zero, style: .grouped)
     
     private let writeButton: UIButton = {
         let button = UIButton()
@@ -34,7 +34,7 @@ final class ThunderList2ViewController: UIViewController {
     var user: User
     
     // MARK: Lifecycle
-    init(user: User, viewModel: ThunderList2ViewModel = ThunderList2ViewModel()) {
+    init(user: User, viewModel: ThunderListViewModel = ThunderListViewModel()) {
         self.user = user
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -98,8 +98,8 @@ final class ThunderList2ViewController: UIViewController {
 }
 
 // MARK: Bind
-extension ThunderList2ViewController {
-    func bind(_ viewModel: ThunderList2ViewModel) {
+extension ThunderListViewController {
+    func bind(_ viewModel: ThunderListViewModel) {
         // View -> ViewModel
         topView.bind(viewModel.thunderListTopViewModel)
         tableView.bind(viewModel.thunderListTableViewModel)
@@ -122,8 +122,8 @@ extension ThunderList2ViewController {
             .emit(onNext: { [weak self] region in
                 let region = region ?? "서울/서울"
                 let regionArr = region.split(separator: "/").map { String($0)}
-                let viewModel = Locale2ViewModel(metropolis: regionArr[0], region: regionArr[1])
-                let viewController = LocalePopUp2ViewController(viewModel: viewModel)
+                let viewModel = LocaleViewModel(metropolis: regionArr[0], region: regionArr[1])
+                let viewController = LocalePopUpViewController(viewModel: viewModel)
                 viewController.modalPresentationStyle = .overCurrentContext
                 self?.present(viewController, animated: false, completion: nil)
             })
@@ -154,7 +154,7 @@ extension ThunderList2ViewController {
 }
 
 // MARK: UITableViewDelegate
-extension ThunderList2ViewController: UITableViewDelegate {
+extension ThunderListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return nil
     }
@@ -173,7 +173,7 @@ extension ThunderList2ViewController: UITableViewDelegate {
 }
 
 // MARK: MyThunderViewControllerDelegate
-extension ThunderList2ViewController: MyThunderViewControllerDelegate {
+extension ThunderListViewController: MyThunderViewControllerDelegate {
     func showDetailViewController(index: Int) {
         let viewController = ThunderDetailViewController(user: user, index: index)
         viewController.modalPresentationStyle = .fullScreen
