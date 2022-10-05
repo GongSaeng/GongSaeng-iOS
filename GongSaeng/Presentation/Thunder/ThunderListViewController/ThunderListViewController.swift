@@ -1,67 +1,51 @@
 //
-//  ThunderListViewController.swift
+//  ThunderList2ViewController.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2022/02/14.
+//  Created by 정동천 on 2022/03/14.
 //
 
 import UIKit
-import SnapKit
+import RxSwift
+import RxCocoa
 
 final class ThunderListViewController: UIViewController {
     
     // MARK: Properties
+    private let disposeBag = DisposeBag()
+    
+    private let viewModel: ThunderListViewModel
+    
     private let reuseIdentifier1 = "AvailableThunderCell"
     private let reuseIdentifier2 = "CompletedThunderCell"
     
-    private var availableThunders: [Thunder] = []
-//        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-19 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
-//        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-20 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
-//        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-21 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6),
-//        Thunder(index: 0, validStatus: 1, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-03-22 17:00:00", placeName: "온천천", remainingNum: 3, totalNum: 4),
-//        Thunder(index: 0, validStatus: 1, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-03-23 17:30:00", placeName: "동전노래연습장", remainingNum: 2, totalNum: 4),
-//        Thunder(index: 0, validStatus: 1, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-03-24 18:00:00", placeName: "두기보드게임", remainingNum: 4, totalNum: 6)
-//    ]
+    private let topView = ThunderListTopView()
+    private let tableView = ThunderListTableView(frame: .zero, style: .grouped)
     
-    private var completedThunders: [Thunder] = []
-//        Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-25 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
-//        Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
-//        Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6),
-//        Thunder(index: 0, validStatus: 0, title: "간단하게 맥주마셔요~", thumbnailImageName: TEST_IMAGE1_URL, meetingTime: "2022-02-23 17:00:00", placeName: "온천천", remainingNum: 0, totalNum: 4),
-//        Thunder(index: 0, validStatus: 0, title: "같이 코노가요!", thumbnailImageName: TEST_IMAGE2_URL, meetingTime: "2022-02-24 17:30:00", placeName: "동전노래연습장", remainingNum: 0, totalNum: 4),
-//        Thunder(index: 0, validStatus: 0, title: "보드게임 할 사람~~", thumbnailImageName: TEST_IMAGE3_URL, meetingTime: "2022-02-25 18:00:00", placeName: "두기보드게임", remainingNum: 0, totalNum: 6)
-//    ]
-    
-    private lazy var topView: ThunderListTopView = {
-        let topView = ThunderListTopView()
-        topView.delegate = self
-        return topView
-    }()
-    
-    private lazy var writeButton: UIButton = {
-        let button = UIButton(type: .system)
-        let imageView = UIImageView(image: UIImage(named: "write_1"))
-        button.addSubview(imageView)
-        imageView.snp.makeConstraints {
-            $0.centerX.equalToSuperview().offset(1.0)
-            $0.centerY.equalToSuperview().offset(-1.0)
-            $0.width.height.equalTo(25.0)
-        }
-        button.backgroundColor = UIColor(named: "colorPinkishOrange")
+    private let writeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "write_2"), for: .normal)
+        button.tintColor = UIColor(named: "colorPinkishOrange")
+        button.backgroundColor = .white
         button.layer.cornerRadius = 55.0 / 2.0
-        button.addTarget(self, action: #selector(DidTapWriteButton), for: .touchUpInside)
         return button
     }()
     
-    private let tableView = UITableView(frame: .zero, style: .grouped)
+    var user: User
     
     // MARK: Lifecycle
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    init(user: User, viewModel: ThunderListViewModel = ThunderListViewModel()) {
+        self.user = user
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
         
-        configure()
-        configureTableView()
+        attribute()
         layout()
+        bind(viewModel)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,20 +68,11 @@ final class ThunderListViewController: UIViewController {
     }
     
     // MARK: Helpers
-    private func configureTableView() {
-        tableView.register(AvailableThunderCell.self, forCellReuseIdentifier: reuseIdentifier1)
-        tableView.register(CompletedThunderCell.self, forCellReuseIdentifier: reuseIdentifier2)
-        tableView.dataSource = self
-        tableView.delegate = self
-        tableView.separatorInset = UIEdgeInsets(top: 0, left: 18.0, bottom: 0, right: 18.0)
-
-        if #available(iOS 15.0, *) {
-            tableView.sectionHeaderTopPadding = 1.0
-        }
-    }
-    
-    private func configure() {
+    private func attribute() {
         view.backgroundColor = .white
+        tableView.rx
+            .setDelegate(self)
+            .disposed(by: disposeBag)
     }
     
     private func layout() {
@@ -116,114 +91,96 @@ final class ThunderListViewController: UIViewController {
         
         writeButton.snp.makeConstraints {
             $0.width.height.equalTo(55.0)
-            $0.trailing.equalToSuperview().inset(20.0)
-            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-20.0)
+            $0.trailing.equalToSuperview().inset(15.0)
+            $0.bottom.equalTo(view.safeAreaLayoutGuide).offset(-15.0)
         }
     }
 }
 
-// MARK: LocalePopUpViewControllerDelegate
-extension ThunderListViewController: LocalePopUpViewControllerDelegate {
-    func updateTableView() {
-        topView.updateLocale()
-        tableView.reloadData()
+// MARK: Bind
+extension ThunderListViewController {
+    func bind(_ viewModel: ThunderListViewModel) {
+        // View -> ViewModel
+        topView.bind(viewModel.thunderListTopViewModel)
+        tableView.bind(viewModel.thunderListTableViewModel)
+        writeButton.rx.tap
+            .bind(to: viewModel.writeButtonTapped)
+            .disposed(by: disposeBag)
+        
+        
+        // ViewModel -> View
+        viewModel.pushWriteView
+            .emit(onNext: { [weak self] in
+                let viewController = ThunderWriteViewController()
+                // + ViewModel 생성
+                viewController.hidesBottomBarWhenPushed = true
+                self?.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.pushLocaleView
+            .emit(onNext: { [weak self] region in
+                let region = region ?? "서울/서울"
+                let regionArr = region.split(separator: "/").map { String($0)}
+                let viewModel = LocaleViewModel(metropolis: regionArr[0], region: regionArr[1])
+                let viewController = LocalePopUpViewController(viewModel: viewModel)
+                viewController.modalPresentationStyle = .overCurrentContext
+                self?.present(viewController, animated: false, completion: nil)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.pushThunderView
+            .drive(onNext: { [unowned self] index in
+                print("DEBUG: Thunder index -> \(index)")
+                self.tableView.deselectRow(at: IndexPath(index: index), animated: true)
+                let viewController = ThunderDetailViewController(user: self.user, index: index)
+                viewController.modalPresentationStyle = .fullScreen
+                viewController.hidesBottomBarWhenPushed = true
+                self.navigationController?.pushViewController(viewController, animated: true)
+            })
+            .disposed(by: disposeBag)
+        
+        viewModel.pushMyThunderView
+            .emit(onNext: { [weak self] myThunders in
+                print("DEUBG: myThunders -> \(myThunders)")
+                let viewController = MyThunderViewController(myThunders: myThunders)
+                viewController.modalPresentationStyle = .overCurrentContext
+                viewController.delegate = self
+                self?.tabBarController?.tabBar.isHidden = true
+                self?.present(viewController, animated: false, completion: nil)
+            })
+            .disposed(by: disposeBag)
+    }
+}
+
+// MARK: UITableViewDelegate
+extension ThunderListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 8.0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0
     }
 }
 
 // MARK: MyThunderViewControllerDelegate
 extension ThunderListViewController: MyThunderViewControllerDelegate {
     func showDetailViewController(index: Int) {
-        let viewController = ThunderDetailViewController(index: index)
+        let viewController = ThunderDetailViewController(user: user, index: index)
         viewController.modalPresentationStyle = .fullScreen
         navigationController?.pushViewController(viewController, animated: true)
     }
     
     func showTabBar() {
         self.tabBarController?.tabBar.isHidden = false
-    }
-}
-
-// MARK: ThunderListTopViewDelegate
-extension ThunderListViewController: ThunderListTopViewDelegate {
-    func localeSelectionHandler() {
-        let viewController = LocalePopUpViewController()
-        viewController.delegate = self
-        viewController.modalPresentationStyle = .overCurrentContext
-        present(viewController, animated: false, completion: nil)
-    }
-    
-    func lookMyThunderList() {
-        // API 코드 작성
-        let viewController = MyThunderViewController(myThunders: exampleMyThunders)
-        viewController.modalPresentationStyle = .overCurrentContext
-        viewController.delegate = self
-        present(viewController, animated: false, completion: nil)
-    }
-}
-
-// MARK: UITableViewDataSource
-extension ThunderListViewController: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        switch section {
-        case 0:
-            return availableThunders.count
-        case 1:
-            return completedThunders.count
-        default:
-            return 0
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.section {
-        case 0:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier1, for: indexPath) as? AvailableThunderCell else { return AvailableThunderCell() }
-            let thunder = availableThunders[indexPath.row]
-            cell.viewModel = ThunderListCellViewModel(thunder: thunder)
-            return cell
-            
-        case 1:
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: reuseIdentifier2, for: indexPath) as? CompletedThunderCell else { return CompletedThunderCell() }
-            let thunder = completedThunders[indexPath.row]
-            cell.viewModel = ThunderListCellViewModel(thunder: thunder)
-            return cell
-            
-        default:
-            return UITableViewCell()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 8.0
-    }
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return nil
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0
-    }
-}
-
-// MARK: UITableViewDelegate
-extension ThunderListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: false)
-        let viewController = ThunderDetailViewController(index: 35)
-        viewController.modalPresentationStyle = .fullScreen
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 110.0
     }
 }

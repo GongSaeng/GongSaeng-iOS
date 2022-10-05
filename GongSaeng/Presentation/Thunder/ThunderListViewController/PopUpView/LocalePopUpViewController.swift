@@ -1,28 +1,22 @@
 //
-//  LocalePopUpViewController.swift
+//  LocalePopUp2ViewController.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2022/02/14.
+//  Created by 정동천 on 2022/03/21.
 //
 
 import UIKit
 import SnapKit
 
-protocol LocalePopUpViewControllerDelegate: AnyObject {
-    func updateTableView()
-}
-
 final class LocalePopUpViewController: UIViewController {
-    
+
     // MARK: Properties
-    weak var delegate: LocalePopUpViewControllerDelegate?
-    
-    private var viewModel = LocaleViewModel()
-    
+    private var viewModel: LocaleViewModel
+
     private let maxDimmedAlpha: CGFloat = 0.4
     private let defaultWidth: CGFloat = 86.0
     private let defaultHeight: CGFloat = 300.0
-    
+
     private lazy var containerView: UIView = {
         let view = UIView()
         view.backgroundColor = .white
@@ -30,14 +24,14 @@ final class LocalePopUpViewController: UIViewController {
         view.clipsToBounds = true
         return view
     }()
-    
+
     private lazy var dimmedView: UIView = {
         let view = UIView()
         view.backgroundColor = .black
         view.alpha = maxDimmedAlpha
         return view
     }()
-    
+
     private lazy var regionalTableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -48,7 +42,7 @@ final class LocalePopUpViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "RegionalCell")
         return tableView
     }()
-    
+
     private lazy var metropolisTableView: UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
@@ -59,23 +53,33 @@ final class LocalePopUpViewController: UIViewController {
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "MetropolisCell")
         return tableView
     }()
-    
+
     // MARK: Lifecycle
+    init(viewModel: LocaleViewModel) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         configure()
         layout()
         setupTapGestrue()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         animateShowDimmedView()
         animatePresentContainer()
     }
-    
+
     // MARK: Animations
     private func animateShowDimmedView() {
         dimmedView.alpha = 0
@@ -83,7 +87,7 @@ final class LocalePopUpViewController: UIViewController {
             self.dimmedView.alpha = self.maxDimmedAlpha
         }
     }
-    
+
     private func animatePresentContainer() {
         UIView.animate(withDuration: 0.3) {
             self.containerView.snp.updateConstraints {
@@ -92,16 +96,15 @@ final class LocalePopUpViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
-    
-    private func animateDismissView(shouldUpdate: Bool = false) {
-        if shouldUpdate { delegate?.updateTableView() }
+
+    private func animateDismissView() {
         UIView.animate(withDuration: 0.3) {
             self.containerView.snp.updateConstraints {
                 $0.height.equalTo(0)
             }
             self.view.layoutIfNeeded()
         }
-        
+
         dimmedView.alpha = maxDimmedAlpha
         UIView.animate(withDuration: 0.4) {
             self.dimmedView.alpha = 0
@@ -109,7 +112,7 @@ final class LocalePopUpViewController: UIViewController {
             self.dismiss(animated: false)
         }
     }
-    
+
     private func animateShowMetropolis() {
         UIView.animate(withDuration: 0.3) {
             self.regionalTableView.snp.updateConstraints {
@@ -121,12 +124,12 @@ final class LocalePopUpViewController: UIViewController {
             self.view.layoutIfNeeded()
         }
     }
-    
+
     private func setupTapGestrue() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(handleTapGesture))
         dimmedView.addGestureRecognizer(tapGesture)
     }
-    
+
     @objc
     private func handleTapGesture(gesture: UITapGestureRecognizer) {
         animateDismissView()
@@ -136,27 +139,27 @@ final class LocalePopUpViewController: UIViewController {
     private func configure() {
         view.backgroundColor = .clear
     }
-    
+
     private func layout() {
         [dimmedView, containerView].forEach { view.addSubview($0) }
         dimmedView.snp.makeConstraints {
             $0.edges.equalToSuperview()
         }
-        
+
         containerView.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(45.0)
             $0.trailing.equalToSuperview().inset(15.0)
             $0.width.equalTo(defaultWidth)
             $0.height.equalTo(0)
         }
-        
+
         [regionalTableView, metropolisTableView]
             .forEach { containerView.addSubview($0) }
         regionalTableView.snp.makeConstraints {
             $0.top.trailing.bottom.equalToSuperview()
             $0.width.equalTo(defaultWidth)
         }
-        
+
         metropolisTableView.snp.makeConstraints {
             $0.width.height.centerY.equalToSuperview()
             $0.trailing.equalTo(regionalTableView.snp.leading)
@@ -170,15 +173,15 @@ extension LocalePopUpViewController: UITableViewDataSource {
         switch tableView {
         case regionalTableView:
             return viewModel.numOfRegion + 1
-            
+
         case metropolisTableView:
             return viewModel.numOfMetropolis
-            
+
         default:
             return 0
         }
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableView {
         case regionalTableView:
@@ -221,7 +224,7 @@ extension LocalePopUpViewController: UITableViewDataSource {
             cell.contentView.layoutMargins = .zero
             cell.preservesSuperviewLayoutMargins = false
             return cell
-            
+
         case metropolisTableView:
             let cell = tableView.dequeueReusableCell(withIdentifier: "MetropolisCell", for: indexPath)
             var content = cell.defaultContentConfiguration()
@@ -233,11 +236,11 @@ extension LocalePopUpViewController: UITableViewDataSource {
                     .foregroundColor: (indexPath.row == viewModel.selectedMetropolisIndex) ? UIColor.black : UIColor.systemGray])
             cell.contentConfiguration = content
             return cell
-            
+
         default:
             return UITableViewCell()
         }
-        
+
     }
 }
 
@@ -255,23 +258,26 @@ extension LocalePopUpViewController: UITableViewDelegate {
                 animateShowMetropolis()
                 return
             }
+
+            let metropolis = viewModel.metropolis
             let region = viewModel.regionalList[indexPath.row]
-            UserDefaults.standard.setValue(region, forKey: "region")
-            animateDismissView(shouldUpdate: true)
-            
+            let newRegion = "\(metropolis)/\(region)"
+            UserDefaults.standard.setValue(newRegion, forKey: "region")
+            animateDismissView()
+
         case metropolisTableView:
             guard indexPath.row != viewModel.selectedMetropolisIndex else {
                 animateDismissView()
                 return
             }
             let metropolis = viewModel.metropolisList[indexPath.row]
-            UserDefaults.standard.setValue(metropolis, forKey: "region")
-            UserDefaults.standard.setValue(metropolis, forKey: "metropolis")
-            animateDismissView(shouldUpdate: true)
-            
+            let newRegion = "\(metropolis)/\(metropolis)"
+            UserDefaults.standard.setValue(newRegion, forKey: "region")
+            animateDismissView()
+
         default:
             return
         }
-        
+
     }
 }

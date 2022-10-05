@@ -8,7 +8,7 @@
 import Foundation
 import RxSwift
 
-final class ThunderList2Model {
+final class ThunderListModel {
     let network = ThunderNetworkManager()
     
     func fetchThunders(page: Int, by order: SortingOrder, region: String?) -> Single<Result<[Thunder], NetworkError>> {

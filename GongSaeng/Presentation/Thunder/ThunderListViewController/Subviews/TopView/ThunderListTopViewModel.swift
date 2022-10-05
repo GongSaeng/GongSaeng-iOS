@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ThunderList2TopViewModel {
+final class ThunderListTopViewModel {
     
     // View -> ViewModel
     let localeButtonTapped = PublishRelay<Void>()

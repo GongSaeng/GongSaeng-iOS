@@ -1,23 +1,17 @@
 //
-//  AvailableThunderCell.swift
+//  AvailableThunder2Cell.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2022/02/15.
+//  Created by 정동천 on 2022/03/16.
 //
 
 import UIKit
 import SnapKit
 import Kingfisher
 
-class AvailableThunderCell: UITableViewCell {
+final class AvailableThunderCell: UITableViewCell {
     
     // MARK: Properties
-    var viewModel: ThunderListCellViewModel? {
-        didSet {
-            configure()
-        }
-    }
-    
     private let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
@@ -113,18 +107,6 @@ class AvailableThunderCell: UITableViewCell {
     }
     
     // MARK: Helpers
-    private func configure() {
-        guard let viewModel = viewModel else { return }
-        thumbnailImageView.kf.setImage(with: viewModel.thumnailImage)
-        titleLabel.text = viewModel.title
-        timeLabel.text = viewModel.meetingTime
-        placeLabel.text = viewModel.placeName
-        totalNumOfPeopleLabel.text = viewModel.totalNum
-        remainingDaysLabel.font = .systemFont(ofSize: (viewModel.remainingDays == "Today") ? 16.0: 18.0, weight: .heavy)
-        remainingDaysLabel.text = viewModel.remainingDays
-        remainingNumOfPeopleLabel.attributedText = viewModel.remainingNum
-    }
-    
     private func layout() {
         [thumbnailImageView, titleLabel, timeIconImageView, timeLabel,
          placeIconImageView, placeLabel, peopleIconImageView,
@@ -197,3 +179,15 @@ class AvailableThunderCell: UITableViewCell {
     }
 }
 
+extension AvailableThunderCell {
+    func configure(data viewModel: ThunderListCellViewModel) {
+        thumbnailImageView.kf.setImage(with: viewModel.thumnailImage)
+        titleLabel.text = viewModel.title
+        timeLabel.text = viewModel.meetingTime
+        placeLabel.text = viewModel.placeName
+        totalNumOfPeopleLabel.text = viewModel.totalNum
+        remainingDaysLabel.font = .systemFont(ofSize: (viewModel.remainingDays == "Today") ? 16.0: 18.0, weight: .heavy)
+        remainingDaysLabel.text = viewModel.remainingDays
+        remainingNumOfPeopleLabel.attributedText = viewModel.remainingNum
+    }
+}

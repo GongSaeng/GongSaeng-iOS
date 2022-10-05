@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class ThunderList2TopView: UIView {
+final class ThunderListTopView: UIView {
     
     // MARK: Properties
     private let disposeBag = DisposeBag()
@@ -164,8 +164,8 @@ final class ThunderList2TopView: UIView {
 }
 
 // MARK: Bind
-extension ThunderList2TopView {
-    func bind(_ viewModel: ThunderList2TopViewModel) {
+extension ThunderListTopView {
+    func bind(_ viewModel: ThunderListTopViewModel) {
         // View -> ViewModel
         closingOrderButton.rx.tap
             .map { SortingOrder.closingOrder }

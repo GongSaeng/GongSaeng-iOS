@@ -15,14 +15,14 @@ enum SortingOrder: String {
     case registeringOrder
 }
 
-final class ThunderList2ViewModel {
+final class ThunderListViewModel {
     private let disposeBag = DisposeBag()
     
     let myThunders = BehaviorSubject<[MyThunder]?>(value: nil)
     
     // Subview's ViewModel
-    let thunderListTopViewModel = ThunderList2TopViewModel()
-    let thunderListTableViewModel = ThunderList2TableViewModel()
+    let thunderListTopViewModel = ThunderListTopViewModel()
+    let thunderListTableViewModel = ThunderListTableViewModel()
     
     // Related Input
     let currentPage = BehaviorRelay<Int>(value: 1)
@@ -37,7 +37,7 @@ final class ThunderList2ViewModel {
     let pushWriteView: Signal<Void>
     let pushThunderView: Driver<Int>
     
-    init(_ model: ThunderList2Model = ThunderList2Model()) {
+    init(_ model: ThunderListModel = ThunderListModel()) {
         let thundersResult = Observable
             .combineLatest(currentPage, sortingOrder, selectedRegion)
             .distinctUntilChanged { $0 == $1 }
@@ -47,7 +47,7 @@ final class ThunderList2ViewModel {
         
         let thundersValue = thundersResult
             .compactMap(model.getThundersValue)
-        
+        print("얍",thundersValue)
         // 에러 처리
 //        let thundersError = thundersResult
 //            .compactMap(model.getThundersError)

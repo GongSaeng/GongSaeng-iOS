@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-final class ThunderList2TableView: UITableView {
+final class ThunderListTableView: UITableView {
     
     // MARK: Properties
     private let disposeBag = DisposeBag()
@@ -33,8 +33,8 @@ final class ThunderList2TableView: UITableView {
     
     // MARK: Helpers
     private func attribute() {
-        self.register(AvailableThunder2Cell.self, forCellReuseIdentifier: reuseIdentifier1)
-        self.register(CompletedThunder2Cell.self, forCellReuseIdentifier: reuseIdentifier2)
+        self.register(AvailableThunderCell.self, forCellReuseIdentifier: reuseIdentifier1)
+        self.register(CompletedThunderCell.self, forCellReuseIdentifier: reuseIdentifier2)
         self.separatorInset = UIEdgeInsets(top: 0, left: 18.0, bottom: 0, right: 18.0)
         self.rowHeight = 110.0
 
@@ -44,16 +44,16 @@ final class ThunderList2TableView: UITableView {
     }
 }
 
-extension ThunderList2TableView {
-    func bind(_ viewModel: ThunderList2TableViewModel) {
+extension ThunderListTableView {
+    func bind(_ viewModel: ThunderListTableViewModel) {
         let dataSource = RxTableViewSectionedReloadDataSource<ThunderSectionItem> { [weak self] _, tableView, indexPath, data in
             guard let self = self else { return UITableViewCell() }
             if data.validStatus {
-                let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier1, for: indexPath) as! AvailableThunder2Cell
+                let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier1, for: indexPath) as! AvailableThunderCell
                 cell.configure(data: data)
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier2, for: indexPath) as! CompletedThunder2Cell
+                let cell = tableView.dequeueReusableCell(withIdentifier: self.reuseIdentifier2, for: indexPath) as! CompletedThunderCell
                 cell.configure(data: data)
                 cell.selectionStyle = .none
                 return cell

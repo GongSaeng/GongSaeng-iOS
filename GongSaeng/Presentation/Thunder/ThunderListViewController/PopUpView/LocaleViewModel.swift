@@ -1,8 +1,8 @@
 //
-//  LocaleViewModel.swift
+//  Locale2ViewModel.swift
 //  GongSaeng
 //
-//  Created by 정동천 on 2022/03/02.
+//  Created by 정동천 on 2022/03/21.
 //
 
 import UIKit
@@ -10,9 +10,8 @@ import UIKit
 struct LocaleViewModel {
     
     // MARK: Properties
-    private let regionData = "\(UserDefaults.standard.string(forKey: "region") ?? "서울/서울")"
-        .split(separator: "/")
-        .map { String($0) }
+    let metropolis: String
+    let region: String
     
     var regionalTableViewHeight: CGFloat {
         (numOfRegion <= 6) ?
@@ -22,22 +21,16 @@ struct LocaleViewModel {
     var numOfRegion: Int { regionalList.count }
     var numOfMetropolis: Int { metropolisList.count }
     var selectedRegionIndex: Int {
-        let region = regionData[0]
         return regionalList.firstIndex(of: region) ?? 0
     }
     
     var selectedMetropolisIndex: Int {
-        let metropolis = regionData[1]
         return metropolisList.firstIndex(of: metropolis) ?? 0
     }
     
-    var selectedMetropolis: String {
-        return (regionData[0] == regionData[1]) ? regionData[0] : regionData[1]
-    }
-    
     var regionalList: [String] {
-        return [selectedMetropolis] + districts
-            .filter { $0.metropolisList == selectedMetropolis }
+        return [metropolis] + districts
+            .filter { $0.metropolisList == metropolis }
             .flatMap { $0.localList }
     }
     
@@ -51,6 +44,11 @@ struct LocaleViewModel {
               let districtJSON =
                 try? JSONDecoder().decode(DistrictJSON.self, from: jsonData) else { return [] }
         return districtJSON.data
+    }
+    
+    init(metropolis: String, region: String) {
+        self.metropolis = metropolis
+        self.region = region
     }
     
     // MARK: API
