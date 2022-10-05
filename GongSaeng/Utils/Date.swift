@@ -15,6 +15,16 @@ extension String {
         return dateFormatter.date(from: self)
       }
     
+    func convertEnToKo() -> String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "EEE, dd MMM yyyy HH:mm:ss zzz"
+        if let date = dateFormatter.date(from: self + "+9") {
+            return Date.getFormattedString(from: date)
+        }
+        return self
+    }
+    
     func toAnotherDateString(form: String) -> String? {
         let beforeDateFormatter = DateFormatter()
         let afterDateFormatter = DateFormatter()
