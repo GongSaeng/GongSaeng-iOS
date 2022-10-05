@@ -29,13 +29,20 @@ struct ThunderDetailHeaderViewModel {
             .compactMap { $0.profileImageURL }
             .map { URL(string: SERVER_IMAGE_URL + $0) }
     }
+    
+    enum JoinStatus {
+        case owner
+        case canJoin
+        case canCancel
+    }
+    var joinStatus: JoinStatus
 //    var participantIDs: [String] {
 //        return participantsProfile.map { $0.id }
 //    }
     
     var numOfCommentsText: String
      
-    init(thunderDetail: ThunderDetail) {
+    init(user: User, thunderDetail: ThunderDetail) {
         self.idx = thunderDetail.idx
         self.attachedImageURLs = (thunderDetail.postingImagesFilename)
             .map { URL(string: SERVER_IMAGE_URL + $0) }
@@ -57,5 +64,15 @@ struct ThunderDetailHeaderViewModel {
         
         self.participantsProfile = thunderDetail.participantsProfile
         self.numOfCommentsText = "댓글 \(thunderDetail.numberOfComments)"
+        
+        if user.nickname == thunderDetail.writerNickname {
+            self.joinStatus = .owner
+        } else if participantsProfile.contains(where: { profile in
+            user.nickname == profile.nickname
+        }){
+            self.joinStatus = .canCancel
+        } else {
+            self.joinStatus = .canJoin
+        }
     }
 }
