@@ -7,27 +7,33 @@
 
 import Foundation
 
+struct ThunderData: Decodable {
+    var data: [Thunder]
+}
+
 struct Thunder: Decodable {
-    var index: Int
-    var validStatus: Int = 1
-    var title: String
-    var thumbnailImageName: String
-    var meetingTime: String
+    var thumbnailImageName: String?
     var placeName: String
+    var meetingTime: String
+    var index: Int
+    var title: String
     var totalNum: Int
-    var participatnsNum: Int
-    var remainingNum: Int { totalNum - participatnsNum }
+    //var participatnsNum: Int
+    // var remainingNum: Int { totalNum - participatnsNum }
+    var remainingNum: Int = 5
     
     enum CodingKeys: String, CodingKey {
-        case index = "idx"
+        case index = "thunder_idx"
         case title
         case thumbnailImageName = "contents_image"
         case meetingTime = "meet_time"
         case placeName = "location"
         case totalNum = "total_num"
-        case participatnsNum = "participants_num"
-//        case validStatus = "status"
+        // case participatnsNum = "participants_num"
     }
+    
+    // participants_num 주세요
+    // m_id, m_nickname, writer_id, register_time, contents, metapolis, region, detail_location, location_url 빼도 돼요
     
     /*
      1. status 필요

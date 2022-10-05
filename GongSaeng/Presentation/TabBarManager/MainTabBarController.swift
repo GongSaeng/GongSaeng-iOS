@@ -8,7 +8,7 @@
 import UIKit
 
 final class MainTabBarController: UITabBarController {
-
+    var user: User?
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +28,8 @@ final class MainTabBarController: UITabBarController {
     // MARK: Helpers
     private func configureViewController() {
         guard let data = UserDefaults.standard.object(forKey: "loginUser") as? Data, let user = try? PropertyListDecoder().decode(User.self, from: data) else { return }
+        self.user = user
+        
         view.backgroundColor = .white
         
         let storyboard = UIStoryboard(name: "Home", bundle: Bundle.main)
@@ -36,7 +38,7 @@ final class MainTabBarController: UITabBarController {
         homeRootViewController.user = user
         let homeViewController = templateNavigationController(tabTitle: "홈", unselectedImage: UIImage(named: "homeIcon"), selectedIamge: UIImage(named: "homeIconOn"), rootViewController: homeRootViewController)
         
-        let thunderRootViewController = ThunderList2ViewController()
+        let thunderRootViewController = ThunderList2ViewController(user: user)
         let publicViewController = templateNavigationController(tabTitle: "번개", unselectedImage: UIImage(named: "public"), selectedIamge: UIImage(named: "publicOn"), rootViewController: thunderRootViewController)
         
         let communityRootViewController = storyboard.instantiateViewController(withIdentifier: "CommunityViewController") as! CommunityViewController
@@ -72,8 +74,8 @@ final class MainTabBarController: UITabBarController {
 extension MainTabBarController: MyPageViewControllerDelegate {
     func presentThunderView(index: Int) {
         self.selectedIndex = 1 // 번개
-        guard let navigationViewController = self.selectedViewController as? ThunderNavigationViewController else { return }
-        let viewController = ThunderDetailViewController(index: index)
+        guard let navigationViewController = self.selectedViewController as? ThunderNavigationViewController, let user = user else { return }
+        let viewController = ThunderDetailViewController(user: user, index: index)
         viewController.modalPresentationStyle = .fullScreen
         navigationViewController.pushViewController(viewController, animated: true)
     }

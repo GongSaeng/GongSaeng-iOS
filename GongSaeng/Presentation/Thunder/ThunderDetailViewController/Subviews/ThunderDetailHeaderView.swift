@@ -269,6 +269,21 @@ final class ThunderDetailHeaderView: UIView {
         contentsLabel.attributedText = NSAttributedString(string: viewModel.contents, attributes: [.font: UIFont.systemFont(ofSize: 12.0), .foregroundColor: UIColor(white: 0, alpha: 0.8), .paragraphStyle: paragraphStyle])
         
         numberOfCommentsLabel.text = viewModel.numOfCommentsText
+        
+        switch viewModel.joinStatus {
+        case .canJoin:
+            joinButton.setAttributedTitle(NSAttributedString(
+                string: "참여하기",
+                attributes: [.font: UIFont.systemFont(ofSize: 17.0, weight: .heavy),
+                             .foregroundColor: UIColor.white]), for: .normal)
+        case .canCancel:
+            joinButton.setAttributedTitle(NSAttributedString(
+                string: "취소하기",
+                attributes: [.font: UIFont.systemFont(ofSize: 17.0, weight: .heavy),
+                             .foregroundColor: UIColor.white]), for: .normal)
+        case .owner:
+            break
+        }
     }
     
     private func layout() {
@@ -400,16 +415,27 @@ final class ThunderDetailHeaderView: UIView {
             $0.height.equalTo(60.0)
         }
         
-        joinButton.snp.makeConstraints {
-            $0.top.equalTo(partcipantsImageCollectionView.snp.bottom).offset(30.0)
-            $0.leading.trailing.equalToSuperview().inset(18.0)
-            $0.height.equalTo(50.0)
-        }
         
-        horizontalDividingView2.snp.makeConstraints {
-            $0.top.equalTo(joinButton.snp.bottom).offset(30.0)
-            $0.leading.trailing.equalToSuperview()
-            $0.height.equalTo(8.0)
+        switch viewModel.joinStatus {
+        case .canJoin, .canCancel:
+            joinButton.snp.makeConstraints {
+                $0.top.equalTo(partcipantsImageCollectionView.snp.bottom).offset(30.0)
+                $0.leading.trailing.equalToSuperview().inset(18.0)
+                $0.height.equalTo(50.0)
+            }
+            
+            horizontalDividingView2.snp.makeConstraints {
+                $0.top.equalTo(joinButton.snp.bottom).offset(30.0)
+                $0.leading.trailing.equalToSuperview()
+                $0.height.equalTo(8.0)
+            }
+        case .owner:
+            joinButton.removeFromSuperview()
+            horizontalDividingView2.snp.makeConstraints {
+                $0.top.equalTo(partcipantsImageCollectionView.snp.bottom).offset(30.0)
+                $0.leading.trailing.equalToSuperview()
+                $0.height.equalTo(8.0)
+            }
         }
         
         commentImageView.snp.makeConstraints {

@@ -66,8 +66,11 @@ final class ThunderDetailViewController: UIViewController {
         return true
     }
     
+    var user: User
+    
     // MARK: Lifecycle
-    init(index: Int) {
+    init(user: User, index: Int) {
+        self.user = user
         self.thunderIndex = index
         
         super.init(nibName: nil, bundle: nil)
@@ -124,7 +127,7 @@ final class ThunderDetailViewController: UIViewController {
         ThunderNetworkManager.fetchThunderDetail(index: index) { [weak self] thunderDetail in
             guard let self = self else { return }
             self.viewModel.thunderDetail = thunderDetail
-            let headerView = ThunderDetailHeaderView(viewModel: ThunderDetailHeaderViewModel(thunderDetail: thunderDetail))
+            let headerView = ThunderDetailHeaderView(viewModel: ThunderDetailHeaderViewModel(user: self.user, thunderDetail: thunderDetail))
             headerView.delegate = self
             self.tableView.tableHeaderView = headerView
             self.remainingDaysLabel.text = self.viewModel.remainingDays
