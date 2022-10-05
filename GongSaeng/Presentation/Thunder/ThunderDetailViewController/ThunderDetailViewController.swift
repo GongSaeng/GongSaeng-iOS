@@ -124,10 +124,10 @@ final class ThunderDetailViewController: UIViewController {
     
     // MARK: API
     private func fetchThunderDetail(index: Int) {
-        ThunderNetworkManager.fetchThunderDetail(index: index) { [weak self] thunderDetail in
+        ThunderNetworkManager.fetchThunderDetail(index: index) { [weak self] thunderDetailInfo in
             guard let self = self else { return }
-            self.viewModel.thunderDetail = thunderDetail
-            let headerView = ThunderDetailHeaderView(viewModel: ThunderDetailHeaderViewModel(user: self.user, thunderDetail: thunderDetail))
+            self.viewModel.thunderDetailInfo = thunderDetailInfo
+            let headerView = ThunderDetailHeaderView(viewModel: ThunderDetailHeaderViewModel(user: self.user, thunderDetailInfo: thunderDetailInfo))
             headerView.delegate = self
             self.tableView.tableHeaderView = headerView
             self.remainingDaysLabel.text = self.viewModel.remainingDays

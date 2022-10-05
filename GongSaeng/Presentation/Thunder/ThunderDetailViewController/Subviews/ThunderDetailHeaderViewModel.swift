@@ -42,7 +42,9 @@ struct ThunderDetailHeaderViewModel {
     
     var numOfCommentsText: String
      
-    init(user: User, thunderDetail: ThunderDetail) {
+    init(user: User, thunderDetailInfo: ThunderDetailInfo) {
+        let participants = thunderDetailInfo.participants
+        let thunderDetail = thunderDetailInfo.thunder
         self.idx = thunderDetail.idx
         self.attachedImageURLs = (thunderDetail.postingImagesFilename)
             .map { URL(string: SERVER_IMAGE_URL + $0) }
@@ -62,7 +64,13 @@ struct ThunderDetailHeaderViewModel {
         self.totalNumText = "\(thunderDetail.totalNum)명"
         self.contents = thunderDetail.contents
         
-        self.participantsProfile = thunderDetail.participantsProfile
+        self.participantsProfile = participants.map({ participant in
+            Profile(profileImageURL: participant.profileImageURL,
+                    nickname: participant.nickname,
+                    job: participant.department,
+                    email: participant.email ?? "-",
+                    introduce: participant.introduce ?? "-")
+        })
         self.numOfCommentsText = "댓글 \(thunderDetail.numberOfComments)"
         
         if user.nickname == thunderDetail.writerNickname {
