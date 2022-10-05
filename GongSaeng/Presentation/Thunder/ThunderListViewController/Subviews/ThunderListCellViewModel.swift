@@ -21,9 +21,8 @@ struct ThunderListCellViewModel {
     
     init(thunder: Thunder) {
         self.index = thunder.index
-        self.validStatus = (thunder.validStatus == 1)
         self.title = thunder.title
-        self.thumnailImage = URL(string: SERVER_IMAGE_URL + thunder.thumbnailImageName)
+        self.thumnailImage = URL(string: SERVER_IMAGE_URL + (thunder.thumbnailImageName ?? ""))
         self.meetingTime = thunder.meetingTime
             .toAnotherDateString(form: "M월 d일 (E) a h:mm") ?? ""
         self.placeName = thunder.placeName
@@ -39,5 +38,7 @@ struct ThunderListCellViewModel {
             attributes: [.font: UIFont.systemFont(ofSize: 14.0,
                                                   weight: .semibold),
                          .foregroundColor: UIColor.black]))
+        
+        self.validStatus = thunder.remainingNum > 0 // && !remainingDays.hasPrefix("D+")
     }
 }

@@ -18,9 +18,8 @@ struct Thunder: Decodable {
     var index: Int
     var title: String
     var totalNum: Int
-    //var participatnsNum: Int
-    // var remainingNum: Int { totalNum - participatnsNum }
-    var remainingNum: Int = 5
+    var participatnsNum: Int = 0
+    var remainingNum: Int { totalNum - participatnsNum }
     
     enum CodingKeys: String, CodingKey {
         case index = "thunder_idx"
@@ -29,27 +28,32 @@ struct Thunder: Decodable {
         case meetingTime = "meet_time"
         case placeName = "location"
         case totalNum = "total_num"
-        // case participatnsNum = "participants_num"
+        case participatnsNum = "participants"
     }
     
-    // participants_num 주세요
-    // m_id, m_nickname, writer_id, register_time, contents, metapolis, region, detail_location, location_url 빼도 돼요
-    
-    /*
-     1. status 필요
-     2. contents_image가 리스트랑 디테일이 서로 뒤바뀜
-     3. participants_num이 0인데 글쓴이가 일단 포함되니까 1로 해야할 듯
-     4. 리스트 데이터에서
-필요 없는 것들 = [
-     writer_nickname,
-     writer_image,
-     metapoils,
-     contents,
-     register_time,
-     detail_location,
-     location_url,
-     participants_image,
-     region
-     ]
-     */
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.index = try container.decode(Int.self, forKey: .index)
+        
+        self.title = try container.decode(String.self, forKey: .title)
+        self.meetingTime = try container.decode(String.self, forKey: .meetingTime)
+        
+        self.placeName = try container.decode(String.self, forKey: .placeName)
+        self.totalNum = try container.decode(Int.self, forKey: .totalNum)
+        
+        if let decodedParticipants = try container.decodeIfPresent(String.self, forKey: .participatnsNum) {
+            self.participatnsNum = decodedParticipants.components(separatedBy: ",").count
+        }
+        
+        do {
+            if let decodedFileName = try container.decodeIfPresent(String.self, forKey: .thumbnailImageName) {
+                self.thumbnailImageName = decodedFileName.components(separatedBy: ",").first
+            }
+        } catch {
+            if let decodedFileName = try container.decodeIfPresent([String].self, forKey: .thumbnailImageName) {
+                self.thumbnailImageName = decodedFileName.first
+            }
+        }
+    }
 }
