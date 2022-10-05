@@ -32,7 +32,7 @@ extension String {
         beforeDateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         afterDateFormatter.locale = Locale(identifier: "ko_KR")
         afterDateFormatter.dateFormat = form
-        return beforeDateFormatter.date(from: self)
+        return beforeDateFormatter.date(from: self.convertEnToKo())
             .flatMap { afterDateFormatter.string(from: $0) }
     }
     
