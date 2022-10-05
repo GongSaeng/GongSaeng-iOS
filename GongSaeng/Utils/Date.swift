@@ -52,12 +52,17 @@ extension String {
         let dateStr = krDateFormatter.string(from: Date())
         let date = stdDateFormatter.date(from: dateStr)!
 
-        let daysInterval = stdDateFormatter.date(from: self)
+        let daysInterval = stdDateFormatter.date(from: self.convertEnToKo())
             .flatMap { stdOClockDateFormatter.string(from:$0) }
             .flatMap { stdDateFormatter.date(from: $0) }
             .flatMap { Calendar.current.dateComponents([.day], from: date, to: $0).day }
             .flatMap { $0 } ?? 0
-        return daysInterval == 0 ? "Today" : "D-\(daysInterval)"
+        if daysInterval == 0 {
+            return "Today"
+        } else if daysInterval < 0 {
+            return "D+\(-daysInterval)"
+        }
+        return "D-\(daysInterval)"
     }
 }
 
