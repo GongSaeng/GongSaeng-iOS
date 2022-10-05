@@ -131,29 +131,28 @@ final class ThunderNetworkManager: NetworkManager {
         let regionData = region.split(separator: "/").map { String($0) }
         let metapolis = regionData[0]
         let region = regionData[1]
-//        let order = (order == .registeringOrder) ? "meet" : "??"
+        let order = (order == .registeringOrder) ? "registering" : "closing"
         
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/thunder/list/\(page)?")
-        urlComponents?.queryItems = [
-            URLQueryItem(name: "order", value: "meet"),
-            URLQueryItem(name: "region", value: region),
-            URLQueryItem(name: "metapolis", value: metapolis),
-        ]
-        guard let url = urlComponents?.url else { return .just(.failure(.invalidURL)) }
-        let request = NSMutableURLRequest(url: url)
-        request.httpMethod = "GET"
+        guard let request = ThunderNetworkManager.getGETRequest(url: "\(SERVER_URL)/thunder?",
+                                          data: ["order": order,
+                                                 "region": region,
+                                                 "metapolis": metapolis]) else {
+            return .just(.failure(.invalidURL))
+        }
         
         return session.rx.data(request: request as URLRequest)
             .map { data -> Result<[Thunder], NetworkError> in
+                print("번개",String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\n", with: "\n"))
                 do {
-                    let thunders = try JSONDecoder().decode([Thunder].self, from: data)
-                    return .success(thunders)
+                    let thunders = try JSONDecoder().decode(ThunderData.self, from: data)
+                    print("번개", thunders)
+                    return .success(thunders.data)
                 } catch {
                     return .failure(.invalidJSON)
                 }
             }
-            .catch { _ in
-                    .just(.failure(.networkError))
+            .catch { error in
+                return .just(.failure(.networkError))
             }
             .asSingle()
     }
