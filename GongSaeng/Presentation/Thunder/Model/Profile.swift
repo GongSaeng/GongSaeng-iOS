@@ -8,6 +8,7 @@
 import Foundation
 
 struct Profile: Decodable {
+    var id: String
     var profileImageURL: String
     var nickname: String
     var job: String
