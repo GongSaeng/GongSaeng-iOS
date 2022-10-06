@@ -71,6 +71,13 @@ struct ThunderDetailHeaderViewModel {
                     email: participant.email ?? "-",
                     introduce: participant.introduce ?? "-")
         })
+        
+        if let thunderOwnerIndex = participantsProfile.firstIndex(where: { $0.nickname == thunderDetail.writerNickname }) {
+            let thunderOwner = self.participantsProfile[thunderOwnerIndex]
+            self.participantsProfile.remove(at: thunderOwnerIndex)
+            self.participantsProfile.insert(thunderOwner, at: 0)
+        }
+        
         self.numOfCommentsText = "댓글 \(thunderDetail.numberOfComments)"
         
         if user.nickname == thunderDetail.writerNickname {
