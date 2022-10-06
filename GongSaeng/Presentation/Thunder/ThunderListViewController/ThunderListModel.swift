@@ -30,11 +30,11 @@ final class ThunderListModel {
         return value.map { ThunderListCellViewModel(thunder: $0) }
     }
     
-    func fetchMyThunders() -> Single<Result<[MyThunder], NetworkError>> {
+    func fetchMyThunders() -> Single<Result<[ThunderDetailInfo], NetworkError>> {
         return ThunderNetworkManager.fetchMyThunders()
     }
     
-    func getMyThundersValue(_ result: Result<[MyThunder], NetworkError>) -> [MyThunder]? {
+    func getMyThundersValue(_ result: Result<[ThunderDetailInfo], NetworkError>) -> [ThunderDetailInfo]? {
         guard case .success(let value) = result else { return nil }
         return value
     }

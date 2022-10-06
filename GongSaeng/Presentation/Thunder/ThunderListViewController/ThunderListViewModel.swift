@@ -18,7 +18,7 @@ enum SortingOrder: String {
 final class ThunderListViewModel {
     private let disposeBag = DisposeBag()
     
-    let myThunders = BehaviorSubject<[MyThunder]?>(value: nil)
+    let myThunders = BehaviorSubject<[ThunderDetailInfo]?>(value: nil)
     
     // Subview's ViewModel
     let thunderListTopViewModel = ThunderListTopViewModel()
@@ -33,7 +33,7 @@ final class ThunderListViewModel {
     
     // Related Output
     let pushLocaleView: Signal<String?>
-    let pushMyThunderView: Signal<[MyThunder]>
+    let pushMyThunderView: Signal<[ThunderDetailInfo]>
     let pushWriteView: Signal<Void>
     let pushThunderView: Driver<Int>
     
