@@ -17,6 +17,7 @@ struct ThunderDetailInfo: Decodable {
 }
 
 struct ParticipantProfile: Decodable {
+    var id: String
     var profileImageURL: String
     var nickname: String
     var department: String
@@ -24,6 +25,7 @@ struct ParticipantProfile: Decodable {
     var introduce: String?
     
     enum CodingKeys: String, CodingKey {
+        case id = "m_id"
         case profileImageURL = "profile_image_url"
         case nickname = "m_nickname"
         case department = "m_department"

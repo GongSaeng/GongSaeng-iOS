@@ -50,7 +50,7 @@ struct ThunderDetailHeaderViewModel {
             .map { URL(string: SERVER_IMAGE_URL + $0) }
         self.title = thunderDetail.title
         self.writerImageURL = thunderDetail.writerImageFilename
-            .flatMap { URL(string: $0) }
+            .flatMap { URL(string: SERVER_IMAGE_URL + $0) }
         self.writerNickname = thunderDetail.writerNickname
         self.uploadedTime = thunderDetail.uploadedTime
             .toAnotherDateString(form: "M월 d일 HH:mm") ?? ""
@@ -65,12 +65,20 @@ struct ThunderDetailHeaderViewModel {
         self.contents = thunderDetail.contents
         
         self.participantsProfile = participants.map({ participant in
-            Profile(profileImageURL: participant.profileImageURL,
+            Profile(id: participant.id,
+                    profileImageURL: participant.profileImageURL,
                     nickname: participant.nickname,
                     job: participant.department,
                     email: participant.email ?? "-",
                     introduce: participant.introduce ?? "-")
         })
+        
+        if let thunderOwnerIndex = participantsProfile.firstIndex(where: { $0.id == thunderDetail.writerId }) {
+            let thunderOwner = self.participantsProfile[thunderOwnerIndex]
+            self.participantsProfile.remove(at: thunderOwnerIndex)
+            self.participantsProfile.insert(thunderOwner, at: 0)
+        }
+        
         self.numOfCommentsText = "댓글 \(thunderDetail.numberOfComments)"
         
         if user.nickname == thunderDetail.writerNickname {
