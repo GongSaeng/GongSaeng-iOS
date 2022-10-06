@@ -290,6 +290,10 @@ extension ThunderDetailViewController: ThunderDetailHeaderViewDelegate {
             self?.spaceView.snp.updateConstraints { $0.height.equalTo(0) }
         }
     }
+    
+    func refresh() {
+        fetchThunderDetail(index: self.thunderIndex)
+    }
 }
 
 // MARK: CommentInputAccessoryViewDelegate

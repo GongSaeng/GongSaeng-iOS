@@ -12,6 +12,7 @@ import Kingfisher
 protocol ThunderDetailHeaderViewDelegate: AnyObject {
     func showFullImages(imageUrlList: [URL], page: Int)
     func showUserProfile(index: Int, profiles: [Profile])
+    func refresh()
 }
 
 final class ThunderDetailHeaderView: UIView {
