@@ -50,7 +50,7 @@ struct ThunderDetailHeaderViewModel {
             .map { URL(string: SERVER_IMAGE_URL + $0) }
         self.title = thunderDetail.title
         self.writerImageURL = thunderDetail.writerImageFilename
-            .flatMap { URL(string: $0) }
+            .flatMap { URL(string: SERVER_IMAGE_URL + $0) }
         self.writerNickname = thunderDetail.writerNickname
         self.uploadedTime = thunderDetail.uploadedTime
             .toAnotherDateString(form: "M월 d일 HH:mm") ?? ""
