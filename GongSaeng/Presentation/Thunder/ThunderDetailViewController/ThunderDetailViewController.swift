@@ -140,7 +140,7 @@ final class ThunderDetailViewController: UIViewController {
     private func fetchComments(of page: Int, shouldRefresh: Bool = false) {
         guard fetchedPageList.firstIndex(of: currentPage) == nil else { return }
         fetchedPageList.append(page)
-        CommunityNetworkManager.fetchComments(page: page, index: thunderIndex) { [weak self] comments in
+        ThunderNetworkManager.fetchComments(page: page, index: thunderIndex) { [weak self] comments in
             guard let self = self else { return }
             if shouldRefresh {
                 self.commentList = comments
@@ -296,7 +296,7 @@ extension ThunderDetailViewController: ThunderDetailHeaderViewDelegate {
 extension ThunderDetailViewController: CommentInputAccessoryViewDelegate {
     func transferComment(_ contents: String) {
         print("DEBUG: Comment contents -> \(contents)")
-        CommunityNetworkManager.postComment(index: thunderIndex, contents: contents) { [weak self] numOfComments in
+        ThunderNetworkManager.postComment(index: thunderIndex, contents: contents) { [weak self] numOfComments in
             print("DEBUG: numOfComments -> \(numOfComments)")
             guard let self = self, let _ = numOfComments else {
                 print("DEBUG: Posting comment is failed..")

@@ -243,15 +243,6 @@ final class ThunderNetworkManager: NetworkManager {
         dataTask.resume()
     }
     
-    static func fetchComments(index: Int, completion: @escaping([Comment]) -> Void) {
-        // 네트워크 로직
-        DispatchQueue.global().asyncAfter(deadline: .now() + 0.2) { // 임시 더미데이터
-            DispatchQueue.main.async {
-                completion(exampleComments)
-            }
-        }
-    }
-    
     // TODO: Should replace to real
     static func joinThunder(index: Int, completion: @escaping(Bool) -> Void) {
         guard let request = getPOSTRequest(url: "\(SERVER_URL)/thunder/join",
@@ -276,4 +267,67 @@ final class ThunderNetworkManager: NetworkManager {
         }
         dataTask.resume()
     }
+    
+    static func fetchComments(page: Int, index: Int, completion: @escaping([Comment]) -> Void) {
+        let urlComponents = URLComponents(string: "\(SERVER_URL)/thunder/\(index)/comment")
+        guard let url = urlComponents?.url else { return }
+     
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data else {
+                print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                return
+            }
+            
+            guard let comments = try? JSONDecoder().decode(ThunderComment.self, from: data) else {
+                print("ERROR: comments decoding failed ->", String(data: data, encoding: .utf8) ?? "")
+                return
+            }
+            
+            print("DEBUG: comments index ->", comments)
+            
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: Network succeded")
+                completion(comments.data)
+            default:
+                handleError(response: response)
+            }
+        }
+        
+        dataTask.resume()
+    }
+    
+    static func postComment(index: Int, contents: String, completion: @escaping(Bool?) -> Void) {
+        guard let request = getPOSTRequest(url: "\(SERVER_URL)/thunder/\(index)/comment",
+                                           data: ["contents": contents] as Dictionary<String, Any>) else { return }
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data else {
+                print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                return
+            }
+            
+            guard let result = String(data: data, encoding: .utf8) else {
+                print("ERROR: post comment result decoding failed ->", String(data: data, encoding: .utf8) ?? "")
+                return
+            }
+    
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: Comment updated -> \(result == "true")")
+                completion(result == "true")
+            default:
+                handleError(response: response)
+            }
+        }
+        dataTask.resume()
+    }
+    
 }
