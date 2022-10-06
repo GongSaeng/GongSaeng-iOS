@@ -147,10 +147,9 @@ final class ThunderNetworkManager: NetworkManager {
         dataTask.resume()
     }
     
-    // TODO: Should replace to real
     static func joinThunder(index: Int, completion: @escaping(Bool) -> Void) {
-        guard let request = getPOSTRequest(url: "\(SERVER_URL)/thunder/join",
-                                           data: ["idx": index] as Dictionary<String, Any>) else { return }
+        guard let request = getPOSTRequest(url: "\(SERVER_URL)/thunder/\(index)/participants",
+                                           data: [:]) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
@@ -159,11 +158,33 @@ final class ThunderNetworkManager: NetworkManager {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                       return
                   }
-            print(String(data: data, encoding: .utf8))
             switch response.statusCode {
             case (200...299):
                 print("DEBUG: joinThunder() data -> \(String(data: data, encoding: .utf8)!)")
-                let isSucceded = String(data: data, encoding: .utf8) == "true" ? true : false
+                let isSucceded = (String(data: data, encoding: .utf8) ?? "").contains("true")
+                completion(isSucceded)
+            default:
+                handleError(response: response)
+            }
+        }
+        dataTask.resume()
+    }
+    
+    static func cancelThunder(index: Int, completion: @escaping(Bool) -> Void) {
+        guard let request = getDELETERequest(url: "\(SERVER_URL)/thunder/\(index)/participants",
+                                             data: [:]) else { return }
+        
+        let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data else {
+                      print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                      return
+                  }
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: joinThunder() data -> \(String(data: data, encoding: .utf8)!)")
+                let isSucceded = (String(data: data, encoding: .utf8) ?? "").contains("true")
                 completion(isSucceded)
             default:
                 handleError(response: response)

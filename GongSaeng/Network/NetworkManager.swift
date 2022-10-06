@@ -56,6 +56,17 @@ extension NetworkManager {
         request.httpBody = jsonData
         return request
     }
+    
+    static func getDELETERequest(url: String, data: Dictionary<String, Any>) -> URLRequest? {
+        guard let url = URL(string: url) else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "DELETE"
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        
+        let jsonData = try! JSONSerialization.data(withJSONObject: data, options: [])
+        request.httpBody = jsonData
+        return request
+    }
 }
 
 extension NetworkManager {
