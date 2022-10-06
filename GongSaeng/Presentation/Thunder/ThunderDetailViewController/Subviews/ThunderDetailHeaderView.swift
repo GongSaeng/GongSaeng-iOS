@@ -477,7 +477,7 @@ extension ThunderDetailHeaderView: UICollectionViewDataSource {
             return viewModel.attachedImageURLs.count
             
         case partcipantsImageCollectionView:
-            return viewModel.totalNumber
+            return viewModel.participantsProfile.count
             
         default:
             return 0
