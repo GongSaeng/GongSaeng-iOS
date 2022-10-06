@@ -195,6 +195,7 @@
 		A7FAB14A27C643DE00B736AB /* ThunderDetailHeaderViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FAB14927C643DE00B736AB /* ThunderDetailHeaderViewModel.swift */; };
 		A7FAB14C27C64E8500B736AB /* ThunderDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FAB14B27C64E8500B736AB /* ThunderDetail.swift */; };
 		A7FAB14E27C75E2F00B736AB /* ThunderDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FAB14D27C75E2F00B736AB /* ThunderDetailViewModel.swift */; };
+		AF16896C28EEECE5007833D7 /* ThunderComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF16896B28EEECE5007833D7 /* ThunderComment.swift */; };
 		AFADB94B28EC54E500368369 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFADB94A28EC54E500368369 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -382,6 +383,7 @@
 		A7FAB14927C643DE00B736AB /* ThunderDetailHeaderViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetailHeaderViewModel.swift; sourceTree = "<group>"; };
 		A7FAB14B27C64E8500B736AB /* ThunderDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetail.swift; sourceTree = "<group>"; };
 		A7FAB14D27C75E2F00B736AB /* ThunderDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetailViewModel.swift; sourceTree = "<group>"; };
+		AF16896B28EEECE5007833D7 /* ThunderComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderComment.swift; sourceTree = "<group>"; };
 		AFADB94A28EC54E500368369 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -963,6 +965,7 @@
 				A77A743127CD2F2100295730 /* Profile.swift */,
 				A719D09227CEFB45000A9388 /* District.swift */,
 				A719D09E27CFC1B6000A9388 /* MyThunder.swift */,
+				AF16896B28EEECE5007833D7 /* ThunderComment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1177,6 +1180,7 @@
 				A7A9B3D52754D200009B22DF /* GongSaengTalkListCellViewModel.swift in Sources */,
 				A73BC91F278DA671003FF406 /* WriteViewController.swift in Sources */,
 				A7F9DCEF27759E0C005E9113 /* MateCellViewModel.swift in Sources */,
+				AF16896C28EEECE5007833D7 /* ThunderComment.swift in Sources */,
 				A784FAE9278EA19D00CC4BF7 /* ImageInputAccessoryView.swift in Sources */,
 				A781C2FC2745238C004C9D3F /* ImmedationTableViewController.swift in Sources */,
 				3DAFCBA226626176008E9803 /* UIView.swift in Sources */,
