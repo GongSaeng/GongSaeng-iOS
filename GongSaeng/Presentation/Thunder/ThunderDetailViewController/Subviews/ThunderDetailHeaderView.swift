@@ -218,12 +218,27 @@ final class ThunderDetailHeaderView: UIView {
     // MARK: Actions
     @objc
     private func didTapJoinButton() {
-        ThunderNetworkManager.joinThunder(index: viewModel.idx) { isSuccess in
-            if isSuccess {
-                
-            } else {
-                
+        switch viewModel.joinStatus {
+        case .canJoin:
+            ThunderNetworkManager.joinThunder(index: viewModel.idx) { [unowned self] isSuccess in
+                if isSuccess {
+                    print("DEBUG: Join succeded")
+                    self.delegate?.refresh()
+                } else {
+                    
+                }
             }
+        case .canCancel:
+            ThunderNetworkManager.cancelThunder(index: viewModel.idx) { [unowned self] isSuccess in
+                if isSuccess {
+                    print("DEBUG: Cancel succeded")
+                    self.delegate?.refresh()
+                } else {
+                    
+                }
+            }
+        case .owner:
+            break
         }
     }
     
