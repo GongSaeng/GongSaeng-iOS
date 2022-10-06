@@ -19,7 +19,7 @@ final class MyThunderViewController: UIViewController {
     // MARK: Properties
     weak var delegate: MyThunderViewControllerDelegate?
     
-    var myThunders: [MyThunder]
+    var myThunders: [ThunderDetailInfo]
     private var viewModel: MyThunderViewModel
     
     private let maxDimmedAlpha: CGFloat = 0.6
@@ -226,7 +226,7 @@ final class MyThunderViewController: UIViewController {
     }()
     
     // MARK: Lifecycle
-    init(myThunders: [MyThunder]) {
+    init(myThunders: [ThunderDetailInfo]) {
         self.myThunders = myThunders
         self.viewModel = MyThunderViewModel(myThunders: myThunders)
         
