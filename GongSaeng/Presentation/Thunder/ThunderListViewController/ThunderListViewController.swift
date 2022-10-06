@@ -141,13 +141,23 @@ extension ThunderListViewController {
             .disposed(by: disposeBag)
         
         viewModel.pushMyThunderView
-            .emit(onNext: { [weak self] myThunders in
+            .emit(onNext: { [unowned self] myThunders in
                 print("DEUBG: myThunders -> \(myThunders)")
-                let viewController = MyThunderViewController(myThunders: myThunders)
-                viewController.modalPresentationStyle = .overCurrentContext
-                viewController.delegate = self
-                self?.tabBarController?.tabBar.isHidden = true
-                self?.present(viewController, animated: false, completion: nil)
+                if myThunders.isEmpty {
+                    DispatchQueue.main.async {
+                        self.showLoader(false)
+                        let popUpContents = "참여한 번개가 없습니다."
+                        let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
+                        viewController.modalPresentationStyle = .overCurrentContext
+                        self.present(viewController, animated: false, completion: nil)
+                    }
+                } else {
+                    let viewController = MyThunderViewController(myThunders: myThunders)
+                    viewController.modalPresentationStyle = .overCurrentContext
+                    viewController.delegate = self
+                    self.tabBarController?.tabBar.isHidden = true
+                    self.present(viewController, animated: false, completion: nil)
+                }
             })
             .disposed(by: disposeBag)
     }
