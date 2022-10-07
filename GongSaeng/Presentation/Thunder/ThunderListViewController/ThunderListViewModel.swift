@@ -18,8 +18,6 @@ enum SortingOrder: String {
 final class ThunderListViewModel {
     private let disposeBag = DisposeBag()
     
-    let myThunders = BehaviorSubject<[ThunderDetailInfo]?>(value: nil)
-    
     // Subview's ViewModel
     let thunderListTopViewModel = ThunderListTopViewModel()
     let thunderListTableViewModel = ThunderListTableViewModel()
@@ -57,16 +55,6 @@ final class ThunderListViewModel {
             .bind(to: thunderListTableViewModel.thunderCellData)
             .disposed(by: disposeBag)
 
-        let myThundersResult = model.fetchMyThunders()
-        let myThundersValue = myThundersResult
-            .map(model.getMyThundersValue)
-            .asObservable()
-        
-        myThundersValue
-            .bind(to: myThunders)
-            .disposed(by: disposeBag)
-            
-        
         // UserDefaults(Singletone) -> ViewModel
         UserDefaults.standard.rx
             .observe(String.self, "region")
@@ -106,7 +94,10 @@ final class ThunderListViewModel {
         self.pushThunderView = thunderListTableViewModel.selectedIndex
         
         self.pushMyThunderView = myThunderButtonTapped
-            .withLatestFrom(myThunders)
+            .flatMap {
+                model.fetchMyThunders()
+                    .map(model.getMyThundersValue)
+            }
             .compactMap { $0 }
             .asSignal(onErrorJustReturn: [])
     }
