@@ -9,8 +9,10 @@ import Foundation
 
 struct MyThunderViewModel {
     private var myThunders: [ThunderDetailInfo]
+    private var isCanceledArr: [Bool]
     var index: Int = 0
     
+    var isCanceled: Bool { isCanceledArr[index] }
     var numOfMyThunder: Int { myThunders.count }
     var numOfParticipants: Int { participantsImageURL.count }
     
@@ -48,5 +50,10 @@ struct MyThunderViewModel {
     
     init(myThunders: [ThunderDetailInfo]) {
         self.myThunders = myThunders
+        self.isCanceledArr = [Bool](repeating: false, count: myThunders.count)
+    }
+    
+    mutating func setCancel() {
+        isCanceledArr[index] = true
     }
 }
