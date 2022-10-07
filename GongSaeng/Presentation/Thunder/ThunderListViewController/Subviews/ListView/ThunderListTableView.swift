@@ -41,11 +41,35 @@ final class ThunderListTableView: UITableView {
         if #available(iOS 15.0, *) {
             self.sectionHeaderTopPadding = 1.0
         }
+        
+        configureRefreshControl()
     }
+    
+    private func configureRefreshControl() {
+        refreshControl = UIRefreshControl()
+        refreshControl?.backgroundColor = .white
+        refreshControl?.tintColor = .darkGray
+        refreshControl?.attributedTitle =  NSAttributedString(string: "당겨서 새로고침")
+    }
+    
 }
 
 extension ThunderListTableView {
     func bind(_ viewModel: ThunderListTableViewModel) {
+        refreshControl?.rx.controlEvent(.valueChanged)
+            .map { true }
+            .bind(to: viewModel.thunderListRefreshNeeded)
+            .disposed(by: disposeBag)
+        
+        viewModel.thunderCellData
+            .subscribe(onNext: { _ in
+                DispatchQueue.main.async {
+                    self.reloadData()
+                    self.refreshControl?.endRefreshing()
+                }
+            })
+            .disposed(by: disposeBag)
+        
         let dataSource = RxTableViewSectionedReloadDataSource<ThunderSectionItem> { [weak self] _, tableView, indexPath, data in
             guard let self = self else { return UITableViewCell() }
             if data.validStatus {
