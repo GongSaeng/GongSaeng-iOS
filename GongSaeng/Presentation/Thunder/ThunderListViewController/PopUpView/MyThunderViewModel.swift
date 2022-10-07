@@ -12,6 +12,7 @@ struct MyThunderViewModel {
     private var isCanceledArr: [Bool]
     var index: Int = 0
     
+    var isOwner: Bool { myThunders[index].thunder.writerId == user?.id }
     var isCanceled: Bool { isCanceledArr[index] }
     var numOfMyThunder: Int { myThunders.count }
     var numOfParticipants: Int { participantsImageURL.count }
@@ -48,9 +49,14 @@ struct MyThunderViewModel {
     var isPreviousButtonEnabled: Bool { shouldShowButtons && index > 0 }
     var isNextButtonEnabled: Bool { shouldShowButtons && index < numOfMyThunder - 1 }
     
+    var user: User?
+    
     init(myThunders: [ThunderDetailInfo]) {
         self.myThunders = myThunders
         self.isCanceledArr = [Bool](repeating: false, count: myThunders.count)
+        
+        guard let data = UserDefaults.standard.object(forKey: "loginUser") as? Data, let user = try? PropertyListDecoder().decode(User.self, from: data) else { return }
+        self.user = user
     }
     
     mutating func setCancel() {
