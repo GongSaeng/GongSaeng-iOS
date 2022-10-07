@@ -533,8 +533,8 @@ extension MyThunderViewController: UICollectionViewDataSource {
             return viewModel.numOfMyThunder
             
         case partcipantsImageCollectionView:
-            print("DEBUG: viewModel.totalNum \(viewModel.totalNum)")
-            return viewModel.totalNum
+            print("DEBUG: viewModel.numOfParticipants \(viewModel.numOfParticipants)")
+            return viewModel.numOfParticipants
             
         default:
             return 0
