@@ -101,7 +101,7 @@ final class MyThunderViewController: UIViewController {
             attributes: [.font: UIFont.systemFont(ofSize: 17.0, weight: .heavy),
                          .foregroundColor: UIColor.white]), for: .normal)
         button.layer.cornerRadius = 8.0
-//        button.addTarget(self, action: #selector(<#T##@objc method#>), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapCancelButton), for: .touchUpInside)
         return button
     }()
     
@@ -327,6 +327,43 @@ final class MyThunderViewController: UIViewController {
     }
     
     @objc
+    private func didTapCancelButton() {
+        if viewModel.isOwner {
+            DispatchQueue.main.async {
+                self.showLoader(false)
+                let popUpContents = "해당 번개의 작성자이므로 취소하실 수 없습니다."
+                let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
+                viewController.modalPresentationStyle = .overCurrentContext
+                self.present(viewController, animated: false, completion: nil)
+            }
+        } else if !viewModel.isCanceled {
+            ThunderNetworkManager.cancelThunder(index: viewModel.postIndex) { [unowned self] isSuccess in
+                if isSuccess {
+                    print("DEBUG: Cancel succeded")
+                    viewModel.setCancel()
+                    DispatchQueue.main.async {
+                        self.showLoader(false)
+                        let popUpContents = "취소했습니다."
+                        let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
+                        viewController.modalPresentationStyle = .overCurrentContext
+                        self.present(viewController, animated: false, completion: nil)
+                    }
+                } else {
+                    
+                }
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.showLoader(false)
+                let popUpContents = "이미 취소한 번개 입니다."
+                let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
+                viewController.modalPresentationStyle = .overCurrentContext
+                self.present(viewController, animated: false, completion: nil)
+            }
+        }
+    }
+    
+    @objc
     private func handlePanGesture(gesture: UIPanGestureRecognizer) {
         let translation = gesture.translation(in: view)
         let newHeight = currentContainerHeight - translation.y
@@ -533,8 +570,8 @@ extension MyThunderViewController: UICollectionViewDataSource {
             return viewModel.numOfMyThunder
             
         case partcipantsImageCollectionView:
-            print("DEBUG: viewModel.totalNum \(viewModel.totalNum)")
-            return viewModel.totalNum
+            print("DEBUG: viewModel.numOfParticipants \(viewModel.numOfParticipants)")
+            return viewModel.numOfParticipants
             
         default:
             return 0
