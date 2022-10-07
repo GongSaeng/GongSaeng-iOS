@@ -328,7 +328,15 @@ final class MyThunderViewController: UIViewController {
     
     @objc
     private func didTapCancelButton() {
-        if !viewModel.isCanceled {
+        if viewModel.isOwner {
+            DispatchQueue.main.async {
+                self.showLoader(false)
+                let popUpContents = "해당 번개의 작성자이므로 취소하실 수 없습니다."
+                let viewController = PopUpViewController(buttonType: .cancel, contents: popUpContents)
+                viewController.modalPresentationStyle = .overCurrentContext
+                self.present(viewController, animated: false, completion: nil)
+            }
+        } else if !viewModel.isCanceled {
             ThunderNetworkManager.cancelThunder(index: viewModel.postIndex) { [unowned self] isSuccess in
                 if isSuccess {
                     print("DEBUG: Cancel succeded")
