@@ -95,7 +95,7 @@ extension ThunderListTableView {
                 return indexPath.row
             }
             .withLatestFrom(viewModel.thunderCellData) { row, viewModels -> Int in
-                return viewModels[row].index
+                return viewModels.filter({ $0.validStatus })[row].index
             }
             .bind(to: viewModel.itemSelected)
             .disposed(by: disposeBag)
