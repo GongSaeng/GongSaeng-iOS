@@ -13,6 +13,7 @@ final class ThunderListTableViewModel {
     
     // MARK: Properties
     private let disposeBag = DisposeBag()
+    let thunderListRefreshNeeded = BehaviorRelay<Bool>(value: true)
     let thunderCellData = PublishSubject<[ThunderListCellViewModel]>()
     let tableViewItems: Driver<[ThunderSectionItem]>
     let itemSelected = PublishRelay<Int>()
