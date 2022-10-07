@@ -37,7 +37,7 @@ struct MyThunderViewModel {
     
     var participantsImageURL: [URL?] {
         myThunders[index].participants
-            .map { URL(string: $0.profileImageURL) }
+            .map { URL(string: SERVER_IMAGE_URL + $0.profileImageURL) }
     }
     
     var numberOfComments: Int { myThunders[index].thunder.numberOfComments }
