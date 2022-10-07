@@ -37,8 +37,12 @@ final class ThunderListViewModel {
     
     init(_ model: ThunderListModel = ThunderListModel()) {
         let thundersResult = Observable
-            .combineLatest(currentPage, sortingOrder, selectedRegion)
-            .distinctUntilChanged { $0 == $1 }
+            .combineLatest(thunderListTableViewModel.thunderListRefreshNeeded,
+                           Observable.combineLatest(currentPage, sortingOrder, selectedRegion)
+                .distinctUntilChanged { $0 == $1 })
+            .map({
+                $0.1
+            })
             .map(model.fetchThunders)
             .flatMap { $0 }
             .share()
