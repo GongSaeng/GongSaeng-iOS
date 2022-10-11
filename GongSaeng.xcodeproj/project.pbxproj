@@ -199,6 +199,7 @@
 		AFADB94B28EC54E500368369 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFADB94A28EC54E500368369 /* NetworkManager.swift */; };
 		AFE3A63028F5722B005C1EFB /* MyWritten.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE3A62F28F5722B005C1EFB /* MyWritten.swift */; };
 		AFE3A63228F57413005C1EFB /* MyComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE3A63128F57413005C1EFB /* MyComment.swift */; };
+		AFE3A63428F576B2005C1EFB /* MyCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE3A63328F576B2005C1EFB /* MyCommentCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -389,6 +390,7 @@
 		AFADB94A28EC54E500368369 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		AFE3A62F28F5722B005C1EFB /* MyWritten.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWritten.swift; sourceTree = "<group>"; };
 		AFE3A63128F57413005C1EFB /* MyComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyComment.swift; sourceTree = "<group>"; };
+		AFE3A63328F576B2005C1EFB /* MyCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -991,6 +993,7 @@
 				A7EB872D2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift */,
 				AFE3A62F28F5722B005C1EFB /* MyWritten.swift */,
 				AFE3A63128F57413005C1EFB /* MyComment.swift */,
+				AFE3A63328F576B2005C1EFB /* MyCommentCell.swift */,
 			);
 			path = SubComponents;
 			sourceTree = "<group>";
@@ -1160,6 +1163,7 @@
 				A793134927982155004C61CC /* BannerButton.swift in Sources */,
 				A79A288F2708122C000EB8C2 /* UsageHistoryViewController.swift in Sources */,
 				A704C76E27E1B01100061D45 /* CompletedThunderCell.swift in Sources */,
+				AFE3A63428F576B2005C1EFB /* MyCommentCell.swift in Sources */,
 				A777FD512792D52600228969 /* Comment.swift in Sources */,
 				A76F601527E853C2008A5351 /* LocalePopUpViewController.swift in Sources */,
 				A7EBD5D1282901B500B822ED /* MyPost.swift in Sources */,
