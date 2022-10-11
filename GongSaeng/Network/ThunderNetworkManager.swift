@@ -76,7 +76,7 @@ final class ThunderNetworkManager: NetworkManager {
     static func postThunder(meetingTime: String, place: String, placeURL: String, address: String, totalNum: String, title: String, contents: String, images: [UIImage], completion: @escaping(Bool) -> Void) {
         let boundary = "Boundary-\(UUID().uuidString)"
         
-        guard let request = getMultipartFormDataRequest(url: "\(SERVER_URL)/community/write_community",
+        guard let request = getMultipartFormDataRequest(url: "\(SERVER_URL)/thunder",
                                                         boundary: boundary) else { return }
         
         
@@ -108,7 +108,7 @@ final class ThunderNetworkManager: NetworkManager {
             switch response.statusCode {
             case (200...299):
                 print("DEBUG: postCommunity response is succeded..", returnValue)
-                let isSucceded = (returnValue == "200") ? true : false
+                let isSucceded = (returnValue.contains("true")) ? true : false
                 completion(isSucceded)
             default:
                 handleError(response: response)
@@ -132,7 +132,7 @@ final class ThunderNetworkManager: NetworkManager {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                       return
                   }
-            print("번개디테일", thunderDetail.data)
+            
             switch response.statusCode {
             case (200...299):
                 print("DEBUG: Network succeded")
