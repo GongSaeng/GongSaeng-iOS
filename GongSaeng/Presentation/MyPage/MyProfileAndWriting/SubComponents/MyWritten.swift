@@ -6,5 +6,6 @@
 //
 
 protocol MyWritten {
-    
+    var postIndex: Int { get }
+    var boardName: String { get }
 }
