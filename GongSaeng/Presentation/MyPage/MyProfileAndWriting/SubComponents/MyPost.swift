@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct MyPost: Decodable {
+struct MyPost: Decodable, MyWritten {
     var title: String
     var boardName: String
     var postingTime: String

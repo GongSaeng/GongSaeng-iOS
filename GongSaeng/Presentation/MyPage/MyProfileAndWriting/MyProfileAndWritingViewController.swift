@@ -26,7 +26,7 @@ final class MyProfileAndWritingViewController: UIViewController {
     let headerViewModel: MyProfileAndWritingHeaderViewModel
     let headerView: MyProfileAndWritingHeaderView
     
-    var myPostList = [MyPost]()
+    var myWrittenList = [MyWritten]()
     let tableView = UITableView()
     
     // MARK: Lifecycle
@@ -77,10 +77,10 @@ final class MyProfileAndWritingViewController: UIViewController {
     // MARK: API
     private func fetchMyPosts(myPostType: MyPostType) {
         showLoader(true)
-        CommunityNetworkManager.fetchMyPosts(myPostType: myPostType) { [weak self] myPosts in
+        CommunityNetworkManager.fetchMyPosts(myPostType: myPostType) { [weak self] myWritten in
             self?.showLoader(false)
-            print("DEBUG: myPosts -> \(myPosts)")
-            self?.myPostList = myPosts
+            print("DEBUG: myWritten -> \(myWritten)")
+            self?.myWrittenList = myWritten
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -97,6 +97,7 @@ final class MyProfileAndWritingViewController: UIViewController {
         tableView.rowHeight = 67.0
         tableView.separatorStyle = .none
         tableView.register(MyWrittenPostCell.self, forCellReuseIdentifier: "MyWrittenPostCell")
+        tableView.register(MyCommentCell.self, forCellReuseIdentifier: "MyCommentCell")
     }
     
     private func configureTableHeaderView() {
@@ -131,13 +132,20 @@ final class MyProfileAndWritingViewController: UIViewController {
 // MARK: UITableViewDataSource
 extension MyProfileAndWritingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myPostList.count
+        return myWrittenList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyWrittenPostCell", for: indexPath) as? MyWrittenPostCell else { return MyWrittenPostCell() }
-        cell.viewModel = MyWrittenPostCellViewModel(myPost: myPostList[indexPath.row])
-        return cell
+        if let myPost = myWrittenList[indexPath.row] as? MyPost {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyWrittenPostCell", for: indexPath) as? MyWrittenPostCell else { return MyWrittenPostCell() }
+            cell.viewModel = MyWrittenPostCellViewModel(myPost: myPost)
+            return cell
+        } else  if let myComment = myWrittenList[indexPath.row] as? MyComment {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyCommentCell", for: indexPath) as? MyCommentCell else { return MyCommentCell() }
+            cell.data = myComment
+            return cell
+        }
+        fatalError()
     }
 }
 
@@ -145,10 +153,10 @@ extension MyProfileAndWritingViewController: UITableViewDataSource {
 extension MyProfileAndWritingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let myPost = myPostList[indexPath.row]
-        let index = myPost.postIndex
+        var index = myWrittenList[indexPath.row].postIndex
+        var boardName = myWrittenList[indexPath.row].boardName
         var communityType: CommunityType = .free
-        switch myPost.boardName {
+        switch boardName {
         case "자유게시판": communityType = .free
         case "고민게시판": communityType = .emergency
         case "맛집게시판": communityType = .suggestion
