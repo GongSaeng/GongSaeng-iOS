@@ -26,7 +26,7 @@ final class MyProfileAndWritingViewController: UIViewController {
     let headerViewModel: MyProfileAndWritingHeaderViewModel
     let headerView: MyProfileAndWritingHeaderView
     
-    var myPostList = [MyPost]()
+    var myWrittenList = [MyWritten]()
     let tableView = UITableView()
     
     // MARK: Lifecycle
@@ -77,10 +77,10 @@ final class MyProfileAndWritingViewController: UIViewController {
     // MARK: API
     private func fetchMyPosts(myPostType: MyPostType) {
         showLoader(true)
-        CommunityNetworkManager.fetchMyPosts(myPostType: myPostType) { [weak self] myPosts in
+        CommunityNetworkManager.fetchMyPosts(myPostType: myPostType) { [weak self] myWritten in
             self?.showLoader(false)
-            print("DEBUG: myPosts -> \(myPosts)")
-            self?.myPostList = myPosts
+            print("DEBUG: myWritten -> \(myWritten)")
+            self?.myWrittenList = myWritten
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -97,6 +97,7 @@ final class MyProfileAndWritingViewController: UIViewController {
         tableView.rowHeight = 67.0
         tableView.separatorStyle = .none
         tableView.register(MyWrittenPostCell.self, forCellReuseIdentifier: "MyWrittenPostCell")
+        tableView.register(MyCommentCell.self, forCellReuseIdentifier: "MyCommentCell")
     }
     
     private func configureTableHeaderView() {
@@ -131,13 +132,20 @@ final class MyProfileAndWritingViewController: UIViewController {
 // MARK: UITableViewDataSource
 extension MyProfileAndWritingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return myPostList.count
+        return myWrittenList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyWrittenPostCell", for: indexPath) as? MyWrittenPostCell else { return MyWrittenPostCell() }
-        cell.viewModel = MyWrittenPostCellViewModel(myPost: myPostList[indexPath.row])
-        return cell
+        if let myPost = myWrittenList[indexPath.row] as? MyPost {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyWrittenPostCell", for: indexPath) as? MyWrittenPostCell else { return MyWrittenPostCell() }
+            cell.viewModel = MyWrittenPostCellViewModel(myPost: myPost)
+            return cell
+        } else  if let myComment = myWrittenList[indexPath.row] as? MyComment {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "MyCommentCell", for: indexPath) as? MyCommentCell else { return MyCommentCell() }
+            cell.data = myComment
+            return cell
+        }
+        fatalError()
     }
 }
 
@@ -145,30 +153,55 @@ extension MyProfileAndWritingViewController: UITableViewDataSource {
 extension MyProfileAndWritingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let myPost = myPostList[indexPath.row]
-        let index = myPost.postIndex
-        var communityType: CommunityType = .free
-        switch myPost.boardName {
-        case "자유게시판": communityType = .free
-        case "고민게시판": communityType = .emergency
-        case "맛집게시판": communityType = .suggestion
-        case "챌린지게시판": communityType = .gathering
-        case "장터게시판": communityType = .market
-        case "번개게시판":
-            navigationController?.popViewController(animated: false)
-            delegate?.presentThunderView(index: index)
-            return
+        if let myPost = myWrittenList[indexPath.row] as? MyPost {
+            let index = myPost.postIndex
+            var communityType: CommunityType = .free
+            switch myPost.boardName {
+            case "자유게시판": communityType = .free
+            case "고민게시판": communityType = .emergency
+            case "맛집게시판": communityType = .suggestion
+            case "챌린지게시판": communityType = .gathering
+            case "장터게시판": communityType = .market
+            case "번개게시판":
+                navigationController?.popViewController(animated: false)
+                delegate?.presentThunderView(index: index)
+                return
+                
+            default:
+                return
+            }
             
-        default:
-            return
+            let viewController = BoardDetailViewController(withUser: user, postIndex: index, communityType: communityType)
+            viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+            let backBarButton = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+            backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
+            navigationItem.backBarButtonItem = backBarButton
+            navigationController?.pushViewController(viewController, animated: true)
+        } else if let myComment = myWrittenList[indexPath.row] as? MyComment {
+            let index = myComment.postIndex
+            var communityType: CommunityType = .free
+            switch myComment.boardName {
+            case "자유게시판": communityType = .free
+            case "고민게시판": communityType = .emergency
+            case "맛집게시판": communityType = .suggestion
+            case "챌린지게시판": communityType = .gathering
+            case "장터게시판": communityType = .market
+            case "번개게시판":
+                navigationController?.popViewController(animated: false)
+                delegate?.presentThunderView(index: index)
+                return
+                
+            default:
+                return
+            }
+            
+            let viewController = BoardDetailViewController(withUser: user, postIndex: index, communityType: communityType)
+            viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
+            let backBarButton = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
+            backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
+            navigationItem.backBarButtonItem = backBarButton
+            navigationController?.pushViewController(viewController, animated: true)
         }
-        
-        let viewController = BoardDetailViewController(withUser: user, postIndex: index, communityType: communityType)
-        viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]
-        let backBarButton = UIBarButtonItem(title: "", style: .plain, target: self, action: nil)
-        backBarButton.setTitleTextAttributes([.font: UIFont.systemFont(ofSize: 14.0)], for: .normal)
-        navigationItem.backBarButtonItem = backBarButton
-        navigationController?.pushViewController(viewController, animated: true)
     }
 }
 
