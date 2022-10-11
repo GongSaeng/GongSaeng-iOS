@@ -188,10 +188,9 @@ final class CommunityNetworkManager: NetworkManager {
         dataTask.resume()
     }
     
-    static func completeValidStatus(index: Int, communityType: CommunityType , completion: @escaping(Bool) -> Void) {
-        let communityStr = communityType == .gathering ? "together_complete?" : "market_complete?"
-        guard let request = getPOSTRequest(url: "\(SERVER_URL)/community/\(communityStr)",
-                                           data: ["idx": index] as Dictionary<String, Any>) else { return }
+    static func completeValidStatus(index: Int, completion: @escaping(Bool) -> Void) {
+        guard let request = getPATCHRequest(url: "\(SERVER_URL)/community/status",
+                                           data: ["idx": index, "status": 1] as Dictionary<String, Any>) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
@@ -200,11 +199,10 @@ final class CommunityNetworkManager: NetworkManager {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                       return
                   }
-    
             switch response.statusCode {
             case (200...299):
                 print("DEBUG: postComment() data -> \(String(data: data, encoding: .utf8)!)")
-                let isSucceded = String(data: data, encoding: .utf8) == "true" ? true : false
+                let isSucceded = String(data: data, encoding: .utf8)!.contains("true") ? true : false
                 completion(isSucceded)
             default:
                 handleError(response: response)

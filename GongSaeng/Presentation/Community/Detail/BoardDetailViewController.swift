@@ -181,7 +181,7 @@ class BoardDetailViewController: UITableViewController {
 // MARK: GatheringBoardDetailHeaderViewDelegate
 extension BoardDetailViewController: BoardDetailHeaderViewDelegate {
     func completeGatheringStatus() {
-        CommunityNetworkManager.completeValidStatus(index: postIndex, communityType: communityType) { [weak self] isSucceded in
+        CommunityNetworkManager.completeValidStatus(index: postIndex) { [weak self] isSucceded in
             guard let self = self, isSucceded else {
                 print("DEBUG: Completing gatheringStatus is failed..")
                 return
