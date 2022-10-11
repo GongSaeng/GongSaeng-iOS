@@ -154,22 +154,9 @@ extension MyProfileAndWritingViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         var index = myWrittenList[indexPath.row].postIndex
-        var boardName = myWrittenList[indexPath.row].boardName
-        var communityType: CommunityType = .free
-        switch boardName {
-        case "자유게시판": communityType = .free
-        case "고민게시판": communityType = .emergency
-        case "맛집게시판": communityType = .suggestion
-        case "챌린지게시판": communityType = .gathering
-        case "장터게시판": communityType = .market
-        case "번개게시판":
-            navigationController?.popViewController(animated: false)
-            delegate?.presentThunderView(index: index)
-            return
-            
-        default:
-            return
-        }
+        var communityType = CommunityType(rawValue: Int(myWrittenList[indexPath.row].code)!)!
+//            navigationController?.popViewController(animated: false)
+//            delegate?.presentThunderView(index: index)
         
         let viewController = BoardDetailViewController(withUser: user, postIndex: index, communityType: communityType)
         viewController.navigationController?.navigationBar.titleTextAttributes = [.font: UIFont.systemFont(ofSize: 16.0, weight: .medium)]

@@ -69,7 +69,20 @@ final class MyWrittenPostCell: UITableViewCell {
     private func configure() {
         guard let viewModel = viewModel else { return }
         titleLabel.text = viewModel.title
-        categoryLabel.text = viewModel.boardName
+        switch CommunityType(rawValue: viewModel.code) {
+        case .emergency:
+            categoryLabel.text = "고민게시판"
+        case .free:
+            categoryLabel.text = "자유게시판"
+        case .gathering:
+            categoryLabel.text = "챌린지게시판"
+        case .market:
+            categoryLabel.text = "장터게시판"
+        case .suggestion:
+            categoryLabel.text = "맛집게시판"
+        case .none:
+            categoryLabel.text = ""
+        }
         postingTimeLabel.text = viewModel.postingTime
         numOfCommentLabel.text = viewModel.numOfComment
     }
