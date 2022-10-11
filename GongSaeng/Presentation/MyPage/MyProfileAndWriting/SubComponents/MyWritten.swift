@@ -1,0 +1,10 @@
+//
+//  MyWritten.swift
+//  GongSaeng
+//
+//  Created by Yujin Cha on 2022/10/11.
+//
+
+protocol MyWritten {
+    
+}

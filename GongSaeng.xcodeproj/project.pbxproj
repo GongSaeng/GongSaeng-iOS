@@ -197,6 +197,7 @@
 		A7FAB14E27C75E2F00B736AB /* ThunderDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FAB14D27C75E2F00B736AB /* ThunderDetailViewModel.swift */; };
 		AF16896C28EEECE5007833D7 /* ThunderComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF16896B28EEECE5007833D7 /* ThunderComment.swift */; };
 		AFADB94B28EC54E500368369 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFADB94A28EC54E500368369 /* NetworkManager.swift */; };
+		AFE3A63028F5722B005C1EFB /* MyWritten.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE3A62F28F5722B005C1EFB /* MyWritten.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -385,6 +386,7 @@
 		A7FAB14D27C75E2F00B736AB /* ThunderDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderDetailViewModel.swift; sourceTree = "<group>"; };
 		AF16896B28EEECE5007833D7 /* ThunderComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThunderComment.swift; sourceTree = "<group>"; };
 		AFADB94A28EC54E500368369 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		AFE3A62F28F5722B005C1EFB /* MyWritten.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWritten.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -985,6 +987,7 @@
 				A7EBD5D0282901B500B822ED /* MyPost.swift */,
 				A7EB872A2824A11C008A5AB7 /* MyWrittenPostCell.swift */,
 				A7EB872D2824A424008A5AB7 /* MyWrittenPostCellViewModel.swift */,
+				AFE3A62F28F5722B005C1EFB /* MyWritten.swift */,
 			);
 			path = SubComponents;
 			sourceTree = "<group>";
@@ -1126,6 +1129,7 @@
 				A73AE4BD26F1B82200FA1F06 /* RequestCheckOutViewController.swift in Sources */,
 				A77A743227CD2F2100295730 /* Profile.swift in Sources */,
 				A7DE0107270836760098AACF /* NotificationViewController.swift in Sources */,
+				AFE3A63028F5722B005C1EFB /* MyWritten.swift in Sources */,
 				3D5D5989265247F40018FE63 /* AppDelegate.swift in Sources */,
 				A73BC91D278D54F0003FF406 /* CommentTableViewCell.swift in Sources */,
 				A76B9DAD27842B2B006AF832 /* MyPageViewController.swift in Sources */,
