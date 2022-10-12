@@ -258,7 +258,6 @@ extension PasswordChangingViewController: BannerButtonInputAccessoryViewDelegate
                     let popUpTitle = "비밀번호 변경에 실패했어요. 현재 비밀번호를 알맞게 입력하셨는지 확인해 주세요"
                     let popUpViewController = PopUpViewController(contents: popUpTitle)
                     popUpViewController.modalPresentationStyle = .overCurrentContext
-                    let rootViewController = self.navigationController?.viewControllers.first
                     self.present(popUpViewController, animated: false, completion: nil)
                 }
             }
