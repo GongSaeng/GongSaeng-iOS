@@ -99,6 +99,8 @@ class ManageAccountViewController: UIViewController {
                 return
             }
             UserService.fetchCurrentUser { user in
+                var user = user
+                user?.updateUser(name: name, phoneNumber: phoneNumber, email: email)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "loginUser")
                 DispatchQueue.main.async {
                     self.showLoader(false)

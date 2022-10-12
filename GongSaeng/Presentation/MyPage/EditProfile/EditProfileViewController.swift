@@ -126,6 +126,8 @@ final class EditProfileViewController: UIViewController {
             }
             print("DEBUG: isSucceded ->", isSucceded)
             UserService.fetchCurrentUser { user in
+                var user = user
+                user?.updateUser(nickName: nickName, job: job, introduce: introduce, profileImageFilename: imageUrl)
                 UserDefaults.standard.set(try? PropertyListEncoder().encode(user), forKey: "loginUser")
                 UserDefaults.standard.removeObject(forKey: "userImage")
                 if let imageUrl = imageUrl {
