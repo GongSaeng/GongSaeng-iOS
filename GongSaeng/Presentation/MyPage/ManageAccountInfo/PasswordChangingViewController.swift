@@ -240,21 +240,28 @@ extension PasswordChangingViewController: BannerButtonInputAccessoryViewDelegate
             return
         }
         
-        UserService.editPassword(password: password) { [weak self] isSucceded in
-            guard let self = self, isSucceded else {
+        UserService.editPassword(oldPassword: oldPasswordTextField.text ?? "", newPassword: password) { [unowned self] isSucceded in
+            if isSucceded {
+                print("DEBUG: 비밀번호 변경 완료")
+                UserDefaults.standard.set(password, forKey: "password")
+                DispatchQueue.main.async {
+                    let popUpTitle = "비밀번호가 변경되었어요."
+                    let popUpViewController = PopUpViewController(contents: popUpTitle)
+                    popUpViewController.modalPresentationStyle = .overCurrentContext
+                    let rootViewController = self.navigationController?.viewControllers.first
+                    self.navigationController?.popToRootViewController(animated: true)
+                    rootViewController?.present(popUpViewController, animated: false, completion: nil)
+                }
+            } else {
                 print("DEBUG: 비밀번호 변경 실패")
-                return
-            }
-            UserDefaults.standard.set(password, forKey: "password")
-            DispatchQueue.main.async {
-                let popUpTitle = "비밀번호가 변경되었어요."
-                let popUpViewController = PopUpViewController(contents: popUpTitle)
-                popUpViewController.modalPresentationStyle = .overCurrentContext
-                let rootViewController = self.navigationController?.viewControllers.first
-                self.navigationController?.popToRootViewController(animated: true)
-                rootViewController?.present(popUpViewController, animated: false, completion: nil)
+                DispatchQueue.main.async {
+                    let popUpTitle = "비밀번호 변경에 실패했어요. 현재 비밀번호를 알맞게 입력하셨는지 확인해 주세요"
+                    let popUpViewController = PopUpViewController(contents: popUpTitle)
+                    popUpViewController.modalPresentationStyle = .overCurrentContext
+                    let rootViewController = self.navigationController?.viewControllers.first
+                    self.present(popUpViewController, animated: false, completion: nil)
+                }
             }
         }
-        print("DEBUG: 비밀번호 변경 완료")
     }
 }
