@@ -116,22 +116,10 @@ struct UserService: NetworkManager {
     }
     
     static func editAccount(name: String, email: String, phoneNumber: String, completion: @escaping(Bool) -> Void) {
-        
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/profile/account_manage?")
-        
-        let paramQuery1 = URLQueryItem(name: "name", value: name)
-        let paramQuery2 = URLQueryItem(name: "mail", value: email)
-        let paramQuery3 = URLQueryItem(name: "phone", value: phoneNumber)
-        urlComponents?.queryItems?.append(paramQuery1)
-        urlComponents?.queryItems?.append(paramQuery2)
-        urlComponents?.queryItems?.append(paramQuery3)
-        
-        guard let url = urlComponents?.url else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+        guard let request = getPATCHRequest(url: "\(SERVER_URL)/profile/account",
+                                            data: ["name": name,
+                                                   "mail": email,
+                                                   "phone": phoneNumber] as Dictionary<String, Any>) else { return }
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -142,7 +130,7 @@ struct UserService: NetworkManager {
     
             switch response.statusCode {
             case (200...299):
-                let isSucceded: Bool = String(data: data, encoding: .utf8) == "true"
+                let isSucceded: Bool = String(data: data, encoding: .utf8)!.contains("true")
                 completion(isSucceded)
             default:
                 handleError(response: response)
