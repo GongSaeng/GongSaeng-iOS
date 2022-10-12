@@ -90,6 +90,15 @@ extension NetworkManager {
         return request
     }
     
+    static func getMultipartFormDataPATCHRequest(url: String, boundary: String) -> URLRequest? {
+        guard let url = URL(string: url) else { return nil }
+        var request = URLRequest(url: url)
+        request.httpMethod = "PATCH"
+        request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
+        
+        return request
+    }
+    
     static func getMultipartFormData(boundary: String, params: Dictionary<String, Any>, images: [UIImage]) -> Data {
         var data = Data()
         
