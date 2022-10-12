@@ -153,11 +153,9 @@ struct AuthService: NetworkManager {
             }
             switch response.statusCode {
             case (200...299):
-                if returnValue == "true" {
-                    completion(true)
-                } else if returnValue == "false" {
-                    completion(false)
-                }
+                completion(returnValue.contains("true"))
+            case 409:
+                completion(false)
             default:
                 handleError(response: response)
             }
@@ -167,7 +165,7 @@ struct AuthService: NetworkManager {
     }
     
     static func checkNicknameDuplicate(nickNameToCheck nickName: String, completion: @escaping(Bool) -> Void) {
-        guard let request = getGETRequest(url: "\(SERVER_URL)/register/idCheck?",
+        guard let request = getGETRequest(url: "\(SERVER_URL)/register/nicknameCheck?",
                                           data: ["nickname": nickName]) else { return }
         
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
@@ -183,11 +181,9 @@ struct AuthService: NetworkManager {
             }
             switch response.statusCode {
             case (200...299):
-                if returnValue == "true" {
-                    completion(true)
-                } else if returnValue == "false" {
-                    completion(false)
-                }
+                completion(returnValue.contains("true"))
+            case 409:
+                completion(false)
             default:
                 handleError(response: response)
             }
