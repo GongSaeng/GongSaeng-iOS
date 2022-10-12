@@ -200,6 +200,7 @@
 		AFE3A63028F5722B005C1EFB /* MyWritten.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE3A62F28F5722B005C1EFB /* MyWritten.swift */; };
 		AFE3A63228F57413005C1EFB /* MyComment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE3A63128F57413005C1EFB /* MyComment.swift */; };
 		AFE3A63428F576B2005C1EFB /* MyCommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFE3A63328F576B2005C1EFB /* MyCommentCell.swift */; };
+		AFEDA8D928F6CE3B004E242D /* EditProfileResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFEDA8D828F6CE3B004E242D /* EditProfileResultModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -391,6 +392,7 @@
 		AFE3A62F28F5722B005C1EFB /* MyWritten.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWritten.swift; sourceTree = "<group>"; };
 		AFE3A63128F57413005C1EFB /* MyComment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyComment.swift; sourceTree = "<group>"; };
 		AFE3A63328F576B2005C1EFB /* MyCommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyCommentCell.swift; sourceTree = "<group>"; };
+		AFEDA8D828F6CE3B004E242D /* EditProfileResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileResultModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -734,6 +736,7 @@
 			children = (
 				A76B9DAE2784694B006AF832 /* EditProfileViewController.swift */,
 				A76B9DB02784CD64006AF832 /* EditProfileViewModel.swift */,
+				AFEDA8D828F6CE3B004E242D /* EditProfileResultModel.swift */,
 			);
 			path = EditProfile;
 			sourceTree = "<group>";
@@ -1145,6 +1148,7 @@
 				3D5D59AA2652B11C0018FE63 /* RegisterViewController.swift in Sources */,
 				A709A2E7278563750038BB76 /* Register.swift in Sources */,
 				A719D09F27CFC1B6000A9388 /* MyThunder.swift in Sources */,
+				AFEDA8D928F6CE3B004E242D /* EditProfileResultModel.swift in Sources */,
 				A7EB35692786DB42001BCD03 /* ImageCacheManager.swift in Sources */,
 				3D2FBC062675FE6B00D2FF56 /* PublicViewController.swift in Sources */,
 				3D231A68266E44BA00080E9B /* Mate.swift in Sources */,
