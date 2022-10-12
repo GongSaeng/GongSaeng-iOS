@@ -56,7 +56,7 @@ struct UserService: NetworkManager {
             guard error == nil,
                   let response = response as? HTTPURLResponse,
                   let data = data,
-                  let returnValue = String(data: data, encoding: .utf8)  else {
+                  let returnValue = try? JSONDecoder().decode(EditProfileResultData.self, from: data) else {
                 print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                 return
             }
@@ -64,9 +64,7 @@ struct UserService: NetworkManager {
             switch response.statusCode {
             case (200...299):
                 print("DEBUG: UserService.editProfile() response succeded..", returnValue)
-                let isSucceded = (returnValue == "false") ? false : true
-                let imageUrl = (isSucceded && (returnValue != "true")) ? returnValue : nil
-                completion(isSucceded, imageUrl)
+                completion(true, returnValue.data.profileImageURL)
             default:
                 handleError(response: response)
             }

@@ -84,7 +84,7 @@ struct ThunderDetailHeaderViewModel {
         if user.nickname == thunderDetail.writerNickname {
             self.joinStatus = .owner
         } else if participantsProfile.contains(where: { profile in
-            user.nickname == profile.nickname
+            user.id == profile.id
         }){
             self.joinStatus = .canCancel
         } else {
