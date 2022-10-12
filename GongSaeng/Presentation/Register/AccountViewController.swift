@@ -198,48 +198,42 @@ class AccountViewController: UIViewController {
     }
     
     @IBAction func idReduplicationButtonHandler(_ sender: Any) {
-        self.idReduplicationConstraint.constant = 0
-        self.changeActivationStatusOfNextButton()
-        
-//        print("DEBUG: Did tap button..")
-//        guard let id = idTextField.text else { return }
-//        AuthService.checkIdDuplicate(idToCheck: id) { [weak self] isAvailable in
-//            guard let self = self else { return }
-//            DispatchQueue.main.async {
-//                if isAvailable {
-//                    self.idReduplicationConstraint.constant = 0
-//                    self.changeActivationStatusOfNextButton()
-//                } else {
-//                    self.idReduplicationConstraint.constant = 17
-//                    let popUpContents = "중복한 아이디가 존재합니다."
-//                    let viewController = PopUpViewController(contents: popUpContents)
-//                    viewController.modalPresentationStyle = .overCurrentContext
-//                    self.present(viewController, animated: false, completion: nil)
-//                }
-//            }
-//        }
+        print("DEBUG: Did tap button..")
+        guard let id = idTextField.text else { return }
+        AuthService.checkIdDuplicate(idToCheck: id) { [weak self] isAvailable in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if isAvailable {
+                    self.idReduplicationConstraint.constant = 0
+                    self.changeActivationStatusOfNextButton()
+                } else {
+                    self.idReduplicationConstraint.constant = 17
+                    let popUpContents = "중복한 아이디가 존재합니다."
+                    let viewController = PopUpViewController(contents: popUpContents)
+                    viewController.modalPresentationStyle = .overCurrentContext
+                    self.present(viewController, animated: false, completion: nil)
+                }
+            }
+        }
     }
     
     @IBAction func nickNameReduplicationButtonHandler(_ sender: Any) {
-        self.nicknameReduplicationConstraint.constant = 0
-        self.changeActivationStatusOfNextButton()
-        
-//        guard let nickName = nicknameTextField.text else { return }
-//        AuthService.checkNicknameDuplicate(nickNameToCheck: nickName) { [weak self] isAvailable in
-//            guard let self = self else { return }
-//            DispatchQueue.main.async {
-//                if isAvailable {
-//                    self.nicknameReduplicationConstraint.constant = 0
-//                    self.changeActivationStatusOfNextButton()
-//                } else {
-//                    self.nicknameReduplicationConstraint.constant = 17
-//                    let popUpContents = "중복한 닉네임이 존재합니다."
-//                    let viewController = PopUpViewController(contents: popUpContents)
-//                    viewController.modalPresentationStyle = .overCurrentContext
-//                    self.present(viewController, animated: false, completion: nil)
-//                }
-//            }
-//        }
+        guard let nickName = nicknameTextField.text else { return }
+        AuthService.checkNicknameDuplicate(nickNameToCheck: nickName) { [weak self] isAvailable in
+            guard let self = self else { return }
+            DispatchQueue.main.async {
+                if isAvailable {
+                    self.nicknameReduplicationConstraint.constant = 0
+                    self.changeActivationStatusOfNextButton()
+                } else {
+                    self.nicknameReduplicationConstraint.constant = 17
+                    let popUpContents = "중복한 닉네임이 존재합니다."
+                    let viewController = PopUpViewController(contents: popUpContents)
+                    viewController.modalPresentationStyle = .overCurrentContext
+                    self.present(viewController, animated: false, completion: nil)
+                }
+            }
+        }
     }
     
     @IBAction func passwordLookButtonHandler(_ sender: Any) {
