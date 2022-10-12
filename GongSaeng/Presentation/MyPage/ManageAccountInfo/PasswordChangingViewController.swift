@@ -20,6 +20,22 @@ final class PasswordChangingViewController: UIViewController {
         return label
     }()
     
+    private let oldPasswordLabel: UILabel = {
+        let label = UILabel()
+        label.text = "현재 비밀번호"
+        label.textColor = UIColor.gray
+        label.font = .systemFont(ofSize: 14.0, weight: .bold)
+        return label
+    }()
+    
+    private let oldPasswordTextField: UITextField = {
+        let textField = UITextField()
+        textField.font = .systemFont(ofSize: 14.0)
+        textField.placeholder = "현재 비밀번호를 입력해 주세요."
+        textField.isSecureTextEntry = true
+        return textField
+    }()
+    
     private let passwordLabel: UILabel = {
         let label = UILabel()
         label.text = "비밀번호"
@@ -49,6 +65,14 @@ final class PasswordChangingViewController: UIViewController {
         textField.font = .systemFont(ofSize: 14.0)
         textField.placeholder = "8~22자리의 영문,숫자로 입력해주세요."
         return textField
+    }()
+    
+    private lazy var oldPasswordLookingButton: UIButton = {
+        let button = UIButton()
+        button.setImage(UIImage(named: "noLookIcon"), for: .normal)
+        button.setImage(UIImage(named: "lookIcon"), for: .selected)
+        button.addTarget(self, action: #selector(changeTextSecure), for: .touchUpInside)
+        return button
     }()
     
     private lazy var passwordLookingButton: UIButton = {
@@ -115,8 +139,8 @@ final class PasswordChangingViewController: UIViewController {
     
     // MARK: Helpers
     private func updateSecureMode() {
-        [passwordLookingButton, passwordCheckLookingButton].forEach { $0.isSelected = !viewModel.isSecureMode }
-        [passwordTextField, passwordCheckTextField].forEach { $0.isSecureTextEntry = viewModel.isSecureMode }
+        [oldPasswordLookingButton, passwordLookingButton, passwordCheckLookingButton].forEach { $0.isSelected = !viewModel.isSecureMode }
+        [oldPasswordTextField, passwordTextField, passwordCheckTextField].forEach { $0.isSecureTextEntry = viewModel.isSecureMode }
         
     }
     
@@ -125,7 +149,7 @@ final class PasswordChangingViewController: UIViewController {
     }
     
     private func configureNotificationObservers() {
-        [passwordTextField, passwordCheckTextField].forEach {
+        [oldPasswordTextField, passwordTextField, passwordCheckTextField].forEach {
             $0.addTarget(self, action: #selector(textDidChange), for: .editingChanged)
         }
     }
@@ -135,15 +159,26 @@ final class PasswordChangingViewController: UIViewController {
     }
     
     private func layout() {
-        [changingPasswordLabel, passwordLabel, passwordTextField, passwordCheckLabel, passwordCheckTextField, passwordLookingButton, passwordCheckLookingButton].forEach { view.addSubview($0) }
+        [oldPasswordLabel, oldPasswordTextField, oldPasswordLookingButton, changingPasswordLabel, passwordLabel, passwordTextField, passwordCheckLabel, passwordCheckTextField, passwordLookingButton, passwordCheckLookingButton].forEach { view.addSubview($0) }
         
         changingPasswordLabel.snp.makeConstraints {
             $0.top.equalTo(view.safeAreaLayoutGuide).offset(30.0)
             $0.leading.equalTo(view.safeAreaLayoutGuide).offset(20.0)
         }
         
-        passwordLabel.snp.makeConstraints {
+        oldPasswordLabel.snp.makeConstraints {
             $0.top.equalTo(changingPasswordLabel.snp.bottom).offset(34.0)
+            $0.leading.equalTo(changingPasswordLabel)
+        }
+        
+        oldPasswordTextField.snp.makeConstraints {
+            $0.top.equalTo(oldPasswordLabel.snp.bottom).offset(12.0)
+            $0.leading.equalTo(changingPasswordLabel)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-50.0)
+        }
+        
+        passwordLabel.snp.makeConstraints {
+            $0.top.equalTo(oldPasswordTextField.snp.bottom).offset(34.0)
             $0.leading.equalTo(changingPasswordLabel)
         }
         
@@ -162,6 +197,12 @@ final class PasswordChangingViewController: UIViewController {
             $0.top.equalTo(passwordCheckLabel.snp.bottom).offset(12.0)
             $0.leading.equalTo(changingPasswordLabel)
             $0.trailing.equalTo(passwordTextField)
+        }
+        
+        oldPasswordLookingButton.snp.makeConstraints {
+            $0.centerY.equalTo(oldPasswordTextField)
+            $0.trailing.equalTo(view.safeAreaLayoutGuide).offset(-14.0)
+            $0.width.height.equalTo(40.0)
         }
         
         passwordLookingButton.snp.makeConstraints {
