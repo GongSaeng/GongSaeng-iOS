@@ -98,19 +98,10 @@ struct UserService: NetworkManager {
         dataTask.resume()
     }
     
-    static func editPassword(password: String, completion: @escaping(Bool) -> Void) {
-        
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/profile/pass_change?")
-        
-        let paramQuery = URLQueryItem(name: "pass", value: password)
-        urlComponents?.queryItems?.append(paramQuery)
-        
-        guard let url = urlComponents?.url else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        
+    static func editPassword(oldPassword: String, newPassword: String, completion: @escaping(Bool) -> Void) {
+        guard let request = getPATCHRequest(url: "\(SERVER_URL)/profile/password",
+                                            data: ["oldPassword": oldPassword,
+                                                   "newPassword": newPassword] as Dictionary<String, Any>) else { return }
         let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
@@ -121,8 +112,10 @@ struct UserService: NetworkManager {
     
             switch response.statusCode {
             case (200...299):
-                let isSucceded: Bool = String(data: data, encoding: .utf8) == "true"
+                let isSucceded: Bool = String(data: data, encoding: .utf8)!.contains("true")
                 completion(isSucceded)
+            case 403:
+                completion(false)
             default:
                 handleError(response: response)
             }
