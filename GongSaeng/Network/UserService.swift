@@ -39,80 +39,39 @@ struct UserService: NetworkManager {
     }
     
     static func editProfile(nickname: String, job: String, introduce: String, profileImage: UIImage?, completion: @escaping(Bool, String?) -> Void) {
-        var urlComponents = URLComponents(string: "\(SERVER_URL)/profile/edit?")
-
-        let paramQuery1 = URLQueryItem(name: "nickname", value: nickname)
-        let paramQuery2 = URLQueryItem(name: "job", value: job)
-        let paramQuery3 = URLQueryItem(name: "profile", value: introduce)
-        urlComponents?.queryItems?.append(paramQuery1)
-        urlComponents?.queryItems?.append(paramQuery2)
-        urlComponents?.queryItems?.append(paramQuery3)
-
-        guard let url = urlComponents?.url else { return }
-
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        if let profileImage = profileImage {
-            let fileName = "\(UUID().uuidString).jpg"
-            let boundary = UUID().uuidString
-            
-            request.addValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
-            
-            let data: Data = {//
-                var data = Data()
-                data.append("\r\n--\(boundary)\r\n".data(using: .utf8)!)
-                data.append("Content-Disposition: form-data; name=\"file\"; filename=\"\(fileName)\"\r\n".data(using: .utf8)!)
-                data.append("Content-Type: image/jpeg\r\n\r\n".data(using: .utf8)!)
-                data.append(profileImage.jpegData(compressionQuality: 0.5)!)
-                data.append("\r\n--\(boundary)--\r\n".data(using: .utf8)!)
-                return data
-            }()
-            
-            let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
-                print("얍", String(data: data!, encoding: .utf8))
-                guard error == nil,
-                      let response = response as? HTTPURLResponse,
-                      let data = data,
-                      let returnValue = String(data: data, encoding: .utf8)  else {
-                          print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                          return
-                      }
-
-                switch response.statusCode {
-                case (200...299):
-                    print("DEBUG: UserService.editProfile() response succeded..", returnValue)
-                    let isSucceded = (returnValue == "false") ? false : true
-                    let imageUrl = (isSucceded && (returnValue != "true")) ? returnValue : nil
-                    completion(isSucceded, imageUrl)
-                default:
-                    handleError(response: response)
-                }
+        
+        let boundary = "Boundary-\(UUID().uuidString)"
+        
+        guard let request = getMultipartFormDataPATCHRequest(url: "\(SERVER_URL)/profile",
+                                                             boundary: boundary) else { return }
+        
+        let params: [String: Any] = ["nickname": nickname,
+                                     "job": job,
+                                     "profile": introduce]
+        let data = getMultipartFormData(boundary: boundary,
+                                        params: params,
+                                        images: profileImage == nil ? [] : [profileImage!])
+        
+        let dataTask = URLSession.shared.uploadTask(with: request, from: data) { data, response, error in
+            guard error == nil,
+                  let response = response as? HTTPURLResponse,
+                  let data = data,
+                  let returnValue = String(data: data, encoding: .utf8)  else {
+                print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
+                return
             }
-            dataTask.resume()
             
-        } else {
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
-            let dataTask = URLSession.shared.dataTask(with: request) { data, response, error in
-                print("얍",String(data: data!, encoding: .utf8))
-                guard error == nil,
-                      let response = response as? HTTPURLResponse,
-                      let data = data,
-                      let returnValue = String(data: data, encoding: .utf8)  else {
-                          print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
-                          return
-                      }
-
-                switch response.statusCode {
-                case (200...299):
-                    let isSucceded = (returnValue == "true") ? true : false
-                    completion(isSucceded, nil)
-                default:
-                    handleError(response: response)
-                }
+            switch response.statusCode {
+            case (200...299):
+                print("DEBUG: UserService.editProfile() response succeded..", returnValue)
+                let isSucceded = (returnValue == "false") ? false : true
+                let imageUrl = (isSucceded && (returnValue != "true")) ? returnValue : nil
+                completion(isSucceded, imageUrl)
+            default:
+                handleError(response: response)
             }
-            dataTask.resume()
         }
+        dataTask.resume()
     }
     
     static func editAccount(name: String, email: String, phoneNumber: String, completion: @escaping(Bool) -> Void) {
