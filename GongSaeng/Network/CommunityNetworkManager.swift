@@ -102,24 +102,37 @@ final class CommunityNetworkManager: NetworkManager {
         dataTask.resume()
     }
     
-    static func fetchMyPosts(myPostType: MyPostType, completion: @escaping([MyPost]) -> Void) {
-        let scheme = (myPostType == .post) ? "mypost" : "mycomment"
+    static func fetchMyPosts(myPostType: MyPostType, completion: @escaping([MyWritten]) -> Void) {
+        let scheme = (myPostType == .post) ? "community" : "comment"
         guard let request = getGETRequest(url: "\(SERVER_URL)/profile/\(scheme)",
                                           data: [:]) else { return }
-        
         let dataTask = URLSession.shared.dataTask(with: request) {data, response, error in
             guard error == nil,
                   let response = response as? HTTPURLResponse,
-                  let data = data,
-                  let myPosts = try? JSONDecoder().decode([MyPost].self, from: data) else {
+                  let data = data else {
                       print("ERROR: URLSession data task \(error?.localizedDescription ?? "")")
                       return
                   }
             
+            var myWritten: [MyWritten] = []
+            if myPostType == .post {
+                guard let myPosts = try? JSONDecoder().decode(MyPostData.self, from: data) else {
+                    print("ERROR: MyPost decoding error", String(data: data, encoding: .utf8))
+                    return
+                }
+                myWritten = myPosts.data
+            } else {
+                guard let myComments = try? JSONDecoder().decode(MyCommentData.self, from: data) else {
+                    print("ERROR: MyComment decoding error", String(data: data, encoding: .utf8))
+                    return
+                }
+                myWritten = myComments.data
+            }
+            
             switch response.statusCode {
             case (200...299):
                 print("DEBUG: Network succeded")
-                completion(myPosts)
+                completion(myWritten)
             default:
                 handleError(response: response)
             }

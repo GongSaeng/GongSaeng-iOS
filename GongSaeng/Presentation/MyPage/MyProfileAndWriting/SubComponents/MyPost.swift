@@ -7,18 +7,22 @@
 
 import Foundation
 
+struct MyPostData: Decodable {
+    var data: [MyPost]
+}
+
 struct MyPost: Decodable, MyWritten {
     var title: String
-    var boardName: String
+    var code: String
     var postingTime: String
     var numOfComment: Int
     var postIndex: Int
     
     enum CodingKeys: String, CodingKey {
         case title
-        case boardName = "board_name"
+        case code = "code"
         case postingTime = "time"
-        case numOfComment = "comment_num"
-        case postIndex = "post_index"
+        case numOfComment = "comment_cnt"
+        case postIndex = "idx"
     }
 }
